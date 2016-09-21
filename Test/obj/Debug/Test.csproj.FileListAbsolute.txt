@@ -1,0 +1,5 @@
+d:\WORK\CS4\BRB3\Test\bin\Debug\Test.exe
+d:\WORK\CS4\BRB3\Test\bin\Debug\Test.pdb
+d:\WORK\CS4\BRB3\Test\obj\Debug\ResolveAssemblyReference.cache
+d:\WORK\CS4\BRB3\Test\obj\Debug\Test.exe
+d:\WORK\CS4\BRB3\Test\obj\Debug\Test.pdb
