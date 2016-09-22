@@ -5,6 +5,27 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BRB", "BRB\BRB.csproj", "{8C8AADC9-7805-4226-AD0B-A9286C809A60}"
 EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "BRB_Sync", "BRB_Sync\", "{3D3FAC72-4A61-4396-8659-E951CDAF5AB8}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFramework = "2.0"
+		Debug.AspNetCompiler.VirtualPath = "/BRB_Sync"
+		Debug.AspNetCompiler.PhysicalPath = "BRB_Sync\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\BRB_Sync\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/BRB_Sync"
+		Release.AspNetCompiler.PhysicalPath = "BRB_Sync\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\BRB_Sync\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "50004"
+		VWDDynamicPort = "true"
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
