@@ -35,6 +35,10 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Data.SqlServerCe, Version=3.5.1.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -45,8 +49,89 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\BRB\Data.cs">
+      <Link>Data.cs</Link>
+    </Compile>
+    <Compile Include="..\BRB\Global.cs">
+      <Link>Global.cs</Link>
+    </Compile>
+    <Compile Include="..\BRB\Proc.cs">
+      <Link>Proc.cs</Link>
+    </Compile>
+    <Compile Include="..\BRB\SqlBulkCopy\DestinationTableDefaultMetadata.cs">
+      <Link>SqlBulkCopy\DestinationTableDefaultMetadata.cs</Link>
+    </Compile>
+    <Compile Include="..\BRB\SqlBulkCopy\ISqlCeBulkCopyInsertAdapter.cs">
+      <Link>SqlBulkCopy\ISqlCeBulkCopyInsertAdapter.cs</Link>
+    </Compile>
+    <Compile Include="..\BRB\SqlBulkCopy\SqlCeBulkCopy.cs">
+      <Link>SqlBulkCopy\SqlCeBulkCopy.cs</Link>
+    </Compile>
+    <Compile Include="..\BRB\SqlBulkCopy\SqlCeBulkCopyColumnMapping.cs">
+      <Link>SqlBulkCopy\SqlCeBulkCopyColumnMapping.cs</Link>
+    </Compile>
+    <Compile Include="..\BRB\SqlBulkCopy\SqlCeBulkCopyDataTableAdapter.cs">
+      <Link>SqlBulkCopy\SqlCeBulkCopyDataTableAdapter.cs</Link>
+    </Compile>
+    <Compile Include="..\BRB\SqlBulkCopy\SqlCeBulkCopyMappingCollection.cs">
+      <Link>SqlBulkCopy\SqlCeBulkCopyMappingCollection.cs</Link>
+    </Compile>
+    <Compile Include="..\BRB\SqlBulkCopy\SqlCeBulkCopyOptions.cs">
+      <Link>SqlBulkCopy\SqlCeBulkCopyOptions.cs</Link>
+    </Compile>
+    <Compile Include="..\BRB\SqlBulkCopy\SqlCeBulkCopyTableHelpers.cs">
+      <Link>SqlBulkCopy\SqlCeBulkCopyTableHelpers.cs</Link>
+    </Compile>
+    <Compile Include="..\BRB\SqlBulkCopy\SqlCeRowsCopiedEventArgs.cs">
+      <Link>SqlBulkCopy\SqlCeRowsCopiedEventArgs.cs</Link>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Terminal.cs" />
+    <Compile Include="Web References\WebReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://10.10.4.215/BRB_Sync/BRB_Sync.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\WebReference\</RelPath>
+      <UpdateFromURL>http://10.10.4.215/BRB_Sync/BRB_Sync.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>Test_WebReference_BRB_Sync</CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Web References\WebReference\BRB_Sync.wsdl" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\WebReference\BRB_Sync.disco" />
+    <None Include="Web References\WebReference\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

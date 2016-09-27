@@ -1,0 +1,692 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://pakko.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://pakko.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://pakko.org/">
+      <s:element name="GetServiceVersion">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetServiceVersionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetServiceVersionResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFileVersion">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetFileVersionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFileVersionResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFileVersionNew">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="file" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFileVersionNewResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFileVersionNewResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="file" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFileResult" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TestConnectionToDbServer">
+        <s:complexType />
+      </s:element>
+      <s:element name="TestConnectionToDbServerResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TestConnectionToDbServerResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LoadCheckPrices">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="dsTerm">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+            <s:element minOccurs="0" maxOccurs="1" name="pocketName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="shopName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LoadCheckPricesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoadCheckPricesResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpLoadPriceLogs">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="dsTerm">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+            <s:element minOccurs="0" maxOccurs="1" name="pocketName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="shopName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpLoadPriceLogsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpLoadPriceLogsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LoadDocs">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="dsTerm">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+            <s:element minOccurs="0" maxOccurs="1" name="pocket_id" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="shopName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="w" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="a" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="u" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="date" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="number_doc" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LoadDocsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoadDocsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpLoadDocsNew">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="dsTerm">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+            <s:element minOccurs="0" maxOccurs="1" name="version" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpLoadDocsNewResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpLoadDocsNewResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpLoadDocs">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="dsTerm">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpLoadDocsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpLoadDocsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LoadInventory">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="pocket_id" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="shopName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="number_doc" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LoadInventoryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoadInventoryResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LoadInventoryOS">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="dsTerm">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+            <s:element minOccurs="0" maxOccurs="1" name="pocketName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LoadInventoryOSResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoadInventoryOSResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpLoadInventoryOS">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="dsTerm">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+            <s:element minOccurs="0" maxOccurs="1" name="pocketName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="shopName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpLoadInventoryOSResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpLoadInventoryOSResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetServiceVersionSoapIn">
+    <wsdl:part name="parameters" element="tns:GetServiceVersion" />
+  </wsdl:message>
+  <wsdl:message name="GetServiceVersionSoapOut">
+    <wsdl:part name="parameters" element="tns:GetServiceVersionResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFileVersionSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFileVersion" />
+  </wsdl:message>
+  <wsdl:message name="GetFileVersionSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFileVersionResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFileVersionNewSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFileVersionNew" />
+  </wsdl:message>
+  <wsdl:message name="GetFileVersionNewSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFileVersionNewResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFileSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFile" />
+  </wsdl:message>
+  <wsdl:message name="GetFileSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="TestConnectionToDbServerSoapIn">
+    <wsdl:part name="parameters" element="tns:TestConnectionToDbServer" />
+  </wsdl:message>
+  <wsdl:message name="TestConnectionToDbServerSoapOut">
+    <wsdl:part name="parameters" element="tns:TestConnectionToDbServerResponse" />
+  </wsdl:message>
+  <wsdl:message name="LoadCheckPricesSoapIn">
+    <wsdl:part name="parameters" element="tns:LoadCheckPrices" />
+  </wsdl:message>
+  <wsdl:message name="LoadCheckPricesSoapOut">
+    <wsdl:part name="parameters" element="tns:LoadCheckPricesResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpLoadPriceLogsSoapIn">
+    <wsdl:part name="parameters" element="tns:UpLoadPriceLogs" />
+  </wsdl:message>
+  <wsdl:message name="UpLoadPriceLogsSoapOut">
+    <wsdl:part name="parameters" element="tns:UpLoadPriceLogsResponse" />
+  </wsdl:message>
+  <wsdl:message name="LoadDocsSoapIn">
+    <wsdl:part name="parameters" element="tns:LoadDocs" />
+  </wsdl:message>
+  <wsdl:message name="LoadDocsSoapOut">
+    <wsdl:part name="parameters" element="tns:LoadDocsResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpLoadDocsNewSoapIn">
+    <wsdl:part name="parameters" element="tns:UpLoadDocsNew" />
+  </wsdl:message>
+  <wsdl:message name="UpLoadDocsNewSoapOut">
+    <wsdl:part name="parameters" element="tns:UpLoadDocsNewResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpLoadDocsSoapIn">
+    <wsdl:part name="parameters" element="tns:UpLoadDocs" />
+  </wsdl:message>
+  <wsdl:message name="UpLoadDocsSoapOut">
+    <wsdl:part name="parameters" element="tns:UpLoadDocsResponse" />
+  </wsdl:message>
+  <wsdl:message name="LoadInventorySoapIn">
+    <wsdl:part name="parameters" element="tns:LoadInventory" />
+  </wsdl:message>
+  <wsdl:message name="LoadInventorySoapOut">
+    <wsdl:part name="parameters" element="tns:LoadInventoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="LoadInventoryOSSoapIn">
+    <wsdl:part name="parameters" element="tns:LoadInventoryOS" />
+  </wsdl:message>
+  <wsdl:message name="LoadInventoryOSSoapOut">
+    <wsdl:part name="parameters" element="tns:LoadInventoryOSResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpLoadInventoryOSSoapIn">
+    <wsdl:part name="parameters" element="tns:UpLoadInventoryOS" />
+  </wsdl:message>
+  <wsdl:message name="UpLoadInventoryOSSoapOut">
+    <wsdl:part name="parameters" element="tns:UpLoadInventoryOSResponse" />
+  </wsdl:message>
+  <wsdl:portType name="BRB_SyncSoap">
+    <wsdl:operation name="GetServiceVersion">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Вказує розробника і версію сервісу</wsdl:documentation>
+      <wsdl:input message="tns:GetServiceVersionSoapIn" />
+      <wsdl:output message="tns:GetServiceVersionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFileVersion">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Вказує версію файла на сервері</wsdl:documentation>
+      <wsdl:input message="tns:GetFileVersionSoapIn" />
+      <wsdl:output message="tns:GetFileVersionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFileVersionNew">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Вказує версію файла на сервері по назві файла</wsdl:documentation>
+      <wsdl:input message="tns:GetFileVersionNewSoapIn" />
+      <wsdl:output message="tns:GetFileVersionNewSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFile">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Загружає файл на термінал</wsdl:documentation>
+      <wsdl:input message="tns:GetFileSoapIn" />
+      <wsdl:output message="tns:GetFileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TestConnectionToDbServer">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Провірка з'єднання з БД</wsdl:documentation>
+      <wsdl:input message="tns:TestConnectionToDbServerSoapIn" />
+      <wsdl:output message="tns:TestConnectionToDbServerSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadCheckPrices">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Загружає ціни на термінал</wsdl:documentation>
+      <wsdl:input message="tns:LoadCheckPricesSoapIn" />
+      <wsdl:output message="tns:LoadCheckPricesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpLoadPriceLogs">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Вигружає на сервер результат сканування цінників</wsdl:documentation>
+      <wsdl:input message="tns:UpLoadPriceLogsSoapIn" />
+      <wsdl:output message="tns:UpLoadPriceLogsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadDocs">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Загружає документи на термінал</wsdl:documentation>
+      <wsdl:input message="tns:LoadDocsSoapIn" />
+      <wsdl:output message="tns:LoadDocsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpLoadDocsNew">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Вигружає на сервер документи, оброблені клієнтом (передається версія)</wsdl:documentation>
+      <wsdl:input message="tns:UpLoadDocsNewSoapIn" />
+      <wsdl:output message="tns:UpLoadDocsNewSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpLoadDocs">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Вигружає на сервер документи, оброблені клієнтом</wsdl:documentation>
+      <wsdl:input message="tns:UpLoadDocsSoapIn" />
+      <wsdl:output message="tns:UpLoadDocsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadInventory">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Загружає ревізії на термінал</wsdl:documentation>
+      <wsdl:input message="tns:LoadInventorySoapIn" />
+      <wsdl:output message="tns:LoadInventorySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadInventoryOS">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Загружає ревізії ОС на термінал</wsdl:documentation>
+      <wsdl:input message="tns:LoadInventoryOSSoapIn" />
+      <wsdl:output message="tns:LoadInventoryOSSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpLoadInventoryOS">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Вигружає на сервер результат сканування ОС</wsdl:documentation>
+      <wsdl:input message="tns:UpLoadInventoryOSSoapIn" />
+      <wsdl:output message="tns:UpLoadInventoryOSSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BRB_SyncSoap" type="tns:BRB_SyncSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetServiceVersion">
+      <soap:operation soapAction="http://pakko.org/GetServiceVersion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFileVersion">
+      <soap:operation soapAction="http://pakko.org/GetFileVersion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFileVersionNew">
+      <soap:operation soapAction="http://pakko.org/GetFileVersionNew" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFile">
+      <soap:operation soapAction="http://pakko.org/GetFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestConnectionToDbServer">
+      <soap:operation soapAction="http://pakko.org/TestConnectionToDbServer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadCheckPrices">
+      <soap:operation soapAction="http://pakko.org/LoadCheckPrices" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpLoadPriceLogs">
+      <soap:operation soapAction="http://pakko.org/UpLoadPriceLogs" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadDocs">
+      <soap:operation soapAction="http://pakko.org/LoadDocs" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpLoadDocsNew">
+      <soap:operation soapAction="http://pakko.org/UpLoadDocsNew" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpLoadDocs">
+      <soap:operation soapAction="http://pakko.org/UpLoadDocs" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadInventory">
+      <soap:operation soapAction="http://pakko.org/LoadInventory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadInventoryOS">
+      <soap:operation soapAction="http://pakko.org/LoadInventoryOS" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpLoadInventoryOS">
+      <soap:operation soapAction="http://pakko.org/UpLoadInventoryOS" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BRB_SyncSoap12" type="tns:BRB_SyncSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetServiceVersion">
+      <soap12:operation soapAction="http://pakko.org/GetServiceVersion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFileVersion">
+      <soap12:operation soapAction="http://pakko.org/GetFileVersion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFileVersionNew">
+      <soap12:operation soapAction="http://pakko.org/GetFileVersionNew" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFile">
+      <soap12:operation soapAction="http://pakko.org/GetFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestConnectionToDbServer">
+      <soap12:operation soapAction="http://pakko.org/TestConnectionToDbServer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadCheckPrices">
+      <soap12:operation soapAction="http://pakko.org/LoadCheckPrices" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpLoadPriceLogs">
+      <soap12:operation soapAction="http://pakko.org/UpLoadPriceLogs" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadDocs">
+      <soap12:operation soapAction="http://pakko.org/LoadDocs" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpLoadDocsNew">
+      <soap12:operation soapAction="http://pakko.org/UpLoadDocsNew" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpLoadDocs">
+      <soap12:operation soapAction="http://pakko.org/UpLoadDocs" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadInventory">
+      <soap12:operation soapAction="http://pakko.org/LoadInventory" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadInventoryOS">
+      <soap12:operation soapAction="http://pakko.org/LoadInventoryOS" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpLoadInventoryOS">
+      <soap12:operation soapAction="http://pakko.org/UpLoadInventoryOS" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="BRB_Sync">
+    <wsdl:port name="BRB_SyncSoap" binding="tns:BRB_SyncSoap">
+      <soap:address location="http://10.10.4.215/BRB_Sync/BRB_Sync.asmx" />
+    </wsdl:port>
+    <wsdl:port name="BRB_SyncSoap12" binding="tns:BRB_SyncSoap12">
+      <soap12:address location="http://10.10.4.215/BRB_Sync/BRB_Sync.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
