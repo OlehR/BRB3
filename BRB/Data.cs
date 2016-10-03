@@ -178,10 +178,12 @@ namespace BRB
             SQL.AddWithValueF("@parNumberDoc", parNumberDoc);
             return Convert.ToDateTime(SQL.ExecuteScalar(varSQLGetDateOutInvoice));
         }
-
+        /// <summary>
+        /// Синхронізація
+        /// </summary>
         private void btnSync()
         {
-            // Синхронізація
+            
             try
             {
                 int start_web = Environment.TickCount;
@@ -258,32 +260,23 @@ namespace BRB
                 //налаштування для WEB-сервісу
                 BRB.WebReference.BRB_Sync webService = new BRB.WebReference.BRB_Sync();
 
-                //string wsUrl = Global.ServiceUrl;
-                Int32 wsTimeOut = Global.ServiceTimeOut;
                 webService.Url = Global.ServiceUrl; //@wsUrl;
-                webService.Timeout = wsTimeOut;
+                webService.Timeout = Global.ServiceTimeOut;
 
                 SqlCeConnection conn = new SqlCeConnection(Global.SqlCeConectionBRB);
                 ConfigFile cFile = null;
 
-                string sqlStr = @"SELECT        number_doc, type_doc, date_doc, serial_tzd, name_supplier, code_shop, sum_with_vat, sum_without_vat, flag_price_with_vat, number_out_invoice, 
+                string sqlStr = @"SELECT number_doc, type_doc, date_doc, serial_tzd, name_supplier, code_shop, sum_with_vat, sum_without_vat, flag_price_with_vat, number_out_invoice, 
                          date_out_invoice, number_tax_invoice, date_tax_invoice, flag_sum_qty_doc, change_date, input_code, flag_change_doc_sup, okpo_supplier, 
                          flag_insert_weigth_from_barcode AS flag_insert_weigth_from_barcod
-                            FROM DOCS  WHERE  (status = 1) AND EXISTS  (SELECT 1 AS Expr1   FROM DOCS_WARES  WHERE (number_doc = DOCS.number_doc))";
+                            FROM DOCS  WHERE  (status = 1) AND EXISTS  (SELECT 1 AS Expr1 FROM DOCS_WARES  WHERE (number_doc = DOCS.number_doc))";
 
                 SqlCeDataAdapter daHead = new SqlCeDataAdapter(sqlStr, conn);
 
-                sqlStr = @"SELECT   DW.number_doc, 
-                                        DW.code_wares, 
-                                        DW.code_unit, 
-                                        DW.price, 
-                                        DW.price_temp, 
-                                        DW.quantity, 
-                                        DW.quantity_temp, 
-                                        DW.num_pop, 
-                                        DW.change_date
-                               FROM     DOCS_WARES AS DW INNER JOIN
-                                        DOCS AS D ON DW.number_doc = D.number_doc
+                sqlStr = @"SELECT   DW.number_doc, DW.code_wares, DW.code_unit, DW.price,  DW.price_temp, 
+                                        DW.quantity,  DW.quantity_temp,  DW.num_pop, DW.change_date
+                               FROM     DOCS_WARES AS DW 
+                                INNER JOIN DOCS AS D ON DW.number_doc = D.number_doc
                                WHERE    (D.status = 1)";
 
                 SqlCeDataAdapter daRows = new SqlCeDataAdapter(sqlStr, conn);
@@ -317,21 +310,14 @@ namespace BRB
                 }
 
                 string errDocs = string.Empty;
-                if (dsInvoice.Tables["dtDocs"].Rows.Count > 0)
+
+                if (dsInvoice.Tables["dtDocs"].Rows.Count > 0) 
                 {
                     // Обратимся к сервису и скинем туда данные
                     DataSet ds = webService.UpLoadDocsNew(dsInvoice, version);
-
                     foreach (DataRow dr in ds.Tables["dtReturnHead"].Rows)
                     {
-                        if (errDocs == "")
-                        {
-                            errDocs = dr["number_doc"].ToString();
-                        }
-                        else
-                        {
-                            errDocs = errDocs + "," + dr["number_doc"].ToString();
-                        }
+                        errDocs+= (errDocs==""? "":",")+dr["number_doc"].ToString();                        
                     }
                 }
 
