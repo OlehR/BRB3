@@ -39,9 +39,18 @@ public class MSCeSQL
     /// <param name="value">значення параметра</param>
     public void AddWithValueF(string paramretrName, object value)
     {
-        varListSqlParameter.Clear();
+        ClearParam();
         AddWithValue(paramretrName, value);
     }
+    /// <summary>
+    /// Очищає параметри
+    /// </summary>
+    public void ClearParam()
+    {
+        varListSqlParameter.Clear();        
+    }
+
+
     /// <summary>
     /// Добавляє параметр в набір
     /// </summary>

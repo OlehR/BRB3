@@ -196,304 +196,108 @@ namespace BRB
                 DataTable dtDocsIn;
                 DataTable dtDocsOnly;
                 DataTable dtWares;
-                #region Створення DataSet
-                dtDocs = new DataTable("dtDocs");
-
-                dtDocs.Columns.Add("number_doc", typeof(int));
-                dtDocs.Columns.Add("type_doc", typeof(int));
-                dtDocs.Columns.Add("date_doc", typeof(DateTime));
-                dtDocs.Columns.Add("serial_tzd", typeof(string));
-                dtDocs.Columns.Add("name_supplier", typeof(string));
-                dtDocs.Columns.Add("code_shop", typeof(int));
-                dtDocs.Columns.Add("sum_with_vat", typeof(decimal));
-                dtDocs.Columns.Add("sum_without_vat", typeof(decimal));
-                dtDocs.Columns.Add("flag_price_with_vat", typeof(int));
-                dtDocs.Columns.Add("number_out_invoice", typeof(string));
-                dtDocs.Columns.Add("date_out_invoice", typeof(DateTime));
-                dtDocs.Columns.Add("number_tax_invoice", typeof(string));
-                dtDocs.Columns.Add("date_tax_invoice", typeof(DateTime));
-                dtDocs.Columns.Add("flag_sum_qty_doc", typeof(int));
-                dtDocs.Columns.Add("change_date", typeof(DateTime));
-                dtDocs.Columns.Add("input_code", typeof(int));
-                dtDocs.Columns.Add("flag_change_doc_sup", typeof(int));
-                dtDocs.Columns.Add("okpo_supplier", typeof(string));
-                dtDocs.Columns.Add("flag_insert_weigth_from_barcod", typeof(int));
-
-                dtDocs.PrimaryKey = new DataColumn[] { dtDocs.Columns["number_doc"] };
-
-                dsInvoice.Tables.Add(dtDocs);
-
-                dtDocsWares = new DataTable("dtDocsWares");
-
-                dtDocsWares.Columns.Add("number_doc", typeof(int));
-                dtDocsWares.Columns.Add("code_wares", typeof(int));
-                dtDocsWares.Columns.Add("code_unit", typeof(int));
-                dtDocsWares.Columns.Add("price", typeof(decimal));
-                dtDocsWares.Columns.Add("price_temp", typeof(decimal));
-                dtDocsWares.Columns.Add("quantity", typeof(decimal));
-                dtDocsWares.Columns.Add("quantity_temp", typeof(decimal));
-                dtDocsWares.Columns.Add("num_pop", typeof(int));
-                dtDocsWares.Columns.Add("change_date", typeof(DateTime));
-
-                dtDocsWares.PrimaryKey = new DataColumn[] { dtDocsWares.Columns["number_doc"], dtDocsWares.Columns["code_wares"] };
-
-                dsInvoice.Tables.Add(dtDocsWares);
-
-                dtDocsIn = new DataTable("dtDocsIn");
-                dtDocsIn.Columns.Add("number_doc", typeof(int));
-                dtDocsIn.PrimaryKey = new DataColumn[] { dtDocsIn.Columns["number_doc"] };
-
-                dsInvoice.Tables.Add(dtDocsIn);
-
-                dtDocsOnly = new DataTable("dtDocsOnly");
-                dtDocsOnly.Columns.Add("number_doc", typeof(int));
-                dtDocsOnly.PrimaryKey = new DataColumn[] { dtDocsOnly.Columns["number_doc"] };
-
-                dsInvoice.Tables.Add(dtDocsOnly);
-
-                dtWares = new DataTable("dtWares");
-                dtWares.Columns.Add("code_wares", typeof(int));
-                dtWares.PrimaryKey = new DataColumn[] { dtWares.Columns["code_wares"] };
-                #endregion
-
                 
+                SQL.ClearParam();
                 //налаштування для WEB-сервісу
                 BRB.WebReference.BRB_Sync webService = new BRB.WebReference.BRB_Sync();
-
                 webService.Url = Global.ServiceUrl; //@wsUrl;
                 webService.Timeout = Global.ServiceTimeOut;
 
-                SqlCeConnection conn = new SqlCeConnection(Global.SqlCeConectionBRB);
                 ConfigFile cFile = null;
 
                 string sqlStr = @"SELECT number_doc, type_doc, date_doc, serial_tzd, name_supplier, code_shop, sum_with_vat, sum_without_vat, flag_price_with_vat, number_out_invoice, 
                          date_out_invoice, number_tax_invoice, date_tax_invoice, flag_sum_qty_doc, change_date, input_code, flag_change_doc_sup, okpo_supplier, 
                          flag_insert_weigth_from_barcode AS flag_insert_weigth_from_barcod
                             FROM DOCS  WHERE  (status = 1) AND EXISTS  (SELECT 1 AS Expr1 FROM DOCS_WARES  WHERE (number_doc = DOCS.number_doc))";
-
-                SqlCeDataAdapter daHead = new SqlCeDataAdapter(sqlStr, conn);
-
+                dtDocs=SQL.ExecuteQuery(sqlStr);
+                dsInvoice.Tables.Add(dtDocs);
+                
                 sqlStr = @"SELECT   DW.number_doc, DW.code_wares, DW.code_unit, DW.price,  DW.price_temp, 
                                         DW.quantity,  DW.quantity_temp,  DW.num_pop, DW.change_date
                                FROM     DOCS_WARES AS DW 
                                 INNER JOIN DOCS AS D ON DW.number_doc = D.number_doc
                                WHERE    (D.status = 1)";
-
-                SqlCeDataAdapter daRows = new SqlCeDataAdapter(sqlStr, conn);
-
-                sqlStr = @"SELECT DISTINCT dw.number_doc
+                dtDocsWares = SQL.ExecuteQuery(sqlStr);
+                dsInvoice.Tables.Add(dtDocsWares);
+                
+                // Вигружаємо дані на сервер,якщо є що
+                string varUpLoadDocs = string.Empty;
+                if (dtDocs.Rows.Count > 0)
+                {
+                    DataSet ds = webService.UpLoadDocsNew(dsInvoice, version);
+                    foreach (DataRow dr in ds.Tables["dtReturnHead"].Rows)
+                    {  //Формуємо список успішно вигружених документів.
+                        varUpLoadDocs += (varUpLoadDocs == "" ? "" : ",") + dr["number_doc"].ToString();
+                    }
+                }
+                //Видаляємо завантажені документи з бази
+                if (varUpLoadDocs != string.Empty)
+                {
+                    sqlStr = @"delete from docs_wares where number_doc in 
+					( select number_doc from docs where status = 1 and number_doc not in (" + varUpLoadDocs + "))";
+                    SQL.ExecuteNonQuery(sqlStr);
+                    sqlStr = @"delete from docs where  status = 1 and number_doc not in (" + varUpLoadDocs + ")";
+                    SQL.ExecuteNonQuery(sqlStr);
+                }
+              
+                //Видаляємо старі дані + де відсутня шапка або товари
+                SQL.AddWithValueF("@Date_doc", DateTime.Now.Date.AddDays(-2));
+                sqlStr = @"delete from docs_wares where number_doc in 
+					( SELECT number_doc
+                      FROM   DOCS
+                      WHERE (date_doc < @Date_doc) AND (status = 0) AND (type_doc <> 2) OR
+                            (date_doc - 1 < @Date_doc) AND (status = 0) AND (type_doc = 2) 
+                     union 
+                     SELECT DISTINCT dw.number_doc
                                FROM   DOCS_WARES AS dw LEFT OUTER JOIN
                                       DOCS AS d ON dw.number_doc = d.number_doc
-                               WHERE  (d.number_doc IS NULL)";
+                               WHERE  (d.number_doc IS NULL)
+                     )";
+                 SQL.ExecuteNonQuery(sqlStr);
 
-                SqlCeDataAdapter daDel = new SqlCeDataAdapter(sqlStr, conn);
 
-                sqlStr = @"SELECT DISTINCT d.number_doc
+                 sqlStr = @"delete from   docs where number_doc in 
+                    ( SELECT number_doc
+                      FROM   DOCS
+                      WHERE (date_doc < @Date_doc) AND (status = 0) AND (type_doc <> 2) OR
+                            (date_doc - 1 < @Date_doc) AND (status = 0) AND (type_doc = 2) 
+                     union 
+                         SELECT DISTINCT d.number_doc
                                FROM   DOCS AS d LEFT OUTER JOIN
                                       DOCS_WARES AS dw ON dw.number_doc = d.number_doc
                                WHERE  (dw.number_doc IS NULL)
                                AND    (d.type_doc <> 9)";
+                SQL.ExecuteNonQuery(sqlStr);
 
-                SqlCeDataAdapter daDelHead = new SqlCeDataAdapter(sqlStr, conn);
 
-                try
-                {
-                    conn.Open();
-                    daHead.Fill(dsInvoice.Tables["dtDocs"]);
-                    daRows.Fill(dsInvoice.Tables["dtDocsWares"]);
-                    daDel.Fill(dsInvoice.Tables["dtDocsIn"]);
-                    daDelHead.Fill(dsInvoice.Tables["dtDocsOnly"]);
-                }
-                finally
-                {
-                    conn.Close();
-                }
 
-                string errDocs = string.Empty;
-
-                if (dsInvoice.Tables["dtDocs"].Rows.Count > 0) 
-                {
-                    // Обратимся к сервису и скинем туда данные
-                    DataSet ds = webService.UpLoadDocsNew(dsInvoice, version);
-                    foreach (DataRow dr in ds.Tables["dtReturnHead"].Rows)
-                    {
-                        errDocs+= (errDocs==""? "":",")+dr["number_doc"].ToString();                        
-                    }
-                }
-
-                if (errDocs == string.Empty)
-                    errDocs = "0";
-
-                string s = @"delete from docs_wares where number_doc in 
-					( select number_doc from docs where status = 1 and number_doc not in (" + errDocs + "))";
-                SqlCeCommand cmdDelDocWSt = new SqlCeCommand(s, conn);
-
-                s = @"delete from docs where  status = 1 and number_doc not in (" + errDocs + ")";
-                SqlCeCommand cmdDelDocSt = new SqlCeCommand(s, conn);
-
-                DateTime dt = DateTime.Now.Date.AddDays(-2);
-
-                s = @"delete from docs_wares where number_doc in 
-					( SELECT number_doc
-                      FROM   DOCS
-                      WHERE (date_doc < @Date_doc) AND (status = 0) AND (type_doc <> 2) OR
-                            (date_doc - 1 < @Date_doc) AND (status = 0) AND (type_doc = 2) )";
-                SqlCeCommand cmdDelDocW = new SqlCeCommand(s, conn);
-                cmdDelDocW.Parameters.Add("@Date_doc", SqlDbType.DateTime).Value = dt;
-
-                s = @"delete 
-                          from   docs 
-                          where (date_doc < @Date_doc) AND (status = 0) AND (type_doc <> 2) OR
-                                (date_doc - 1 < @Date_doc) AND (status = 0) AND (type_doc = 2)";
-                SqlCeCommand cmdDelDoc = new SqlCeCommand(s, conn);
-                cmdDelDoc.Parameters.Add("@Date_doc", SqlDbType.DateTime).Value = dt;
-
-                // видаляємо товари документа, для яких шапка документа відсутня
-                string number_doc_del = string.Empty;
-                if (dsInvoice.Tables["dtDocsIn"].Rows.Count > 0)
-                {
-                    // Обратимся к сервису и скинем туда данные
-                    foreach (DataRow dr in dsInvoice.Tables["dtDocsIn"].Rows)
-                    {
-                        if (number_doc_del == "")
-                        {
-                            number_doc_del = dr["number_doc"].ToString();
-                        }
-                        else
-                        {
-                            number_doc_del = number_doc_del + "," + dr["number_doc"].ToString();
-                        }
-                    }
-                }
-                if (number_doc_del == string.Empty)
-                    number_doc_del = "0";
-                s = @"DELETE 
-                          FROM   DOCS_WARES
-                          WHERE  (number_doc IN (" + number_doc_del + "))";
-                SqlCeCommand cmdDelDocWar = new SqlCeCommand(s, conn);
-
-                // видаляємо документи, для яких товари відсутні
-                number_doc_del = string.Empty;
-                if (dsInvoice.Tables["dtDocsOnly"].Rows.Count > 0)
-                {
-                    // Обратимся к сервису и скинем туда данные
-                    foreach (DataRow dr in dsInvoice.Tables["dtDocsOnly"].Rows)
-                    {
-                        if (number_doc_del == "")
-                        {
-                            number_doc_del = dr["number_doc"].ToString();
-                        }
-                        else
-                        {
-                            number_doc_del = number_doc_del + "," + dr["number_doc"].ToString();
-                        }
-                    }
-                }
-                if (number_doc_del == string.Empty)
-                    number_doc_del = "0";
-                s = @"DELETE 
-                          FROM   DOCS
-                          WHERE  (number_doc IN (" + number_doc_del + "))";
-                SqlCeCommand cmdDelDocOnly = new SqlCeCommand(s, conn);
-
-                try
-                {
-                    conn.Open();
-                    cmdDelDocWSt.ExecuteNonQuery();
-                    cmdDelDocSt.ExecuteNonQuery();
-                    cmdDelDocW.ExecuteNonQuery();
-                    cmdDelDoc.ExecuteNonQuery();
-                    cmdDelDocWar.ExecuteNonQuery();
-                    cmdDelDocOnly.ExecuteNonQuery();
-                }
-                finally
-                {
-                    conn.Close();
-                }
-
-                // вираховуємо товари, які є в документах, але відсутні в довідниках
-                int refresh = 0;
+                // вираховуємо товари, які є в документах, але відсутні в довідниках !!!Покіщо ніде не використовується
                 sqlStr = @"SELECT  DISTINCT dw.code_wares
                                 FROM   DOCS_WARES AS dw LEFT OUTER JOIN
                                         WARES AS w ON w.code_wares = dw.code_wares
                                 WHERE  (w.code_wares IS NULL)";
+                
+                SQL.ClearParam();
+                dtWares = SQL.ExecuteQuery(sqlStr);
 
-                SqlCeDataAdapter daWares = new SqlCeDataAdapter(sqlStr, conn);
-
-                try
-                {
-                    conn.Open();
-                    daWares.Fill(dtWares);
-                }
-                finally
-                {
-                    conn.Close();
-                }
-
-                if (dtWares.Rows.Count > 0)
-                {
-                    refresh = 1;
-                }
-
-                // записуємо в змінну перелік документів, які присутні на ТЗД
-                string number_doc = string.Empty;
                 sqlStr = @"select number_doc from Docs";
+                dtDocsIn = SQL.ExecuteQuery(sqlStr);
+                string varNumberDoc=String.Empty;
+                foreach (DataRow r in dtDocsIn.Rows)
+                    varNumberDoc += (varNumberDoc == String.Empty ? "" : ",") + r[0];
 
-                SqlCeDataAdapter daDocsIn = new SqlCeDataAdapter(sqlStr, conn);
-                dsInvoice.Tables["dtDocsIn"].Clear();
-
-                try
-                {
-                    conn.Open();
-                    daDocsIn.Fill(dsInvoice.Tables["dtDocsIn"]);
-                }
-                finally
-                {
-                    conn.Close();
-                }
-
-
-                if (dsInvoice.Tables["dtDocsIn"].Rows.Count > 0)
-                {
-                    foreach (DataRow dr in dsInvoice.Tables["dtDocsIn"].Rows)
-                    {
-                        if (number_doc == "")
-                        {
-                            number_doc = dr["number_doc"].ToString();
-                        }
-                        else
-                        {
-                            number_doc = number_doc + "," + dr["number_doc"].ToString();
-                        }
-                    }
-                }
-
-                if (number_doc == string.Empty)
-                    number_doc = "0";
+                if (varNumberDoc == string.Empty)
+                    varNumberDoc = "0";
 
                 DataSet temp = null, dsInvoiceTemplate = null;
-                string pocked_id = Global.DeviceID;
+               
                 DateTime t = Convert.ToDateTime(Global.TimeSync).Date;
-                string shop = Global.ShopName;
+                
                 int w = 0, a = 0, u = 0;
-                //tmp
-                /*if (clsCommon.PropWares > 0)
-                { w = 1; }
-                if (clsCommon.PropAdditionUnit > 0)
-                { a = 1; }
-                if (clsCommon.PropUnitDimension > 0)
-                { u = 1; }
-                 */
-                if (refresh == 1)
-                {
-                    w = 0;
-                    a = 0;
-                    u = 0;
-                }
-
+                
                 try
                 {
-                    dsInvoiceTemplate = webService.LoadDocs(temp, pocked_id, shop, w, a, u, t, number_doc);
+                    dsInvoiceTemplate = webService.LoadDocs(temp, Global.DeviceID, Global.ShopName, w, a, u, t, varNumberDoc);
                 }
                 catch
                 {
@@ -504,6 +308,8 @@ namespace BRB
                 {
                 }
 
+                ///TMP
+                System.Data.SqlServerCe.SqlCeConnection conn = new SqlCeConnection();
                 if (dsInvoiceTemplate != null)
                 {
                     SqlCeCommand cmdHead = new SqlCeCommand(@"insert into Docs(number_doc, type_doc, date_doc, name_supplier, okpo_supplier, code_shop, flag_sum_qty_doc, serial_tzd, sum_with_vat, sum_without_vat, input_code) 
@@ -954,12 +760,12 @@ namespace BRB
                 
                 int end_web = Environment.TickCount;
                 int result_web = (end_web - start_web) / 1000;
-
+                ///TMP 
+                String errDocs="";
                 if (errDocs == "0")
                     varError = "Синхронізація завершена! Час синхронізації:" + result_web.ToString() + " сек.";
                 else
                     varError = "Завершено з помилками! Документи №" + errDocs + " не загрузились на сервер! Час синхронізації:" + result_web.ToString();
-
 
             }
             catch
