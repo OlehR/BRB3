@@ -187,7 +187,7 @@ namespace BRB
             try
             {
                 int start_web = Environment.TickCount;
-                string version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+                string varLocalVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
 
                 // Заповнюємо в DataSet документи, які відмічені для відправки на сервер
                 DataSet dsInvoice = new DataSet("dsInvoice");
@@ -202,8 +202,6 @@ namespace BRB
                 BRB.WebReference.BRB_Sync webService = new BRB.WebReference.BRB_Sync();
                 webService.Url = Global.ServiceUrl; //@wsUrl;
                 webService.Timeout = Global.ServiceTimeOut;
-
-                ConfigFile cFile = null;
 
                 string sqlStr = @"SELECT number_doc, type_doc, date_doc, serial_tzd, name_supplier, code_shop, sum_with_vat, sum_without_vat, flag_price_with_vat, number_out_invoice, 
                          date_out_invoice, number_tax_invoice, date_tax_invoice, flag_sum_qty_doc, change_date, input_code, flag_change_doc_sup, okpo_supplier, 
@@ -221,22 +219,22 @@ namespace BRB
                 dsInvoice.Tables.Add(dtDocsWares);
                 
                 // Вигружаємо дані на сервер,якщо є що
-                string varUpLoadDocs = string.Empty;
+                string varWrongUpLoadDocs = string.Empty;
                 if (dtDocs.Rows.Count > 0)
                 {
-                    DataSet ds = webService.UpLoadDocsNew(dsInvoice, version);
+                    DataSet ds = webService.UpLoadDocsNew(dsInvoice, varLocalVersion);
                     foreach (DataRow dr in ds.Tables["dtReturnHead"].Rows)
                     {  //Формуємо список успішно вигружених документів.
-                        varUpLoadDocs += (varUpLoadDocs == "" ? "" : ",") + dr["number_doc"].ToString();
+                        varWrongUpLoadDocs += (varWrongUpLoadDocs == "" ? "" : ",") + dr["number_doc"].ToString();
                     }
                 }
                 //Видаляємо завантажені документи з бази
-                if (varUpLoadDocs != string.Empty)
+                if (varWrongUpLoadDocs != string.Empty)
                 {
                     sqlStr = @"delete from docs_wares where number_doc in 
-					( select number_doc from docs where status = 1 and number_doc not in (" + varUpLoadDocs + "))";
+					( select number_doc from docs where status = 1 and number_doc not in (" + varWrongUpLoadDocs + "))";
                     SQL.ExecuteNonQuery(sqlStr);
-                    sqlStr = @"delete from docs where  status = 1 and number_doc not in (" + varUpLoadDocs + ")";
+                    sqlStr = @"delete from docs where  status = 1 and number_doc not in (" + varWrongUpLoadDocs + ")";
                     SQL.ExecuteNonQuery(sqlStr);
                 }
               
@@ -271,12 +269,12 @@ namespace BRB
 
 
 
-                // вираховуємо товари, які є в документах, але відсутні в довідниках !!!Покіщо ніде не використовується
+                //TMP ніде не використовується!!! вираховуємо товари, які є в документах, але відсутні в довідниках !!!Покіщо ніде не використовується
                 sqlStr = @"SELECT  DISTINCT dw.code_wares
                                 FROM   DOCS_WARES AS dw LEFT OUTER JOIN
                                         WARES AS w ON w.code_wares = dw.code_wares
                                 WHERE  (w.code_wares IS NULL)";
-                
+               
                 SQL.ClearParam();
                 dtWares = SQL.ExecuteQuery(sqlStr);
 
@@ -298,414 +296,105 @@ namespace BRB
                 try
                 {
                     dsInvoiceTemplate = webService.LoadDocs(temp, Global.DeviceID, Global.ShopName, w, a, u, t, varNumberDoc);
-                }
-                catch
-                {
-                    varError="Звязок відсутній! Провірте підключення ТЗД!!!";
-                    return;
-                }
-                finally
-                {
-                }
+                
 
-                ///TMP
-                System.Data.SqlServerCe.SqlCeConnection conn = new SqlCeConnection();
-                if (dsInvoiceTemplate != null)
-                {
-                    SqlCeCommand cmdHead = new SqlCeCommand(@"insert into Docs(number_doc, type_doc, date_doc, name_supplier, okpo_supplier, code_shop, flag_sum_qty_doc, serial_tzd, sum_with_vat, sum_without_vat, input_code) 
-							values(@number_doc, @type_doc, @date_doc, @name_supplier, @okpo_supplier, @code_shop, @flag_sum_qty_doc, @serial_tzd, @sum_with_vat, @sum_without_vat, @input_code)", conn);
+                // Зберігаємо отримані довідники  в базі
+                SQL.BulkInsert(dsInvoiceTemplate.Tables["dtDocs"], "Docs");
+                SQL.BulkInsert(dsInvoiceTemplate.Tables["dtDocsWares"], "Docs_Wares");
+                if(SQL.IsData(dsInvoiceTemplate.Tables["dtWares"]))
+                 {
+                    SQL.ExecuteNonQuery(@"DELETE FROM wares");
+                    SQL.BulkInsert(dsInvoiceTemplate.Tables["dtWares"], "Wares");
+                  }
 
-                    cmdHead.Parameters.Add("@number_doc", SqlDbType.Int);
-                    cmdHead.Parameters.Add("@type_doc", SqlDbType.Int);
-                    cmdHead.Parameters.Add("@date_doc", SqlDbType.DateTime);
-                    cmdHead.Parameters.Add("@serial_tzd", SqlDbType.NVarChar);
-                    cmdHead.Parameters.Add("@name_supplier", SqlDbType.NVarChar);
-                    cmdHead.Parameters.Add("@okpo_supplier", SqlDbType.BigInt);
-                    cmdHead.Parameters.Add("@code_shop", SqlDbType.Int);
-                    cmdHead.Parameters.Add("@flag_sum_qty_doc", SqlDbType.Int);
-                    cmdHead.Parameters.Add("@sum_with_vat", SqlDbType.Float);
-                    cmdHead.Parameters.Add("@sum_without_vat", SqlDbType.Float);
-                    cmdHead.Parameters.Add("@input_code", SqlDbType.Int);
+                 if(SQL.IsData(dsInvoiceTemplate.Tables["dtUnitDimension"]))
+                 {
+                    SQL.ExecuteNonQuery(@"DELETE FROM addition_unit");
+                    SQL.BulkInsert(dsInvoiceTemplate.Tables["dtAdditionUnit"], "Addition_Unit");
+                 }
 
-                    object o = string.Empty;
-                    try
+                if(SQL.IsData(dsInvoiceTemplate.Tables["dtAdditionUnit"]))
+                 {
+                    SQL.ExecuteNonQuery(@"DELETE FROM unit_dimension");
+                     SQL.BulkInsert(dsInvoiceTemplate.Tables["dtUnitDimension"], "Unit_Dimension");
+                 }  
+                
+               
+
+                    if (SQL.IsData( dsInvoiceTemplate.Tables["dtSettings"]))
                     {
-                        // Пробежимся по всем полученным шапкам
-                        SqlCeTransaction tran = null;
-                        foreach (DataRow drHead in dsInvoiceTemplate.Tables["dtDocs"].Rows)
+                        DataRow dr =dsInvoiceTemplate.Tables["dtSettings"].Rows[0];
+                        Global.TimeSync = Convert.ToDateTime( dr["time_sync"]);
+                        
+                        if(dr["code_shop"].ToString()!=Global.ShopName)
                         {
                             try
                             {
-
-                                conn.Open();
-                                tran = conn.BeginTransaction();
-
-                                // Сохраним шапку документа
-                                cmdHead.Transaction = tran;
-                                cmdHead.Parameters["@number_doc"].Value = drHead["number_doc"];
-
-                                if (drHead["type_doc"] != DBNull.Value)
-                                    cmdHead.Parameters["@type_doc"].Value = drHead["type_doc"];
-                                else
-                                    cmdHead.Parameters["@type_doc"].Value = 1;
-
-                                if (drHead["date_doc"] != DBNull.Value)
-                                {
-                                    cmdHead.Parameters["@date_doc"].Value = drHead["date_doc"];
-                                }
-                                else
-                                    cmdHead.Parameters["@date_doc"].Value = DBNull.Value;
-
-                                cmdHead.Parameters["@serial_tzd"].Value = Global.DeviceID;
-
-                                if (drHead["name_supplier"] != DBNull.Value)
-                                    cmdHead.Parameters["@name_supplier"].Value = drHead["name_supplier"];
-                                else
-                                    cmdHead.Parameters["@name_supplier"].Value = string.Empty;
-
-                                if (drHead["okpo_supplier"] != DBNull.Value)
-                                    cmdHead.Parameters["@okpo_supplier"].Value = drHead["okpo_supplier"];
-                                else
-                                    cmdHead.Parameters["@okpo_supplier"].Value = 0;
-
-                                if (drHead["code_shop"] != DBNull.Value)
-                                    cmdHead.Parameters["@code_shop"].Value = drHead["code_shop"];
-                                else
-                                    cmdHead.Parameters["@code_shop"].Value = 0;
-
-                                if (drHead["flag_sum_qty_doc"] != DBNull.Value)
-                                    cmdHead.Parameters["@flag_sum_qty_doc"].Value = drHead["flag_sum_qty_doc"];
-                                else
-                                    cmdHead.Parameters["@flag_sum_qty_doc"].Value = 0;
-
-                                if (drHead["sum_with_vat"] != DBNull.Value)
-                                    cmdHead.Parameters["@sum_with_vat"].Value = drHead["sum_with_vat"];
-                                else
-                                    cmdHead.Parameters["@sum_with_vat"].Value = 0;
-
-                                if (drHead["sum_without_vat"] != DBNull.Value)
-                                    cmdHead.Parameters["@sum_without_vat"].Value = drHead["sum_without_vat"];
-                                else
-                                    cmdHead.Parameters["@sum_without_vat"].Value = 0;
-
-                                if (drHead["input_code"] != DBNull.Value)
-                                    cmdHead.Parameters["@input_code"].Value = drHead["input_code"];
-                                else
-                                    cmdHead.Parameters["@input_code"].Value = 1;
-
-                                cmdHead.ExecuteNonQuery();
-
-                                // Закоммитем
-                                tran.Commit();
-                                conn.Close();
-
-                            }
-                            catch (System.Exception)
-                            {
-                                if (tran != null)
-                                {
-                                    tran.Rollback();
-                                }
-                               varError="Вставка невдала!";
-                            }
-                            finally
-                            {
-                                conn.Close();
-                            }
-                        }
-                    }
-
-                    finally
-                    {
-                        //conn.Close();
-                        //GC.Collect();
-                    }
-
-                    SQL.BulkInsert(dsInvoiceTemplate.Tables["dtDocsWares"], "Docs_Wares");
-
-                    if (dsInvoiceTemplate.Tables["dtWares"].Rows.Count > 0)
-                    {
-
-                        string ss = @"DELETE FROM wares";
-                        SqlCeCommand cmdDlWar = new SqlCeCommand(ss, conn);
-                        SqlCeTransaction tran = null;
-                        try
-                        {
-                            conn.Open();
-                            tran = conn.BeginTransaction();
-                            cmdDlWar.ExecuteNonQuery();
-                            tran.Commit();
-                        }
-                        catch (System.Exception ex)
-                        {
-                            if (tran != null)
-                            {
-                                tran.Rollback();
-                            }
-                            varError= ex.ToString();
-                        }
-                        finally
-                        {
-                            conn.Close();
-                        }
-                        SQL.BulkInsert(dsInvoiceTemplate.Tables["dtWares"], "Wares");
-                    }
-
-                    if (dsInvoiceTemplate.Tables["dtAdditionUnit"].Rows.Count > 0)
-                    {
-
-                        string ss = @"DELETE FROM addition_unit";
-                        SqlCeCommand cmdDlAd = new SqlCeCommand(ss, conn);
-                        SqlCeTransaction tran = null;
-                        try
-                        {
-                            conn.Open();
-                            tran = conn.BeginTransaction();
-                            cmdDlAd.ExecuteNonQuery();
-                            tran.Commit();
-                        }
-                        catch (System.Exception ex)
-                        {
-                            if (tran != null)
-                            {
-                                tran.Rollback();
-                            }
-                            varError= ex.ToString();
-                        }
-                        finally
-                        {
-                            conn.Close();
-                        }
-                        SQL.BulkInsert(dsInvoiceTemplate.Tables["dtAdditionUnit"], "Addition_Unit");
-                    }
-
-                    if (dsInvoiceTemplate.Tables["dtUnitDimension"].Rows.Count > 0)
-                    {
-                        string ss = @"DELETE FROM unit_dimension";
-                        SqlCeCommand cmdDlUd = new SqlCeCommand(ss, conn);
-                        SqlCeTransaction tran = null;
-                        try
-                        {
-                            conn.Open();
-                            tran = conn.BeginTransaction();
-                            cmdDlUd.ExecuteNonQuery();
-                            tran.Commit();
-                        }
-                        catch (System.Exception ex)
-                        {
-                            if (tran != null)
-                            {
-                                tran.Rollback();
-                            }
-                             varError= ex.ToString();
-                        }
-                        finally
-                        {
-                            conn.Close();
-                        }
-                        SQL.BulkInsert(dsInvoiceTemplate.Tables["dtUnitDimension"], "Unit_Dimension");
-                    }
-
-                    if (dsInvoiceTemplate.Tables["dtSettings"].Rows.Count > 0)
-                    {
-
-                        foreach (DataRow dr in dsInvoiceTemplate.Tables["dtSettings"].Rows)
-                        {
-                            
-                            Global.ShopName = dr["code_shop"].ToString();
-                            Global.TimeSync = Convert.ToDateTime( dr["time_sync"]);
-
-                            try
-                            {
-                                // Open the config file.
-                                cFile = new ConfigFile();
-                                cFile.SetAppSetting("ShopName", Global.ShopName, true);                                
+                              
+                                    Global.ShopName = dr["code_shop"].ToString();
+                                    ConfigFile cFile = new ConfigFile();
+                                    cFile.SetAppSetting("ShopName", Global.ShopName, true);
+                               
                             }
                             catch (System.Exception)
                             {
                                 
                                 varError= "Оновлення конфіг файла невдале!!";
                             }
-                            finally
-                            {
-                                cFile = null;
-                            }
+                            
 
-                            string ss = @"update Settings 
-                                                set  TimeSync = @timesync";
-                            DateTime dd = Convert.ToDateTime(dr["time_sync"]);
-                            SqlCeCommand cmdUpdDate = new SqlCeCommand(ss, conn);
-                            cmdUpdDate.Parameters.Add("@timesync", SqlDbType.DateTime).Value = dd;
-                            SqlCeTransaction tran = null;
-                            try
-                            {
-                                conn.Open();
-                                tran = conn.BeginTransaction();
-                                cmdUpdDate.ExecuteNonQuery();
-                                tran.Commit();
-                            }
-                            catch (System.Exception ex)
-                            {
-                                if (tran != null)
-                                {
-                                    tran.Rollback();
-                                }
-                                varError=ex.ToString();
-                            }
-                            finally
-                            {
-                                conn.Close();
-                            }
                         }
+                           
+                        SQL.AddWithValueF("@timesync",Global.TimeSync);
+                        SQL.ExecuteNonQuery( @"update Settings set  TimeSync = @timesync"); 
+                          
+                       
                     }
 
                     if (dsInvoiceTemplate.Tables["dtDelDocs"].Rows.Count > 0)
                     {
                         string ss = @"delete from docs_wares where number_doc in (@number_doc)";
-                        SqlCeCommand cmdDelDocWares = new SqlCeCommand(ss, conn);
-                        cmdDelDocWares.Parameters.Add("@number_doc", SqlDbType.Int);
-
-                        ss = @"delete from docs where  number_doc in (@number_doc)";
-                        SqlCeCommand cmdDelDocs = new SqlCeCommand(ss, conn);
-                        cmdDelDocs.Parameters.Add("@number_doc", SqlDbType.Int);
-
-                        SqlCeTransaction tran = null;
-
-                        try
-                        {
-                            foreach (DataRow drHead in dsInvoiceTemplate.Tables["dtDelDocs"].Rows)
+ 
+                        if(SQL.IsData(dsInvoiceTemplate.Tables["dtDelDocs"]))
+                         foreach (DataRow drHead in dsInvoiceTemplate.Tables["dtDelDocs"].Rows)
                             {
                                 try
                                 {
-                                    conn.Open();
-                                    tran = conn.BeginTransaction();
-
-                                    cmdDelDocWares.Transaction = tran;
-                                    cmdDelDocWares.Parameters["@number_doc"].Value = drHead["number_doc"];
-                                    cmdDelDocWares.ExecuteNonQuery();
-
-                                    cmdDelDocs.Transaction = tran;
-                                    cmdDelDocs.Parameters["@number_doc"].Value = drHead["number_doc"];
-                                    cmdDelDocs.ExecuteNonQuery();
-
-                                    tran.Commit();
-                                    conn.Close();
+                                  SQL.AddWithValueF("@number_doc",Convert.ToInt32(drHead["number_doc"]));
+                                  SQL.ExecuteNonQuery(@"delete from docs_wares where number_doc in (@number_doc)");
+                                  SQL.ExecuteNonQuery(@"delete from docs where  number_doc in (@number_doc)");
                                 }
-                                catch (System.Exception ex)
-                                {
-                                    if (tran != null)
-                                    {
-                                        tran.Rollback();
-                                    }
-                                    varError=ex.ToString();
-                                }
-
-                                finally
-                                {
-                                    conn.Close();
-                                }
+                                catch{}
                             }
                         }
 
-                        finally
-                        {
-
-                        }
-                    }
+                    
                 }
-
-                int docs = 0, docs_wares = 0, wares = 0, addition_unit = 0, unit_dimension = 0;
-                SqlCeCommand cmd;
-
-                //clsConfigFile cFile = null;
-                try
+                catch
                 {
-                    conn.Open();
-                    object o;
-                    cmd = new SqlCeCommand("select count(number_doc) from docs", conn);
-                    o = cmd.ExecuteScalar();
-                    if ((o != null) & (o != DBNull.Value))
-                    {
-                        docs = Convert.ToInt32(o);
-                    }
-
-                    cmd = new SqlCeCommand("select count(*) from docs_wares", conn);
-                    o = cmd.ExecuteScalar();
-                    if ((o != null) & (o != DBNull.Value))
-                    {
-                        docs_wares = Convert.ToInt32(o);
-                    }
-
-                    cmd = new SqlCeCommand("select count(*) from wares", conn);
-                    o = cmd.ExecuteScalar();
-                    if ((o != null) & (o != DBNull.Value))
-                    {
-                        wares = Convert.ToInt32(o);
-                    }
-
-                    cmd = new SqlCeCommand("select count(*) from addition_unit", conn);
-                    o = cmd.ExecuteScalar();
-                    if ((o != null) & (o != DBNull.Value))
-                    {
-                        addition_unit = Convert.ToInt32(o);
-                    }
-
-                    cmd = new SqlCeCommand("select count(*) from unit_dimension", conn);
-                    o = cmd.ExecuteScalar();
-                    if ((o != null) & (o != DBNull.Value))
-                    {
-                        unit_dimension = Convert.ToInt32(o);
-                    }
-                    //TMP
-                    /*
-                    cFile = new clsConfigFile();
-                    clsCommon.PropDocs = docs;
-                    clsCommon.PropDocsWares = docs_wares;
-                    clsCommon.PropWares = wares;
-                    clsCommon.PropAdditionUnit = addition_unit;
-                    clsCommon.PropUnitDimension = unit_dimension;
-                    cFile.SetAppSetting("Docs", docs.ToString(), true);
-                    cFile.SetAppSetting("DocsWares", docs_wares.ToString(), true);
-                    cFile.SetAppSetting("Wares", wares.ToString(), true);
-                    cFile.SetAppSetting("AdditionUnit", addition_unit.ToString(), true);
-                    cFile.SetAppSetting("UnitDimension", unit_dimension.ToString(), true);
-                    */
+                    varError="Звязок відсутній! Провірте підключення ТЗД!!!";
+                    return;
                 }
-                catch (System.Exception ex)
-                {
-                    varError= ex.Message;
-                }
-                finally
-                {
-                    conn.Close();
-                    cFile = null;
-                }
-
+                
                 string Directory = Global.Directory;
-                string file = Global.RemouteFile;
+                string file = Global.Directory;
                 int Update = 0;
 
-                FileStream stream = new FileStream(Directory + file, FileMode.Create);
+               
                 try
                 {
-                    string ss = webService.GetFileVersionNew(file);
-                    if (ss != string.Empty)
+                    string varServerVer = webService.GetFileVersionNew(file);
+                    if (varServerVer != string.Empty && varServerVer!=varLocalVersion)
                     {
-                        if (ss == version)
-                            Update = 0;
-                        else
-                        {
+                            FileStream stream = new FileStream(Global.Directory + Global.Directory, FileMode.Create);
                             byte[] buffer = webService.GetFile(file);
                             stream.Write(buffer, 0, buffer.Length);
                             Update = 1;
-                        }
                     }
                 }
-                catch
-                { }
                 finally
                 {
-                    stream.Close();
+                    //stream.Close();
                 }
 
                 // перевіряємо версію програми Update_brb.exe
@@ -760,12 +449,12 @@ namespace BRB
                 
                 int end_web = Environment.TickCount;
                 int result_web = (end_web - start_web) / 1000;
-                ///TMP 
-                String errDocs="";
-                if (errDocs == "0")
+               
+                
+                if (varWrongUpLoadDocs == String.Empty)
                     varError = "Синхронізація завершена! Час синхронізації:" + result_web.ToString() + " сек.";
                 else
-                    varError = "Завершено з помилками! Документи №" + errDocs + " не загрузились на сервер! Час синхронізації:" + result_web.ToString();
+                    varError = "Завершено з помилками! Документи №" + varWrongUpLoadDocs + " не загрузились на сервер! Час синхронізації:" + result_web.ToString();
 
             }
             catch
