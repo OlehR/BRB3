@@ -14,12 +14,8 @@ namespace BRB
         [MTAThread]
         static void Main()
         {
-
-            //tmp Необхідно визначити тип термінала
-            Global.Init(NameTerminal.getOEMName()); //(TypeTerminal.MotorolaMC75Ax);
-            //Application.Run(new Form1());
-            SingleInstanceApplication.Run(new Form1());
-           
+            Global.Init(DefineTerminal.getOEMName()); 
+            SingleInstanceApplication.Run(new Forms.frmMain());
         }
     }
 }

@@ -16,7 +16,7 @@ namespace BRB
             InitializeComponent();
             
 
-            this.textBox1.Text = NameTerminal.getOEMName().ToString();
+            //this.textBox1.Text = NameTerminal.getOEMName().ToString();
             
             //Global.cTerminal.StartScan(null, null);
             //Global.cTerminal.StartScan(this.fig, this);

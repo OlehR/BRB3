@@ -13,6 +13,8 @@ namespace BRB
     {
         static public Terminal cTerminal;
         static public TypeTerminal eTypeTerminal;
+        static public int hToolbarTerminal = 0;
+        //static public Single mainFont = 10F;
         public static string DeviceID=string.Empty;
         static public string dbPathBRB = @"\Program Files\BRB\Database\BRB.sdf";
         static public string DbPwl = "";
@@ -33,11 +35,13 @@ namespace BRB
             switch(parTypeTerminal)
             {
                 case TypeTerminal.BitatekIT8000:
+                    hToolbarTerminal = 25;
                     cTerminal = new TerminalBitatek();
                     break;
 
                 case TypeTerminal.MotorolaMC75Ax:
-                cTerminal = new TerminalMotorola();
+                    hToolbarTerminal = 0;
+                    cTerminal = new TerminalMotorola();
                     break;
 
             }
@@ -75,7 +79,7 @@ namespace BRB
         }
     }
 
-    static class NameTerminal
+    static class DefineTerminal
     {
         private const string MotorolaMC75A0 = "MOTOROLA MC75A";
         private const string BitatekIT8000 = "Intel MainstoneIII";
