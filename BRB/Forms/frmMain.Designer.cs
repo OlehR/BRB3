@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             System.Windows.Forms.ListViewItem lviInvoice = new System.Windows.Forms.ListViewItem();
             System.Windows.Forms.ListViewItem lviMAudit = new System.Windows.Forms.ListViewItem();
             System.Windows.Forms.ListViewItem lviPriceChecker = new System.Windows.Forms.ListViewItem();
@@ -35,6 +36,7 @@
             System.Windows.Forms.ListViewItem lviComponents = new System.Windows.Forms.ListViewItem();
             System.Windows.Forms.ListViewItem lviSettings = new System.Windows.Forms.ListViewItem();
             this.listView = new System.Windows.Forms.ListView();
+            this.imageList = new System.Windows.Forms.ImageList();
             this.columnHeader = new System.Windows.Forms.ColumnHeader();
             this.mainMenu = new System.Windows.Forms.MainMenu();
             this.miMovements = new System.Windows.Forms.MenuItem();
@@ -53,6 +55,11 @@
             this.labelTop = new System.Windows.Forms.Label();
             this.labelDown = new System.Windows.Forms.Label();
             this.SuspendLayout();
+            // 
+            // imageList
+            // 
+            this.imageList.ImageSize = new System.Drawing.Size(32, 32);
+            this.imageList.Images.Clear();
             // 
             // listView
             // 
@@ -76,10 +83,12 @@
             this.listView.Location = new System.Drawing.Point(1, 1);
             this.listView.Name = "listView";
             this.listView.Size = new System.Drawing.Size(236, 293);
+            this.listView.SmallImageList = this.imageList;
             this.listView.TabIndex = 0;
             this.listView.Items[0].Focused = true;
             this.listView.Items[0].Selected = true;
             this.listView.View = System.Windows.Forms.View.Details;
+            //
             // columnHeader
             // 
             this.columnHeader.Text = "ColumnHeader";
@@ -160,7 +169,7 @@
             this.Menu = this.mainMenu;
             this.MinimizeBox = false;
             this.Name = "frmMain";
-            this.Text = "BRB++ " +DefineTerminal.getOEMName().ToString();
+            this.Text = "BRB++ " + Global.eTypeTerminal.ToString();
             this.ResumeLayout(false);
 
         }
@@ -184,5 +193,6 @@
         private System.Windows.Forms.MenuItem miExit;
         private System.Windows.Forms.MenuItem miSeparator;
         private System.Windows.Forms.MenuItem miSeparator1;
+        private System.Windows.Forms.ImageList imageList;
     }
 }

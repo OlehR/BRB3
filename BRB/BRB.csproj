@@ -131,6 +131,12 @@
     <Compile Include="Form1.designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\frmInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmInfo.Designer.cs">
+      <DependentUpon>frmInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -171,6 +177,13 @@
     <Content Include="Database\BRB.sdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Ico\Ico_06_64.ico" />
+    <None Include="Ico\Ico_05_64.ico" />
+    <None Include="Ico\Ico_04_64.ico" />
+    <None Include="Ico\Ico_03_64.ico" />
+    <None Include="Ico\Ico_02_64.ico" />
+    <None Include="Ico\Ico_01_64.ico" />
+    <None Include="Ico\Ico_00_64.ico" />
     <None Include="Web References\WebReference\BRB_Sync.disco" />
   </ItemGroup>
   <ItemGroup>
@@ -198,6 +211,9 @@
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
   </ItemGroup>
   <ProjectExtensions>
     <VisualStudio>
