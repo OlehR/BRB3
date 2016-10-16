@@ -243,8 +243,6 @@ using BCD.net;
         {
             switch (msg.Msg)
             {
-
-
                 case WM_APP:
                     SendMSG((byte)msg.WParam);
                     break;

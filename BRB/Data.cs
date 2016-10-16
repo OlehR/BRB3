@@ -178,10 +178,12 @@ namespace BRB
             SQL.AddWithValueF("@parNumberDoc", parNumberDoc);
             return Convert.ToDateTime(SQL.ExecuteScalar(varSQLGetDateOutInvoice));
         }
+ 
+        
         /// <summary>
-        /// Синхронізація
+        /// Синхронізація з сервером.
         /// </summary>
-        private void btnSync()
+        private void Sync()
         {
             
             try
@@ -193,10 +195,11 @@ namespace BRB
                 DataSet dsInvoice = new DataSet("dsInvoice");
                 DataTable dtDocs;
                 DataTable dtDocsWares;
-                DataTable dtDocsIn;
-                DataTable dtDocsOnly;
+                DataTable dtDocsIn;                
                 DataTable dtWares;
-                
+
+
+                #region Завантаження  даних на сервер
                 SQL.ClearParam();
                 //налаштування для WEB-сервісу
                 BRB.WebReference.BRB_Sync webService = new BRB.WebReference.BRB_Sync();
@@ -266,9 +269,9 @@ namespace BRB
                                WHERE  (dw.number_doc IS NULL)
                                AND    (d.type_doc <> 9)";
                 SQL.ExecuteNonQuery(sqlStr);
+                #endregion
 
-
-
+                #region Завантаження даних з сервера
                 //TMP ніде не використовується!!! вираховуємо товари, які є в документах, але відсутні в довідниках !!!Покіщо ніде не використовується
                 sqlStr = @"SELECT  DISTINCT dw.code_wares
                                 FROM   DOCS_WARES AS dw LEFT OUTER JOIN
@@ -292,7 +295,9 @@ namespace BRB
                 DateTime t = Convert.ToDateTime(Global.TimeSync).Date;
                 
                 int w = 0, a = 0, u = 0;
-                
+
+
+              
                 try
                 {
                     dsInvoiceTemplate = webService.LoadDocs(temp, Global.DeviceID, Global.ShopName, w, a, u, t, varNumberDoc);
@@ -353,8 +358,6 @@ namespace BRB
 
                     if (dsInvoiceTemplate.Tables["dtDelDocs"].Rows.Count > 0)
                     {
-                        string ss = @"delete from docs_wares where number_doc in (@number_doc)";
- 
                         if(SQL.IsData(dsInvoiceTemplate.Tables["dtDelDocs"]))
                          foreach (DataRow drHead in dsInvoiceTemplate.Tables["dtDelDocs"].Rows)
                             {
@@ -375,77 +378,21 @@ namespace BRB
                     varError="Звязок відсутній! Провірте підключення ТЗД!!!";
                     return;
                 }
-                
+                #endregion
+
+
                 string Directory = Global.Directory;
-                string file = Global.Directory;
-                int Update = 0;
+                string file = Global.RemouteFile;
 
-               
-                try
-                {
-                    string varServerVer = webService.GetFileVersionNew(file);
-                    if (varServerVer != string.Empty && varServerVer!=varLocalVersion)
-                    {
-                            FileStream stream = new FileStream(Global.Directory + Global.Directory, FileMode.Create);
-                            byte[] buffer = webService.GetFile(file);
-                            stream.Write(buffer, 0, buffer.Length);
-                            Update = 1;
-                    }
-                }
-                finally
-                {
-                    //stream.Close();
-                }
-
-                // перевіряємо версію програми Update_brb.exe
-                string file_version;
-                file = "Update_brb.exe";
-                Directory = @"\Program Files\Update_brb";
-                string sourceFile = System.IO.Path.Combine(Directory, file);
-                try
-                {
-                    FileVersionInfo fileInfo = FileVersionInfo.GetVersionInfo(@"\Program Files\Update_brb\Update_brb.exe");
-                    file_version = fileInfo.ProductVersion;
-                }
-                catch
-                {
-                    file_version = "-1";
-                }
-
-                if (file_version != "-1")
-                {
-                    string ss = webService.GetFileVersionNew(file);
-                    if (ss != string.Empty)
-                    {
-                        if (ss != file_version)
-                        {
-                            FileStream stream2 = new FileStream(sourceFile, FileMode.Create);
-                            try
-                            {
-                                byte[] buffer = webService.GetFile(file);
-                                stream2.Write(buffer, 0, buffer.Length);
-                            }
-                            catch
-                            { }
-                            finally
-                            {
-                                stream2.Close();
-                            }
-                        }
-                    }
-                }
-
-                //запускаємо оновлення продукта
-                if (Update == 1)
-                {
+                DownLoadFile(@"\Program Files\Update_brb", "Update_brb.exe", webService, null);
+                if(DownLoadFile(Global.Directory, Global.RemouteFile, webService, varLocalVersion))
                     try
                     {
                         Process.Start("\\Program Files\\Update_brb\\Update_brb.exe", null);
                     }
                     catch
                     { }
-                }
-
+                
                 
                 int end_web = Environment.TickCount;
                 int result_web = (end_web - start_web) / 1000;
@@ -460,6 +407,47 @@ namespace BRB
             catch
             { }
         }
+        
+        /// <summary>
+        /// Оновлюємо файл з сервера. 
+        /// </summary>
+        /// <param name="parDir"></param>
+        /// <param name="parFile"></param>
+        /// <param name="parWebService"></param>
+        /// <param name="parVersion">null Якщо треба визначити версію</param>
+        /// <returns>Якщо файл оновлено true</returns>
+        bool DownLoadFile(string parDir,string parFile,BRB.WebReference.BRB_Sync parWebService,string parVersion)
+        {
+            string varSourceFile = System.IO.Path.Combine(parDir, parFile);
+            if(parVersion==null)
+                try
+                {
+                    FileVersionInfo fileInfo = FileVersionInfo.GetVersionInfo(varSourceFile);
+                    
+                        parVersion = fileInfo.ProductVersion;
+                    
+                }
+                catch
+                {
+                    parVersion = "-1";
+                }
+            string varVersionServer = parWebService.GetFileVersionNew(parFile);
+                if (varVersionServer != string.Empty && varVersionServer!=parVersion)
+                    {
 
+                        using (FileStream stream2 = new FileStream(varSourceFile, FileMode.Create))
+                        {
+                            try
+                            {
+                                byte[] buffer = parWebService.GetFile(parFile);
+                                stream2.Write(buffer, 0, buffer.Length);
+                                return true;
+                            }
+                            catch  { }
+                        }                            
+                     }
+
+                return false;
+        }
     }
 }
