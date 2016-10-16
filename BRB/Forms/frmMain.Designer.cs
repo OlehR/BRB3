@@ -60,7 +60,8 @@
             // 
             this.imageList.ImageSize = new System.Drawing.Size(Global.icoSize, Global.icoSize);
             this.imageList.Images.Clear();
-            //this.imageList.Images.Add((System.Drawing.Icon)(res.GetObject("Ico_00_64")));
+            this.imageList.Images.Add((System.Drawing.Icon)(res.GetObject("Ico_00_" + Global.icoSize.ToString())));
+            this.imageList.Images.Add((System.Drawing.Icon)(res.GetObject("Ico_01_" + Global.icoSize.ToString())));
             
             // 
             // listView
@@ -71,6 +72,7 @@
             this.listView.FullRowSelect = true;
             this.listView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             lviInvoice.Text = "Накладні";
+            lviInvoice.ImageIndex = 1;
             this.listView.Items.Add(lviInvoice);
             lviMAudit.Text = "Міні-ревізії";
             this.listView.Items.Add(lviMAudit);

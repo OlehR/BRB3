@@ -178,13 +178,22 @@
     <Content Include="Database\BRB.sdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="Ico\Ico_64_06.ico" />
-    <None Include="Ico\Ico_64_05.ico" />
-    <None Include="Ico\Ico_64_04.ico" />
-    <None Include="Ico\Ico_64_03.ico" />
-    <None Include="Ico\Ico_64_02.ico" />
-    <None Include="Ico\Ico_64_01.ico" />
-    <None Include="Ico\Ico_64_00.ico" />
+    <None Include="Ico\Ico_reg_32.ico" />
+    <None Include="Ico\Ico_06_32.ico" />
+    <None Include="Ico\Ico_05_32.ico" />
+    <None Include="Ico\Ico_04_32.ico" />
+    <None Include="Ico\Ico_03_32.ico" />
+    <None Include="Ico\Ico_02_32.ico" />
+    <None Include="Ico\Ico_01_32.ico" />
+    <None Include="Ico\Ico_00_32.ico" />
+    <None Include="Ico\Ico_reg_64.ico" />
+    <None Include="Ico\Ico_06_64.ico" />
+    <None Include="Ico\Ico_05_64.ico" />
+    <None Include="Ico\Ico_04_64.ico" />
+    <None Include="Ico\Ico_03_64.ico" />
+    <None Include="Ico\Ico_02_64.ico" />
+    <None Include="Ico\Ico_01_64.ico" />
+    <None Include="Ico\Ico_00_64.ico" />
     <None Include="Web References\WebReference\BRB_Sync.disco" />
   </ItemGroup>
   <ItemGroup>

@@ -129,25 +129,52 @@
     <value>False</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="Ico_64_00" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Ico\Ico_64_00.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Ico_00_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Ico\Ico_00_32.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Ico_64_01" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Ico\Ico_64_01.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Ico_00_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Ico\Ico_00_64.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Ico_64_02" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Ico\Ico_64_02.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Ico_01_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Ico\Ico_01_32.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Ico_64_03" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Ico\Ico_64_03.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Ico_01_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Ico\Ico_01_64.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Ico_64_04" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Ico\Ico_64_04.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Ico_02_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Ico\Ico_02_32.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Ico_64_05" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Ico\Ico_64_05.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Ico_02_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Ico\Ico_02_64.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Ico_64_06" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Ico\Ico_64_06.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Ico_03_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Ico\Ico_03_32.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Ico_03_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Ico\Ico_03_64.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Ico_04_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Ico\Ico_04_32.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Ico_04_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Ico\Ico_04_64.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Ico_05_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Ico\Ico_05_32.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Ico_05_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Ico\Ico_05_64.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Ico_06_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Ico\Ico_06_32.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Ico_06_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Ico\Ico_06_64.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Ico_reg_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Ico\Ico_reg_32.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Ico_reg_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Ico\Ico_reg_64.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
