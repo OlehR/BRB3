@@ -1,7 +1,7 @@
 ﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
   <PropertyGroup>
     <ProjectType>Local</ProjectType>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{8C8AADC9-7805-4226-AD0B-A9286C809A60}</ProjectGuid>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -178,13 +178,13 @@
     <Content Include="Database\BRB.sdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="Ico\Ico_06_64.ico" />
-    <None Include="Ico\Ico_05_64.ico" />
-    <None Include="Ico\Ico_04_64.ico" />
-    <None Include="Ico\Ico_03_64.ico" />
-    <None Include="Ico\Ico_02_64.ico" />
-    <None Include="Ico\Ico_01_64.ico" />
-    <None Include="Ico\Ico_00_64.ico" />
+    <None Include="Ico\Ico_64_06.ico" />
+    <None Include="Ico\Ico_64_05.ico" />
+    <None Include="Ico\Ico_64_04.ico" />
+    <None Include="Ico\Ico_64_03.ico" />
+    <None Include="Ico\Ico_64_02.ico" />
+    <None Include="Ico\Ico_64_01.ico" />
+    <None Include="Ico\Ico_64_00.ico" />
     <None Include="Web References\WebReference\BRB_Sync.disco" />
   </ItemGroup>
   <ItemGroup>
