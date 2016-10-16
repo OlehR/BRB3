@@ -144,8 +144,9 @@ using BCD.net;
                 this.barcodeMoto.OnScan += new Symbol.Barcode2.Design.Barcode2.OnScanEventHandler(this.barcodeMoto_OnScan);
                 //this.barcodeMoto.OnStatus += new Symbol.Barcode2.Design.Barcode2.OnStatusEventHandler(this.barcodeMoto_OnStatus);
             }
-            catch //(Exception ex)
+            catch (Exception ex)
             {
+                MessageBox.Show(ex.ToString());
                 return false;
             //clsDialogBox.InformationBoxShow("Помилка");
             }

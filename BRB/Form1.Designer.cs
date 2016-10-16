@@ -29,17 +29,22 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.mainMenu1 = new System.Windows.Forms.MainMenu();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
+            this.imageList = new System.Windows.Forms.ImageList();
             this.SuspendLayout();
             // 
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(27, 97);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(183, 21);
+            this.textBox1.Size = new System.Drawing.Size(183, 23);
             this.textBox1.TabIndex = 0;
             // 
             // button1
@@ -60,12 +65,36 @@
             this.button2.Text = "Stop";
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // listView1
+            // 
+            this.listView1.Columns.Add(this.columnHeader1);
+            listViewItem1.ImageIndex = 0;
+            listViewItem1.Text = "menu1";
+            this.listView1.Items.Add(listViewItem1);
+            this.listView1.Location = new System.Drawing.Point(0, 44);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(240, 47);
+            this.listView1.SmallImageList = this.imageList;
+            this.listView1.TabIndex = 1;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "ColumnHeader";
+            this.columnHeader1.Width = 233;
+            // 
+            // imageList
+            // 
+            this.imageList.ImageSize = new System.Drawing.Size(32, 32);
+            this.imageList.Images.Clear();
+            this.imageList.Images.Add(((System.Drawing.Icon)(resources.GetObject("Ico_00_32"))));
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(240, 268);
+            this.Controls.Add(this.listView1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox1);
@@ -81,6 +110,9 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ImageList imageList;
     }
 }
 

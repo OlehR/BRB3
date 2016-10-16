@@ -13,8 +13,8 @@ namespace BRB.Forms
     {
         public frmMain()
         {
-            InitializeComponentManual();
             InitializeComponent();
+            InitializeComponentManual();
         }
          
         public void InitializeComponentManual()

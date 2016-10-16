@@ -14,16 +14,16 @@ namespace BRB
         public Form1()
         {
             InitializeComponent();
-            
 
-            //this.textBox1.Text = NameTerminal.getOEMName().ToString();
-            
+
+            this.textBox1.Text = DefineTerminal.getOEMName().ToString();
+
             //Global.cTerminal.StartScan(null, null);
             //Global.cTerminal.StartScan(this.fig, this);
         }
         void fig(string a)
         {
-          this.textBox1.Text = a;
+            this.textBox1.Text = a;
         }
 
         private void button1_Click(object sender, EventArgs e)
