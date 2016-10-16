@@ -34,7 +34,6 @@
             System.Windows.Forms.ListViewItem lviAudit = new System.Windows.Forms.ListViewItem();
             System.Windows.Forms.ListViewItem lviComponents = new System.Windows.Forms.ListViewItem();
             System.Windows.Forms.ListViewItem lviSettings = new System.Windows.Forms.ListViewItem();
-            System.ComponentModel.ComponentResourceManager res = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.listView = new System.Windows.Forms.ListView();
             this.imageList = new System.Windows.Forms.ImageList();
             this.columnHeader = new System.Windows.Forms.ColumnHeader();
@@ -55,13 +54,7 @@
             this.labelTop = new System.Windows.Forms.Label();
             this.labelDown = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
-            // imageList
-            // 
-            this.imageList.ImageSize = new System.Drawing.Size(Global.icoSize, Global.icoSize);
-            this.imageList.Images.Clear();
-            this.imageList.Images.Add((System.Drawing.Icon)(res.GetObject("Ico_00_" + Global.icoSize.ToString())));
-            this.imageList.Images.Add((System.Drawing.Icon)(res.GetObject("Ico_01_" + Global.icoSize.ToString())));
+     
             
             // 
             // listView
@@ -198,5 +191,6 @@
         private System.Windows.Forms.MenuItem miSeparator;
         private System.Windows.Forms.MenuItem miSeparator1;
         private System.Windows.Forms.ImageList imageList;
+        private System.ComponentModel.ComponentResourceManager res;
     }
 }
