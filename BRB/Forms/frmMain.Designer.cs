@@ -68,22 +68,25 @@
             lviInvoice.ImageIndex = 1;
             this.listView.Items.Add(lviInvoice);
             lviMAudit.Text = "Міні-ревізії";
+            lviMAudit.ImageIndex = 2;
             this.listView.Items.Add(lviMAudit);
             lviPriceChecker.Text = "Контроль цінників";
+            lviPriceChecker.ImageIndex = 3;
             this.listView.Items.Add(lviPriceChecker);
             lviAudit.Text = "Інвентаризація";
+            lviAudit.ImageIndex = 4;
             this.listView.Items.Add(lviAudit);
             lviComponents.Text = "Комплектація";
+            lviComponents.ImageIndex = 5;
             this.listView.Items.Add(lviComponents);
             lviSettings.Text = "Системні налаштування";
+            lviSettings.ImageIndex = 6;
             this.listView.Items.Add(lviSettings);
             this.listView.Location = new System.Drawing.Point(1, 1);
             this.listView.Name = "listView";
             this.listView.Size = new System.Drawing.Size(236, 293);
             this.listView.SmallImageList = this.imageList;
             this.listView.TabIndex = 0;
-            this.listView.Items[0].Focused = true;
-            this.listView.Items[0].Selected = true;
             this.listView.View = System.Windows.Forms.View.Details;
             //
             // columnHeader
@@ -148,7 +151,7 @@
             this.labelDown.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.labelDown.Location = new System.Drawing.Point(1, 294);
             this.labelDown.Name = "labelDown";
-            this.labelDown.Size = new System.Drawing.Size(236, (1 + Global.hToolbarTerminal));
+            this.labelDown.Size = new System.Drawing.Size(236, 1);
             // 
             // frmMain
             // 
@@ -166,7 +169,7 @@
             this.Menu = this.mainMenu;
             this.MinimizeBox = false;
             this.Name = "frmMain";
-            this.Text = "BRB++ " + Global.eTypeTerminal.ToString();
+            this.Text = "BRB++ ";
             this.ResumeLayout(false);
 
         }

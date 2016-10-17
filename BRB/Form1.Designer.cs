@@ -42,14 +42,14 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(27, 97);
+            this.textBox1.Location = new System.Drawing.Point(24, 122);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(183, 23);
             this.textBox1.TabIndex = 0;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(27, 136);
+            this.button1.Location = new System.Drawing.Point(24, 161);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(72, 20);
             this.button1.TabIndex = 1;
@@ -58,7 +58,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(138, 136);
+            this.button2.Location = new System.Drawing.Point(135, 161);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(72, 20);
             this.button2.TabIndex = 2;
@@ -69,13 +69,14 @@
             // 
             this.listView1.Columns.Add(this.columnHeader1);
             listViewItem1.ImageIndex = 0;
-            listViewItem1.Text = "menu1";
+            listViewItem1.Text = "11111";
             this.listView1.Items.Add(listViewItem1);
             this.listView1.Location = new System.Drawing.Point(0, 44);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(240, 47);
+            this.listView1.Size = new System.Drawing.Size(240, 72);
             this.listView1.SmallImageList = this.imageList;
             this.listView1.TabIndex = 1;
+            this.listView1.View = System.Windows.Forms.View.Details;
             // 
             // columnHeader1
             // 
@@ -86,7 +87,7 @@
             // 
             this.imageList.ImageSize = new System.Drawing.Size(32, 32);
             this.imageList.Images.Clear();
-            this.imageList.Images.Add(((System.Drawing.Icon)(resources.GetObject("Ico_00_32"))));
+            this.imageList.Images.Add(((System.Drawing.Icon)(resources.GetObject("resource"))));
             // 
             // Form1
             // 
