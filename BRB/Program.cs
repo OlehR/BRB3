@@ -15,7 +15,7 @@ namespace BRB
         static void Main()
         {
             Global.Init(DefineTerminal.getOEMName()); 
-            SingleInstanceApplication.Run(new Forms.frmMain());
+            SingleInstanceApplication.Run(new Forms.frmWaresScan());
         }
     }
 }
