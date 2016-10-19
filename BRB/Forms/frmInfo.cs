@@ -14,6 +14,14 @@ namespace BRB.Forms
         public frmInfo()
         {
             InitializeComponent();
+            InitializeComponentManual();
+        }
+
+        public void InitializeComponentManual()
+        {
+            this.labelDown.Size = new System.Drawing.Size(236, (2 + Global.hToolbarTerminal));
+            this.Text = "BRB++ " + Global.eTypeTerminal.ToString();
+
         }
     }
 }

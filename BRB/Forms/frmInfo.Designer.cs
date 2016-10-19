@@ -36,16 +36,25 @@
             this.labelRigth = new System.Windows.Forms.Label();
             this.labelTop = new System.Windows.Forms.Label();
             this.labelDown = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.SuspendLayout();
-            
             // 
             // mainMenu
             // 
             this.mainMenu.MenuItems.Add(this.miMovements);
+            // 
             // miMovements
-            this.miMovements.Text = "Додатково";
+            // 
             this.miMovements.MenuItems.Add(this.miExit);
+            this.miMovements.Text = "Додатково";
+            // 
+            // miExit
+            // 
             this.miExit.Text = "Завершення роботи";
+            // 
+            // miSeparator
+            // 
+            this.miSeparator.Text = "";
             // 
             // labelLeft
             // 
@@ -77,14 +86,23 @@
             this.labelDown.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.labelDown.Location = new System.Drawing.Point(1, 294);
             this.labelDown.Name = "labelDown";
-            this.labelDown.Size = new System.Drawing.Size(236, (1 + Global.hToolbarTerminal));
+            this.labelDown.Size = new System.Drawing.Size(236, 1);
             // 
-            // frmMain
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(1, 1);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(236, 293);
+            // 
+            // frmInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.SystemColors.WindowText;
             this.ClientSize = new System.Drawing.Size(238, 295);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.labelTop);
             this.Controls.Add(this.labelDown);
             this.Controls.Add(this.labelLeft);
@@ -94,7 +112,7 @@
             this.Menu = this.mainMenu;
             this.MinimizeBox = false;
             this.Name = "frmInfo";
-            this.Text = "BRB++Info " + Global.eTypeTerminal.ToString();
+            this.Text = "BRB++Info NoDetect";
             this.ResumeLayout(false);
 
         }
@@ -110,5 +128,6 @@
         private System.Windows.Forms.MenuItem miMovements;
         private System.Windows.Forms.MenuItem miExit;
         private System.Windows.Forms.MenuItem miSeparator;
+        private System.Windows.Forms.Panel panel1;
     }
 }
