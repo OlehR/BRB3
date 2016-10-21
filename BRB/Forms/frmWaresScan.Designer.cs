@@ -38,7 +38,14 @@
             this.labelDown = new System.Windows.Forms.Label();
             this.mplDocNum = new System.Windows.Forms.Label();
             this.mplDocNumCapt = new System.Windows.Forms.Label();
-            this.lchBoxAutoScan = new System.Windows.Forms.CheckBox();
+            this.mpchBoxAutoScan = new System.Windows.Forms.CheckBox();
+            this.mplBorderTop = new System.Windows.Forms.Label();
+            this.mplBorderDown = new System.Windows.Forms.Label();
+            this.mplBorderLeft = new System.Windows.Forms.Label();
+            this.mplBorderRight = new System.Windows.Forms.Label();
+            this.mplAddWaresTxt = new System.Windows.Forms.Label();
+            this.mplArticle = new System.Windows.Forms.Label();
+            this.mplArticleCapt = new System.Windows.Forms.Label();
             this.mainPanel = new System.Windows.Forms.Panel();
             this.mainPanel.SuspendLayout();
             this.SuspendLayout();
@@ -88,9 +95,9 @@
             // 
             this.labelDown.BackColor = System.Drawing.SystemColors.Window;
             this.labelDown.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.labelDown.Location = new System.Drawing.Point(1, 275);
+            this.labelDown.Location = new System.Drawing.Point(1, 294);
             this.labelDown.Name = "labelDown";
-            this.labelDown.Size = new System.Drawing.Size(236, 20);
+            this.labelDown.Size = new System.Drawing.Size(236, 1);
             // 
             // mplDocNum
             // 
@@ -109,33 +116,91 @@
             this.mplDocNumCapt.Text = "№ накладної:";
             this.mplDocNumCapt.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // lchBoxAutoScan
+            // mpchBoxAutoScan
             // 
-            this.lchBoxAutoScan.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lchBoxAutoScan.Checked = true;
-            this.lchBoxAutoScan.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.lchBoxAutoScan.Location = new System.Drawing.Point(156, 2);
-            this.lchBoxAutoScan.Name = "lchBoxAutoScan";
-            this.lchBoxAutoScan.Size = new System.Drawing.Size(82, 20);
-            this.lchBoxAutoScan.TabIndex = 0;
-            this.lchBoxAutoScan.Text = "АвтоЗбер";
+            this.mpchBoxAutoScan.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.mpchBoxAutoScan.Checked = true;
+            this.mpchBoxAutoScan.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.mpchBoxAutoScan.Location = new System.Drawing.Point(156, 2);
+            this.mpchBoxAutoScan.Name = "mpchBoxAutoScan";
+            this.mpchBoxAutoScan.Size = new System.Drawing.Size(82, 20);
+            this.mpchBoxAutoScan.TabIndex = 0;
+            this.mpchBoxAutoScan.Text = "АвтоЗбер";
+            // 
+            // mplBorderTop
+            // 
+            this.mplBorderTop.BackColor = System.Drawing.SystemColors.WindowText;
+            this.mplBorderTop.Location = new System.Drawing.Point(1, 32);
+            this.mplBorderTop.Name = "mplBorderTop";
+            this.mplBorderTop.Size = new System.Drawing.Size(235, 1);
+            // 
+            // mplBorderDown
+            // 
+            this.mplBorderDown.BackColor = System.Drawing.SystemColors.WindowText;
+            this.mplBorderDown.Location = new System.Drawing.Point(1, 263);
+            this.mplBorderDown.Name = "mplBorderDown";
+            this.mplBorderDown.Size = new System.Drawing.Size(235, 1);
+            // 
+            // mplBorderLeft
+            // 
+            this.mplBorderLeft.BackColor = System.Drawing.SystemColors.WindowText;
+            this.mplBorderLeft.Location = new System.Drawing.Point(1, 32);
+            this.mplBorderLeft.Name = "mplBorderLeft";
+            this.mplBorderLeft.Size = new System.Drawing.Size(1, 231);
+            // 
+            // mplBorderRight
+            // 
+            this.mplBorderRight.BackColor = System.Drawing.SystemColors.WindowText;
+            this.mplBorderRight.Location = new System.Drawing.Point(235, 32);
+            this.mplBorderRight.Name = "mplBorderRight";
+            this.mplBorderRight.Size = new System.Drawing.Size(1, 231);
+            // 
+            // mplAddWaresTxt
+            // 
+            this.mplAddWaresTxt.Location = new System.Drawing.Point(5, 23);
+            this.mplAddWaresTxt.Name = "mplAddWaresTxt";
+            this.mplAddWaresTxt.Size = new System.Drawing.Size(126, 18);
+            this.mplAddWaresTxt.Text = "Додавання товару:";
+            this.mplAddWaresTxt.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // mplArticle
+            // 
+            this.mplArticle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.mplArticle.BackColor = System.Drawing.Color.Gainsboro;
+            this.mplArticle.Location = new System.Drawing.Point(89, 43);
+            this.mplArticle.Name = "mplArticle";
+            this.mplArticle.Size = new System.Drawing.Size(145, 20);
+            // 
+            // mplArticleCapt
+            // 
+            this.mplArticleCapt.Location = new System.Drawing.Point(19, 43);
+            this.mplArticleCapt.Name = "mplArticleCapt";
+            this.mplArticleCapt.Size = new System.Drawing.Size(63, 20);
+            this.mplArticleCapt.Text = "Артикул:";
+            this.mplArticleCapt.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // mainPanel
             // 
-            this.mainPanel.BackColor = System.Drawing.SystemColors.ControlDark;
             this.mainPanel.Controls.Add(this.mplDocNumCapt);
             this.mainPanel.Controls.Add(this.mplDocNum);
-            this.mainPanel.Controls.Add(this.lchBoxAutoScan);
+            this.mainPanel.Controls.Add(this.mpchBoxAutoScan);
+            this.mainPanel.Controls.Add(this.mplBorderLeft);
+            this.mainPanel.Controls.Add(this.mplBorderRight);
+            this.mainPanel.Controls.Add(this.mplAddWaresTxt);
+            this.mainPanel.Controls.Add(this.mplArticleCapt);
+            this.mainPanel.Controls.Add(this.mplArticle);
+            this.mainPanel.Controls.Add(this.mplBorderTop);
+            this.mainPanel.Controls.Add(this.mplBorderDown);
             this.mainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainPanel.Location = new System.Drawing.Point(1, 1);
             this.mainPanel.Name = "mainPanel";
-            this.mainPanel.Size = new System.Drawing.Size(236, 274);
+            this.mainPanel.Size = new System.Drawing.Size(236, 293);
             // 
             // frmWaresScan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.BackColor = System.Drawing.SystemColors.ControlDark;
             this.ClientSize = new System.Drawing.Size(238, 295);
             this.Controls.Add(this.mainPanel);
             this.Controls.Add(this.labelTop);
@@ -162,7 +227,14 @@
         private System.Windows.Forms.MenuItem miSeparator;
         private System.Windows.Forms.Label mplDocNum;
         private System.Windows.Forms.Label mplDocNumCapt;
-        private System.Windows.Forms.CheckBox lchBoxAutoScan;
+        private System.Windows.Forms.CheckBox mpchBoxAutoScan;
+        private System.Windows.Forms.Label mplBorderTop;
+        private System.Windows.Forms.Label mplBorderDown;
+        private System.Windows.Forms.Label mplBorderLeft;
+        private System.Windows.Forms.Label mplBorderRight;
+        private System.Windows.Forms.Label mplAddWaresTxt;
+        private System.Windows.Forms.Label mplArticleCapt;
+        private System.Windows.Forms.Label mplArticle;
         private System.Windows.Forms.Panel mainPanel;
     }
 }

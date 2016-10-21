@@ -21,7 +21,10 @@ namespace BRB.Forms
         {
             this.labelDown.Size = new System.Drawing.Size(236, (1 + Global.hToolbarTerminal));
             this.Text = "BRB++ " + Global.eTypeTerminal.ToString();
-            
+            //this.mplBorderDown.Location = new System.Drawing.Point(1, (263 - Global.hToolbarTerminal));
+            //this.mplBorderLeft.Size = new System.Drawing.Size(1, (231 - Global.hToolbarTerminal));
+            //this.mplBorderRight.Size = new System.Drawing.Size(1, (231 - Global.hToolbarTerminal));
+                                    
         }
     }
 }

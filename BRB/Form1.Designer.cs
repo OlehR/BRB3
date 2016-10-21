@@ -39,8 +39,9 @@
             this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
             this.imageList = new System.Windows.Forms.ImageList();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button3 = new System.Windows.Forms.Button();
-            this.panel1.SuspendLayout();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabControl1.SuspendLayout();
             this.SuspendLayout();
             // 
             // textBox1
@@ -52,18 +53,18 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(24, 161);
+            this.button1.Location = new System.Drawing.Point(24, 151);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(72, 20);
+            this.button1.Size = new System.Drawing.Size(72, 19);
             this.button1.TabIndex = 1;
             this.button1.Text = "Start";
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(135, 161);
+            this.button2.Location = new System.Drawing.Point(135, 151);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(72, 20);
+            this.button2.Size = new System.Drawing.Size(72, 19);
             this.button2.TabIndex = 2;
             this.button2.Text = "Stop";
             this.button2.Click += new System.EventHandler(this.button2_Click);
@@ -95,18 +96,26 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.panel1.Controls.Add(this.button3);
-            this.panel1.Location = new System.Drawing.Point(0, 204);
+            this.panel1.Location = new System.Drawing.Point(0, 176);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(240, 64);
+            this.panel1.Size = new System.Drawing.Size(240, 92);
             // 
-            // button3
+            // tabControl1
             // 
-            this.button3.Location = new System.Drawing.Point(0, 0);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(72, 20);
-            this.button3.TabIndex = 0;
-            this.button3.Text = "button3";
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Enabled = false;
+            this.tabControl1.Location = new System.Drawing.Point(3, 3);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(234, 67);
+            this.tabControl1.TabIndex = 0;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Location = new System.Drawing.Point(4, 25);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Size = new System.Drawing.Size(226, 38);
+            this.tabPage1.Text = "Додавання товару";
             // 
             // Form1
             // 
@@ -114,6 +123,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(240, 268);
+            this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.button2);
@@ -122,7 +132,7 @@
             this.Menu = this.mainMenu1;
             this.Name = "Form1";
             this.Text = "Form1";
-            this.panel1.ResumeLayout(false);
+            this.tabControl1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -136,7 +146,8 @@
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ImageList imageList;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
     }
 }
 
