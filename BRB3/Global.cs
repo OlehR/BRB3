@@ -44,7 +44,7 @@ namespace BRB
                 case TypeTerminal.MotorolaMC75Ax:
                     hToolbarTerminal = 0;
                     icoSize = 64;
-                    //cTerminal = new TerminalMotorola();
+                    cTerminal = new TerminalMotorola();
                     break;
 
             }

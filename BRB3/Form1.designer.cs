@@ -91,6 +91,8 @@
             // 
             this.imageList.ImageSize = new System.Drawing.Size(32, 32);
             this.imageList.Images.Clear();
+
+            object o = resources.GetObject("resource");
             this.imageList.Images.Add(((System.Drawing.Icon)(resources.GetObject("resource"))));
             // 
             // panel1

@@ -49,40 +49,40 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\BRB\Data.cs">
+    <Compile Include="..\BRB3\Data.cs">
       <Link>Data.cs</Link>
     </Compile>
-    <Compile Include="..\BRB\Global.cs">
+    <Compile Include="..\BRB3\Global.cs">
       <Link>Global.cs</Link>
     </Compile>
-    <Compile Include="..\BRB\Proc.cs">
+    <Compile Include="..\BRB3\Proc.cs">
       <Link>Proc.cs</Link>
     </Compile>
-    <Compile Include="..\BRB\SqlBulkCopy\DestinationTableDefaultMetadata.cs">
+    <Compile Include="..\BRB3\SqlBulkCopy\DestinationTableDefaultMetadata.cs">
       <Link>SqlBulkCopy\DestinationTableDefaultMetadata.cs</Link>
     </Compile>
-    <Compile Include="..\BRB\SqlBulkCopy\ISqlCeBulkCopyInsertAdapter.cs">
+    <Compile Include="..\BRB3\SqlBulkCopy\ISqlCeBulkCopyInsertAdapter.cs">
       <Link>SqlBulkCopy\ISqlCeBulkCopyInsertAdapter.cs</Link>
     </Compile>
-    <Compile Include="..\BRB\SqlBulkCopy\SqlCeBulkCopy.cs">
+    <Compile Include="..\BRB3\SqlBulkCopy\SqlCeBulkCopy.cs">
       <Link>SqlBulkCopy\SqlCeBulkCopy.cs</Link>
     </Compile>
-    <Compile Include="..\BRB\SqlBulkCopy\SqlCeBulkCopyColumnMapping.cs">
+    <Compile Include="..\BRB3\SqlBulkCopy\SqlCeBulkCopyColumnMapping.cs">
       <Link>SqlBulkCopy\SqlCeBulkCopyColumnMapping.cs</Link>
     </Compile>
-    <Compile Include="..\BRB\SqlBulkCopy\SqlCeBulkCopyDataTableAdapter.cs">
+    <Compile Include="..\BRB3\SqlBulkCopy\SqlCeBulkCopyDataTableAdapter.cs">
       <Link>SqlBulkCopy\SqlCeBulkCopyDataTableAdapter.cs</Link>
     </Compile>
-    <Compile Include="..\BRB\SqlBulkCopy\SqlCeBulkCopyMappingCollection.cs">
+    <Compile Include="..\BRB3\SqlBulkCopy\SqlCeBulkCopyMappingCollection.cs">
       <Link>SqlBulkCopy\SqlCeBulkCopyMappingCollection.cs</Link>
     </Compile>
-    <Compile Include="..\BRB\SqlBulkCopy\SqlCeBulkCopyOptions.cs">
+    <Compile Include="..\BRB3\SqlBulkCopy\SqlCeBulkCopyOptions.cs">
       <Link>SqlBulkCopy\SqlCeBulkCopyOptions.cs</Link>
     </Compile>
-    <Compile Include="..\BRB\SqlBulkCopy\SqlCeBulkCopyTableHelpers.cs">
+    <Compile Include="..\BRB3\SqlBulkCopy\SqlCeBulkCopyTableHelpers.cs">
       <Link>SqlBulkCopy\SqlCeBulkCopyTableHelpers.cs</Link>
     </Compile>
-    <Compile Include="..\BRB\SqlBulkCopy\SqlCeRowsCopiedEventArgs.cs">
+    <Compile Include="..\BRB3\SqlBulkCopy\SqlCeRowsCopiedEventArgs.cs">
       <Link>SqlBulkCopy\SqlCeRowsCopiedEventArgs.cs</Link>
     </Compile>
     <Compile Include="Program.cs" />

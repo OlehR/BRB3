@@ -30,9 +30,10 @@ namespace BRB.Forms
             this.imageList.Images.Add((System.Drawing.Icon)(res.GetObject("Ico_04_" + Global.icoSize.ToString())));
             this.imageList.Images.Add((System.Drawing.Icon)(res.GetObject("Ico_05_" + Global.icoSize.ToString())));
             this.imageList.Images.Add((System.Drawing.Icon)(res.GetObject("Ico_06_" + Global.icoSize.ToString())));
+            
             this.Text = "BRB++ " + Global.eTypeTerminal.ToString();
             this.labelDown.Size = new System.Drawing.Size(236, (1 + Global.hToolbarTerminal));
-
+            
             if (listView.Items.Count > 0)
             {
                 listView.Items[0].Focused = true;
