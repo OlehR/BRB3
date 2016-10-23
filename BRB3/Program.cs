@@ -14,10 +14,10 @@ namespace BRB
         [MTAThread]
         static void Main()
         {
-           // var f = new BRB.Form1();
+          
             Global.Init(DefineTerminal.getOEMName());
-            Application.Run(new BRB.Forms.frmMain());
-            //SingleInstanceApplication.Run(new Forms.frmMain());
+            //Application.Run(new BRB.Forms.frmWaresScan());
+            SingleInstanceApplication.Run(new Forms.frmWaresScan());
         }
     }
 }

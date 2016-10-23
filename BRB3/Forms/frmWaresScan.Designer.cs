@@ -137,7 +137,7 @@
             // mplBorderDown
             // 
             this.mplBorderDown.BackColor = System.Drawing.SystemColors.WindowText;
-            this.mplBorderDown.Location = new System.Drawing.Point(1, 263);
+            this.mplBorderDown.Location = new System.Drawing.Point(1, 290);
             this.mplBorderDown.Name = "mplBorderDown";
             this.mplBorderDown.Size = new System.Drawing.Size(235, 1);
             // 
@@ -211,6 +211,8 @@
             this.Menu = this.mainMenu;
             this.MinimizeBox = false;
             this.Name = "frmWaresScan";
+            this.Load += new System.EventHandler(this.frmWaresScan_Load);
+            this.Closing += new System.ComponentModel.CancelEventHandler(this.frmWaresScan_Closing);
             this.mainPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
