@@ -39,10 +39,21 @@ namespace BRB.Forms
         {
             this.labelDown.Size = new System.Drawing.Size(100, (1 + Global.hToolbarTerminal));
             this.Text = "BRB++ " + Global.eTypeTerminal.ToString();
-            //this.mplBorderDown.Location = new System.Drawing.Point(1, (263 - Global.hToolbarTerminal));
-            //this.mplBorderLeft.Size = new System.Drawing.Size(1, (231 - Global.hToolbarTerminal));
-            //this.mplBorderRight.Size = new System.Drawing.Size(1, (231 - Global.hToolbarTerminal));
-            
+
+            // BitatekIT8000 примусово вставляє тулбар
+            if (Global.eTypeTerminal == TypeTerminal.BitatekIT8000)
+            {
+                this.mplBorderDown.Location = new System.Drawing.Point(1, (263 - Global.hToolbarTerminal));
+                this.mplBorderLeft.Size = new System.Drawing.Size(1, (231 - Global.hToolbarTerminal));
+                this.mplBorderRight.Size = new System.Drawing.Size(1, (231 - Global.hToolbarTerminal));
+            }
+            // Для MotorolaMC75Ax робимо великі кнопки
+            if (Global.eTypeTerminal == TypeTerminal.MotorolaMC75Ax)
+            {
+                this.mpbtnAdd.Size = new System.Drawing.Size(141 * Global.tCoefficient, 40 * Global.tCoefficient);
+                this.mpbtnCancel.Size = new System.Drawing.Size(86 * Global.tCoefficient, 40 * Global.tCoefficient);
+            }
+           
                                     
         }
 

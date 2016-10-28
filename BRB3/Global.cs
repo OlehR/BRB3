@@ -14,7 +14,8 @@ namespace BRB
         static public Terminal cTerminal;
         static public TypeTerminal eTypeTerminal;
         static public int hToolbarTerminal = 0;
-        static public int icoSize = 32;  
+        static public int icoSize = 32;
+        static public int tCoefficient = 1;
         //static public Single mainFont = 10F;
         public static string DeviceID=string.Empty;
         static public string dbPathBRB = @"\Program Files\BRB\Database\BRB.sdf";
@@ -38,12 +39,14 @@ namespace BRB
                 case TypeTerminal.BitatekIT8000:
                     hToolbarTerminal = 25;
                     icoSize = 32;
+                    tCoefficient = 1;
                     cTerminal = new TerminalBitatek();
                     break;
 
                 case TypeTerminal.MotorolaMC75Ax:
                     hToolbarTerminal = 0;
                     icoSize = 64;
+                    tCoefficient = 2;
                     cTerminal = new TerminalMotorola();
                     break;
 

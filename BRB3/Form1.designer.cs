@@ -39,9 +39,6 @@
             this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
             this.imageList = new System.Windows.Forms.ImageList();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabControl1.SuspendLayout();
             this.SuspendLayout();
             // 
             // textBox1
@@ -91,8 +88,6 @@
             // 
             this.imageList.ImageSize = new System.Drawing.Size(32, 32);
             this.imageList.Images.Clear();
-
-            object o = resources.GetObject("resource");
             this.imageList.Images.Add(((System.Drawing.Icon)(resources.GetObject("resource"))));
             // 
             // panel1
@@ -102,30 +97,12 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(240, 92);
             // 
-            // tabControl1
-            // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Enabled = false;
-            this.tabControl1.Location = new System.Drawing.Point(3, 3);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(234, 67);
-            this.tabControl1.TabIndex = 0;
-            // 
-            // tabPage1
-            // 
-            this.tabPage1.Location = new System.Drawing.Point(4, 25);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Size = new System.Drawing.Size(226, 38);
-            this.tabPage1.Text = "Додавання товару";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(240, 268);
-            this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.button2);
@@ -134,7 +111,6 @@
             this.Menu = this.mainMenu1;
             this.Name = "Form1";
             this.Text = "Form1";
-            this.tabControl1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -148,8 +124,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ImageList imageList;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
     }
 }
 
