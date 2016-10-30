@@ -26,19 +26,38 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "BRB_Sync", "BRB_Sync\", "{3
 		VWDDynamicPort = "true"
 	EndProjectSection
 EndProject
-
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
 		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{30FF68EB-C947-4FF8-969E-7453444781CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{30FF68EB-C947-4FF8-969E-7453444781CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{30FF68EB-C947-4FF8-969E-7453444781CE}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{30FF68EB-C947-4FF8-969E-7453444781CE}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{30FF68EB-C947-4FF8-969E-7453444781CE}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{30FF68EB-C947-4FF8-969E-7453444781CE}.Debug|Mixed Platforms.Deploy.0 = Debug|Any CPU
 		{30FF68EB-C947-4FF8-969E-7453444781CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{30FF68EB-C947-4FF8-969E-7453444781CE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{30FF68EB-C947-4FF8-969E-7453444781CE}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{30FF68EB-C947-4FF8-969E-7453444781CE}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{30FF68EB-C947-4FF8-969E-7453444781CE}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{30FF68EB-C947-4FF8-969E-7453444781CE}.Release|Mixed Platforms.Deploy.0 = Release|Any CPU
+		{A20B64D8-B8ED-4CCF-A9AB-39C66B757F50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A20B64D8-B8ED-4CCF-A9AB-39C66B757F50}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{A20B64D8-B8ED-4CCF-A9AB-39C66B757F50}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{A20B64D8-B8ED-4CCF-A9AB-39C66B757F50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A20B64D8-B8ED-4CCF-A9AB-39C66B757F50}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{A20B64D8-B8ED-4CCF-A9AB-39C66B757F50}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{3D3FAC72-4A61-4396-8659-E951CDAF5AB8}.Debug|Any CPU.ActiveCfg = Debug|.NET
+		{3D3FAC72-4A61-4396-8659-E951CDAF5AB8}.Debug|Mixed Platforms.ActiveCfg = Debug|.NET
+		{3D3FAC72-4A61-4396-8659-E951CDAF5AB8}.Debug|Mixed Platforms.Build.0 = Debug|.NET
+		{3D3FAC72-4A61-4396-8659-E951CDAF5AB8}.Release|Any CPU.ActiveCfg = Debug|.NET
+		{3D3FAC72-4A61-4396-8659-E951CDAF5AB8}.Release|Mixed Platforms.ActiveCfg = Debug|.NET
+		{3D3FAC72-4A61-4396-8659-E951CDAF5AB8}.Release|Mixed Platforms.Build.0 = Debug|.NET
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

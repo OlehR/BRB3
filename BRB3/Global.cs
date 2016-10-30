@@ -11,6 +11,7 @@ namespace BRB
 
     static class Global
     {
+        static public Data cData;
         static public Terminal cTerminal;
         static public TypeTerminal eTypeTerminal;
         static public int hToolbarTerminal = 0;
@@ -22,7 +23,7 @@ namespace BRB
         static public string DbPwl = "";
         static public string SqlCeConectionBRB
          { get { return "Data Source = " + dbPathBRB + ";Password=" + DbPwl + ";"; }}
-        static public string ServiceUrl = @"http://vm/VsSyncMobile/VsSyncMobile.asmx";
+        static public string ServiceUrl = @"http://10.10.4.215/BRB_Sync/BRB_Sync.asmx";//@"http://vm/VsSyncMobile/VsSyncMobile.asmx";
      static public int ServiceTimeOut = 100000 ;   
     static public string ShopName ="6399";
     static public string SettingsPwl ="5744";
@@ -32,6 +33,7 @@ namespace BRB
 
         static public void Init(TypeTerminal parTypeTerminal)
         {
+            cData = new Data(new MSCeSQL(SqlCeConectionBRB));
             eTypeTerminal = parTypeTerminal;
             HotKey.Init(parTypeTerminal);
             switch(parTypeTerminal)

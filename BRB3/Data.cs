@@ -97,6 +97,9 @@ namespace BRB
         private DataTable tDocsWares;
         private MSCeSQL SQL = null;
         private bool UseCash = false;
+        public Data() { }
+        public Data(MSCeSQL parSQL) { Init(parSQL); }
+
         public void Init(MSCeSQL parSQL)
         {
             SQL = parSQL;
@@ -183,7 +186,7 @@ namespace BRB
         /// <summary>
         /// Синхронізація з сервером.
         /// </summary>
-        private void Sync()
+        public void Sync()
         {
             
             try
@@ -373,7 +376,7 @@ namespace BRB
 
                     
                 }
-                catch
+                catch(Exception Ex)
                 {
                     varError="Звязок відсутній! Провірте підключення ТЗД!!!";
                     return;
