@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Linq;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,9 +9,9 @@ using System.Windows.Forms;
 
 namespace BRB.Forms
 {
-    public partial class frmInfo : Form
+    public partial class frmDocGrid : Form
     {
-        public frmInfo()
+        public frmDocGrid()
         {
             InitializeComponent();
             InitializeComponentManual();

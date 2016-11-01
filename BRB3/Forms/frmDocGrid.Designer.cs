@@ -1,6 +1,6 @@
 ﻿namespace BRB.Forms
 {
-    partial class frmInfo
+    partial class frmDocGrid
     {
         /// <summary>
         /// Required designer variable.
@@ -90,21 +90,19 @@
             this.MaximizeBox = false;
             this.Menu = this.mainMenu;
             this.MinimizeBox = false;
-            this.Name = "frmInfo";
+            this.Name = "frmDocGrid";
             this.Text = "BRB3";
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private System.Windows.Forms.ColumnHeader columnHeader;
         private System.Windows.Forms.Label labelLeft;
         private System.Windows.Forms.Label labelRigth;
         private System.Windows.Forms.Label labelTop;
         private System.Windows.Forms.Label labelDown;
-        private System.Windows.Forms.ListView listView;
         private System.Windows.Forms.MainMenu mainMenu;
         private System.Windows.Forms.MenuItem miMovements;
-
+      
     }
 }

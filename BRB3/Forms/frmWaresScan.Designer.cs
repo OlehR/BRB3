@@ -57,10 +57,10 @@
             this.mplNowCapt = new System.Windows.Forms.Label();
             this.mplQtyNow = new System.Windows.Forms.Label();
             this.mplDateReal = new System.Windows.Forms.Label();
-            this.mplAddQtyCapt = new System.Windows.Forms.Label();
-            this.mplAddPriceCapt = new System.Windows.Forms.Label();
-            this.mplAddQty = new System.Windows.Forms.Label();
-            this.mplAddPrice = new System.Windows.Forms.Label();
+            this.mptbAddQtyCapt = new System.Windows.Forms.Label();
+            this.mptbAddPriceCapt = new System.Windows.Forms.Label();
+            this.mptbAddQty = new System.Windows.Forms.TextBox();
+            this.mptbAddPrice = new System.Windows.Forms.TextBox();
             this.mpbtnAdd = new System.Windows.Forms.Button();
             this.mpbtnCancel = new System.Windows.Forms.Button();
             this.mainPanel = new System.Windows.Forms.Panel();
@@ -287,38 +287,38 @@
             this.mplDateReal.Name = "mplDateReal";
             this.mplDateReal.Size = new System.Drawing.Size(100, 20);
             // 
-            // mplAddQtyCapt
+            // mptbAddQtyCapt
             // 
-            this.mplAddQtyCapt.Location = new System.Drawing.Point(2, 191);
-            this.mplAddQtyCapt.Name = "mplAddQtyCapt";
-            this.mplAddQtyCapt.Size = new System.Drawing.Size(70, 20);
-            this.mplAddQtyCapt.Text = "Додати:";
-            this.mplAddQtyCapt.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.mptbAddQtyCapt.Location = new System.Drawing.Point(2, 191);
+            this.mptbAddQtyCapt.Name = "mptbAddQtyCapt";
+            this.mptbAddQtyCapt.Size = new System.Drawing.Size(70, 20);
+            this.mptbAddQtyCapt.Text = "Додати:";
+            this.mptbAddQtyCapt.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
-            // mplAddPriceCapt
+            // mptbAddPriceCapt
             // 
-            this.mplAddPriceCapt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.mplAddPriceCapt.Location = new System.Drawing.Point(126, 191);
-            this.mplAddPriceCapt.Name = "mplAddPriceCapt";
-            this.mplAddPriceCapt.Size = new System.Drawing.Size(45, 20);
-            this.mplAddPriceCapt.Text = "Ціна:";
-            this.mplAddPriceCapt.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.mptbAddPriceCapt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.mptbAddPriceCapt.Location = new System.Drawing.Point(126, 191);
+            this.mptbAddPriceCapt.Name = "mptbAddPriceCapt";
+            this.mptbAddPriceCapt.Size = new System.Drawing.Size(45, 20);
+            this.mptbAddPriceCapt.Text = "Ціна:";
+            this.mptbAddPriceCapt.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
-            // mplAddQty
+            // mptbAddQty
             // 
-            this.mplAddQty.BackColor = System.Drawing.SystemColors.Highlight;
-            this.mplAddQty.Location = new System.Drawing.Point(72, 191);
-            this.mplAddQty.Name = "mplAddQty";
-            this.mplAddQty.Size = new System.Drawing.Size(58, 20);
+            this.mptbAddQty.Location = new System.Drawing.Point(72, 191);
+            this.mptbAddQty.Name = "mptbAddQty";
+            this.mptbAddQty.Size = new System.Drawing.Size(58, 23);
+            this.mptbAddQty.TabIndex = 18;
             // 
-            // mplAddPrice
+            // mptbAddPrice
             // 
-            this.mplAddPrice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.mptbAddPrice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.mplAddPrice.BackColor = System.Drawing.SystemColors.Highlight;
-            this.mplAddPrice.Location = new System.Drawing.Point(175, 191);
-            this.mplAddPrice.Name = "mplAddPrice";
-            this.mplAddPrice.Size = new System.Drawing.Size(58, 20);
+            this.mptbAddPrice.Location = new System.Drawing.Point(175, 191);
+            this.mptbAddPrice.Name = "mptbAddPrice";
+            this.mptbAddPrice.Size = new System.Drawing.Size(58, 23);
+            this.mptbAddPrice.TabIndex = 20;
             // 
             // mpbtnAdd
             // 
@@ -361,10 +361,10 @@
             this.mainPanel.Controls.Add(this.mplNowCapt);
             this.mainPanel.Controls.Add(this.mplQtyNow);
             this.mainPanel.Controls.Add(this.mplDateReal);
-            this.mainPanel.Controls.Add(this.mplAddQtyCapt);
-            this.mainPanel.Controls.Add(this.mplAddQty);
-            this.mainPanel.Controls.Add(this.mplAddPriceCapt);
-            this.mainPanel.Controls.Add(this.mplAddPrice);
+            this.mainPanel.Controls.Add(this.mptbAddQtyCapt);
+            this.mainPanel.Controls.Add(this.mptbAddQty);
+            this.mainPanel.Controls.Add(this.mptbAddPriceCapt);
+            this.mainPanel.Controls.Add(this.mptbAddPrice);
             this.mainPanel.Controls.Add(this.mpbtnAdd);
             this.mainPanel.Controls.Add(this.mpbtnCancel);
             this.mainPanel.Controls.Add(this.mplBorderTop);
@@ -423,10 +423,10 @@
         private System.Windows.Forms.Label mplNowCapt;
         private System.Windows.Forms.Label mplQtyNow;
         private System.Windows.Forms.Label mplDateReal;
-        private System.Windows.Forms.Label mplAddQtyCapt;
-        private System.Windows.Forms.Label mplAddPriceCapt;
-        private System.Windows.Forms.Label mplAddQty;
-        private System.Windows.Forms.Label mplAddPrice;
+        private System.Windows.Forms.Label mptbAddQtyCapt;
+        private System.Windows.Forms.Label mptbAddPriceCapt;
+        private System.Windows.Forms.TextBox mptbAddQty;
+        private System.Windows.Forms.TextBox mptbAddPrice;
         private System.Windows.Forms.Button mpbtnAdd;
         private System.Windows.Forms.Button mpbtnCancel;
         private System.Windows.Forms.Panel mainPanel;
