@@ -85,6 +85,7 @@
       <Name>MSCorLib</Name>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Resco.AdvancedList.CF3, Version=6.6.0.0, Culture=neutral, PublicKeyToken=7444f602060105f9, processorArchitecture=MSIL" />
     <Reference Include="Symbol, Version=2.8.0.0, Culture=neutral, PublicKeyToken=68ec8db391f150ca, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>dll\Symbol.dll</HintPath>

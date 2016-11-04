@@ -17,7 +17,7 @@ namespace BRB
           
             Global.Init(DefineTerminal.getOEMName());
             //Application.Run(new BRB.Forms.frmWaresScan());
-            SingleInstanceApplication.Run(new Forms.frmInfo());
+            SingleInstanceApplication.Run(new Forms.frmDocGrid());
         }
     }
 }
