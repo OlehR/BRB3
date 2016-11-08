@@ -1,17 +1,18 @@
 ﻿using System;
-
+using System.Linq;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using Resco.Controls;
 
 namespace BRB.Forms
 {
-    public partial class frmInfo : Form
+    public partial class frmDocGrid : Form
     {
-        public frmInfo()
+        public frmDocGrid()
         {
             InitializeComponent();
             InitializeComponentManual();

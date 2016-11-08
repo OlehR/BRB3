@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{30FF68EB-C947-4FF8-969E-7453444781CE}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -85,6 +85,10 @@
       <Name>MSCorLib</Name>
       <Private>False</Private>
     </Reference>
+    <Reference Include="resco.advancedlist.cf3, Version=6.6.0.0, Culture=neutral, PublicKeyToken=7444f602060105f9, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dll\resco.advancedlist.cf3.dll</HintPath>
+    </Reference>
     <Reference Include="Symbol, Version=2.8.0.0, Culture=neutral, PublicKeyToken=68ec8db391f150ca, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>dll\Symbol.dll</HintPath>
@@ -118,6 +122,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data.cs" />
+    <Compile Include="Forms\frmDocGrid.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmDocGrid.Designer.cs">
+      <DependentUpon>frmDocGrid.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\frmInfo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -135,6 +145,12 @@
     </Compile>
     <Compile Include="Forms\frmTest.Designer.cs">
       <DependentUpon>frmTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmWaresGrid.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmWaresGrid.Designer.cs">
+      <DependentUpon>frmWaresGrid.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\frmWaresScan.cs">
       <SubType>Form</SubType>
@@ -160,6 +176,9 @@
       <DependentUpon>Form1.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmDocGrid.resx">
+      <DependentUpon>frmDocGrid.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmInfo.resx">
       <DependentUpon>frmInfo.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -171,6 +190,9 @@
     <EmbeddedResource Include="Forms\frmTest.resx">
       <DependentUpon>frmTest.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmWaresGrid.resx">
+      <DependentUpon>frmWaresGrid.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmWaresScan.resx">
       <DependentUpon>frmWaresScan.cs</DependentUpon>
@@ -191,8 +213,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Ico_App_b.ico" />
-    <Content Include="Ico_App_b_32.ico" />
-    <Content Include="Ico_App_b_64.ico" />
     <None Include="Ico\Ico_reg_32.ico" />
     <None Include="Ico\Ico_06_32.ico" />
     <None Include="Ico\Ico_05_32.ico" />

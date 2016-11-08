@@ -38,7 +38,7 @@ namespace BRB.Forms
         public void InitializeComponentManual()
         {
             this.labelDown.Size = new System.Drawing.Size(100, (1 + Global.hToolbarTerminal));
-            this.Text = "BRB++ " + Global.eTypeTerminal.ToString();
+            this.Text = "BRB 3b " + Global.eTypeTerminal.ToString();
 
             // BitatekIT8000 примусово вставляє тулбар
             if (Global.eTypeTerminal == TypeTerminal.BitatekIT8000)
