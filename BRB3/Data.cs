@@ -177,7 +177,16 @@ namespace BRB
             SQL.AddWithValueF("@parNumberDoc", parNumberDoc);
             return Convert.ToDateTime(SQL.ExecuteScalar(varSQLGetDateOutInvoice));
         }
- 
+
+        /// <summary>
+        /// Шукає товар по штрихкоду
+        /// </summary>
+        /// <param name="parBarCode"></param>
+        /// <returns>DataTable З знайденими товарами</returns>
+        public DataTable FindGoodBarCode(string parBarCode)
+        {
+            return null;
+        }
         
         /// <summary>
         /// Синхронізація з сервером.

@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{30FF68EB-C947-4FF8-969E-7453444781CE}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -121,6 +121,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BL.cs" />
     <Compile Include="Data.cs" />
     <Compile Include="Forms\frmDocGrid.cs">
       <SubType>Form</SubType>
@@ -171,6 +172,7 @@
     <Compile Include="SqlBulkCopy\SqlCeBulkCopyOptions.cs" />
     <Compile Include="SqlBulkCopy\SqlCeBulkCopyTableHelpers.cs" />
     <Compile Include="SqlBulkCopy\SqlCeRowsCopiedEventArgs.cs" />
+    <Compile Include="Status.cs" />
     <Compile Include="Terminal.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -178,6 +180,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmDocGrid.resx">
       <DependentUpon>frmDocGrid.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmInfo.resx">
       <DependentUpon>frmInfo.cs</DependentUpon>
@@ -193,6 +196,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmWaresGrid.resx">
       <DependentUpon>frmWaresGrid.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmWaresScan.resx">
       <DependentUpon>frmWaresScan.cs</DependentUpon>

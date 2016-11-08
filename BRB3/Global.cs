@@ -11,6 +11,7 @@ namespace BRB
 
     static class Global
     {
+        static public int CurrentDoc;
         static public Data cData;
         static public Terminal cTerminal;
         static public TypeTerminal eTypeTerminal;
