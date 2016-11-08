@@ -109,14 +109,11 @@ namespace BRB
         {
             tDocs = SQL.ExecuteQuery(varSQLDocs);
         }
-        public void FillDocsWares()
-        {
-            tDocs = SQL.ExecuteQuery(varSQLDocsWares);
-        }
+
         public void FillDocsWares(int parNumberDoc)
         {
             SQL.AddWithValueF("@parNumberDoc", parNumberDoc);
-            tDocsWares = SQL.ExecuteQuery(varSQLDocs);
+            tDocsWares = SQL.ExecuteQuery(varSQLDocsWares);
         }
         public DateTime GetDateSync(int parNumberDoc)
         {
@@ -146,7 +143,6 @@ namespace BRB
             SQL.AddWithValueF("@parNumberDoc", parNumberDoc);
             SQL.AddWithValue("@parStatus", parStatus);
             SQL.ExecuteNonQuery(varSQLSetStatusDoc);
-
         }
 
         public int GetTypeDoc(int parNumberDoc)
