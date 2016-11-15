@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.InteropServices;
+using System.Data;
 namespace BRB
 {
     enum TypeTerminal
@@ -11,7 +12,9 @@ namespace BRB
 
     static class Global
     {
-        static public int CurrentDoc;
+        static public int CurNumDoc;
+        static public DataRow CurDoc;
+        static public DataRow CurWaresDoc;
         static public Data cData;
         static public Terminal cTerminal;
         static public TypeTerminal eTypeTerminal;

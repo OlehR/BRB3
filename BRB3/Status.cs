@@ -9,11 +9,13 @@ namespace BRB
         {
             public Status()
             {
-                Status(EStatus.Ok,null);
+                status = EStatus.Ok;
+                message=null;
             }
             public Status(EStatus parStatus)
             {
-            Status(parStatus,null);
+                status = parStatus;
+                message = null;
             }
 
             public Status(EStatus parStatus  ,string parMessage)

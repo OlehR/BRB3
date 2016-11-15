@@ -90,7 +90,48 @@ namespace BRB
 
         private string varSQLGetDateOutInvoice = @"select COALESCE (LEN(date_out_invoice), 0) from Docs where number_doc = @parNumberDoc";
 
+        private string varSQLGetWaresOrder  = @"SELECT   COALESCE (MAX(num_pop), 0)+1 as  num_pop  FROM     docs_wares   WHERE    number_doc  = @number_doc";
 
+        private string varSQLSaveDocWares = @"update docs_wares
+						   set    quantity = @parQty,
+						          price = @parPrice,
+						          num_pop = @parNumPop,
+                                  change_date = @parChangeDate 
+						   where  code_wares = @parCodeWares
+                           and    number_doc = @parNumberDoc";
+  
+        private string varSQLFindBarCode(bool parIsComplect)
+        {
+            return
+                @"SELECT  dw.code_wares, 
+                                      dw.number_doc, 
+                                      dw.quantity,
+                                      case  
+                                         WHEN d .flag_price_with_vat = 1 THEN dw.price * (1 + w.vat/100) 
+                                         ELSE dw.price 
+                                      END AS price, 
+                                      w.name_wares, 
+                                      dw.num_pop, 
+                                      dw.quantity_temp, 
+                                      CASE 
+                                          WHEN d .flag_price_with_vat = 1 THEN dw.price_temp * (1 + w.vat/100) 
+                                          ELSE dw.price_temp 
+                                      END AS price_temp, 
+                                      au.bar_code, 
+                                      au.coefficient, 
+                                      au.code_unit, 
+                                      aus.code_unit as code_unit_scan,
+                                      w.term
+                              FROM    DOCS_WARES AS dw 
+                              INNER JOIN WARES AS w ON dw.code_wares = w.code_wares 
+                              INNER JOIN ADDITION_UNIT AS au ON dw.code_unit = au.code_unit AND dw.code_wares = au.code_wares 
+                              INNER JOIN ADDITION_UNIT AS aus ON dw.code_wares = aus.code_wares 
+                              INNER JOIN DOCS AS d ON dw.number_doc = d.number_doc " +
+                                (parIsComplect ? @"INNER JOIN DOCS AS dd ON d.okpo_supplier = dd.okpo_supplier AND d.type_doc = dd.type_doc AND d.date_doc = dd.date_doc AND d.code_shop = dd.code_shop" : "") +
+                                @"WHERE   (dw.number_doc = @number_doc) 
+                              AND     (aus.bar_code = @bar_code)
+                              ORDER BY dw.quantity";
+        }
         #endregion
         private string varError=null;
         private DataTable tDocs;
@@ -178,16 +219,41 @@ namespace BRB
             return Convert.ToDateTime(SQL.ExecuteScalar(varSQLGetDateOutInvoice));
         }
 
+        
+        public int GetWaresOrder(int parNumberDoc)
+        {
+            SQL.AddWithValueF("@parNumberDoc", parNumberDoc);
+            object o = SQL.ExecuteScalar(varSQLGetWaresOrder);
+            return (o == null?1:Convert.ToInt32(o));
+        }
+
+
         /// <summary>
-        /// Шукає товар по штрихкоду
+        /// Шукає товар по штрихкоду MetGetScanGoods
         /// </summary>
         /// <param name="parBarCode"></param>
         /// <returns>DataTable З знайденими товарами</returns>
-        public DataTable FindGoodBarCode(string parBarCode)
+        public DataTable FindGoodBarCode(int parNumberDoc, string parBarCode, bool parIsComplect)
         {
-            return null;
+            SQL.AddWithValueF("@parNumberDoc", parNumberDoc);
+            SQL.AddWithValue("@parBarCode", parBarCode);
+            DataTable dt = SQL.ExecuteQuery(varSQLFindBarCode(parIsComplect));
+            return dt;
         }
-        
+
+
+        public void SaveDocWares(int parNumberDoc, int parCodeWares,int parNupPop ,decimal parQty, decimal @parPrice)
+        {
+            SQL.AddWithValueF("@parNumberDoc", parNumberDoc);
+            SQL.AddWithValue("@parCodeWares", parCodeWares);
+            SQL.AddWithValue("@parNupPop", parNupPop);
+            SQL.AddWithValue("@parQty", parQty);
+            SQL.AddWithValue("@parPrice", parPrice);
+            SQL.AddWithValue("@parChangeDate", DateTime.Now);
+            SQL.ExecuteNonQuery(varSQLSaveDocWares);
+        }
+
+                
         /// <summary>
         /// Синхронізація з сервером.
         /// </summary>

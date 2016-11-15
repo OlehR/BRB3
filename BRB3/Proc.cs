@@ -65,7 +65,7 @@ public class MSCeSQL
         varListSqlParameter.Add(varP);
     }
     /// <summary>
-    /// Провіряє чи в DataTable є хобаб один рядок
+    /// Провіряє чи в DataTable є хоба б один рядок
     /// </summary>
     /// <param name="parData">DataTable для провірки</param>
     /// <returns>true/false</returns>
