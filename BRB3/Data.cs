@@ -33,7 +33,8 @@ namespace BRB
                                         WHEN d .flag_price_with_vat = 0 THEN COALESCE (SUM(dw.price * dw.quantity), 0) 
                                         ELSE COALESCE (SUM(dw.price * dw.quantity*(1+w.vat/100)), 0) END AS SummaPrih,
                                      number_out_invoice,
-                                     date_out_invoice
+                                     date_out_invoice,
+                                     COALESCE(flag_sum_qty_doc, 0) as flag_sum_qty_doc
                               FROM  DOCS AS d LEFT OUTER JOIN
                                      DOCS_WARES AS dw ON d.number_doc = dw.number_doc LEFT OUTER JOIN
                                       WARES AS w ON dw.code_wares=w.code_wares
@@ -100,7 +101,7 @@ namespace BRB
 						   where  code_wares = @parCodeWares
                            and    number_doc = @parNumberDoc";
   
-        private string varSQLFindBarCode(bool parIsComplect)
+        private string varSQLFindBarCode(bool parIsComplect,bool parIsBarCode)
         {
             return
                 @"SELECT  dw.code_wares, 
@@ -126,11 +127,14 @@ namespace BRB
                               INNER JOIN WARES AS w ON dw.code_wares = w.code_wares 
                               INNER JOIN ADDITION_UNIT AS au ON dw.code_unit = au.code_unit AND dw.code_wares = au.code_wares 
                               INNER JOIN ADDITION_UNIT AS aus ON dw.code_wares = aus.code_wares 
-                              INNER JOIN DOCS AS d ON dw.number_doc = d.number_doc " +
-                                (parIsComplect ? @"INNER JOIN DOCS AS dd ON d.okpo_supplier = dd.okpo_supplier AND d.type_doc = dd.type_doc AND d.date_doc = dd.date_doc AND d.code_shop = dd.code_shop" : "") +
-                                @"WHERE   (dw.number_doc = @number_doc) 
-                              AND     (aus.bar_code = @bar_code)
-                              ORDER BY dw.quantity";
+                              INNER JOIN DOCS AS d ON dw.number_doc = d.number_doc 
+" +
+                                (parIsComplect ? @"INNER JOIN DOCS AS dd ON d.okpo_supplier = dd.okpo_supplier AND d.type_doc = dd.type_doc AND d.date_doc = dd.date_doc AND d.code_shop = dd.code_shop " : "") +
+                                @"
+                               WHERE   (dw.number_doc = @number_doc) AND 
+"+
+ (parIsBarCode?@"                (aus.bar_code = @bar_code)": @"(dw.code_wares = @code_wares)")+
+@"                              ORDER BY dw.quantity";
         }
         #endregion
         private string varError=null;
@@ -237,10 +241,22 @@ namespace BRB
         {
             SQL.AddWithValueF("@parNumberDoc", parNumberDoc);
             SQL.AddWithValue("@parBarCode", parBarCode);
-            DataTable dt = SQL.ExecuteQuery(varSQLFindBarCode(parIsComplect));
+            DataTable dt = SQL.ExecuteQuery(varSQLFindBarCode(parIsComplect,true));
             return dt;
         }
 
+        /// <summary>
+        /// Шукає товар по коду MetGetScanVesGoods
+        /// </summary>
+        /// <param name="parBarCode"></param>
+        /// <returns>DataTable З знайденими товарами</returns>
+        public DataTable FindGoodCodeWares(int parNumberDoc, string parCodeWares, bool parIsComplect)
+        {
+            SQL.AddWithValueF("@parNumberDoc", parNumberDoc);
+            SQL.AddWithValue("@parCodeWares", parCodeWares);
+            DataTable dt = SQL.ExecuteQuery(varSQLFindBarCode(parIsComplect,false));
+            return dt;
+        }
 
         public void SaveDocWares(int parNumberDoc, int parCodeWares,int parNupPop ,decimal parQty, decimal @parPrice)
         {

@@ -12,6 +12,29 @@ namespace BRB
     /// </summary>
     class BL
     {
+        static private int CurNumDoc;
+        static private DataRow CurDoc;
+        static private DataRow CurWaresDoc;
+
+        /// <summary>
+        /// Зберігаємо текучу шапку документа
+        /// </summary>
+        /// <param name="parCurDoc"></param>
+        public void SetCurDoc(DataRow parCurDoc)
+        {
+            CurDoc = parCurDoc;
+            CurNumDoc = Convert.ToInt32(parCurDoc["number_doc"]);
+        }
+
+        /// <summary>
+        /// Зберігаємо текучий рядок документа
+        /// </summary>
+        /// <param name="parCurDoc"></param>
+        public void SetCurWaresDoc(DataRow parCurWaresDoc)
+        {
+            CurWaresDoc = parCurWaresDoc;
+        }
+
         /// <summary>
         /// Шукає товар по штрихкоду
         /// </summary>
@@ -21,7 +44,7 @@ namespace BRB
         {
             try
             {
-                return Global.cData.FindGoodBarCode(Global.CurNumDoc, parBarCode, false);
+                return Global.cData.FindGoodBarCode(CurNumDoc, parBarCode, false);
             }
             catch
             {
@@ -29,6 +52,15 @@ namespace BRB
             }
         }
 
+        /// <summary>
+        /// Якщо треба сумувати кількості в документі - MetGetSumQtyZNP
+        /// </summary>
+        /// <returns></returns>
+
+        public bool IsSumQty()
+        {
+            return (Convert.ToInt32( CurDoc["flag_sum_qty_doc"]) != 0);
+        }
         /// <summary>
         /// MetSaveRowGoods
         /// </summary>
@@ -49,19 +81,19 @@ namespace BRB
                
                 // Проверим номер по порядку
                 if (parNumPop == 0)
-                    parNumPop = Global.cData.GetWaresOrder(Global.CurNumDoc);
+                    parNumPop = Global.cData.GetWaresOrder(CurNumDoc);
 
 
                 if (parPrice != 0)
                 {
                     
-                   int flag = Convert.ToInt32( Global.CurDoc["flag_price_with_vat"]);
-                   int vat = Convert.ToInt32( Global.CurWaresDoc["vat"]);
+                   int flag = Convert.ToInt32( CurDoc["flag_price_with_vat"]);
+                   int vat = Convert.ToInt32( CurWaresDoc["vat"]);
                    if (flag == 1 && vat!=0 )
                      parPrice = decimal.Round(parPrice / (1 + vat / 100), 4); 
                     
                 }
-              Global.cData.SaveDocWares(Global.CurNumDoc, parCodeWares, parNumPop, parQty, parPrice);
+              Global.cData.SaveDocWares(CurNumDoc, parCodeWares, parNumPop, parQty, parPrice);
 
             }
             catch (System.Exception Ex)

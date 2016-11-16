@@ -12,9 +12,20 @@ namespace BRB
 
     static class Global
     {
-        static public int CurNumDoc;
-        static public DataRow CurDoc;
-        static public DataRow CurWaresDoc;
+        /// <summary>
+        /// Початок штрихкоду вагового товару
+        /// </summary>
+        static public string WeightBarCodeBegin="25";
+        /// <summary>
+        /// Кількість символів для коду товару в ваговому штрихкоді  InGoodsWidth=6
+        /// </summary>
+        static public int WeightBarCodeWares=6;
+       
+        /// <summary>
+        /// Кількість символів для кількості товару в ваговому штрихкоді
+        /// </summary>
+        static public int WeightBarQtyChar=4;
+
         static public Data cData;
         static public Terminal cTerminal;
         static public TypeTerminal eTypeTerminal;
