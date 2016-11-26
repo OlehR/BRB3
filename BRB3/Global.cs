@@ -3,15 +3,16 @@ using System.Runtime.InteropServices;
 using System.Data;
 namespace BRB
 {
-    enum TypeTerminal
+    public enum TypeTerminal
     {
      NoDetect=0,
-     BitatekIT8000,
-     MotorolaMC75Ax
+     BitatekIT8000=1,
+     MotorolaMC75Ax=2
     }
 
     static class Global
     {
+        static public string varPathIni = @"\Program Files\brb3\";
         /// <summary>
         /// Початок штрихкоду вагового товару
         /// </summary>
@@ -44,13 +45,16 @@ namespace BRB
     static public string SettingsPwl ="5744";
     static public DateTime TimeSync;
     static public string RemouteFile="BRB.exe";
-    static public string Directory=@"\Download\";  
+    static public string Directory=@"\Download\";
+        
+    static public  ReadINI2 varIniKeyMap;
 
-        static public void Init(TypeTerminal parTypeTerminal)
+    static public void Init(TypeTerminal parTypeTerminal)
         {
             cData = new Data(new MSCeSQL(SqlCeConectionBRB));
             eTypeTerminal = parTypeTerminal;
-            HotKey.Init(parTypeTerminal);
+            InitKeyMap(eTypeTerminal);
+            //HotKey.Init(parTypeTerminal);
             switch(parTypeTerminal)
             {
                 case TypeTerminal.BitatekIT8000:
@@ -71,9 +75,47 @@ namespace BRB
                 
         }
 
+    public static int BildKeyCode(string parSection, string parKeyName)
+        {
+            int varKeyCode = 0;
+            string varStrKey = varIniKeyMap.GetSetting(parSection, parKeyName);
+            if (varStrKey != null)
+            {
+                
+                string[] varStrKeys = varStrKey.Split(new char[] { '+' });
+                for (int i = 0; i < varStrKeys.Length; i++)
+                    varKeyCode += Convert.ToInt32(varIniKeyMap.GetSetting("KeyCode", varStrKeys[i].Trim()));
+            }
+            return varKeyCode;
+        }
+
+        public static void InitKeyMap(TypeTerminal parType)
+        {
+            varIniKeyMap = new ReadINI2(Global.varPathIni + @"Key.map");
+            HotKey.Init( parType);
+            
+        }
 
     }
 
+    /// <summary>
+    /// Клас для роботою з гарячими клавішами 
+    /// </summary>
+    public class HotKey
+    {
+        static int MainIncome = 0;
+        static int MainOutcome = 0;
+        
+        public static void Init( TypeTerminal parType)
+        {
+            string varNameSection = parType.ToString();
+            MainIncome = Global.BildKeyCode(varNameSection, "MainIncome");
+            MainOutcome = Global.BildKeyCode(varNameSection, "MainOutcome");
+       
+        }
+    
+    }
+/*
     /// <summary>
     /// Глобальний клас з списком гарячих клавіш
     ///Tmp Необхідно буде доробити десерелізацію xml/json
@@ -101,7 +143,7 @@ namespace BRB
             }
         }
     }
-
+*/
     static class DefineTerminal
     {
         private const string MotorolaMC75A0 = "MOTOROLA MC75A";
