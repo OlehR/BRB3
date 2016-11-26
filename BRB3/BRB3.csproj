@@ -255,7 +255,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="BRB.config" />
-    <None Include="Key.map" />
+    <None Include="Key.map">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Web References\WebReference\BRB_Sync.wsdl" />
     <None Include="Web References\WebReference\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>

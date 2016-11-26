@@ -12,7 +12,7 @@ namespace BRB
 
     static class Global
     {
-        static public string varPathIni = @"\Program Files\brb3\";
+        static public string varPathIni = @"\Program Files\brb3\";//\Program Files\brb3\
         /// <summary>
         /// Початок штрихкоду вагового товару
         /// </summary>
@@ -35,7 +35,7 @@ namespace BRB
         static public int tCoefficient = 1;
         //static public Single mainFont = 10F;
         public static string DeviceID=string.Empty;
-        static public string dbPathBRB = @"\Program Files\BRB\Database\BRB.sdf";
+        static public string dbPathBRB = @"\Program Files\BRB3\Database\BRB.sdf";
         static public string DbPwl = "";
         static public string SqlCeConectionBRB
          { get { return "Data Source = " + dbPathBRB + ";Password=" + DbPwl + ";"; }}
@@ -54,7 +54,7 @@ namespace BRB
             cData = new Data(new MSCeSQL(SqlCeConectionBRB));
             eTypeTerminal = parTypeTerminal;
             InitKeyMap(eTypeTerminal);
-            //HotKey.Init(parTypeTerminal);
+            
             switch(parTypeTerminal)
             {
                 case TypeTerminal.BitatekIT8000:
