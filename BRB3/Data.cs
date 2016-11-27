@@ -39,7 +39,8 @@ namespace BRB
                                      DOCS_WARES AS dw ON d.number_doc = dw.number_doc LEFT OUTER JOIN
                                       WARES AS w ON dw.code_wares=w.code_wares
                               WHERE type_doc=@parTypeDoc 
-                              GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_with_vat, d.sum_without_vat, d.sum_with_vat, d.status, d.okpo_supplier";
+GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_with_vat, d.sum_without_vat, d.sum_with_vat, d.status, d.okpo_supplier, dw.num_pop, 
+                         d.number_out_invoice, d.date_out_invoice, d.flag_sum_qty_doc";
         ////type_doc in (1, 3, 4, 5, 6, 7, 8)
         //TMP Є трохи магії з комплектацією Інший запит() треба буде розібратись
         private string varSQLDocsWares = @"SELECT DISTINCT dw.number_doc, 
