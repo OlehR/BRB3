@@ -38,8 +38,9 @@ namespace BRB
                               FROM  DOCS AS d LEFT OUTER JOIN
                                      DOCS_WARES AS dw ON d.number_doc = dw.number_doc LEFT OUTER JOIN
                                       WARES AS w ON dw.code_wares=w.code_wares
-                              WHERE type_doc in (1, 3, 4, 5, 6, 7, 8)
+                              WHERE type_doc=@parTypeDoc 
                               GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_with_vat, d.sum_without_vat, d.sum_with_vat, d.status, d.okpo_supplier";
+        ////type_doc in (1, 3, 4, 5, 6, 7, 8)
         //TMP Є трохи магії з комплектацією Інший запит() треба буде розібратись
         private string varSQLDocsWares = @"SELECT DISTINCT dw.number_doc, 
                                            dw.code_wares, 
@@ -150,9 +151,11 @@ namespace BRB
             SQL = parSQL;
         }
 
-        public void FillDocs()
+        public DataTable FillDocs(TypeDoc parTypeDoc)
         {
+            SQL.AddWithValueF("@parTypeDoc", parTypeDoc);
             tDocs = SQL.ExecuteQuery(varSQLDocs);
+            return tDocs;
         }
 
         public void FillDocsWares(int parNumberDoc)

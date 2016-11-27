@@ -10,11 +10,22 @@ namespace BRB
     /// Клас бізнес логіки
     /// Проміжний між інтерфейсами (формами ) і Data можливо варто зробити static
     /// </summary>
-    class BL
+    public class BL
     {
+        public BL(Data parData)
+        {
+            cData = parData;
+        
+        }
         static private int CurNumDoc;
         static private DataRow CurDoc;
         static private DataRow CurWaresDoc;
+        static public Data cData;
+
+        public DataTable LoadDocs(TypeDoc parTypeDoc)
+        {
+            return cData.FillDocs(parTypeDoc);        
+        }
 
         /// <summary>
         /// Зберігаємо текучу шапку документа
@@ -44,7 +55,7 @@ namespace BRB
         {
             try
             {
-                return Global.cData.FindGoodBarCode(CurNumDoc, parBarCode, false);
+                return cData.FindGoodBarCode(CurNumDoc, parBarCode, false);
             }
             catch
             {
@@ -81,7 +92,7 @@ namespace BRB
                
                 // Проверим номер по порядку
                 if (parNumPop == 0)
-                    parNumPop = Global.cData.GetWaresOrder(CurNumDoc);
+                    parNumPop = cData.GetWaresOrder(CurNumDoc);
 
 
                 if (parPrice != 0)
@@ -93,7 +104,7 @@ namespace BRB
                      parPrice = decimal.Round(parPrice / (1 + vat / 100), 4); 
                     
                 }
-              Global.cData.SaveDocWares(CurNumDoc, parCodeWares, parNumPop, parQty, parPrice);
+              cData.SaveDocWares(CurNumDoc, parCodeWares, parNumPop, parQty, parPrice);
 
             }
             catch (System.Exception Ex)

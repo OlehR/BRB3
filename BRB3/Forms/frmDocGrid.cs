@@ -12,8 +12,10 @@ namespace BRB.Forms
 {
     public partial class frmDocGrid : Form
     {
-        public frmDocGrid()
+        public frmDocGrid(TypeDoc parTypeDoc)
         {
+            DataTable dt = Global.cBL.LoadDocs(parTypeDoc);
+
             InitializeComponent();
             InitializeComponentManual();
         }

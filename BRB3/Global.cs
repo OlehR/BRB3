@@ -10,6 +10,16 @@ namespace BRB
      MotorolaMC75Ax=2
     }
 
+    public enum TypeDoc
+    {
+        Supply = 1,
+        Inventories = 2,
+        Invoice = 3,
+        WriteOffInvoice =4,
+        InReturnInvoice
+  
+    //(1, 3, 4, 5, 6, 7, 8)
+    }
     static class Global
     {
         static public string varPathIni = @"\Program Files\brb3\";//\Program Files\brb3\
@@ -28,6 +38,7 @@ namespace BRB
         static public int WeightBarQtyChar=4;
 
         static public Data cData;
+        static public BL cBL;
         static public Terminal cTerminal;
         static public TypeTerminal eTypeTerminal;
         static public int hToolbarTerminal = 0;
@@ -52,6 +63,7 @@ namespace BRB
     static public void Init(TypeTerminal parTypeTerminal)
         {
             cData = new Data(new MSCeSQL(SqlCeConectionBRB));
+            cBL = new BL(cData);
             eTypeTerminal = parTypeTerminal;
             InitKeyMap(eTypeTerminal);
             
