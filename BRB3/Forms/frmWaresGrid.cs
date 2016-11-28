@@ -11,10 +11,14 @@ namespace BRB.Forms
 {
     public partial class frmWaresGrid : Form
     {
-        public frmWaresGrid()
+        DataTable dt;
+
+        public frmWaresGrid(TypeDoc parTypeDoc, int panNumberDoc)
         {
+            //dt = Global.cBL.LoadDocs(parTypeDoc);
             InitializeComponent();
             InitializeComponentManual();
+            this.Text = panNumberDoc.ToString();
         }
 
         public void InitializeComponentManual()

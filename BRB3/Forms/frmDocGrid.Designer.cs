@@ -158,7 +158,7 @@
             rowTemplate2.CellTemplates.Add(textCell5);
             rowTemplate2.CellTemplates.Add(textCell6);
             rowTemplate2.Name = "rtRow";
-            rowTemplate3.BackColor = System.Drawing.SystemColors.Window;
+            rowTemplate3.BackColor = System.Drawing.SystemColors.Highlight;
             textCell7.CellSource.ColumnName = "StatusName";
             textCell7.Location = new System.Drawing.Point(0, 0);
             textCell7.Name = "rs1_1";
@@ -242,6 +242,8 @@
             this.advancedList.Templates.Add(rowTemplate2);
             this.advancedList.Templates.Add(rowTemplate3);
             this.advancedList.Templates.Add(rowTemplate4);
+            this.advancedList.KeyUp += new System.Windows.Forms.KeyEventHandler(this.advancedList_KeyUp);
+            
             // 
             // frmDocGrid
             // 

@@ -13,9 +13,12 @@ namespace BRB.Forms
     public partial class frmDocGrid : Form
     {
         DataTable dt;
+        int number_doc;
+        TypeDoc typeDoc;
 
         public frmDocGrid(TypeDoc parTypeDoc)
         {
+            typeDoc = parTypeDoc;
             dt = Global.cBL.LoadDocs(parTypeDoc);
             InitializeComponent();
             InitializeComponentManual();
@@ -63,6 +66,43 @@ namespace BRB.Forms
             {
                  this.Close();
                 //clsDialogBox.ErrorBoxShow("Неможливо зайти в модуль!");
+            }
+        }
+        //Для тесту. Необхідно переробити!
+        private void advancedList_KeyUp(object sender, KeyEventArgs e)
+        {
+            
+             if (e.KeyValue == 38)
+            {
+                // Up
+                if (advancedList.DataRows.Count > 0)
+                {
+                    if (advancedList.ActiveRowIndex - 1 >= 0)
+                    {
+                        advancedList.ActiveRowIndex = advancedList.ActiveRowIndex - 1;
+                    }
+                }
+            }
+            else if (e.KeyValue == 40)
+            {
+                // Down
+                if (advancedList.DataRows.Count > 0)
+                {
+                    if (advancedList.ActiveRowIndex + 1 < advancedList.DataRows.Count)
+                    {
+                        advancedList.ActiveRowIndex = advancedList.ActiveRowIndex + 1;
+                    }
+                }
+            }
+            else if (e.KeyValue == 114) //F3 строки
+            {
+                number_doc = Convert.ToInt32(dt.Rows[advancedList.ActiveRowIndex]["number_doc"]);
+                //number_doc = int.Parse(dt.Rows[advancedList.ActiveRowIndex]["number_doc"].ToString());
+                this.Text = "№: " + number_doc;
+                // запускаєм форму з товарами frmWaresGrid(TypeDoc, number_doc)
+                frmWaresGrid newfrmWaresGrid = new frmWaresGrid(typeDoc, number_doc);
+                newfrmWaresGrid.Show();
+
             }
         }
     }
