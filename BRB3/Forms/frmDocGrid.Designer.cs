@@ -27,6 +27,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
+            //Після дизайнера AdvancedList виправити на --> resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDocGrid));
         {
             resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDocGrid));
             Resco.Controls.AdvancedList.RowTemplate rowTemplate1 = new Resco.Controls.AdvancedList.RowTemplate();
@@ -243,7 +244,6 @@
             this.advancedList.Templates.Add(rowTemplate3);
             this.advancedList.Templates.Add(rowTemplate4);
             this.advancedList.KeyUp += new System.Windows.Forms.KeyEventHandler(this.advancedList_KeyUp);
-            
             // 
             // frmDocGrid
             // 

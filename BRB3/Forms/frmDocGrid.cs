@@ -71,34 +71,36 @@ namespace BRB.Forms
         //Для тесту. Необхідно переробити!
         private void advancedList_KeyUp(object sender, KeyEventArgs e)
         {
-            
-             if (e.KeyValue == 38)
+            //switch (e.KeyValue)
+            //{
+            //    case HotKey.DocGridListWares:
+            //         number_doc = Convert.ToInt32(dt.Rows[advancedList.ActiveRowIndex]["number_doc"]);
+            //         break;
+                    
+            //}
+
+            if (e.KeyValue == HotKey.Up)
             {
                 // Up
                 if (advancedList.DataRows.Count > 0)
                 {
                     if (advancedList.ActiveRowIndex - 1 >= 0)
-                    {
-                        advancedList.ActiveRowIndex = advancedList.ActiveRowIndex - 1;
-                    }
+                    {advancedList.ActiveRowIndex = advancedList.ActiveRowIndex - 1;}
                 }
             }
-            else if (e.KeyValue == 40)
+            else if (e.KeyValue == HotKey.Down)
             {
-                // Down
                 if (advancedList.DataRows.Count > 0)
                 {
                     if (advancedList.ActiveRowIndex + 1 < advancedList.DataRows.Count)
-                    {
-                        advancedList.ActiveRowIndex = advancedList.ActiveRowIndex + 1;
-                    }
+                    {advancedList.ActiveRowIndex = advancedList.ActiveRowIndex + 1;}
                 }
             }
-            else if (e.KeyValue == 114) //F3 строки
+            else if (e.KeyValue == HotKey.DocGridListWares) //F3 строки 114
             {
                 number_doc = Convert.ToInt32(dt.Rows[advancedList.ActiveRowIndex]["number_doc"]);
                 //number_doc = int.Parse(dt.Rows[advancedList.ActiveRowIndex]["number_doc"].ToString());
-                this.Text = "№: " + number_doc;
+
                 // запускаєм форму з товарами frmWaresGrid(TypeDoc, number_doc)
                 frmWaresGrid newfrmWaresGrid = new frmWaresGrid(typeDoc, number_doc);
                 newfrmWaresGrid.Show();

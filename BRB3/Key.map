@@ -1,10 +1,19 @@
 ﻿[BitatekIT8000]
+Up = Up
+Down = Down
+Enter = Enter
 MainIncome = F1
-MainOutcome =F2 
+MainOutcome = F2 
+DocGridListWares = F3
 
 [MotorolaMC75Ax]
+Up = Up
+Down = Down
+Enter = Enter
 MainIncome = F1
 MainOutcome =F2 
+DocGridListWares = F3
+
  
 //Не модифікуємо цю секцію!!!!
 [KeyCode]

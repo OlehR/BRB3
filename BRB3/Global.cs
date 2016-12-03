@@ -117,12 +117,22 @@ namespace BRB
     {
         static int MainIncome = 0;
         static int MainOutcome = 0;
+        public static int DocGridListWares = 0;
+        public static int Up = 0;
+        public static int Down = 0;
+        public static int Enter = 0;
+
         
         public static void Init( TypeTerminal parType)
         {
             string varNameSection = parType.ToString();
+
             MainIncome = Global.BildKeyCode(varNameSection, "MainIncome");
             MainOutcome = Global.BildKeyCode(varNameSection, "MainOutcome");
+            DocGridListWares = Global.BildKeyCode(varNameSection, "DocGridListWares");
+            Up = Global.BildKeyCode(varNameSection, "Up");
+            Down = Global.BildKeyCode(varNameSection, "Down");
+            Enter = Global.BildKeyCode(varNameSection, "Enter");
        
         }
     

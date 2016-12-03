@@ -18,7 +18,7 @@ namespace BRB
             Global.Init(DefineTerminal.getOEMName());
             //Application.Run(new BRB.Forms.frmWaresScan());
             SingleInstanceApplication.Run(new Forms.frmDocGrid(TypeDoc.Invoice));
-            
+            //SingleInstanceApplication.Run(new Forms.frmWaresGrid(TypeDoc.Invoice, 3699652));
         }
     }
 }
