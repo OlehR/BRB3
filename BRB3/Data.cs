@@ -159,10 +159,11 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
             return tDocs;
         }
 
-        public void FillDocsWares(int parNumberDoc)
+        public DataTable FillDocsWares(int parNumberDoc)
         {
             SQL.AddWithValueF("@parNumberDoc", parNumberDoc);
             tDocsWares = SQL.ExecuteQuery(varSQLDocsWares);
+            return tDocsWares;
         }
         public DateTime GetDateSync(int parNumberDoc)
         {

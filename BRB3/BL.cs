@@ -27,6 +27,12 @@ namespace BRB
             return cData.FillDocs(parTypeDoc);        
         }
 
+        public DataTable LoadWaresDocs(TypeDoc parTypeDoc, int parNumberDoc)
+        {
+            return cData.FillDocsWares(parNumberDoc);        
+        }
+        
+
         /// <summary>
         /// Зберігаємо текучу шапку документа
         /// </summary>
