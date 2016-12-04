@@ -101,6 +101,13 @@ namespace BRB
             return varKeyCode;
         }
 
+    public static string BildStrKeyCode(string parSection, string parKeyName)
+    {
+        int varKeyCode = 0;
+        string varStrKey = varIniKeyMap.GetSetting(parSection, parKeyName);
+        
+        return varKeyCode.Trim();
+    }
         public static void InitKeyMap(TypeTerminal parType)
         {
             varIniKeyMap = new ReadINI2(Global.varPathIni + @"Key.map");
@@ -118,8 +125,11 @@ namespace BRB
         public static int Main_Invoice = 0;
         public static int DocGrid_ListWares = 0;
         public static int Up = 0;
+        public static string strUP;
         public static int Down = 0;
+        public static string strDown;
         public static int Enter = 0;
+        public static string strEnter;
 
         
         public static void Init( TypeTerminal parType)
@@ -129,8 +139,11 @@ namespace BRB
             Main_Invoice = Global.BildKeyCode(varNameSection, "Main_Invoice");
             DocGrid_ListWares = Global.BildKeyCode(varNameSection, "DocGrid_ListWares");
             Up = Global.BildKeyCode(varNameSection, "Up");
+            strUP = Global.BildStrKeyCode(varNameSection, "Up");
             Down = Global.BildKeyCode(varNameSection, "Down");
+            strDown = Global.BildStrKeyCode(varNameSection, "Down");
             Enter = Global.BildKeyCode(varNameSection, "Enter");
+            strEnter = Global.BildStrKeyCode(varNameSection, "Enter");
        
         }
     
