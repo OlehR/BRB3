@@ -115,9 +115,8 @@ namespace BRB
     /// </summary>
     public class HotKey
     {
-        static int MainIncome = 0;
-        static int MainOutcome = 0;
-        public static int DocGridListWares = 0;
+        public static int Main_Invoice = 0;
+        public static int DocGrid_ListWares = 0;
         public static int Up = 0;
         public static int Down = 0;
         public static int Enter = 0;
@@ -127,9 +126,8 @@ namespace BRB
         {
             string varNameSection = parType.ToString();
 
-            MainIncome = Global.BildKeyCode(varNameSection, "MainIncome");
-            MainOutcome = Global.BildKeyCode(varNameSection, "MainOutcome");
-            DocGridListWares = Global.BildKeyCode(varNameSection, "DocGridListWares");
+            Main_Invoice = Global.BildKeyCode(varNameSection, "Main_Invoice");
+            DocGrid_ListWares = Global.BildKeyCode(varNameSection, "DocGrid_ListWares");
             Up = Global.BildKeyCode(varNameSection, "Up");
             Down = Global.BildKeyCode(varNameSection, "Down");
             Enter = Global.BildKeyCode(varNameSection, "Enter");

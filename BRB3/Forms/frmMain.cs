@@ -40,5 +40,40 @@ namespace BRB.Forms
                 listView.Items[0].Selected = true;
             }    
         }
+
+        private void listView_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue == HotKey.Main_Invoice)
+            {
+                btnInvoice();
+            }
+        }
+
+        private void listView_ItemActivate(object sender, EventArgs e)
+        {
+            switch (listView.Items.IndexOf(listView.FocusedItem))
+            {
+                case 0:
+                    btnInvoice();
+                    break;
+            }
+        }
+
+        private void btnInvoice()
+        {
+            try
+            {
+                frmDocGrid formDocGrid = new frmDocGrid(TypeDoc.Invoice);
+                formDocGrid.Show();
+            }
+            catch (Exception ex)
+            {
+               // ViSoft.Common.clsException.EnableException(ex);
+            }
+            finally
+            {
+               // this.Text = ViSoft.Common.clsCommon.PropProgramCaption;
+            }
+        }
     }
 }

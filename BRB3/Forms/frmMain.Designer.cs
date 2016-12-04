@@ -88,6 +88,8 @@
             this.listView.SmallImageList = this.imageList;
             this.listView.TabIndex = 0;
             this.listView.View = System.Windows.Forms.View.Details;
+            this.listView.KeyUp += new System.Windows.Forms.KeyEventHandler(this.listView_KeyUp);
+            this.listView.ItemActivate += new System.EventHandler(this.listView_ItemActivate);
             //
             // columnHeader
             // 

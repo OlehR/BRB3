@@ -2,17 +2,15 @@
 Up = Up
 Down = Down
 Enter = Enter
-MainIncome = F1
-MainOutcome = F2 
-DocGridListWares = F3
+Main_Invoice = F1
+//DocGrid_ListWares = F3
 
 [MotorolaMC75Ax]
 Up = Up
 Down = Down
 Enter = Enter
-MainIncome = F1
-MainOutcome =F2 
-DocGridListWares = F3
+Main_Invoice = F3
+//DocGrid_ListWares = F3
 
  
 //Не модифікуємо цю секцію!!!!
