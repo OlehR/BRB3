@@ -33,6 +33,9 @@ namespace BRB.Forms
             
             this.Text = "BRB++ " + Global.eTypeTerminal.ToString();
             this.labelDown.Size = new System.Drawing.Size(236, (1 + Global.hToolbarTerminal));
+
+            this.lviInvoice.Text = HotKey.strMain_Invoice + " " + lviInvoice.Text;
+
             
             if (listView.Items.Count > 0)
             {

@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem lviInvoice = new System.Windows.Forms.ListViewItem();
-            System.Windows.Forms.ListViewItem lviMAudit = new System.Windows.Forms.ListViewItem();
-            System.Windows.Forms.ListViewItem lviPriceChecker = new System.Windows.Forms.ListViewItem();
-            System.Windows.Forms.ListViewItem lviAudit = new System.Windows.Forms.ListViewItem();
-            System.Windows.Forms.ListViewItem lviComponents = new System.Windows.Forms.ListViewItem();
-            System.Windows.Forms.ListViewItem lviSettings = new System.Windows.Forms.ListViewItem();
+            lviInvoice = new System.Windows.Forms.ListViewItem();
+            lviMAudit = new System.Windows.Forms.ListViewItem();
+            lviPriceChecker = new System.Windows.Forms.ListViewItem();
+            lviAudit = new System.Windows.Forms.ListViewItem();
+            lviComponents = new System.Windows.Forms.ListViewItem();
+            lviSettings = new System.Windows.Forms.ListViewItem();
             this.listView = new System.Windows.Forms.ListView();
             this.imageList = new System.Windows.Forms.ImageList();
             this.columnHeader = new System.Windows.Forms.ColumnHeader();
@@ -197,5 +197,11 @@
         private System.Windows.Forms.MenuItem miSeparator1;
         private System.Windows.Forms.ImageList imageList;
         private System.ComponentModel.ComponentResourceManager res;
+        System.Windows.Forms.ListViewItem lviInvoice;
+        System.Windows.Forms.ListViewItem lviMAudit;
+        System.Windows.Forms.ListViewItem lviPriceChecker;
+        System.Windows.Forms.ListViewItem lviAudit;
+        System.Windows.Forms.ListViewItem lviComponents;
+        System.Windows.Forms.ListViewItem lviSettings;
     }
 }

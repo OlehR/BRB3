@@ -103,10 +103,14 @@ namespace BRB
 
     public static string BildStrKeyCode(string parSection, string parKeyName)
     {
-        int varKeyCode = 0;
+        //int varKeyCode = 0;
         string varStrKey = varIniKeyMap.GetSetting(parSection, parKeyName);
-        
-        return varKeyCode.Trim();
+
+        if (varStrKey != null)
+        {
+            return varStrKey.Trim();
+        }
+        else return "";
     }
         public static void InitKeyMap(TypeTerminal parType)
         {
@@ -123,7 +127,9 @@ namespace BRB
     public class HotKey
     {
         public static int Main_Invoice = 0;
+        public static string strMain_Invoice;
         public static int DocGrid_ListWares = 0;
+        public static string strDocGrid_ListWares;
         public static int Up = 0;
         public static string strUP;
         public static int Down = 0;
@@ -137,7 +143,9 @@ namespace BRB
             string varNameSection = parType.ToString();
 
             Main_Invoice = Global.BildKeyCode(varNameSection, "Main_Invoice");
+            strMain_Invoice = Global.BildStrKeyCode(varNameSection, "strMain_Invoice");
             DocGrid_ListWares = Global.BildKeyCode(varNameSection, "DocGrid_ListWares");
+            strDocGrid_ListWares = Global.BildStrKeyCode(varNameSection, "strDocGrid_ListWares");
             Up = Global.BildKeyCode(varNameSection, "Up");
             strUP = Global.BildStrKeyCode(varNameSection, "Up");
             Down = Global.BildKeyCode(varNameSection, "Down");
