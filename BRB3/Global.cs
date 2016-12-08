@@ -108,7 +108,7 @@ namespace BRB
 
         if (varStrKey != null)
         {
-            return varStrKey.Trim();
+            return "[" + varStrKey.Trim() + "]";
         }
         else return "";
     }
@@ -125,33 +125,56 @@ namespace BRB
     /// Клас для роботою з гарячими клавішами 
     /// </summary>
     public class HotKey
-    {
-        public static int Main_Invoice = 0;
-        public static string strMain_Invoice;
-        public static int DocGrid_ListWares = 0;
-        public static string strDocGrid_ListWares;
+    {   
         public static int Up = 0;
         public static string strUP;
         public static int Down = 0;
         public static string strDown;
         public static int Enter = 0;
         public static string strEnter;
+        public static int Main_Invoice = 0;
+        public static string strMain_Invoice;
+        public static int Main_MAudit = 0;
+        public static string strMain_MAudit;
+        public static int Main_PriceChecker = 0;
+        public static string strMain_PriceChecker;
+        public static int Main_Audit = 0;
+        public static string strMain_Audit;
+        public static int Main_Components = 0;
+        public static string strMain_Components;
+        public static int Main_Settings = 0;
+        public static string strMain_Settings;
+
+        public static int DocGrid_ListWares = 0;
+        public static string strDocGrid_ListWares;
 
         
         public static void Init( TypeTerminal parType)
         {
             string varNameSection = parType.ToString();
-
-            Main_Invoice = Global.BildKeyCode(varNameSection, "Main_Invoice");
-            strMain_Invoice = Global.BildStrKeyCode(varNameSection, "strMain_Invoice");
-            DocGrid_ListWares = Global.BildKeyCode(varNameSection, "DocGrid_ListWares");
-            strDocGrid_ListWares = Global.BildStrKeyCode(varNameSection, "strDocGrid_ListWares");
+            
             Up = Global.BildKeyCode(varNameSection, "Up");
             strUP = Global.BildStrKeyCode(varNameSection, "Up");
             Down = Global.BildKeyCode(varNameSection, "Down");
             strDown = Global.BildStrKeyCode(varNameSection, "Down");
             Enter = Global.BildKeyCode(varNameSection, "Enter");
             strEnter = Global.BildStrKeyCode(varNameSection, "Enter");
+            Main_Invoice = Global.BildKeyCode(varNameSection, "Main_Invoice");
+            strMain_Invoice = Global.BildStrKeyCode(varNameSection, "Main_Invoice");
+            Main_MAudit = Global.BildKeyCode(varNameSection, "Main_MAudit");
+            strMain_MAudit = Global.BildStrKeyCode(varNameSection, "Main_MAudit");
+            Main_PriceChecker = Global.BildKeyCode(varNameSection, "Main_PriceChecker");
+            strMain_PriceChecker = Global.BildStrKeyCode(varNameSection, "Main_PriceChecker");
+            Main_Audit = Global.BildKeyCode(varNameSection, "Main_Audit");
+            strMain_Audit = Global.BildStrKeyCode(varNameSection, "Main_Audit");
+            Main_Components = Global.BildKeyCode(varNameSection, "Main_Components");
+            strMain_Components = Global.BildStrKeyCode(varNameSection, "Main_Components");
+            Main_Settings = Global.BildKeyCode(varNameSection, "Main_Settings");
+            strMain_Settings = Global.BildStrKeyCode(varNameSection, "Main_Settings");
+
+
+            DocGrid_ListWares = Global.BildKeyCode(varNameSection, "DocGrid_ListWares");
+            strDocGrid_ListWares = Global.BildStrKeyCode(varNameSection, "DocGrid_ListWares");
        
         }
     

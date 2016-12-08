@@ -76,9 +76,9 @@
             lviAudit.Text = "Інвентаризація";
             lviAudit.ImageIndex = 4;
             this.listView.Items.Add(lviAudit);
-            lviComponents.Text = "Комплектація";
-            lviComponents.ImageIndex = 5;
-            this.listView.Items.Add(lviComponents);
+            //lviComponents.Text = "Комплектація";
+            //lviComponents.ImageIndex = 5;
+            //this.listView.Items.Add(lviComponents);
             lviSettings.Text = "Системні налаштування";
             lviSettings.ImageIndex = 6;
             this.listView.Items.Add(lviSettings);
@@ -114,14 +114,24 @@
             this.miPriceChecker.Text = "Контроль цінників";
             this.miMovements.MenuItems.Add(this.miAudit);
             this.miAudit.Text = "Інвентарізація";
-            this.miMovements.MenuItems.Add(this.miComponents);
-            this.miComponents.Text = "Комплектація";
+            //this.miMovements.MenuItems.Add(this.miComponents);
+            //this.miComponents.Text = "Комплектація";
             this.miMovements.MenuItems.Add(this.miSeparator1);
             this.miSeparator1.Text = "-";
             this.miMovements.MenuItems.Add(this.miSettings);
             this.miSettings.Text = "Системні налагтування";
+            //
+            this.miExit.Click += new System.EventHandler(this.btnExit_Click);
+            this.miInvoice.Click += new System.EventHandler(this.btnInvoice_Click);
+            this.miMAudit.Click += new System.EventHandler(this.btnMAudit_Click);
+            this.miPriceChecker.Click += new System.EventHandler(this.btnPriceChecker_Click);
+            this.miAudit.Click += new System.EventHandler(this.btnAudit_Click);
+            this.miSettings.Click += new System.EventHandler(this.btnSettings_Click);
+
             // mAbout
             this.mAbout.Text = "Про ...";
+            //
+            this.mAbout.Click += new System.EventHandler(this.btnAbout_Click);
             // 
             // labelLeft
             // 

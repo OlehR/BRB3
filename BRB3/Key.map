@@ -1,8 +1,13 @@
 ﻿[BitatekIT8000]
-Up = Up1
+Up = Up
 Down = Down
 Enter = Enter
 Main_Invoice = F1
+Main_MAudit = F2
+Main_PriceChecker = F3
+Main_Audit = F4
+Main_Settings = F5
+//Main_Components = F6
 //DocGrid_ListWares = F3
 
 [MotorolaMC75Ax]
@@ -10,6 +15,11 @@ Up = Up
 Down = Down
 Enter = Enter
 Main_Invoice = F3
+Main_MAudit = F4
+Main_PriceChecker = F5
+Main_Audit = F8
+Main_Settings = F9
+//Main_Components = F10
 //DocGrid_ListWares = F3
 
  
