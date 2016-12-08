@@ -22,7 +22,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "BRB_Sync", "BRB_Sync\", "{3
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "50004"
+		VWDPort = "20416"
 		VWDDynamicPort = "true"
 	EndProjectSection
 EndProject

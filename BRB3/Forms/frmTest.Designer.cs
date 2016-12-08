@@ -6,7 +6,6 @@
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
-        private System.Windows.Forms.MainMenu mainMenu1;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -32,7 +31,13 @@
             this.mainMenu1 = new System.Windows.Forms.MainMenu();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.menuItem1 = new System.Windows.Forms.MenuItem();
+            this.menuItem2 = new System.Windows.Forms.MenuItem();
             this.SuspendLayout();
+            // 
+            // mainMenu1
+            // 
+            this.mainMenu1.MenuItems.Add(this.menuItem1);
             // 
             // label1
             // 
@@ -49,6 +54,16 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(240, 1);
             this.label2.Text = "label2";
+            // 
+            // menuItem1
+            // 
+            this.menuItem1.MenuItems.Add(this.menuItem2);
+            this.menuItem1.Text = "11111";
+            this.menuItem1.Click += new System.EventHandler(this.menuItem1_Click);
+            // 
+            // menuItem2
+            // 
+            this.menuItem2.Text = "22222";
             // 
             // frmTest
             // 
@@ -68,5 +83,8 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        public System.Windows.Forms.MainMenu mainMenu1;
+        private System.Windows.Forms.MenuItem menuItem1;
+        private System.Windows.Forms.MenuItem menuItem2;
     }
 }

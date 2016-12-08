@@ -15,5 +15,10 @@ namespace BRB.Forms
         {
             InitializeComponent();
         }
+
+        private void menuItem1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

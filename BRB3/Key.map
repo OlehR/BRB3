@@ -8,7 +8,9 @@ Main_PriceChecker = F3
 Main_Audit = F4
 Main_Settings = F5
 //Main_Components = F6
-//DocGrid_ListWares = F3
+DocGrid_Exit = F7
+DocGrid_Wares = F3
+DocGrid_MarkDoc = F5
 
 [MotorolaMC75Ax]
 Up = Up
@@ -20,7 +22,9 @@ Main_PriceChecker = F5
 Main_Audit = F8
 Main_Settings = F9
 //Main_Components = F10
-//DocGrid_ListWares = F3
+DocGrid_Wares = F3
+DocGrid_Exit = F10
+DocGrid_MarkDoc = F9
 
  
 //Не модифікуємо цю секцію!!!!

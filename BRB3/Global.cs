@@ -145,8 +145,12 @@ namespace BRB
         public static int Main_Settings = 0;
         public static string strMain_Settings;
 
-        public static int DocGrid_ListWares = 0;
-        public static string strDocGrid_ListWares;
+        public static int DocGrid_Exit = 0;
+        public static string strDocGrid_Exit;
+        public static int DocGrid_Wares = 0;
+        public static string strDocGrid_Wares;
+        public static int DocGrid_MarkDoc = 0;
+        public static string strDocGrid_MarkDoc;
 
         
         public static void Init( TypeTerminal parType)
@@ -172,9 +176,13 @@ namespace BRB
             Main_Settings = Global.BildKeyCode(varNameSection, "Main_Settings");
             strMain_Settings = Global.BildStrKeyCode(varNameSection, "Main_Settings");
 
-
-            DocGrid_ListWares = Global.BildKeyCode(varNameSection, "DocGrid_ListWares");
-            strDocGrid_ListWares = Global.BildStrKeyCode(varNameSection, "DocGrid_ListWares");
+            DocGrid_Exit = Global.BildKeyCode(varNameSection, "DocGrid_Exit");
+            strDocGrid_Exit = Global.BildStrKeyCode(varNameSection, "DocGrid_Exit");
+            DocGrid_Wares = Global.BildKeyCode(varNameSection, "DocGrid_Wares");
+            strDocGrid_Wares = Global.BildStrKeyCode(varNameSection, "DocGrid_Wares");
+            DocGrid_MarkDoc = Global.BildKeyCode(varNameSection, "DocGrid_MarkDoc");
+            strDocGrid_MarkDoc = Global.BildStrKeyCode(varNameSection, "DocGrid_MarkDoc");
+            
        
         }
     

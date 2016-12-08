@@ -28,6 +28,16 @@ namespace BRB.Forms
         {
             this.labelDown.Size = new System.Drawing.Size(236 * Global.tCoefficient, (1 + Global.hToolbarTerminal) * Global.tCoefficient);
             this.Text = "BRB3 " + Global.eTypeTerminal.ToString();
+
+            this.miExit.Text += " " + HotKey.strDocGrid_Exit;
+            this.miWares.Text += " " + HotKey.strDocGrid_Wares;
+            this.miMarkDoc.Text += " " + HotKey.strDocGrid_MarkDoc;
+            this.miFiltr.Text += " ";
+            this.miWaresScan.Text += " ";
+            this.miExtraProperties.Text += " ";
+            this.miGroupingDoc.Text += " ";
+            this.miSync.Text += " ";
+            this.miSettings.Text += " ";
         }
 
         private void frmDocGrid_Load(object sender, EventArgs e)
@@ -68,6 +78,9 @@ namespace BRB.Forms
                 //clsDialogBox.ErrorBoxShow("Неможливо зайти в модуль!");
             }
         }
+
+        #region Кнопки/функції ---------------------
+
         //Для тесту. Необхідно переробити!
         private void advancedList_KeyUp(object sender, KeyEventArgs e)
         {
@@ -87,15 +100,110 @@ namespace BRB.Forms
                     {advancedList.ActiveRowIndex = advancedList.ActiveRowIndex + 1;}
                 }
             }
-            else if (e.KeyValue == HotKey.DocGrid_ListWares) //F3 строки 114
+            else if (e.KeyValue == HotKey.DocGrid_Exit)
             {
-                number_doc = Convert.ToInt32(dt.Rows[advancedList.ActiveRowIndex]["number_doc"]);
-                //number_doc = int.Parse(dt.Rows[advancedList.ActiveRowIndex]["number_doc"].ToString());
-
-                // запускаєм форму з товарами frmWaresGrid(TypeDoc, number_doc)
-                frmWaresGrid newfrmWaresGrid = new frmWaresGrid(typeDoc, number_doc);
-                newfrmWaresGrid.Show();
+                btnExit();
+            }
+            else if (e.KeyValue == HotKey.DocGrid_Wares)
+            {
+                btnWares();
+            }
+            else if (e.KeyValue == HotKey.DocGrid_MarkDoc)
+            {
+                btnMarkDoc();
             }
         }
+
+        // Клік по пункту меню
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            btnExit();
+        }
+        private void btnAbout_Click(object sender, EventArgs e)
+        {
+            btnAbout();
+        }
+        private void btnWares_Click(object sender, EventArgs e)
+        {
+            btnWares();
+        }
+        private void btnMarkDoc_Click(object sender, EventArgs e)
+        {
+            btnMarkDoc();
+        }
+        private void btnFiltr_Click(object sender, EventArgs e)
+        {
+            btnFiltr();
+        }
+        private void btnWaresScan_Click(object sender, EventArgs e)
+        {
+            btnWaresScan();
+        }
+        private void btnExtraProperties_Click(object sender, EventArgs e)
+        {
+            btnExtraProperties();
+        }
+        private void btnGroupingDoc_Click(object sender, EventArgs e)
+        {
+            btnGroupingDoc();
+        }
+        private void btnSync_Click(object sender, EventArgs e)
+        {
+            btnSync();
+        }
+        private void btnSettings_Click(object sender, EventArgs e)
+        {
+            btnSettings();
+        }
+
+        // Функції
+        private void btnExit()
+        {
+            this.Close();
+        }
+        private void btnAbout()
+        {
+            MessageBox.Show("Немає форми About");
+        }
+        private void btnWares()
+        {
+            number_doc = Convert.ToInt32(dt.Rows[advancedList.ActiveRowIndex]["number_doc"]);
+            //number_doc = int.Parse(dt.Rows[advancedList.ActiveRowIndex]["number_doc"].ToString());
+
+            // запускаєм форму з товарами frmWaresGrid(TypeDoc, number_doc)
+            frmWaresGrid newfrmWaresGrid = new frmWaresGrid(typeDoc, number_doc);
+            newfrmWaresGrid.Show();
+        }
+        private void btnMarkDoc()
+        {
+            MessageBox.Show("Помітка документа ще не реалізовано");
+        }
+        private void btnFiltr()
+        {
+            MessageBox.Show("Фільтр документів ще не реалізовано");
+        }
+        private void btnWaresScan()
+        {
+            frmWaresScan newfrmWaresScan = new frmWaresScan();
+            newfrmWaresScan.Show();
+        }
+        private void btnExtraProperties()
+        {
+            MessageBox.Show("Немає форми ExtraProperties");
+        }
+        private void btnGroupingDoc()
+        {
+            MessageBox.Show("GroupingDoc Ще не реалізовано");
+        }
+        private void btnSync()
+        {
+            MessageBox.Show("btnSync Ще не реалізовано");
+        }
+        private void btnSettings()
+        {
+            MessageBox.Show("Немає форми Settings");
+        }
+
+        #endregion //Кнопки/функції
     }
 }

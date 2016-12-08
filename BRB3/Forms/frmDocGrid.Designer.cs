@@ -54,22 +54,72 @@
             Resco.Controls.AdvancedList.TextCell textCell18 = new Resco.Controls.AdvancedList.TextCell();
             Resco.Controls.AdvancedList.TextCell textCell19 = new Resco.Controls.AdvancedList.TextCell();
             Resco.Controls.AdvancedList.TextCell textCell20 = new Resco.Controls.AdvancedList.TextCell();
+            this.advancedList = new Resco.Controls.AdvancedList.AdvancedList();
             this.mainMenu = new System.Windows.Forms.MainMenu();
             this.miMovements = new System.Windows.Forms.MenuItem();
+            this.miSeparator = new System.Windows.Forms.MenuItem();
+            this.miSeparator1 = new System.Windows.Forms.MenuItem();
+            this.miExit = new System.Windows.Forms.MenuItem();
+            this.miWares = new System.Windows.Forms.MenuItem();
+            this.miMarkDoc = new System.Windows.Forms.MenuItem();
+            this.mAbout = new System.Windows.Forms.MenuItem();
+            this.miFiltr = new System.Windows.Forms.MenuItem();
+            this.miWaresScan = new System.Windows.Forms.MenuItem();
+            this.miExtraProperties = new System.Windows.Forms.MenuItem();
+            this.miGroupingDoc = new System.Windows.Forms.MenuItem();
+            this.miSync = new System.Windows.Forms.MenuItem();
+            this.miSettings = new System.Windows.Forms.MenuItem();
             this.labelLeft = new System.Windows.Forms.Label();
             this.labelRigth = new System.Windows.Forms.Label();
             this.labelTop = new System.Windows.Forms.Label();
             this.labelDown = new System.Windows.Forms.Label();
-            this.advancedList = new Resco.Controls.AdvancedList.AdvancedList();
             this.SuspendLayout();
             // 
             // mainMenu
             // 
             this.mainMenu.MenuItems.Add(this.miMovements);
+            this.mainMenu.MenuItems.Add(this.mAbout);
             // 
             // miMovements
             // 
             this.miMovements.Text = "Додатково";
+            this.miMovements.MenuItems.Add(this.miExit);
+            this.miExit.Text = "Вихід";
+            this.miMovements.MenuItems.Add(this.miSeparator);
+            this.miSeparator.Text = "-";
+            this.miMovements.MenuItems.Add(this.miWares);
+            this.miWares.Text = "Список товарів";
+            this.miMovements.MenuItems.Add(this.miMarkDoc);
+            this.miMarkDoc.Text = "Відмітити\\Зняти відмітку";
+            this.miMovements.MenuItems.Add(this.miFiltr);
+            this.miFiltr.Text = "Пошук документа";
+            this.miMovements.MenuItems.Add(this.miWaresScan);
+            this.miWaresScan.Text = "Сканування товару";
+            this.miMovements.MenuItems.Add(this.miExtraProperties);
+            this.miExtraProperties.Text = "Дод. властивості";
+            this.miMovements.MenuItems.Add(this.miGroupingDoc);
+            this.miGroupingDoc.Text = "Групування документів";
+            this.miMovements.MenuItems.Add(this.miSeparator1);
+            this.miSeparator1.Text = "-";
+            this.miMovements.MenuItems.Add(this.miSync);
+            this.miSync.Text = "Синхронізація";
+            this.miMovements.MenuItems.Add(this.miSettings);
+            this.miSettings.Text = "Налаштування";
+            //
+            this.miExit.Click += new System.EventHandler(this.btnExit_Click);
+            this.miWares.Click += new System.EventHandler(this.btnWares_Click);
+            this.miMarkDoc.Click += new System.EventHandler(this.btnMarkDoc_Click);
+            this.miFiltr.Click += new System.EventHandler(this.btnFiltr_Click);
+            this.miWaresScan.Click += new System.EventHandler(this.btnWaresScan_Click);
+            this.miExtraProperties.Click += new System.EventHandler(this.btnExtraProperties_Click);
+            this.miGroupingDoc.Click += new System.EventHandler(this.btnGroupingDoc_Click);
+            this.miSync.Click += new System.EventHandler(this.btnSync_Click);
+            this.miSettings.Click += new System.EventHandler(this.btnSettings_Click);
+            // mAbout
+            this.mAbout.Text = "Про ...";
+            //
+            this.mAbout.Click += new System.EventHandler(this.btnAbout_Click);
+            //
             // 
             // labelLeft
             // 
@@ -276,6 +326,17 @@
         private System.Windows.Forms.MenuItem miMovements;
         private Resco.Controls.AdvancedList.AdvancedList advancedList;
         System.ComponentModel.ComponentResourceManager resources;
-      
+        private System.Windows.Forms.MenuItem mAbout;
+        private System.Windows.Forms.MenuItem miExit;
+        private System.Windows.Forms.MenuItem miSeparator;
+        private System.Windows.Forms.MenuItem miSeparator1;
+        private System.Windows.Forms.MenuItem miWares;
+        private System.Windows.Forms.MenuItem miMarkDoc;
+        private System.Windows.Forms.MenuItem miFiltr;
+        private System.Windows.Forms.MenuItem miWaresScan;
+        private System.Windows.Forms.MenuItem miExtraProperties;
+        private System.Windows.Forms.MenuItem miGroupingDoc;
+        private System.Windows.Forms.MenuItem miSync;
+        private System.Windows.Forms.MenuItem miSettings;
     }
 }

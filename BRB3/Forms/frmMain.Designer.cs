@@ -127,7 +127,6 @@
             this.miPriceChecker.Click += new System.EventHandler(this.btnPriceChecker_Click);
             this.miAudit.Click += new System.EventHandler(this.btnAudit_Click);
             this.miSettings.Click += new System.EventHandler(this.btnSettings_Click);
-
             // mAbout
             this.mAbout.Text = "Про ...";
             //
