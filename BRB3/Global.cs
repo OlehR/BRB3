@@ -163,6 +163,15 @@ namespace BRB
         public static string strDocGrid_Sync;
         public static int DocGrid_Settings = 0;
         public static string strDocGrid_Settings;
+
+        public static int WaresGrid_Exit = 0;
+        public static string strWaresGrid_Exit;
+        public static int WaresGrid_Edit = 0;
+        public static string strWaresGrid_Edit;
+        public static int WaresGrid_Scan = 0;
+        public static string strWaresGrid_Scan;
+        public static int WaresGrid_Filter = 0;
+        public static string strWaresGrid_Filter;
         
         public static void Init( TypeTerminal parType)
         {
@@ -207,7 +216,15 @@ namespace BRB
             strDocGrid_Sync = Global.BildStrKeyCode(varNameSection, "DocGrid_Sync");
             DocGrid_Settings = Global.BildKeyCode(varNameSection, "DocGrid_Settings");
             strDocGrid_Settings = Global.BildStrKeyCode(varNameSection, "DocGrid_Settings");
-       
+
+            WaresGrid_Exit = Global.BildKeyCode(varNameSection, "WaresGrid_Exit");
+            strWaresGrid_Exit = Global.BildStrKeyCode(varNameSection, "WaresGrid_Exit");
+            WaresGrid_Edit = Global.BildKeyCode(varNameSection, "WaresGrid_Edit");
+            strWaresGrid_Edit = Global.BildStrKeyCode(varNameSection, "WaresGrid_Edit");
+            WaresGrid_Scan = Global.BildKeyCode(varNameSection, "WaresGrid_Scan");
+            strWaresGrid_Scan = Global.BildStrKeyCode(varNameSection, "WaresGrid_Scan");
+            WaresGrid_Filter = Global.BildKeyCode(varNameSection, "WaresGrid_Filter");
+            strWaresGrid_Filter = Global.BildStrKeyCode(varNameSection, "WaresGrid_Filter");
         }
     
     }

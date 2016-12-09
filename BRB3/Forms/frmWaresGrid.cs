@@ -18,13 +18,18 @@ namespace BRB.Forms
             dt = Global.cBL.LoadWaresDocs(parTypeDoc, panNumberDoc);
             InitializeComponent();
             InitializeComponentManual();
-            this.Text = panNumberDoc.ToString();
+            this.Text += panNumberDoc.ToString();
         }
 
         public void InitializeComponentManual()
         {
             this.labelDown.Size = new System.Drawing.Size(236 * Global.tCoefficient, (1 + Global.hToolbarTerminal) * Global.tCoefficient);
             this.Text = "BRB3 " + Global.eTypeTerminal.ToString();
+
+            this.miExit.Text += " " + HotKey.strWaresGrid_Exit;
+            this.miEdit.Text += " " + HotKey.strWaresGrid_Edit;
+            this.miScan.Text += " " + HotKey.strWaresGrid_Scan;
+            this.miFilter.Text += " " + HotKey.strWaresGrid_Filter;
         }
         private void frmWaresGrid_Load(object sender, EventArgs e)
         {
@@ -61,7 +66,50 @@ namespace BRB.Forms
                     { advancedList.ActiveRowIndex = advancedList.ActiveRowIndex + 1; }
                 }
             }
+
+            else if (e.KeyValue == HotKey.DocGrid_Exit)
+            {
+                btnExit();
+            }
             
+        }
+
+        // Клік по пункту меню
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            btnExit();
+        }
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            btnEdit();
+        }
+        private void btnScan_Click(object sender, EventArgs e)
+        {
+            btnScan();
+        }
+        private void btnFilter_Click(object sender, EventArgs e)
+        {
+            btnFilter();
+        }
+
+        // Функції
+        private void btnExit()
+        {
+            this.Close();
+        }
+        private void btnEdit()
+        {
+            frmWaresScan newfrmWaresScan = new frmWaresScan(); // З передачою номера док
+            newfrmWaresScan.Show();
+        }
+        private void btnScan()
+        {
+            frmWaresScan newfrmWaresScan = new frmWaresScan(); // пуста форма
+            newfrmWaresScan.Show();
+        }
+        private void btnFilter()
+        {
+            MessageBox.Show("Filter форми не існує");
         }
     }
 }

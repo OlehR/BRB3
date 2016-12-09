@@ -61,6 +61,12 @@
             this.labelTop = new System.Windows.Forms.Label();
             this.labelDown = new System.Windows.Forms.Label();
             this.advancedList = new Resco.Controls.AdvancedList.AdvancedList();
+            this.miExit = new System.Windows.Forms.MenuItem();
+            this.miSeparator = new System.Windows.Forms.MenuItem();
+            this.miSeparator1 = new System.Windows.Forms.MenuItem();
+            this.miEdit = new System.Windows.Forms.MenuItem();
+            this.miScan = new System.Windows.Forms.MenuItem();
+            this.miFilter = new System.Windows.Forms.MenuItem();
             this.SuspendLayout();
             // 
             // mainMenu
@@ -70,6 +76,23 @@
             // miMovements
             // 
             this.miMovements.Text = "Додатково";
+            this.miMovements.MenuItems.Add(this.miExit);
+            this.miExit.Text = "Вихід";
+            this.miMovements.MenuItems.Add(this.miSeparator);
+            this.miSeparator.Text = "-";
+            this.miMovements.MenuItems.Add(this.miEdit);
+            this.miEdit.Text = "Редагувати";
+            this.miMovements.MenuItems.Add(this.miScan);
+            this.miScan.Text = "Сканувати";
+            this.miMovements.MenuItems.Add(this.miSeparator1);
+            this.miSeparator1.Text = "-";
+            this.miMovements.MenuItems.Add(this.miFilter);
+            this.miFilter.Text = "Пошук по...";
+            //
+            this.miExit.Click += new System.EventHandler(this.btnExit_Click);
+            this.miEdit.Click += new System.EventHandler(this.btnEdit_Click);
+            this.miScan.Click += new System.EventHandler(this.btnScan_Click);
+            this.miFilter.Click += new System.EventHandler(this.btnFilter_Click);
             // 
             // labelLeft
             // 
@@ -281,6 +304,12 @@
         private System.Windows.Forms.MenuItem miMovements;
         private Resco.Controls.AdvancedList.AdvancedList advancedList;
         System.ComponentModel.ComponentResourceManager resources;
+        private System.Windows.Forms.MenuItem miExit;
+        private System.Windows.Forms.MenuItem miSeparator;
+        private System.Windows.Forms.MenuItem miSeparator1;
+        private System.Windows.Forms.MenuItem miEdit;
+        private System.Windows.Forms.MenuItem miScan;
+        private System.Windows.Forms.MenuItem miFilter;
 
     }
 }

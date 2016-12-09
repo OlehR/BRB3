@@ -19,6 +19,11 @@ DocGrid_GroupingDoc = F6
 DocGrid_Sync = F8
 //DocGrid_Settings = F9
 
+WaresGrid_Exit = F7
+WaresGrid_Edit = F1
+WaresGrid_Scan = F2
+WaresGrid_Filter = F4
+
 [MotorolaMC75Ax]
 Up = Up
 Down = Down
@@ -39,6 +44,11 @@ DocGrid_WaresScan = F3
 //DocGrid_GroupingDoc = F6
 DocGrid_Sync = F8
 //DocGrid_Settings = F1
+
+WaresGrid_Exit = F10
+WaresGrid_Edit = F8
+WaresGrid_Scan = F3
+WaresGrid_Filter = F4
 
  
 //Не модифікуємо цю секцію!!!!
