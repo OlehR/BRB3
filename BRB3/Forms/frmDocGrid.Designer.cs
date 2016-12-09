@@ -109,7 +109,7 @@
             this.miExit.Click += new System.EventHandler(this.btnExit_Click);
             this.miWares.Click += new System.EventHandler(this.btnWares_Click);
             this.miMarkDoc.Click += new System.EventHandler(this.btnMarkDoc_Click);
-            this.miFiltr.Click += new System.EventHandler(this.btnFiltr_Click);
+            this.miFiltr.Click += new System.EventHandler(this.btnFilter_Click);
             this.miWaresScan.Click += new System.EventHandler(this.btnWaresScan_Click);
             this.miExtraProperties.Click += new System.EventHandler(this.btnExtraProperties_Click);
             this.miGroupingDoc.Click += new System.EventHandler(this.btnGroupingDoc_Click);

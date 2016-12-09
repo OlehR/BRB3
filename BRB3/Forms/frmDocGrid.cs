@@ -32,12 +32,17 @@ namespace BRB.Forms
             this.miExit.Text += " " + HotKey.strDocGrid_Exit;
             this.miWares.Text += " " + HotKey.strDocGrid_Wares;
             this.miMarkDoc.Text += " " + HotKey.strDocGrid_MarkDoc;
-            this.miFiltr.Text += " ";
-            this.miWaresScan.Text += " ";
-            this.miExtraProperties.Text += " ";
-            this.miGroupingDoc.Text += " ";
-            this.miSync.Text += " ";
-            this.miSettings.Text += " ";
+            this.miFiltr.Text += " " + HotKey.strDocGrid_Filter;
+            this.miWaresScan.Text += " " + HotKey.strDocGrid_WaresScan;
+            this.miExtraProperties.Text += " " + HotKey.strDocGrid_ExtraProperties;
+            this.miGroupingDoc.Text += " " + HotKey.strDocGrid_GroupingDoc;
+            this.miSync.Text += " " + HotKey.strDocGrid_Sync;
+            this.miSettings.Text += " " + HotKey.strDocGrid_Settings;
+
+            if (typeDoc != TypeDoc.Invoice)
+            {
+                this.miGroupingDoc.Enabled = false;
+            }
         }
 
         private void frmDocGrid_Load(object sender, EventArgs e)
@@ -100,6 +105,7 @@ namespace BRB.Forms
                     {advancedList.ActiveRowIndex = advancedList.ActiveRowIndex + 1;}
                 }
             }
+
             else if (e.KeyValue == HotKey.DocGrid_Exit)
             {
                 btnExit();
@@ -111,6 +117,30 @@ namespace BRB.Forms
             else if (e.KeyValue == HotKey.DocGrid_MarkDoc)
             {
                 btnMarkDoc();
+            }
+            else if (e.KeyValue == HotKey.DocGrid_Filter)
+            {
+                btnFilter();
+            }
+            else if (e.KeyValue == HotKey.DocGrid_WaresScan)
+            {
+                btnWaresScan();
+            }
+            else if (e.KeyValue == HotKey.DocGrid_ExtraProperties)
+            {
+                btnExtraProperties();
+            }
+            else if (e.KeyValue == HotKey.DocGrid_GroupingDoc)
+            {
+                btnGroupingDoc();
+            }
+            else if (e.KeyValue == HotKey.DocGrid_Sync)
+            {
+                btnSync();
+            }
+            else if (e.KeyValue == HotKey.DocGrid_Settings)
+            {
+                btnSettings();
             }
         }
 
@@ -131,9 +161,9 @@ namespace BRB.Forms
         {
             btnMarkDoc();
         }
-        private void btnFiltr_Click(object sender, EventArgs e)
+        private void btnFilter_Click(object sender, EventArgs e)
         {
-            btnFiltr();
+            btnFilter();
         }
         private void btnWaresScan_Click(object sender, EventArgs e)
         {
@@ -178,7 +208,7 @@ namespace BRB.Forms
         {
             MessageBox.Show("Помітка документа ще не реалізовано");
         }
-        private void btnFiltr()
+        private void btnFilter()
         {
             MessageBox.Show("Фільтр документів ще не реалізовано");
         }

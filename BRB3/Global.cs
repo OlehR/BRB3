@@ -151,7 +151,18 @@ namespace BRB
         public static string strDocGrid_Wares;
         public static int DocGrid_MarkDoc = 0;
         public static string strDocGrid_MarkDoc;
-
+        public static int DocGrid_Filter = 0;
+        public static string strDocGrid_Filter;
+        public static int DocGrid_WaresScan = 0;
+        public static string strDocGrid_WaresScan;
+        public static int DocGrid_ExtraProperties = 0;
+        public static string strDocGrid_ExtraProperties;
+        public static int DocGrid_GroupingDoc = 0;
+        public static string strDocGrid_GroupingDoc;
+        public static int DocGrid_Sync = 0;
+        public static string strDocGrid_Sync;
+        public static int DocGrid_Settings = 0;
+        public static string strDocGrid_Settings;
         
         public static void Init( TypeTerminal parType)
         {
@@ -175,6 +186,8 @@ namespace BRB
             strMain_Components = Global.BildStrKeyCode(varNameSection, "Main_Components");
             Main_Settings = Global.BildKeyCode(varNameSection, "Main_Settings");
             strMain_Settings = Global.BildStrKeyCode(varNameSection, "Main_Settings");
+            Main_Settings = Global.BildKeyCode(varNameSection, "Main_Settings");
+            strMain_Settings = Global.BildStrKeyCode(varNameSection, "Main_Settings");
 
             DocGrid_Exit = Global.BildKeyCode(varNameSection, "DocGrid_Exit");
             strDocGrid_Exit = Global.BildStrKeyCode(varNameSection, "DocGrid_Exit");
@@ -182,7 +195,18 @@ namespace BRB
             strDocGrid_Wares = Global.BildStrKeyCode(varNameSection, "DocGrid_Wares");
             DocGrid_MarkDoc = Global.BildKeyCode(varNameSection, "DocGrid_MarkDoc");
             strDocGrid_MarkDoc = Global.BildStrKeyCode(varNameSection, "DocGrid_MarkDoc");
-            
+            DocGrid_Filter = Global.BildKeyCode(varNameSection, "DocGrid_Filter");
+            strDocGrid_Filter = Global.BildStrKeyCode(varNameSection, "DocGrid_Filter");
+            DocGrid_WaresScan = Global.BildKeyCode(varNameSection, "DocGrid_WaresScan");
+            strDocGrid_WaresScan = Global.BildStrKeyCode(varNameSection, "DocGrid_WaresScan");
+            DocGrid_ExtraProperties = Global.BildKeyCode(varNameSection, "DocGrid_ExtraProperties");
+            strDocGrid_ExtraProperties = Global.BildStrKeyCode(varNameSection, "DocGrid_ExtraProperties");
+            DocGrid_GroupingDoc = Global.BildKeyCode(varNameSection, "DocGrid_GroupingDoc");
+            strDocGrid_GroupingDoc = Global.BildStrKeyCode(varNameSection, "DocGrid_GroupingDoc");
+            DocGrid_Sync = Global.BildKeyCode(varNameSection, "DocGrid_Sync");
+            strDocGrid_Sync = Global.BildStrKeyCode(varNameSection, "DocGrid_Sync");
+            DocGrid_Settings = Global.BildKeyCode(varNameSection, "DocGrid_Settings");
+            strDocGrid_Settings = Global.BildStrKeyCode(varNameSection, "DocGrid_Settings");
        
         }
     
