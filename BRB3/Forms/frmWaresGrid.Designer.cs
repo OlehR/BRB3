@@ -208,7 +208,7 @@
             textCell11.Name = "rs2_1";
             textCell11.Size = new System.Drawing.Size(50, 16);
             textCell12.CellSource.ColumnName = "price";
-            textCell12.FormatString = "{0:0.00}";
+            textCell12.FormatString = "{0:0.000}";
             textCell12.Location = new System.Drawing.Point(190, 16);
             textCell12.Name = "rs2_2";
             textCell12.Size = new System.Drawing.Size(-1, 16);

@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 using System.Data;
+using System.Windows.Forms;
+using System.Data.SqlServerCe;
+using System.IO;
+
 namespace BRB
 {
     public enum TypeTerminal
@@ -300,5 +304,71 @@ namespace BRB
 
         [DllImport("coreDLL.dll")]
         public static extern int SystemParametersInfo(int uiAction, int uiParam, string pBuf, int fWinIni);
+    }
+
+    class clsDialogBox
+    {
+        protected internal static DialogResult ErrorBoxShow(string message)
+        {
+            string text = message;
+            string captionText = "Помилка!";
+
+            return MessageBox.Show(text, captionText, MessageBoxButtons.OK, MessageBoxIcon.Hand, MessageBoxDefaultButton.Button1);
+        }
+
+        protected internal static DialogResult InformationBoxShow(string message)
+        {
+            string text = message;
+            string captionText = "Інформація!";
+
+            return MessageBox.Show(text, captionText, MessageBoxButtons.OK, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1);
+        }
+
+        protected internal static DialogResult ConfirmationBoxShow(string message)
+        {
+            string text = message;
+            string captionText = "Увага!";
+
+            return MessageBox.Show(text, captionText, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+        }
+    }
+
+    //Повідомлення
+    class clsException
+    {
+        protected internal static void EnableException(System.Exception ex)
+        {
+            string errorMessages = string.Empty;
+
+            if (ex is SqlCeException) // ошибка SQL 
+            {
+                SqlCeException errSql = ex as SqlCeException;
+
+                /*				if (errSql.Errors[0].Number == 17)
+                                    errorMessages = "Нет соединения!";
+                                else if (errSql.Errors[0].Number == 18456)
+                                    errorMessages = "Ошибка аутентификации!";				
+                                errorMessages += "\n";
+                 * */
+                for (int i = 0; i < errSql.Errors.Count; i++)
+                {
+                    errorMessages +=
+                        ":" + errSql.Errors[i].Message;
+                }
+                errorMessages += "Ошибка SQL!";
+            }
+            else if (ex is IOException)
+            {
+                IOException errIO = ex as IOException;
+
+                errorMessages += errIO.Message;
+            }
+            else
+            {
+                errorMessages += ex.Message;
+            }
+
+            clsDialogBox.ErrorBoxShow(errorMessages);
+        }
     }
 }

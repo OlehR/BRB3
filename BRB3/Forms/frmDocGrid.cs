@@ -56,16 +56,16 @@ namespace BRB.Forms
 
                 if (Global.eTypeTerminal == TypeTerminal.MotorolaMC75Ax)
                 {
-                    this.advancedList.FooterRow = new Resco.Controls.AdvancedList.HeaderRow(3, new string[] {
+                    this.advancedList.FooterRow = new Resco.Controls.AdvancedList.HeaderRow(0, new string[] {
                   resources.GetString("advancedList.FooterRow")});
-                    this.advancedList.HeaderRow = new Resco.Controls.AdvancedList.HeaderRow(3, new string[] {
+                    this.advancedList.HeaderRow = new Resco.Controls.AdvancedList.HeaderRow(0, new string[] {
                   resources.GetString("advancedList.HeaderRow")});
                 }
                 else if (Global.eTypeTerminal == TypeTerminal.BitatekIT8000)
                 {
-                    this.advancedList.FooterRow = new Resco.Controls.AdvancedList.HeaderRow(3, new string[] {
+                    this.advancedList.FooterRow = new Resco.Controls.AdvancedList.HeaderRow(0, new string[] {
                   resources.GetString("advancedList.FooterRow")});
-                    this.advancedList.HeaderRow = new Resco.Controls.AdvancedList.HeaderRow(3, new string[] {
+                    this.advancedList.HeaderRow = new Resco.Controls.AdvancedList.HeaderRow(0, new string[] {
                   resources.GetString("advancedList.HeaderRow")});
                 }
 
@@ -80,13 +80,12 @@ namespace BRB.Forms
             catch (System.Exception)
             {
                  this.Close();
-                //clsDialogBox.ErrorBoxShow("Неможливо зайти в модуль!");
+                clsDialogBox.ErrorBoxShow("Неможливо зайти в модуль!");
             }
         }
 
         #region Кнопки/функції ---------------------
 
-        //Для тесту. Необхідно переробити!
         private void advancedList_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyValue == HotKey.Up)
@@ -206,11 +205,92 @@ namespace BRB.Forms
         }
         private void btnMarkDoc()
         {
-            MessageBox.Show("Помітка документа ще не реалізовано");
+            //MessageBox.Show("Помітка документа ще не реалізовано");
+            {
+                if (advancedList.ActiveRowIndex >= 0)
+                {
+                    if (Convert.ToInt32(advancedList.DataRows[advancedList.ActiveRowIndex]["status"]) == 0)
+                    {
+                        if (clsDialogBox.ConfirmationBoxShow("Відмітити документ для відправки на сервер?") == DialogResult.Yes)
+                        {
+                            if (Convert.ToInt32(advancedList.DataRows[advancedList.ActiveRowIndex]["SumWaresInv"]) == 0)
+                            {
+                                clsDialogBox.ErrorBoxShow("По даному документу товар не приймався!");
+                            }
+                            else
+                            {
+                                try
+                                {
+                                      //функція упдейта Docs.status
+                                     //_formClass.SetStatusDoc(Convert.ToInt32(advancedList.DataRows[advancedList.ActiveRowIndex]["number_doc"]), 1);
+                                    advancedList.DataRows[advancedList.ActiveRowIndex]["status"] = 1;
+                                    advancedList.DataRows[advancedList.ActiveRowIndex]["StatusName"] = "+";
+
+                                    // Установим шаблоны
+                                    int i = 0;
+                                    try
+                                    { i = Convert.ToInt32(advancedList.DataRows[advancedList.ActiveRowIndex]["status"]); }
+                                    catch { }
+
+                                    if (i == 1)
+                                        advancedList.DataRows[advancedList.ActiveRowIndex].TemplateIndex = 3;
+                                    else
+                                        advancedList.DataRows[advancedList.ActiveRowIndex].TemplateIndex = 1;
+
+                                    //advancedList.Refresh();
+                                    advancedList.ResumeRedraw();
+                                }
+                                catch (Exception ex)
+                                {
+                                   clsException.EnableException(ex);
+                                }
+                                finally
+                                {
+                                    //StartScan();
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (clsDialogBox.ConfirmationBoxShow("Зняти з документа відмітку відправки на сервер?") == DialogResult.Yes)
+                        {
+                            try
+                            {
+                               // _formClass.SetStatusDoc(Convert.ToInt32(advancedList.DataRows[advancedList.ActiveRowIndex]["number_doc"]), 0);
+                                advancedList.DataRows[advancedList.ActiveRowIndex]["status"] = 0;
+                                advancedList.DataRows[advancedList.ActiveRowIndex]["StatusName"] = "-";
+
+                                // Установим шаблоны
+                                int i = 0;
+                                try
+                                { i = Convert.ToInt32(advancedList.DataRows[advancedList.ActiveRowIndex]["status"]); }
+                                catch { }
+
+                                if (i == 0)
+                                    advancedList.DataRows[advancedList.ActiveRowIndex].TemplateIndex = 1;
+                                else
+                                    advancedList.DataRows[advancedList.ActiveRowIndex].TemplateIndex = 3;
+
+                                //advancedList.Refresh();
+                                advancedList.ResumeRedraw();
+                            }
+                            catch (Exception ex)
+                            {
+                              clsException.EnableException(ex);
+                            }
+                            finally
+                            {
+                               // StartScan();
+                            }
+                        }
+                    }
+                }
+            }
         }
         private void btnFilter()
         {
-            MessageBox.Show("Фільтр документів ще не реалізовано");
+            clsDialogBox.InformationBoxShow("Фільтр документів ще не реалізовано");
         }
         private void btnWaresScan()
         {
@@ -234,6 +314,21 @@ namespace BRB.Forms
             MessageBox.Show("Немає форми Settings");
         }
 
+        // Додаткові функції
+        private void advancedList_ValidateData(object sender, Resco.Controls.AdvancedList.ValidateDataArgs e)
+        {
+            int i = 0;
+            try
+            { i = Convert.ToInt16(e.DataRow["status"]); }
+            catch { }
+
+            if (i == 1)
+                e.DataRow.TemplateIndex = 3;
+            else
+                e.DataRow.TemplateIndex = 1;
+        }
+
         #endregion //Кнопки/функції
+
     }
 }
