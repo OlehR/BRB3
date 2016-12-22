@@ -196,12 +196,28 @@ namespace BRB.Forms
         }
         private void btnWares()
         {
-            number_doc = Convert.ToInt32(dt.Rows[advancedList.ActiveRowIndex]["number_doc"]);
-            //number_doc = int.Parse(dt.Rows[advancedList.ActiveRowIndex]["number_doc"].ToString());
-
-            // запускаєм форму з товарами frmWaresGrid(TypeDoc, number_doc)
-            frmWaresGrid newfrmWaresGrid = new frmWaresGrid(typeDoc, number_doc);
-            newfrmWaresGrid.Show();
+            if (advancedList.ActiveRowIndex >= 0)
+            {
+                 if (Convert.ToInt32(advancedList.DataRows[advancedList.ActiveRowIndex]["status"]) == 1)
+                {
+                    clsDialogBox.InformationBoxShow("Документ відмічений для відправлення на сервер і не може бути змінений!");
+                    return;
+                }
+                 try
+                 {
+                     // запускаєм форму з товарами frmWaresGrid(TypeDoc, number_doc)
+                     frmWaresGrid newfrmWaresGrid = new frmWaresGrid(typeDoc, Convert.ToInt32(dt.Rows[advancedList.ActiveRowIndex]["number_doc"]));
+                     newfrmWaresGrid.Show();
+                 }
+                 catch (Exception ex)
+                 {
+                     clsException.EnableException(ex);
+                 }
+            }
+            else
+            {
+                clsDialogBox.InformationBoxShow("Відсутній документ для перегляду!");
+            }
         }
         private void btnMarkDoc()
         {
@@ -226,7 +242,7 @@ namespace BRB.Forms
                                     advancedList.DataRows[advancedList.ActiveRowIndex]["status"] = 1;
                                     advancedList.DataRows[advancedList.ActiveRowIndex]["StatusName"] = "+";
 
-                                    // Установим шаблоны
+                                    // Шаблон для помічених
                                     int i = 0;
                                     try
                                     { i = Convert.ToInt32(advancedList.DataRows[advancedList.ActiveRowIndex]["status"]); }
@@ -261,7 +277,7 @@ namespace BRB.Forms
                                 advancedList.DataRows[advancedList.ActiveRowIndex]["status"] = 0;
                                 advancedList.DataRows[advancedList.ActiveRowIndex]["StatusName"] = "-";
 
-                                // Установим шаблоны
+                                // Шаблон для помічених
                                 int i = 0;
                                 try
                                 { i = Convert.ToInt32(advancedList.DataRows[advancedList.ActiveRowIndex]["status"]); }
@@ -294,9 +310,30 @@ namespace BRB.Forms
         }
         private void btnWaresScan()
         {
-            frmWaresScan newfrmWaresScan = new frmWaresScan();
-            newfrmWaresScan.Show();
+            if (advancedList.ActiveRowIndex >= 0)
+            {
+                 if (Convert.ToInt32(advancedList.DataRows[advancedList.ActiveRowIndex]["status"]) == 1)
+                {
+                    clsDialogBox.InformationBoxShow("Документ відмічений для відправлення на сервер і не може бути змінений!");
+                    return;
+                }
+                 try
+                 {
+                   frmWaresScan newfrmWaresScan = new frmWaresScan();
+                   newfrmWaresScan.Show();
+                 }
+                
+                 catch (Exception ex)
+                 {
+                     clsException.EnableException(ex);
+                 }
+            }
+            else
+            {
+                clsDialogBox.InformationBoxShow("Відсутній документ для перегляду!");
+            }
         }
+
         private void btnExtraProperties()
         {
             MessageBox.Show("Немає форми ExtraProperties");
