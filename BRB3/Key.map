@@ -1,16 +1,54 @@
 ﻿[BitatekIT8000]
-Up = Up1
+Up = Up
 Down = Down
 Enter = Enter
 Main_Invoice = F1
-//DocGrid_ListWares = F3
+Main_MAudit = F2
+Main_PriceChecker = F3
+Main_Audit = F4
+Main_Settings = F5
+//Main_Components = F6
+
+DocGrid_Exit = F7
+DocGrid_Wares = F1
+DocGrid_MarkDoc = F5
+DocGrid_Filter = F4
+DocGrid_WaresScan = F3
+DocGrid_ExtraProperties = F2
+DocGrid_GroupingDoc = F6
+DocGrid_Sync = F8
+//DocGrid_Settings = F9
+
+WaresGrid_Exit = F7
+WaresGrid_Edit = F1
+WaresGrid_Scan = F2
+WaresGrid_Filter = F4
 
 [MotorolaMC75Ax]
 Up = Up
 Down = Down
 Enter = Enter
 Main_Invoice = F3
-//DocGrid_ListWares = F3
+Main_MAudit = F4
+Main_PriceChecker = F5
+Main_Audit = F8
+Main_Settings = F9
+//Main_Components = F10
+
+DocGrid_Wares = F9
+DocGrid_Exit = F10
+DocGrid_MarkDoc = F5
+DocGrid_Filter = F4
+DocGrid_WaresScan = F3
+//DocGrid_ExtraProperties = F2
+//DocGrid_GroupingDoc = F6
+DocGrid_Sync = F8
+//DocGrid_Settings = F1
+
+WaresGrid_Exit = F10
+WaresGrid_Edit = F8
+WaresGrid_Scan = F3
+WaresGrid_Filter = F4
 
  
 //Не модифікуємо цю секцію!!!!

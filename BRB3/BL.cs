@@ -14,8 +14,7 @@ namespace BRB
     {
         public BL(Data parData)
         {
-            cData = parData;
-        
+            cData = parData;        
         }
         static private int CurNumDoc;
         static private DataRow CurDoc;
@@ -123,5 +122,22 @@ namespace BRB
         }
 
 
+
+        public Status SetStatusDoc( int parStatus)
+        {
+         Status res = new Status();
+
+          try
+            {
+                cData.SetStatusDoc(CurNumDoc,parStatus);
+            }
+            catch (System.Exception Ex)
+            {                
+                res.status=EStatus.Error;
+                res.message = "Помилка зміни статуса "+ Ex.Message;
+            }
+            return res;
+
+        }
     }
 }

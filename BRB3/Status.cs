@@ -93,14 +93,11 @@ namespace BRB
             static string  Ok { get { return "ok"; } }
             static string  Success { get { return "success"; } }
             static string Error { get { return "error"; } }
-            static string BadSecretCode { get { return "BadSecretCode"; } }
-            static string BadSecretCodeTooLate { get { return "too-late"; } }
-            static string BadSecretCodeAlreadyUse { get { return "already-use"; } }
-            static string UserCodeNotFound { get { return "user-code-not-found"; } }
+            
             static string CodeNotFound { get { return "code-not-found"; } }
             static string UserNotFound { get { return "user-not-found"; } }
 
             static string DBError { get { return "DBError"; } }
-            static string BadOrderStatus { get { return "BadOrderStatus"; } }
+            
         }
 }

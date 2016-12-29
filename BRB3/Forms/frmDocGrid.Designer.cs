@@ -54,61 +54,41 @@
             Resco.Controls.AdvancedList.TextCell textCell18 = new Resco.Controls.AdvancedList.TextCell();
             Resco.Controls.AdvancedList.TextCell textCell19 = new Resco.Controls.AdvancedList.TextCell();
             Resco.Controls.AdvancedList.TextCell textCell20 = new Resco.Controls.AdvancedList.TextCell();
+            Resco.Controls.AdvancedList.TextCell textCell21 = new Resco.Controls.AdvancedList.TextCell();
+            Resco.Controls.AdvancedList.TextCell textCell22 = new Resco.Controls.AdvancedList.TextCell();
+            Resco.Controls.AdvancedList.TextCell textCell23 = new Resco.Controls.AdvancedList.TextCell();
+            Resco.Controls.AdvancedList.TextCell textCell24 = new Resco.Controls.AdvancedList.TextCell();
+            Resco.Controls.AdvancedList.TextCell textCell25 = new Resco.Controls.AdvancedList.TextCell();
+            Resco.Controls.AdvancedList.TextCell textCell26 = new Resco.Controls.AdvancedList.TextCell();
+            Resco.Controls.AdvancedList.TextCell textCell27 = new Resco.Controls.AdvancedList.TextCell();
+            Resco.Controls.AdvancedList.TextCell textCell28 = new Resco.Controls.AdvancedList.TextCell();
+            this.advancedList = new Resco.Controls.AdvancedList.AdvancedList();
             this.mainMenu = new System.Windows.Forms.MainMenu();
             this.miMovements = new System.Windows.Forms.MenuItem();
+            this.miExit = new System.Windows.Forms.MenuItem();
+            this.miSeparator = new System.Windows.Forms.MenuItem();
+            this.miWares = new System.Windows.Forms.MenuItem();
+            this.miMarkDoc = new System.Windows.Forms.MenuItem();
+            this.miFiltr = new System.Windows.Forms.MenuItem();
+            this.miWaresScan = new System.Windows.Forms.MenuItem();
+            this.miExtraProperties = new System.Windows.Forms.MenuItem();
+            this.miGroupingDoc = new System.Windows.Forms.MenuItem();
+            this.miSeparator1 = new System.Windows.Forms.MenuItem();
+            this.miSync = new System.Windows.Forms.MenuItem();
+            this.miSettings = new System.Windows.Forms.MenuItem();
+            this.mAbout = new System.Windows.Forms.MenuItem();
             this.labelLeft = new System.Windows.Forms.Label();
             this.labelRigth = new System.Windows.Forms.Label();
             this.labelTop = new System.Windows.Forms.Label();
             this.labelDown = new System.Windows.Forms.Label();
-            this.advancedList = new Resco.Controls.AdvancedList.AdvancedList();
             this.SuspendLayout();
-            // 
-            // mainMenu
-            // 
-            this.mainMenu.MenuItems.Add(this.miMovements);
-            // 
-            // miMovements
-            // 
-            this.miMovements.Text = "Додатково";
-            // 
-            // labelLeft
-            // 
-            this.labelLeft.BackColor = System.Drawing.SystemColors.Window;
-            this.labelLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.labelLeft.Location = new System.Drawing.Point(0, 0);
-            this.labelLeft.Name = "labelLeft";
-            this.labelLeft.Size = new System.Drawing.Size(1, 295);
-            // 
-            // labelRigth
-            // 
-            this.labelRigth.BackColor = System.Drawing.SystemColors.Window;
-            this.labelRigth.Dock = System.Windows.Forms.DockStyle.Right;
-            this.labelRigth.Location = new System.Drawing.Point(237, 0);
-            this.labelRigth.Name = "labelRigth";
-            this.labelRigth.Size = new System.Drawing.Size(1, 295);
-            // 
-            // labelTop
-            // 
-            this.labelTop.BackColor = System.Drawing.SystemColors.Window;
-            this.labelTop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.labelTop.Location = new System.Drawing.Point(1, 0);
-            this.labelTop.Name = "labelTop";
-            this.labelTop.Size = new System.Drawing.Size(236, 1);
-            // 
-            // labelDown
-            // 
-            this.labelDown.BackColor = System.Drawing.SystemColors.Window;
-            this.labelDown.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.labelDown.Location = new System.Drawing.Point(1, 294);
-            this.labelDown.Name = "labelDown";
-            this.labelDown.Size = new System.Drawing.Size(236, 1);
             // 
             // advancedList
             // 
             this.advancedList.BackColor = System.Drawing.SystemColors.Window;
             this.advancedList.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.advancedList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.advancedList.FooterRow = new Resco.Controls.AdvancedList.HeaderRow(3, new string[] {
+            this.advancedList.FooterRow = new Resco.Controls.AdvancedList.HeaderRow(0, new string[] {
             resources.GetString("advancedList.FooterRow")});
             this.advancedList.HeaderRow = new Resco.Controls.AdvancedList.HeaderRow(0, new string[] {
             resources.GetString("advancedList.HeaderRow")});
@@ -124,22 +104,21 @@
             textCell1.CellSource.ConstantData = "Стан";
             textCell1.Location = new System.Drawing.Point(0, 0);
             textCell1.Name = "c1_1";
-            textCell1.Size = new System.Drawing.Size(40, 30);
+            textCell1.Size = new System.Drawing.Size(40, 16);
             textCell1.TextFont = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
             textCell2.CellSource.ConstantData = "Номер";
             textCell2.Location = new System.Drawing.Point(40, 0);
             textCell2.Name = "c1_2";
-            textCell2.Size = new System.Drawing.Size(80, 30);
+            textCell2.Size = new System.Drawing.Size(80, 16);
             textCell2.TextFont = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
             textCell3.CellSource.ConstantData = "Постачальник";
             textCell3.Location = new System.Drawing.Point(120, 0);
             textCell3.Name = "c1_3";
-            textCell3.Size = new System.Drawing.Size(-1, 30);
+            textCell3.Size = new System.Drawing.Size(-1, 16);
             textCell3.TextFont = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
             rowTemplate1.CellTemplates.Add(textCell1);
             rowTemplate1.CellTemplates.Add(textCell2);
             rowTemplate1.CellTemplates.Add(textCell3);
-            rowTemplate1.Height = 30;
             rowTemplate1.Name = "rtCaption";
             rowTemplate2.BackColor = System.Drawing.SystemColors.Window;
             textCell4.CellSource.ColumnName = "StatusName";
@@ -219,31 +198,182 @@
             rowTemplate3.CellTemplates.Add(textCell17);
             rowTemplate3.Height = 48;
             rowTemplate3.Name = "rtRowSelected";
-            rowTemplate4.BackColor = System.Drawing.SystemColors.ControlDark;
-            textCell18.CellSource.ConstantData = "Стан";
+            rowTemplate4.BackColor = System.Drawing.Color.YellowGreen;
+            textCell18.CellSource.ColumnName = "StatusName";
             textCell18.Location = new System.Drawing.Point(0, 0);
-            textCell18.Name = "c1_1";
-            textCell18.Size = new System.Drawing.Size(40, 16);
-            textCell18.TextFont = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
-            textCell19.CellSource.ConstantData = "Номер";
-            textCell19.Location = new System.Drawing.Point(40, 0);
-            textCell19.Name = "c1_2";
-            textCell19.Size = new System.Drawing.Size(80, 16);
-            textCell19.TextFont = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
-            textCell20.CellSource.ConstantData = "Постачальник";
-            textCell20.Location = new System.Drawing.Point(120, 0);
-            textCell20.Name = "c1_3";
+            textCell18.Name = "rc1_1";
+            textCell18.Size = new System.Drawing.Size(20, 16);
+            textCell19.CellSource.ColumnName = "number_doc";
+            textCell19.Location = new System.Drawing.Point(20, 0);
+            textCell19.Name = "rc1_2";
+            textCell19.Size = new System.Drawing.Size(70, 16);
+            textCell20.CellSource.ColumnName = "name_supplier";
+            textCell20.Location = new System.Drawing.Point(90, 0);
+            textCell20.Name = "rc1_3";
             textCell20.Size = new System.Drawing.Size(-1, 16);
-            textCell20.TextFont = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
+            textCell21.CellSource.ConstantData = "Сум. зам:";
+            textCell21.Location = new System.Drawing.Point(0, 16);
+            textCell21.Name = "rc2_1";
+            textCell21.Size = new System.Drawing.Size(60, 16);
+            textCell22.CellSource.ColumnName = "SummaZak";
+            textCell22.FormatString = "{0:0.00}";
+            textCell22.Location = new System.Drawing.Point(60, 16);
+            textCell22.Name = "rc2_2";
+            textCell22.Size = new System.Drawing.Size(60, 16);
+            textCell23.CellSource.ConstantData = "К-ть тов:";
+            textCell23.Location = new System.Drawing.Point(120, 16);
+            textCell23.Name = "rc2_3";
+            textCell23.Size = new System.Drawing.Size(60, 16);
+            textCell24.CellSource.ColumnName = "SumWaresZam";
+            textCell24.Location = new System.Drawing.Point(180, 16);
+            textCell24.Name = "rc2_4";
+            textCell24.Size = new System.Drawing.Size(60, 16);
+            textCell25.CellSource.ConstantData = "Сум. прих:";
+            textCell25.Location = new System.Drawing.Point(0, 32);
+            textCell25.Name = "rc3_1";
+            textCell25.Size = new System.Drawing.Size(60, 16);
+            textCell26.CellSource.ColumnName = "SummaPrih";
+            textCell26.FormatString = "{0:0.00}";
+            textCell26.Location = new System.Drawing.Point(60, 32);
+            textCell26.Name = "rc3_2";
+            textCell26.Size = new System.Drawing.Size(60, 16);
+            textCell27.CellSource.ConstantData = "Введено:";
+            textCell27.Location = new System.Drawing.Point(120, 32);
+            textCell27.Name = "rc3_3";
+            textCell27.Size = new System.Drawing.Size(60, 16);
+            textCell28.CellSource.ColumnName = "SumWaresInv";
+            textCell28.Location = new System.Drawing.Point(180, 32);
+            textCell28.Name = "rc3_4";
+            textCell28.Size = new System.Drawing.Size(60, 16);
             rowTemplate4.CellTemplates.Add(textCell18);
             rowTemplate4.CellTemplates.Add(textCell19);
             rowTemplate4.CellTemplates.Add(textCell20);
-            rowTemplate4.Name = "rtCaption16";
+            rowTemplate4.CellTemplates.Add(textCell21);
+            rowTemplate4.CellTemplates.Add(textCell22);
+            rowTemplate4.CellTemplates.Add(textCell23);
+            rowTemplate4.CellTemplates.Add(textCell24);
+            rowTemplate4.CellTemplates.Add(textCell25);
+            rowTemplate4.CellTemplates.Add(textCell26);
+            rowTemplate4.CellTemplates.Add(textCell27);
+            rowTemplate4.CellTemplates.Add(textCell28);
+            rowTemplate4.Height = 48;
+            rowTemplate4.Name = "rtRowCheck";
             this.advancedList.Templates.Add(rowTemplate1);
             this.advancedList.Templates.Add(rowTemplate2);
             this.advancedList.Templates.Add(rowTemplate3);
             this.advancedList.Templates.Add(rowTemplate4);
+            this.advancedList.ValidateData += new Resco.Controls.AdvancedList.ValidateDataEventHandler(this.advancedList_ValidateData);
             this.advancedList.KeyUp += new System.Windows.Forms.KeyEventHandler(this.advancedList_KeyUp);
+            // 
+            // mainMenu
+            // 
+            this.mainMenu.MenuItems.Add(this.miMovements);
+            this.mainMenu.MenuItems.Add(this.mAbout);
+            // 
+            // miMovements
+            // 
+            this.miMovements.MenuItems.Add(this.miExit);
+            this.miMovements.MenuItems.Add(this.miSeparator);
+            this.miMovements.MenuItems.Add(this.miWares);
+            this.miMovements.MenuItems.Add(this.miMarkDoc);
+            this.miMovements.MenuItems.Add(this.miFiltr);
+            this.miMovements.MenuItems.Add(this.miWaresScan);
+            this.miMovements.MenuItems.Add(this.miExtraProperties);
+            this.miMovements.MenuItems.Add(this.miGroupingDoc);
+            this.miMovements.MenuItems.Add(this.miSeparator1);
+            this.miMovements.MenuItems.Add(this.miSync);
+            this.miMovements.MenuItems.Add(this.miSettings);
+            this.miMovements.Text = "Додатково";
+            // 
+            // miExit
+            // 
+            this.miExit.Text = "Вихід";
+            this.miExit.Click += new System.EventHandler(this.btnExit_Click);
+            // 
+            // miSeparator
+            // 
+            this.miSeparator.Text = "-";
+            // 
+            // miWares
+            // 
+            this.miWares.Text = "Список товарів";
+            this.miWares.Click += new System.EventHandler(this.btnWares_Click);
+            // 
+            // miMarkDoc
+            // 
+            this.miMarkDoc.Text = "Відмітити\\Зняти відмітку";
+            this.miMarkDoc.Click += new System.EventHandler(this.btnMarkDoc_Click);
+            // 
+            // miFiltr
+            // 
+            this.miFiltr.Text = "Пошук документа";
+            this.miFiltr.Click += new System.EventHandler(this.btnFilter_Click);
+            // 
+            // miWaresScan
+            // 
+            this.miWaresScan.Text = "Сканування товару";
+            this.miWaresScan.Click += new System.EventHandler(this.btnWaresScan_Click);
+            // 
+            // miExtraProperties
+            // 
+            this.miExtraProperties.Text = "Дод. властивості";
+            this.miExtraProperties.Click += new System.EventHandler(this.btnExtraProperties_Click);
+            // 
+            // miGroupingDoc
+            // 
+            this.miGroupingDoc.Text = "Групування документів";
+            this.miGroupingDoc.Click += new System.EventHandler(this.btnGroupingDoc_Click);
+            // 
+            // miSeparator1
+            // 
+            this.miSeparator1.Text = "-";
+            // 
+            // miSync
+            // 
+            this.miSync.Text = "Синхронізація";
+            this.miSync.Click += new System.EventHandler(this.btnSync_Click);
+            // 
+            // miSettings
+            // 
+            this.miSettings.Text = "Налаштування";
+            this.miSettings.Click += new System.EventHandler(this.btnSettings_Click);
+            // 
+            // mAbout
+            // 
+            this.mAbout.Text = "Про ...";
+            this.mAbout.Click += new System.EventHandler(this.btnAbout_Click);
+            // 
+            // labelLeft
+            // 
+            this.labelLeft.BackColor = System.Drawing.SystemColors.Window;
+            this.labelLeft.Dock = System.Windows.Forms.DockStyle.Left;
+            this.labelLeft.Location = new System.Drawing.Point(0, 0);
+            this.labelLeft.Name = "labelLeft";
+            this.labelLeft.Size = new System.Drawing.Size(1, 295);
+            // 
+            // labelRigth
+            // 
+            this.labelRigth.BackColor = System.Drawing.SystemColors.Window;
+            this.labelRigth.Dock = System.Windows.Forms.DockStyle.Right;
+            this.labelRigth.Location = new System.Drawing.Point(237, 0);
+            this.labelRigth.Name = "labelRigth";
+            this.labelRigth.Size = new System.Drawing.Size(1, 295);
+            // 
+            // labelTop
+            // 
+            this.labelTop.BackColor = System.Drawing.SystemColors.Window;
+            this.labelTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.labelTop.Location = new System.Drawing.Point(1, 0);
+            this.labelTop.Name = "labelTop";
+            this.labelTop.Size = new System.Drawing.Size(236, 1);
+            // 
+            // labelDown
+            // 
+            this.labelDown.BackColor = System.Drawing.SystemColors.Window;
+            this.labelDown.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.labelDown.Location = new System.Drawing.Point(1, 294);
+            this.labelDown.Name = "labelDown";
+            this.labelDown.Size = new System.Drawing.Size(236, 1);
             // 
             // frmDocGrid
             // 
@@ -276,6 +406,17 @@
         private System.Windows.Forms.MenuItem miMovements;
         private Resco.Controls.AdvancedList.AdvancedList advancedList;
         System.ComponentModel.ComponentResourceManager resources;
-      
+        private System.Windows.Forms.MenuItem mAbout;
+        private System.Windows.Forms.MenuItem miExit;
+        private System.Windows.Forms.MenuItem miSeparator;
+        private System.Windows.Forms.MenuItem miSeparator1;
+        private System.Windows.Forms.MenuItem miWares;
+        private System.Windows.Forms.MenuItem miMarkDoc;
+        private System.Windows.Forms.MenuItem miFiltr;
+        private System.Windows.Forms.MenuItem miWaresScan;
+        private System.Windows.Forms.MenuItem miExtraProperties;
+        private System.Windows.Forms.MenuItem miGroupingDoc;
+        private System.Windows.Forms.MenuItem miSync;
+        private System.Windows.Forms.MenuItem miSettings;
     }
 }
