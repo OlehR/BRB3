@@ -34,7 +34,8 @@ namespace BRB
                                         ELSE COALESCE (SUM(dw.price * dw.quantity*(1+w.vat/100)), 0) END AS SummaPrih,
                                      number_out_invoice,
                                      date_out_invoice,
-                                     COALESCE(flag_sum_qty_doc, 0) as flag_sum_qty_doc
+                                     COALESCE(flag_sum_qty_doc, 0) as flag_sum_qty_doc,
+                                     COALESCE(input_code, 0) as input_code
                               FROM  DOCS AS d LEFT OUTER JOIN
                                      DOCS_WARES AS dw ON d.number_doc = dw.number_doc LEFT OUTER JOIN
                                       WARES AS w ON dw.code_wares=w.code_wares
@@ -60,7 +61,8 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
                                            dw.change_date, 
                                            w.name_wares,
                                            au.coefficient,
-                                           ud.abr_unit
+                                           ud.abr_unit,
+                                           COALESCE (SUM(ud.div), 0) AS div
                                  FROM      DOCS AS d INNER JOIN
                                            DOCS_WARES AS dw ON d.number_doc = dw.number_doc INNER JOIN
                                            WARES AS w ON dw.code_wares = w.code_wares INNER JOIN
@@ -143,7 +145,7 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
         private DataTable tDocs;
         private DataTable tDocsWares;
         private MSCeSQL SQL = null;
-        private bool UseCash = false;
+        //private bool UseCash = false;
         public Data() { }
         public Data(MSCeSQL parSQL) { Init(parSQL); }
 
