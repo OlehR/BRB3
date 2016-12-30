@@ -24,6 +24,12 @@ namespace BRB
   
     //(1, 3, 4, 5, 6, 7, 8)
     }
+
+    public enum TypeStatusDoc
+    {
+        NoMark = 0,
+        Mark = 1
+    }
     static class Global
     {
         static public string varPathIni = @"\Program Files\brb3\";//\Program Files\brb3\

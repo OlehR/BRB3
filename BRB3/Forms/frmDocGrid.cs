@@ -206,7 +206,7 @@ namespace BRB.Forms
                  try
                  {
                      // запускаєм форму з товарами frmWaresGrid(TypeDoc, number_doc)
-                     frmWaresGrid newfrmWaresGrid = new frmWaresGrid(typeDoc, Convert.ToInt32(dt.Rows[advancedList.ActiveRowIndex]["number_doc"]));
+                     frmWaresGrid newfrmWaresGrid = new frmWaresGrid(typeDoc, Convert.ToInt32(advancedList.DataRows[advancedList.ActiveRowIndex]["number_doc"]));
                      newfrmWaresGrid.Show();
                  }
                  catch (Exception ex)
@@ -222,10 +222,11 @@ namespace BRB.Forms
         private void btnMarkDoc()
         {
             //MessageBox.Show("Помітка документа ще не реалізовано");
+           // BL.SetCurDoc(advancedList.DataRows[advancedList.ActiveRowIndex]);
             {
                 if (advancedList.ActiveRowIndex >= 0)
                 {
-                    if (Convert.ToInt32(advancedList.DataRows[advancedList.ActiveRowIndex]["status"]) == 0)
+                    if (Convert.ToInt32(advancedList.DataRows[advancedList.ActiveRowIndex]["status"]) == Convert.ToInt16(TypeStatusDoc.NoMark))
                     {
                         if (clsDialogBox.ConfirmationBoxShow("Відмітити документ для відправки на сервер?") == DialogResult.Yes)
                         {
@@ -238,8 +239,9 @@ namespace BRB.Forms
                                 try
                                 {
                                       //функція упдейта Docs.status
+                                    BL.SetStatusDoc(Convert.ToInt16(TypeStatusDoc.Mark));
                                      //_formClass.SetStatusDoc(Convert.ToInt32(advancedList.DataRows[advancedList.ActiveRowIndex]["number_doc"]), 1);
-                                    advancedList.DataRows[advancedList.ActiveRowIndex]["status"] = 1;
+                                    advancedList.DataRows[advancedList.ActiveRowIndex]["status"] = Convert.ToInt16(TypeStatusDoc.Mark);
                                     advancedList.DataRows[advancedList.ActiveRowIndex]["StatusName"] = "+";
 
                                     // Шаблон для помічених
@@ -273,8 +275,8 @@ namespace BRB.Forms
                         {
                             try
                             {
-                               // _formClass.SetStatusDoc(Convert.ToInt32(advancedList.DataRows[advancedList.ActiveRowIndex]["number_doc"]), 0);
-                                advancedList.DataRows[advancedList.ActiveRowIndex]["status"] = 0;
+                                BL.SetStatusDoc(Convert.ToInt16(TypeStatusDoc.NoMark));
+                                advancedList.DataRows[advancedList.ActiveRowIndex]["status"] = Convert.ToInt16(TypeStatusDoc.NoMark);
                                 advancedList.DataRows[advancedList.ActiveRowIndex]["StatusName"] = "-";
 
                                 // Шаблон для помічених
@@ -305,9 +307,17 @@ namespace BRB.Forms
             }
         }
         private void btnFilter()
-        {
-            clsDialogBox.InformationBoxShow("Фільтр документів ще не реалізовано");
+        { //clsDialogBox.InformationBoxShow("Фільтр документів ще не реалізовано");
+
+            DataView dv;
+            
+            dv = dt.AsEnumerable().Where(x => (Convert.ToInt32(x["number_doc"]) == 3699652)).AsDataView();
+            advancedList.DataSource = dv;
+            string rr = dv.ToString();
+            advancedList.Refresh();
+            //advancedList.ResumeRedraw();
         }
+
         private void btnWaresScan()
         {
             if (advancedList.ActiveRowIndex >= 0)

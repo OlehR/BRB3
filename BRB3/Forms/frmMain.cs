@@ -31,7 +31,7 @@ namespace BRB.Forms
             this.imageList.Images.Add((System.Drawing.Icon)(res.GetObject("Ico_05_" + Global.icoSize.ToString())));
             this.imageList.Images.Add((System.Drawing.Icon)(res.GetObject("Ico_06_" + Global.icoSize.ToString())));
             
-            this.Text = "BRB++ " + Global.eTypeTerminal.ToString();
+            this.Text = "BRB3 " + Global.eTypeTerminal.ToString();
             this.labelDown.Size = new System.Drawing.Size(236, (1 + Global.hToolbarTerminal));
 
             this.lviInvoice.Text = HotKey.strMain_Invoice + " " + lviInvoice.Text;

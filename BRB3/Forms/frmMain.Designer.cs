@@ -180,7 +180,7 @@
             this.Menu = this.mainMenu;
             this.MinimizeBox = false;
             this.Name = "frmMain";
-            this.Text = "BRB++ ";
+            this.Text = "BRB3";
             this.ResumeLayout(false);
 
         }

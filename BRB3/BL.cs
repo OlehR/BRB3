@@ -36,7 +36,7 @@ namespace BRB
         /// Зберігаємо текучу шапку документа
         /// </summary>
         /// <param name="parCurDoc"></param>
-        public void SetCurDoc(DataRow parCurDoc)
+        public static void SetCurDoc(DataRow parCurDoc)
         {
             CurDoc = parCurDoc;
             CurNumDoc = Convert.ToInt32(parCurDoc["number_doc"]);
@@ -123,7 +123,7 @@ namespace BRB
 
 
 
-        public Status SetStatusDoc( int parStatus)
+        public static Status SetStatusDoc( int parStatus)
         {
          Status res = new Status();
 
