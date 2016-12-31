@@ -222,8 +222,9 @@ namespace BRB.Forms
         private void btnMarkDoc()
         {
             //MessageBox.Show("Помітка документа ще не реалізовано");
-           // BL.SetCurDoc(advancedList.DataRows[advancedList.ActiveRowIndex]);
+            BL.SetCurDoc(advancedList.ActiveRowIndex);
             {
+                
                 if (advancedList.ActiveRowIndex >= 0)
                 {
                     if (Convert.ToInt32(advancedList.DataRows[advancedList.ActiveRowIndex]["status"]) == Convert.ToInt16(TypeStatusDoc.NoMark))

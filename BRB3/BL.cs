@@ -17,6 +17,7 @@ namespace BRB
             cData = parData;        
         }
         static private int CurNumDoc;
+        static private int CurCodeWares;
         static private DataRow CurDoc;
         static private DataRow CurWaresDoc;
         static public Data cData;
@@ -30,7 +31,16 @@ namespace BRB
         {
             return cData.FillDocsWares(parNumberDoc);        
         }
-        
+
+        /// <summary>
+        /// Зберігаємо текучу шапку документа
+        /// </summary>
+        /// <param name="parCurDoc"></param>
+        public static void SetCurDoc(int  parCurNumberDoc)
+        {
+            CurNumDoc = parCurNumberDoc;
+            //CurNumDoc = Convert.ToInt32(parCurDoc["number_doc"]);
+        }
 
         /// <summary>
         /// Зберігаємо текучу шапку документа
@@ -41,7 +51,15 @@ namespace BRB
             CurDoc = parCurDoc;
             CurNumDoc = Convert.ToInt32(parCurDoc["number_doc"]);
         }
-
+        /// <summary>
+        /// Чи можна редагувати товар напряму з гріда
+        /// !!!! Треба доробити логіку.
+        /// </summary>
+        /// <param name="parCodeWares"></param>
+        public static bool IsEditWaresManual(int parCodeWares)
+        {
+            return true;
+        }
         /// <summary>
         /// Зберігаємо текучий рядок документа
         /// </summary>
@@ -51,6 +69,16 @@ namespace BRB
             CurWaresDoc = parCurWaresDoc;
         }
 
+                /// <summary>
+        /// Зберігаємо текучий рядок документа
+        /// </summary>
+        /// <param name="parCurDoc"></param>
+        public void SetCurWaresDoc(int parCurCodeWares)
+        {
+            CurCodeWares = parCurCodeWares;
+        }
+
+        
         /// <summary>
         /// Шукає товар по штрихкоду
         /// </summary>
