@@ -12,6 +12,7 @@ namespace BRB.Forms
     public partial class frmWaresScan : Form
     {
         DataRow dr;
+        int type_doc;
 
         public frmWaresScan(int panCodeWares)
         {
@@ -36,8 +37,35 @@ namespace BRB.Forms
             //FullScreen.StartFullScreen(this);
             if (dr != null)
             {
+                this.mplDocNum.Text = dr["number_doc"].ToString();
                 this.mplArticle.Text = dr["code_wares"].ToString();
-                this.mplCode.Text = dr["code_wares"].ToString();
+                this.mplCode.Text = dr["bar_code"].ToString();
+                this.mplName.Text = "                      " +  dr["name_wares"].ToString();
+                mptbAddQty.Text = "";
+
+                if (dr["quantity"] != DBNull.Value)
+                {
+                    this.mplQtyNow.Text = decimal.Round(Convert.ToDecimal(dr["quantity"]), 3).ToString("0.000");
+                }
+                else this.mplQtyNow.Text = string.Empty;
+
+                if (dr["price"] != DBNull.Value)
+                {
+                    this.mptbAddPrice.Text = dr["price"].ToString();
+                }
+                else this.mptbAddPrice.Text = dr["price_temp"].ToString();
+
+                if (dr["quantity_temp"] != DBNull.Value)
+                {
+                    type_doc = Convert.ToInt32(dr["type_doc"]);
+
+                    if (type_doc == 3 | type_doc == 8)
+                    {
+                        mplQtyTempl.Text = string.Empty;   
+                    }
+                    else this.mplQtyTempl.Text = decimal.Round(Convert.ToDecimal(dr["quantity_temp"]), 3).ToString("0.000");
+                }
+                else mplQtyTempl.Text = string.Empty;
             }
         }
 
