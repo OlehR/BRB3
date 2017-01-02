@@ -222,7 +222,7 @@ namespace BRB.Forms
         private void btnMarkDoc()
         {
             //MessageBox.Show("Помітка документа ще не реалізовано");
-            BL.SetCurDoc(advancedList.ActiveRowIndex);
+            BL.SetCurDoc(Convert.ToInt32(advancedList.DataRows[advancedList.ActiveRowIndex]["number_doc"]));
             {
                 
                 if (advancedList.ActiveRowIndex >= 0)

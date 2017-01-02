@@ -39,9 +39,9 @@
             this.mplZKPO = new System.Windows.Forms.Label();
             this.mptbNumDoc = new System.Windows.Forms.TextBox();
             this.mptbZKPO = new System.Windows.Forms.TextBox();
-            this.btnSelect = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.btnCancelFilter = new System.Windows.Forms.Button();
+            this.mpbSelect = new System.Windows.Forms.Button();
+            this.mpbCancel = new System.Windows.Forms.Button();
+            this.mpbCancelFilter = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // mainMenu
@@ -84,12 +84,79 @@
             this.labelDown.Name = "labelDown";
             this.labelDown.Size = new System.Drawing.Size(236, 1);
             // 
+            // mplNumDoc
+            // 
+            this.mplNumDoc.Location = new System.Drawing.Point(5, 7);
+            this.mplNumDoc.Name = "mplNumDoc";
+            this.mplNumDoc.Size = new System.Drawing.Size(63, 20);
+            this.mplNumDoc.Text = "№ Док:";
+            // 
+            // mplZKPO
+            // 
+            this.mplZKPO.Location = new System.Drawing.Point(5, 33);
+            this.mplZKPO.Name = "mplZKPO";
+            this.mplZKPO.Size = new System.Drawing.Size(63, 20);
+            this.mplZKPO.Text = "ЗКПО:";
+            // 
+            // mptbNumDoc
+            // 
+            this.mptbNumDoc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.mptbNumDoc.Location = new System.Drawing.Point(63, 5);
+            this.mptbNumDoc.Name = "mptbNumDoc";
+            this.mptbNumDoc.Size = new System.Drawing.Size(135, 23);
+            this.mptbNumDoc.TabIndex = 7;
+            // 
+            // mptbZKPO
+            // 
+            this.mptbZKPO.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.mptbZKPO.Location = new System.Drawing.Point(63, 31);
+            this.mptbZKPO.Name = "mptbZKPO";
+            this.mptbZKPO.Size = new System.Drawing.Size(135, 23);
+            this.mptbZKPO.TabIndex = 1;
+            // 
+            // mpbSelect
+            // 
+            this.mpbSelect.Location = new System.Drawing.Point(5, 63);
+            this.mpbSelect.Name = "mpbSelect";
+            this.mpbSelect.Size = new System.Drawing.Size(88, 20);
+            this.mpbSelect.TabIndex = 2;
+            this.mpbSelect.Text = "Шукати [F1]";
+            //this.mpbSelect.Click += new System.EventHandler(this.btnSelect_Click);
+            // 
+            // mpbCancel
+            // 
+            this.mpbCancel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.mpbCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.mpbCancel.Location = new System.Drawing.Point(99, 63);
+            this.mpbCancel.Name = "mpbCancel";
+            this.mpbCancel.Size = new System.Drawing.Size(102, 20);
+            this.mpbCancel.TabIndex = 3;
+            this.mpbCancel.Text = "Відміна [F4]";
+            // 
+            // mpbCancelFilter
+            // 
+            this.mpbCancelFilter.Location = new System.Drawing.Point(5, 93);
+            this.mpbCancelFilter.Name = "mpbCancelFilter";
+            this.mpbCancelFilter.Size = new System.Drawing.Size(180, 20);
+            this.mpbCancelFilter.TabIndex = 3;
+            this.mpbCancelFilter.Text = "Відміна Пошуку";
+            // 
             // mainPanel
             // 
             this.mainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainPanel.Location = new System.Drawing.Point(1, 1);
             this.mainPanel.Name = "mainPanel";
             this.mainPanel.Size = new System.Drawing.Size(236, 293);
+            this.mainPanel.Controls.Add(mplNumDoc);
+            this.mainPanel.Controls.Add(mplZKPO);
+            this.mainPanel.Controls.Add(mptbNumDoc);
+            this.mainPanel.Controls.Add(mptbZKPO);
+            this.mainPanel.Controls.Add(mpbCancel);
+            this.mainPanel.Controls.Add(mpbCancelFilter);
+            this.mainPanel.Controls.Add(mpbSelect);
             // 
             // frmDocSearch
             // 
@@ -126,9 +193,9 @@
         private System.Windows.Forms.TextBox mptbNumDoc;
         private System.Windows.Forms.Label mplZKPO;
         private System.Windows.Forms.TextBox mptbZKPO;
-        private System.Windows.Forms.Button btnSelect;
-        private System.Windows.Forms.Button btnCancel;
-        private System.Windows.Forms.Button btnCancelFilter;
+        private System.Windows.Forms.Button mpbSelect;
+        private System.Windows.Forms.Button mpbCancel;
+        private System.Windows.Forms.Button mpbCancelFilter;
         
 
     }

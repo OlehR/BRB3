@@ -11,8 +11,18 @@ namespace BRB.Forms
 {
     public partial class frmWaresScan : Form
     {
+        DataRow dr;
+
+        public frmWaresScan(int panCodeWares)
+        {
+            dr = BL.FindGoodCode(panCodeWares);
+            InitializeComponent();
+            InitializeComponentManual();
+        }
+
         public frmWaresScan()
         {
+            dr = null;
             InitializeComponent();
             InitializeComponentManual();
         }
@@ -23,7 +33,12 @@ namespace BRB.Forms
         /// <param name="e"></param>
         private void frmWaresScan_Load(object sender, EventArgs e)
         {
-            FullScreen.StartFullScreen(this);
+            //FullScreen.StartFullScreen(this);
+            if (dr != null)
+            {
+                this.mplArticle.Text = dr["code_wares"].ToString();
+                this.mplCode.Text = dr["code_wares"].ToString();
+            }
         }
 
         /// <summary>

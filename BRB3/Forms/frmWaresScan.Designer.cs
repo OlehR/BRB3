@@ -389,6 +389,7 @@
             this.MinimizeBox = false;
             this.Name = "frmWaresScan";
             this.mainPanel.ResumeLayout(false);
+            this.Load += new System.EventHandler(this.frmWaresScan_Load);
             this.ResumeLayout(false);
 
         }

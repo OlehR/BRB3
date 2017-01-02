@@ -99,7 +99,7 @@ namespace BRB.Forms
         }
         private void btnEdit()
         {
-            frmWaresScan newfrmWaresScan = new frmWaresScan(); // З передачою номера док
+            frmWaresScan newfrmWaresScan = new frmWaresScan(Convert.ToInt32(advancedList.DataRows[advancedList.ActiveRowIndex][ "code_wares"]));
             newfrmWaresScan.Show();
         }
         private void btnScan()
