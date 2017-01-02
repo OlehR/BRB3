@@ -62,7 +62,8 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
                                            w.name_wares,
                                            au.coefficient,
                                            ud.abr_unit,
-                                           COALESCE (ud.div, 0) AS div
+                                           COALESCE (ud.div, 0) AS div,
+                                           w.vat
                                  FROM      DOCS AS d INNER JOIN
                                            DOCS_WARES AS dw ON d.number_doc = dw.number_doc INNER JOIN
                                            WARES AS w ON dw.code_wares = w.code_wares INNER JOIN
@@ -84,7 +85,7 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
 
         private string varSQLSumDocsWaresInv = @"SELECT COALESCE (MAX(dw.num_pop), 0) AS SumWaresInv FROM docs_wares AS dw where dw.number_doc = @parNumberDoc";
 
-        private string varSQLSetStatusDoc = @"update docs set status = @parStatus where number_doc = @parNumberDo";
+        private string varSQLSetStatusDoc = @"update docs set status = @parStatus where number_doc = @parNumberDoc";
 
 
         private string varSQLGetTypeDoc = @"select COALESCE(type_doc, 1) from Docs where number_doc = @parNumberDoc";
@@ -270,7 +271,7 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
         {
             SQL.AddWithValueF("@parNumberDoc", parNumberDoc);
             SQL.AddWithValue("@parCodeWares", parCodeWares);
-            SQL.AddWithValue("@parNupPop", parNupPop);
+            SQL.AddWithValue("@parNumPop", parNupPop);
             SQL.AddWithValue("@parQty", parQty);
             SQL.AddWithValue("@parPrice", parPrice);
             SQL.AddWithValue("@parChangeDate", DateTime.Now);
