@@ -43,12 +43,18 @@ namespace BRB
         /// Зберігаємо текучу шапку документа
         /// </summary>
         /// <param name="parCurDoc"></param>
-        public static void SetCurDoc(int  parCurNumberDoc)
+        public static bool SetCurDoc(int  parCurNumberDoc)
         {
-            CurNumDoc = parCurNumberDoc;
-            //CurNumDoc = Convert.ToInt32(parCurDoc["number_doc"]);
+            if (dtDocs != null)
+            {
+                CurNumDoc = parCurNumberDoc;
+                CurDoc = dtDocs.Select(string.Format("number_doc={0}", parCurNumberDoc)).First();
+                return (CurDoc != null && CurDoc.ItemArray.Count()>0 );
+            }
+            else
+                return false;
         }
-
+/*
         /// <summary>
         /// Зберігаємо текучу шапку документа
         /// </summary>
@@ -57,7 +63,7 @@ namespace BRB
         {
             CurDoc = parCurDoc;
             CurNumDoc = Convert.ToInt32(parCurDoc["number_doc"]);
-        }
+        }*/
         /// <summary>
         /// Чи можна редагувати товар напряму з гріда
         /// !!!! Треба доробити логіку.
@@ -67,7 +73,7 @@ namespace BRB
         {
             return true;
         }
-        /// <summary>
+        /*/// <summary>
         /// Зберігаємо текучий рядок документа
         /// </summary>
         /// <param name="parCurDoc"></param>
@@ -75,14 +81,20 @@ namespace BRB
         {
             CurWaresDoc = parCurWaresDoc;
         }
-
+        */
                 /// <summary>
         /// Зберігаємо текучий рядок документа
         /// </summary>
         /// <param name="parCurDoc"></param>
-        public static void SetCurWaresDoc(int parCurCodeWares)
+        public static bool SetCurWaresDoc(int parCurCodeWares)
         {
-            CurCodeWares = parCurCodeWares;
+            if (dtWaresDoc != null)
+            {
+                CurCodeWares = parCurCodeWares;
+                CurWaresDoc = dtWaresDoc.Select(string.Format("code_wares={0}", parCurCodeWares)).First();
+                return (CurWaresDoc != null && CurWaresDoc.ItemArray.Count() > 0);
+            }
+            return false;
         }
 
         
@@ -154,7 +166,7 @@ namespace BRB
         /// <param name="pPacQty"></param>
         /// <param name="coefficient"></param>
         /// <param name="conn"></param>
-        public static Status SaveGoods(int parCodeWares, int parNumPop, decimal parQty, decimal parPrice, decimal pPacQty, decimal coefficient)
+        public static Status SaveGoods(int parNumPop, decimal parQty, decimal parPrice)//, decimal pPacQty, decimal coefficient)
         {
             Status res = new Status();
             try
@@ -174,7 +186,7 @@ namespace BRB
                      parPrice = decimal.Round(parPrice / (1 + vat / 100), 4); 
                     
                 }
-              cData.SaveDocWares(CurNumDoc, parCodeWares, parNumPop, parQty, parPrice);
+              cData.SaveDocWares(CurNumDoc, CurCodeWares, parNumPop, parQty, parPrice);
 
             }
             catch (System.Exception Ex)

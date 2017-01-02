@@ -18,8 +18,10 @@ namespace Test
               var DocsWares = BL.LoadWaresDocs(TypeDoc.Invoice,3702947);
               var res = BL.FindGoodCode(163142);
 
-           // BL.SaveGoods(,2,10,100,)
-              var rw = BL.FindGoodBarCode("2816314200191"); 
+              BL.SetStatusDoc(3);
+
+              //BL.SaveGoods(0, 2, 99.99m);
+              //var rw = BL.FindGoodBarCode("2816314200191"); 
         }
         
     }
