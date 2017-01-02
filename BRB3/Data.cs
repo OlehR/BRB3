@@ -63,7 +63,8 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
                                            au.coefficient,
                                            ud.abr_unit,
                                            COALESCE (ud.div, 0) AS div,
-                                           w.vat
+                                           w.vat,
+                                           au.bar_code
                                  FROM      DOCS AS d INNER JOIN
                                            DOCS_WARES AS dw ON d.number_doc = dw.number_doc INNER JOIN
                                            WARES AS w ON dw.code_wares = w.code_wares INNER JOIN
