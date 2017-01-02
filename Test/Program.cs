@@ -16,7 +16,7 @@ namespace Test
 
               var Docs = BL.LoadDocs( TypeDoc.Invoice);
               var DocsWares = BL.LoadWaresDocs(TypeDoc.Invoice,3702947);
-              var res = BL.FindGoodCode(163142);
+             // var res = BL.FindGoodCode(163142);
               var rw = BL.FindGoodBarCode("2816314200191"); 
         }
         

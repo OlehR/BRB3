@@ -135,9 +135,9 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
 " +
                                 (parIsComplect ? @"INNER JOIN DOCS AS dd ON d.okpo_supplier = dd.okpo_supplier AND d.type_doc = dd.type_doc AND d.date_doc = dd.date_doc AND d.code_shop = dd.code_shop " : "") +
                                 @"
-                               WHERE   (dw.number_doc = @number_doc) AND 
-"+
- (parIsBarCode?@"                (aus.bar_code = @bar_code)": @"(dw.code_wares = @code_wares)")+
+                               WHERE   (dw.number_doc = @parNumberDoc) AND 
+" +
+ (parIsBarCode?@"                (aus.bar_code = @parBarCode)": @"(dw.code_wares = @parCodeWares)")+
 @"                              ORDER BY dw.quantity";
         }
         #endregion
@@ -248,7 +248,8 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
         {
             SQL.AddWithValueF("@parNumberDoc", parNumberDoc);
             SQL.AddWithValue("@parBarCode", parBarCode);
-            DataTable dt = SQL.ExecuteQuery(varSQLFindBarCode(parIsComplect,true));
+            string varSQL = varSQLFindBarCode(parIsComplect, true);
+            DataTable dt = SQL.ExecuteQuery(varSQL);
             return dt;
         }
 
