@@ -48,7 +48,7 @@ namespace BRB
         static public int WeightBarQtyChar=4;
 
         static public Data cData;
-        static public BL cBL;
+        static public BRB.BL cBL;
         static public Terminal cTerminal;
         static public TypeTerminal eTypeTerminal;
         static public int hToolbarTerminal = 0;
@@ -124,8 +124,11 @@ namespace BRB
     }
         public static void InitKeyMap(TypeTerminal parType)
         {
-            varIniKeyMap = new ReadINI2(Global.varPathIni + @"Key.map");
-            HotKey.Init( parType);
+            if (System.IO.File.Exists(Global.varPathIni + @"Key.map"))
+            {
+                varIniKeyMap = new ReadINI2(Global.varPathIni + @"Key.map");
+                HotKey.Init(parType);
+            }
             
         }
 

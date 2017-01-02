@@ -15,7 +15,7 @@ namespace BRB.Forms
 
         public frmWaresGrid(TypeDoc parTypeDoc, int panNumberDoc)
         {
-            dt = Global.cBL.LoadWaresDocs(parTypeDoc, panNumberDoc);
+            dt = BL.LoadWaresDocs(parTypeDoc, panNumberDoc);
             InitializeComponent();
             InitializeComponentManual();
             this.Text += panNumberDoc.ToString();

@@ -49,6 +49,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\BRB3\BL.cs">
+      <Link>BL.cs</Link>
+    </Compile>
     <Compile Include="..\BRB3\Data.cs">
       <Link>Data.cs</Link>
     </Compile>
@@ -84,6 +87,9 @@
     </Compile>
     <Compile Include="..\BRB3\SqlBulkCopy\SqlCeRowsCopiedEventArgs.cs">
       <Link>SqlBulkCopy\SqlCeRowsCopiedEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\BRB3\Status.cs">
+      <Link>Status.cs</Link>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -16,6 +16,8 @@ namespace BRB
         {
             cData = parData;        
         }
+
+        static private TypeDoc CurTypeDoc;
         static private int CurNumDoc;
         static private int CurCodeWares;
         static private DataTable dtDocs;
@@ -24,13 +26,16 @@ namespace BRB
         static private DataRow CurWaresDoc;
         static public Data cData;
 
-        public DataTable LoadDocs(TypeDoc parTypeDoc)
+        public static DataTable LoadDocs(TypeDoc parTypeDoc)
         {
+            CurTypeDoc = parTypeDoc;
             return dtDocs=cData.FillDocs(parTypeDoc);        
         }
 
-        public DataTable LoadWaresDocs(TypeDoc parTypeDoc, int parNumberDoc)
+        public static DataTable LoadWaresDocs(TypeDoc parTypeDoc, int parNumberDoc)
         {
+            //CurNumDoc = parNumberDoc;
+            SetCurDoc(parNumberDoc);
             return dtWaresDoc=cData.FillDocsWares(parNumberDoc);        
         }
 
@@ -66,7 +71,7 @@ namespace BRB
         /// Зберігаємо текучий рядок документа
         /// </summary>
         /// <param name="parCurDoc"></param>
-        public void SetCurWaresDoc(DataRow parCurWaresDoc)
+        public static void SetCurWaresDoc(DataRow parCurWaresDoc)
         {
             CurWaresDoc = parCurWaresDoc;
         }
@@ -75,7 +80,7 @@ namespace BRB
         /// Зберігаємо текучий рядок документа
         /// </summary>
         /// <param name="parCurDoc"></param>
-        public void SetCurWaresDoc(int parCurCodeWares)
+        public static void SetCurWaresDoc(int parCurCodeWares)
         {
             CurCodeWares = parCurCodeWares;
         }
@@ -86,7 +91,7 @@ namespace BRB
         /// </summary>
         /// <param name="parBarCode"></param>
         /// <returns></returns>
-        public DataRow FindGoodBarCode(string parBarCode)
+        public static DataRow FindGoodBarCode(string parBarCode)
         {
             try
             {
@@ -111,7 +116,7 @@ namespace BRB
         /// </summary>
         /// <param name="parBarCode"></param>
         /// <returns></returns>
-        public DataRow FindGoodCode()
+        public static DataRow FindGoodCode()
         {
             if (dtWaresDoc != null)
                 return dtWaresDoc.Select(string.Format("code_wares={0}", CurCodeWares)).First();
@@ -123,7 +128,7 @@ namespace BRB
         /// </summary>
         /// <param name="parBarCode"></param>
         /// <returns></returns>
-        public DataRow FindGoodCode(int parCodeWares)
+        public static DataRow FindGoodCode(int parCodeWares)
         {
            SetCurWaresDoc(parCodeWares);
            return FindGoodCode(); 
@@ -134,7 +139,7 @@ namespace BRB
         /// </summary>
         /// <returns></returns>
 
-        public bool IsSumQty()
+        public static bool IsSumQty()
         {
             return (Convert.ToInt32( CurDoc["flag_sum_qty_doc"]) != 0);
         }
@@ -149,7 +154,7 @@ namespace BRB
         /// <param name="pPacQty"></param>
         /// <param name="coefficient"></param>
         /// <param name="conn"></param>
-        public Status SaveGoods(  int parCodeWares,int parNumPop, decimal parQty, decimal parPrice,  decimal pPacQty, decimal coefficient)
+        public static Status SaveGoods(int parCodeWares, int parNumPop, decimal parQty, decimal parPrice, decimal pPacQty, decimal coefficient)
         {
             Status res = new Status();
             try

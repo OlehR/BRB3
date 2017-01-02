@@ -19,7 +19,7 @@ namespace BRB.Forms
         public frmDocGrid(TypeDoc parTypeDoc)
         {
             typeDoc = parTypeDoc;
-            dt = Global.cBL.LoadDocs(parTypeDoc);
+            dt = BL.LoadDocs(parTypeDoc);
             InitializeComponent();
             InitializeComponentManual();
         }
