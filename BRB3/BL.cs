@@ -18,18 +18,20 @@ namespace BRB
         }
         static private int CurNumDoc;
         static private int CurCodeWares;
+        static private DataTable dtDocs;
+        static private DataTable dtWaresDoc;
         static private DataRow CurDoc;
         static private DataRow CurWaresDoc;
         static public Data cData;
 
         public DataTable LoadDocs(TypeDoc parTypeDoc)
         {
-            return cData.FillDocs(parTypeDoc);        
+            return dtDocs=cData.FillDocs(parTypeDoc);        
         }
 
         public DataTable LoadWaresDocs(TypeDoc parTypeDoc, int parNumberDoc)
         {
-            return cData.FillDocsWares(parNumberDoc);        
+            return dtWaresDoc=cData.FillDocsWares(parNumberDoc);        
         }
 
         /// <summary>
@@ -84,16 +86,47 @@ namespace BRB
         /// </summary>
         /// <param name="parBarCode"></param>
         /// <returns></returns>
-        public DataTable FindGoodBarCode(string parBarCode)
+        public DataRow FindGoodBarCode(string parBarCode)
         {
             try
             {
-                return cData.FindGoodBarCode(CurNumDoc, parBarCode, false);
+                var dt = cData.FindGoodBarCode(CurNumDoc, parBarCode, false);
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    SetCurWaresDoc(Convert.ToInt32(dt.Rows[0]["code_wares"]));
+                    return dt.Rows[0];
+                }
+                else
+                    return null;
             }
             catch
             {
                 return null;
             }
+        }
+        
+
+        /// <summary>
+        /// Вертає текучий товар
+        /// </summary>
+        /// <param name="parBarCode"></param>
+        /// <returns></returns>
+        public DataRow FindGoodCode()
+        {
+            if (dtWaresDoc != null)
+                return dtWaresDoc.Select(string.Format("code_wares={0}", CurCodeWares)).First();
+            return null;
+        }
+
+        /// <summary>
+        /// Встановлює текучий товар і вертає по ньому інфу.
+        /// </summary>
+        /// <param name="parBarCode"></param>
+        /// <returns></returns>
+        public DataRow FindGoodCode(int parCodeWares)
+        {
+           SetCurWaresDoc(parCodeWares);
+           return FindGoodCode(); 
         }
 
         /// <summary>
@@ -119,7 +152,6 @@ namespace BRB
         public Status SaveGoods(  int parCodeWares,int parNumPop, decimal parQty, decimal parPrice,  decimal pPacQty, decimal coefficient)
         {
             Status res = new Status();
-
             try
             {
                
