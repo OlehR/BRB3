@@ -390,6 +390,7 @@
             this.Name = "frmWaresScan";
             this.mainPanel.ResumeLayout(false);
             this.Load += new System.EventHandler(this.frmWaresScan_Load);
+            this.Closed += new System.EventHandler(this.frmWaresScan_Closed);
             this.ResumeLayout(false);
 
         }

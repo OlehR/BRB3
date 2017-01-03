@@ -13,7 +13,7 @@ namespace BRB.Forms
     public partial class frmDocGrid : Form
     {
         DataTable dt;
-        int number_doc;
+        //int number_doc;
         TypeDoc typeDoc;
 
         public frmDocGrid(TypeDoc parTypeDoc)
@@ -49,6 +49,8 @@ namespace BRB.Forms
         {
             try
             {
+                Global.cTerminal.StartScan(this.scanBarcode);
+
                 //RefreshAdvList();
                 //this.Text = clsCommon.PropMiniInventoryCaption;
                 //this.DialogResult = DialogResult.None;
@@ -83,6 +85,19 @@ namespace BRB.Forms
                 clsDialogBox.ErrorBoxShow("Неможливо зайти в модуль!");
             }
         }
+
+        private void frmDocGrid_Closed(object sender, EventArgs e)
+        {
+            try
+            {
+                Global.cTerminal.StopScan();
+            }
+            catch (System.Exception ) // --------------------------
+            {
+                clsDialogBox.ErrorBoxShow("error");
+            }
+        }
+
 
         #region Кнопки/функції ---------------------
 
@@ -196,6 +211,8 @@ namespace BRB.Forms
         }
         private void btnWares()
         {
+            Global.cTerminal.StopScan();
+
             if (advancedList.ActiveRowIndex >= 0)
             {
                  if (Convert.ToInt32(advancedList.DataRows[advancedList.ActiveRowIndex]["status"]) == 1)
@@ -374,6 +391,11 @@ namespace BRB.Forms
                 e.DataRow.TemplateIndex = 3;
             else
                 e.DataRow.TemplateIndex = 1;
+        }
+
+        void scanBarcode(string Barcode)
+        {
+            string iT = Barcode;
         }
 
         #endregion //Кнопки/функції

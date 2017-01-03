@@ -35,12 +35,40 @@ namespace BRB.Forms
         private void frmWaresScan_Load(object sender, EventArgs e)
         {
             //FullScreen.StartFullScreen(this);
+            Global.cTerminal.StartScan(this.scanBarcode);
+            fillDataForm();
+            
+        }
+
+        private void frmWaresScan_Closed(object sender, EventArgs e)
+        {
+            try
+            {
+                Global.cTerminal.StopScan();
+            }
+            catch (System.Exception) // --------------------------
+            {
+                clsDialogBox.ErrorBoxShow(e.ToString());
+            }
+        }
+
+        /// <summary>
+        /// Disabling FullScreen on Closing Main Form of Application
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void frmWaresScan_Closing(object sender, CancelEventArgs e)
+        {
+            //FullScreen.StopFullScreen(this);
+        }
+        public void fillDataForm()
+        {
             if (dr != null)
             {
                 this.mplDocNum.Text = dr["number_doc"].ToString();
                 this.mplArticle.Text = dr["code_wares"].ToString();
                 this.mplCode.Text = dr["bar_code"].ToString();
-                this.mplName.Text = "                      " +  dr["name_wares"].ToString();
+                this.mplName.Text = "                      " + dr["name_wares"].ToString();
                 mptbAddQty.Text = "";
 
                 if (dr["quantity"] != DBNull.Value)
@@ -61,7 +89,7 @@ namespace BRB.Forms
 
                     if (type_doc == 3 | type_doc == 8)
                     {
-                        mplQtyTempl.Text = string.Empty;   
+                        mplQtyTempl.Text = string.Empty;
                     }
                     else this.mplQtyTempl.Text = decimal.Round(Convert.ToDecimal(dr["quantity_temp"]), 3).ToString("0.000");
                 }
@@ -69,15 +97,6 @@ namespace BRB.Forms
             }
         }
 
-        /// <summary>
-        /// Disabling FullScreen on Closing Main Form of Application
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void frmWaresScan_Closing(object sender, CancelEventArgs e)
-        {
-            FullScreen.StopFullScreen(this);
-        }
         public void InitializeComponentManual()
         {
             this.labelDown.Size = new System.Drawing.Size(100, (1 + Global.hToolbarTerminal));
@@ -100,6 +119,12 @@ namespace BRB.Forms
                                     
         }
 
+        void scanBarcode(string Barcode)
+        {
+            dr = BL.FindGoodBarCode(Barcode);
+            fillDataForm();
+            clsDialogBox.InformationBoxShow(Barcode);
+        }
         
     }
 }

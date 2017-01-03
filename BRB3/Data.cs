@@ -129,7 +129,8 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
                                       au.coefficient, 
                                       au.code_unit, 
                                       aus.code_unit as code_unit_scan,
-                                      w.term
+                                      w.term,
+                                      d.type_doc
                               FROM    DOCS_WARES AS dw 
                               INNER JOIN WARES AS w ON dw.code_wares = w.code_wares 
                               INNER JOIN ADDITION_UNIT AS au ON dw.code_unit = au.code_unit AND dw.code_wares = au.code_wares 

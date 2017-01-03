@@ -393,6 +393,7 @@
             this.Name = "frmDocGrid";
             this.Text = "BRB3";
             this.Load += new System.EventHandler(this.frmDocGrid_Load);
+            this.Closed += new System.EventHandler(this.frmDocGrid_Closed);
             this.ResumeLayout(false);
 
         }
