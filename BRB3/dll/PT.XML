@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PT</name>
+    </assembly>
+    <members>
+        <member name="T:PT.Results">
+            <summary>
+            Enumerated type that maps its members to underlying C API return codes.
+            </summary>
+        </member>
+        <member name="F:PT.Results.SUCCESS">
+            <summary>
+            The task was successful.
+            </summary>
+        </member>
+        <member name="F:PT.Results.PENDING">
+            <summary>
+            The task is pending.
+            </summary>
+        </member>
+        <member name="F:PT.Results.NOTENABLED">
+            <summary>
+            The device is not enabled.
+            </summary>
+        </member>
+        <member name="F:PT.Results.CANCELED">
+            <summary>
+            The task was cancelled.
+            </summary>
+        </member>
+        <member name="T:PT.Win32">
+            <summary>
+            The Win32 Class provide access to native functionality that has not yet been made available with the .NET Compact Framework.
+            </summary>
+        </member>
+        <member name="P:PT.Win32.PlatformType">
+            <summary>
+            Returns the platform type string
+            </summary>
+        </member>
+    </members>
+</doc>

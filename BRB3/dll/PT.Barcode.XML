@@ -1,0 +1,2295 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PT.Barcode</name>
+    </assembly>
+    <members>
+        <member name="T:PT.Barcode.DecoderTypes">
+            <summary>
+            Enumeration of all barcode symbologies supported.
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderTypes.AUSPOSTAL">
+            <summary>
+            The Australian Postal Symbology
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderTypes.AZTEC">
+            <summary>
+            The Aztec Symbology
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderTypes.BRITISH">
+            <summary>
+            The British Postal Symbology
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderTypes.CANPOSTAL">
+            <summary>
+            The Canadian Postal Symbology
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderTypes.CHINAPOSTAL">
+            <summary>
+            The China Postal Symbology
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderTypes.CODABAR">
+            <summary>
+            The Codabar Symbology
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderTypes.CODABLOCK">
+            <summary>
+            The Codablock Symbology
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderTypes.CODE11">
+            <summary>
+            The Code 11 Symbology
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderTypes.CODE128">
+            <summary>
+            The Code 128 Symbology
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderTypes.CODE16K">
+            <summary>
+            The Code 16K Symbology
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderTypes.STRT2OF5">
+            <summary>
+            The Straight 2 of 5 Symbology
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderTypes.CODE39">
+            <summary>
+            The Code 39 Symbology
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderTypes.CODE49">
+            <summary>
+            The Code 49 Symbology
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderTypes.CODE93">
+            <summary>
+            The Code 93 Symbology
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderTypes.COMPOSITE">
+            <summary>
+            The Composite Symbology
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderTypes.DATAMATRIX">
+            <summary>
+            The Data Matrix Symbology
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderTypes.EAN8">
+            <summary>
+            The EAN 8 Symbology
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderTypes.EAN13">
+            <summary>
+            The EAN 13 Symbology
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderTypes.IATA2OF5">
+            <summary>
+            The IATA 2 of 5 Symbology
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderTypes.IDTAG">
+            <summary>
+            The ID tag Symbology
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderTypes.INT2OF5">
+            <summary>
+            The Interleaved 2 of 5 Symbology
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderTypes.JAPPOSTAL">
+            <summary>
+            The Japan Postal Symbology
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderTypes.DUTCHPOSTAL">
+            <summary>
+            The Dutch Postal Symbology
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderTypes.KOREAPOSTAL">
+            <summary>
+            The Korea Postal Symbology
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderTypes.MATRIX2OF5">
+            <summary>
+            The Matrix 2 of 5 Symbology
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderTypes.MAXICODE">
+            <summary>
+            The Maxi Code Symbology
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderTypes.MICROPDF">
+            <summary>
+            The Micro PDF Symbology
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderTypes.MSI">
+            <summary>
+            The MSI Symbology
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderTypes.PDF417">
+            <summary>
+            The PDF417 Symbology
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderTypes.USPLANET">
+            <summary>
+            The US PLANET Symbology
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderTypes.PLESSEY">
+            <summary>
+            The Plessey Symbology
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderTypes.POSICODE">
+            <summary>
+            The Posicode Symbology
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderTypes.USPOSTNET">
+            <summary>
+            The US Postnet Symbology
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderTypes.QRCODE">
+            <summary>
+            The QR code Symbology
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderTypes.RSS14">
+            <summary>
+            The Reduced Space Symbology -14
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderTypes.TELEPEN">
+            <summary>
+            The Telepen Symbology
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderTypes.TRIOPTIC39">
+            <summary>
+            The Trioptic 39 Symbology
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderTypes.TLC39">
+            <summary>
+            The TLC 39 Symbology
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderTypes.UPCA">
+            <summary>
+            The UPC-A Symbology
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderTypes.UPCE0">
+            <summary>
+            The UPC-E0 Symbology
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderTypes.UPCE1">
+            <summary>
+            The UPC-E1 Symbology
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderTypes.COUPON">
+            <summary>
+            The Coupon Symbology
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderTypes.USPS4">
+            <summary>
+            The USPS Symbology
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderTypes.CODE32">
+            <summary>
+            The Code32 Symbology
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderTypes.ISBT">
+            <summary>
+            The ISBT Symbology
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "F:PT.Barcode.DecoderTypes.RSSLIMITED" -->
+        <!-- Badly formed XML comment ignored for member "F:PT.Barcode.DecoderTypes.RSSEXPANDED" -->
+        <!-- Badly formed XML comment ignored for member "F:PT.Barcode.DecoderTypes.OCR" -->
+        <!-- Badly formed XML comment ignored for member "F:PT.Barcode.DecoderTypes.UPCEANGENERAL" -->
+        <member name="P:PT.Barcode.ScanParamsAPI.Feedback">
+            <summary>
+            Returns a FeedbackListPropertyInfo object. This object provides a list of feedback types that can be modified.
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.ScanParamsAPI.Text">
+            <summary>
+            String that returns "Parameters".
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.ScanParamsAPI.FeedbackPropertyInfo.BeepFrequency">
+            <summary>
+            Not Support in XM
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.ScanParamsAPI.FeedbackPropertyInfo.BeepTime">
+            <summary>
+            Not Support in XM
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.ScanParamsAPI.FeedbackPropertyInfo.LedTime">
+            <summary>
+            An integer that specifies the amount of time to light the decode LED in milliseconds (Range 0-5000).
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.ScanParamsAPI.FeedbackPropertyInfo.Text">
+            <summary>
+            String that returns "Feedback"
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.ScanParamsAPI.FeedbackPropertyInfo.WaveFile">
+            <summary>
+            A string that contains the absolute path to a .WAV file that will be played when the feedback event occurs.
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.ScanParamsAPI.FeedbackListPropertyInfo.Fail">
+            <summary>
+            A FeedbackPropertyInfo object will be returned. This object can be used to set parameters about the feedback.
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.ScanParamsAPI.FeedbackListPropertyInfo.Problem">
+            <summary>
+            A FeedbackPropertyInfo object will be returned. This object can be used to set parameters about the feedback.
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.ScanParamsAPI.FeedbackListPropertyInfo.Proceed">
+            <summary>
+            A FeedbackPropertyInfo object will be returned. This object can be used to set parameters about the feedback.
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.ScanParamsAPI.FeedbackListPropertyInfo.Progress">
+            <summary>
+            A FeedbackPropertyInfo object will be returned. This object can be used to set parameters about the feedback.
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.ScanParamsAPI.FeedbackListPropertyInfo.Start">
+            <summary>
+            A FeedbackPropertyInfo object will be returned. This object can be used to set parameters about the feedback.
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.ScanParamsAPI.FeedbackListPropertyInfo.Success">
+            <summary>
+            A FeedbackPropertyInfo object will be returned. This object can be used to set parameters about the feedback.
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.ScanParamsAPI.FeedbackListPropertyInfo.Text">
+            <summary>
+            String that returns "Feedback".
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.Preambles.None">
+            <summary>
+            No preamble
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.Preambles.System">
+            <summary>
+            System character preamble.
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.Preambles.CountryAndSystem">
+            <summary>
+            Both country and system code preamble.
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.SupplementalModes.None">
+            <summary>
+            No preamble
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.SupplementalModes.Always">
+            <summary>
+            Always
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.SupplementalModes.Auto">
+            <summary>
+            Auto
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.SupplementalModes.Smart">
+            <summary>
+            Smart
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.SupplementalModes.Supp378_379">
+            <summary>
+            Supp 378/379
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.SupplementalModes.Supp978_979">
+            <summary>
+            Supp 978/979
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.SupplementalModes.Supp977">
+            <summary>
+            Supp 977
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.SupplementalModes.Supp414_419_434_439">
+            <summary>
+            Supp 414/419/434/439
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.Limited.NoLimited">
+            <summary>
+            No Limited
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.Limited.LimitedA">
+            <summary>
+            Limited A
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.Limited.LimitedB">
+            <summary>
+            Limited B
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.CheckDigitCount3Options.None">
+            <summary>
+            None
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.CheckDigitCount3Options.One">
+            <summary>
+            1
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.CheckDigitCount3Options.Two">
+            <summary>
+            2
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.ISBT128ConcatModes.Never">
+            <summary>
+            Never
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.ISBT128ConcatModes.Always">
+            <summary>
+            Always
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.ISBT128ConcatModes.Auto">
+            <summary>
+            Auto
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.CheckDigitCount2Options.One">
+            <summary>
+            One
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.CheckDigitCount2Options.Two">
+            <summary>
+            Two
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.CheckDigitAlgorithms.Mod_11_10">
+            <summary>
+            Mod 11 10
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.CheckDigitAlgorithms.Mod_10_10">
+            <summary>
+            Mod 10 10
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.SecurityLevels.Level_0">
+            <summary>
+            Level 0
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.SecurityLevels.Level_1">
+            <summary>
+            Level 1
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.SecurityLevels.Level_2">
+            <summary>
+            Level 2
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.SecurityLevels.Level_3">
+            <summary>
+            Level 3
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.BooklandFormats.ISBN_10">
+            <summary>
+            ISBN 10
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.BooklandFormats.ISBN_13">
+            <summary>
+            ISBN 13
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.CheckDigitSchemes.None">
+            <summary>
+            None
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.CheckDigitSchemes.USS">
+            <summary>
+            USS
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.CheckDigitSchemes.OPCC">
+            <summary>
+            OPCC
+            </summary>
+        </member>
+        <member name="T:PT.Barcode.ReaderDataTypes">
+            <summary>
+            Data types for the data from barcode scanner.
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.ReaderDataTypes.Binary">
+            <summary>
+            Currently Not Support
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.ReaderDataTypes.Text">
+            <summary>
+            The buffer of memory used to access the hardware will hold text.
+            </summary>
+        </member>
+        <member name="T:PT.Barcode.ReaderDataLengths">
+            <summary>
+            Length of ReaderData memory buffer.
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.ReaderDataLengths.DefaultText">
+            <summary>
+            Default 55 characters.
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.ReaderDataLengths.MaximumLabel">
+            <summary>
+            Maximum amount for data.
+            </summary>
+        </member>
+        <member name="T:PT.Barcode.ReaderData">
+            <summary>
+            ReaderData class encapsulates all the scanned data and meta-data for a read.
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.ReaderData.prvSource">
+            <summary>
+            Returns the source of the scanned data
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.ReaderData.prvText">
+            <summary>
+            Returns the scanned data text
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.ReaderData.prvResult">
+            <summary>
+            The result of the read request
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.ReaderData.prvBufferSize">
+            <summary>
+            Specifies the memory buffer size allocated by the ReaderData
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.ReaderData.prvHasReader">
+            <summary>
+            Specifies whether or not the ReaderData has been attached to a Reader object via a Actions.Read method call
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.ReaderData.prvIsAllocated">
+            <summary>
+            Specifies whether or not a memory buffer has been allocated for the ReaderData
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.ReaderData.prvIsPending">
+            <summary>
+            Specifies whether or not the ReaderData is currently in a pending read situation
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.ReaderData.prvLength">
+            <summary>
+            The length of the barcode data
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.ReaderData.prvTimeStamp">
+            <summary>
+            The time at which the barcode was scanned
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.ReaderData.prvEvent">
+            <summary>
+            Not used; return either "Scan Complete"  or ""
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.ReaderData.prvIsText">
+            <summary>
+            Specifies whether or not the ReaderData memory buffer is set to text mode
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.ReaderData.prvRawData">
+            <summary>
+            Returns a byte array with the scanned data
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.ReaderData.prvRequestId">
+            <summary>
+            Not used; Always return 0
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.ReaderData.prvTypeHex">
+            <summary>
+            The decoder type of the barcode in hexadecimal format
+            </summary>
+        </member>
+        <member name="M:PT.Barcode.ReaderData.#ctor(PT.Barcode.ReaderDataTypes,PT.Barcode.ReaderDataLengths)">
+            <summary>
+            ReaderData constructor with enumerated type buffer size.
+            </summary>
+            <param name="nBufferSize">A PT.Barcode.ReaderDataTypes member.</param>
+            <param name="ReaderDataType"> Size of the memory buffer in bytes for binary mode, in characters for text mode.</param>
+        </member>
+        <member name="M:PT.Barcode.ReaderData.#ctor(PT.Barcode.ReaderDataTypes,System.Int32)">
+            <summary>
+            ReaderData constructor with integer based buffer size.
+            </summary>
+            <param name="nBufferSize">A PT.Barcode.ReaderDataTypes member.</param>
+            <param name="ReaderDataType"> Size of the memory buffer in bytes for binary mode, in characters for text mode.</param>
+        </member>
+        <member name="M:PT.Barcode.ReaderData.Dispose">
+            <summary>
+            Release all resources used by ReaderData object.
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.ReaderData.Source">
+            <summary>
+            Returns the source of the scanned data.
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.ReaderData.Text">
+            <summary>
+            Returns the scanned data text.
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.ReaderData.Result">
+            <summary>
+            The result of the read request.
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.ReaderData.BufferSize">
+            <summary>
+            Specifies the memory buffer size allocated by the ReaderData.
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.ReaderData.HasReader">
+            <summary>
+            Specifies whether or not the ReaderData has been attached to a Reader object via a Actions.Read method call.
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.ReaderData.IsAllocated">
+            <summary>
+            Specifies whether or not a memory buffer has been allocated for the ReaderData.
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.ReaderData.IsPending">
+            <summary>
+            Specifies whether or not the ReaderData is currently in a pending read situation.
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.ReaderData.Length">
+            <summary>
+            The length of the barcode data.
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.ReaderData.TimeStamp">
+            <summary>
+            The time at which the barcode was scanned.
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.ReaderData.Event">
+            <summary>
+            Not used; return either "Scan Complete"  or ""
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.ReaderData.IsText">
+            <summary>
+            Specifies whether or not the ReaderData memory buffer is set to text mode.
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.ReaderData.RawData">
+            <summary>
+            Returns a byte array with the scanned data.
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.ReaderData.RequestId">
+            <summary>
+            The ID of the read submitted to the barcode scanner.
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.ReaderData.TypeHex">
+            <summary>
+            The Decoder Type of the barcode. (in hexadecimal format)
+            </summary>
+        </member>
+        <member name="T:PT.Barcode.Reader">
+            <summary>
+            The Barcode.Reader class can be considered the primary class of the Barcode class library. It provides access to actions, information, and parameters.
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.Reader.prvActions">
+            <summary>
+            Provides access to actions that can be performed on the reader
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.Reader.prvDecoders">
+            <summary>
+            Provides access to Decoder-specific parameters so that they can be viewed and modified
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.Reader.sText">
+            <summary>
+            Registry key string
+            </summary>
+        </member>
+        <member name="M:PT.Barcode.Reader.#ctor">
+            <summary>
+            Reader constructor with settable Barcode.Device
+            </summary>
+        </member>
+        <member name="M:PT.Barcode.Reader.Dispose">
+            <summary>
+            Frees up all resources used by the reader
+            </summary>
+            
+        </member>
+        <member name="M:PT.Barcode.Reader.GetNextReaderData">
+            <summary>
+            Gets the next ReaderData object from the read completion queue
+            </summary>
+            <returns>A PT.Barcode.ReaderData object that has completed.</returns>
+        </member>
+        <member name="M:PT.Barcode.Reader.GetNextStatus">
+            <summary>
+            Gets the next BarcodeStatus object from the scan status event queue
+            </summary>
+            <returns>A PT.Barcode.BarcodeStatus object with scan event information.</returns>
+        </member>
+        <member name="M:PT.Barcode.Reader.OnReaderNotify">
+            <summary>
+            Notify UI thread of read
+            </summary>
+        </member>
+        <member name="M:PT.Barcode.Reader.Restore">
+            <summary>
+            Restores saved parameters (Not Ready)
+            </summary>
+        </member>
+        <member name="M:PT.Barcode.Reader.Save">
+            <summary>
+            Save the parameter (Not Ready)
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.Reader.Actions">
+            <summary>
+            Provides access to actions
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.Reader.Decoders">
+            <summary>
+            Provides access to Decoder-specific parameters
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.Reader.Text">
+            <summary>
+            Provides access to Text parameters
+            </summary>
+        </member>
+        <member name="E:PT.Barcode.Reader.ReadNotify">
+            <summary>
+            Attach to this notification event to be called back when a read completes
+            </summary>
+        </member>
+        <member name="E:PT.Barcode.Reader.StatusNotify">
+            <summary>
+            Attach to this notification event to be called back when a scan events occurs
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.Reader.Version">
+            <summary>
+            Provides access to version string
+            </summary>
+        </member>
+        <member name="T:PT.Barcode.Actions">
+            <summary>
+            Performs actions on the Reader.
+            </summary>
+        </member>
+        <member name="M:PT.Barcode.Actions.#ctor(PT.Barcode.Reader)">
+            <summary>
+            The Actions contructor
+            </summary>
+        </member>
+        <member name="M:PT.Barcode.Actions.Finalize">
+            <summary>
+            Allows an Action object to attempt to free resources and perform other cleanup operations before it is reclaimed by garbage collection.
+            </summary>
+        </member>
+        <member name="M:PT.Barcode.Actions.ToggleSoftTrigger">
+            <summary>
+            Soft trigger the scanner.
+            </summary>
+        </member>
+        <member name="M:PT.Barcode.Actions.CancelRead(PT.Barcode.ReaderData)">
+            <summary>
+            Cancel any barcode scanning in progress
+            </summary>
+            <param name="rd">A ReaderData object that has a pending read.</param>
+        </member>
+        <member name="M:PT.Barcode.Actions.Disable">
+            <summary>
+            Disable the barcode scanner
+            </summary>
+        </member>
+        <member name="M:PT.Barcode.Actions.Dispose">
+            <summary>
+            Release any resources used by the Actions class
+            </summary>
+        </member>
+        <member name="M:PT.Barcode.Actions.Enable">
+            <summary>
+            Enable the barcode scanner
+            </summary>
+        </member>
+        <member name="M:PT.Barcode.Actions.Flush">
+            <summary>
+            Same as CancelRead. Keep it for compatible
+            </summary>
+        </member>
+        <member name="M:PT.Barcode.Actions.NewReaderData">
+            <summary>
+            Create a new ReaderData object
+            </summary>
+            <returns>The new ReaderData object</returns>
+        </member>
+        <member name="M:PT.Barcode.Actions.Read(PT.Barcode.ReaderData)">
+            <summary>
+            Set the ReaderData object that will contain the scanned data
+            </summary>
+            <param name="rd">The ReaderData object that will contain the scanned data once the read completes.</param>
+        </member>
+        <member name="T:PT.Barcode.States">
+            <summary>
+            Different states of the barcode Reader.
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.States.AIMING">
+            <summary>
+            Scanner beam is on
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.States.FIRST">
+            <summary>
+            The first item in the States enumeration
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.States.IDLE">
+            <summary>
+            Scanner is enabled but no reads are pending
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.States.LAST">
+            <summary>
+            The last item in the States enumeration
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.States.READY">
+            <summary>
+            Scanner beam is on and it is acquiring data
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.States.STOPPED">
+            <summary>
+            Scanner is not enabled
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.States.WAITING">
+            <summary>
+            Scanner has one or more reads pending and is waiting for trigger event
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.States.SCANNING">
+            <summary>
+            Scanner is scanning barcode data
+            </summary>
+        </member>
+        <member name="T:PT.Barcode.DecoderAPI">
+            <summary>
+            The DecoderAPI class provides access to decoder specific parameters.
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderAPI.prvAUSPOSTAL">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderAPI.prvAZTEC">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderAPI.prvBRITISH">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderAPI.prvCANPOSTAL">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderAPI.prvCHINAPOSTAL">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderAPI.prvCODABAR">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderAPI.prvCODABLOCK">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderAPI.prvCODE11">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderAPI.prvCODE128">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderAPI.prvCODE16K">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderAPI.prvCODE32">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderAPI.prvCODE39">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderAPI.prvCODE49">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderAPI.prvCODE93">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderAPI.prvCOMPOSITE">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderAPI.prvCOUPON">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderAPI.prvDATAMATRIX">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderAPI.prvDUTCHPOSTAL">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderAPI.prvEAN13">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderAPI.prvEAN8">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderAPI.prvIATA2OF5">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderAPI.prvIDTAG">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderAPI.prvINT2OF5">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderAPI.prvISBT">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderAPI.prvJAPPOSTAL">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderAPI.prvKOREAPOSTAL">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderAPI.prvMATRIX2OF5">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderAPI.prvMAXICODE">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderAPI.prvMICROPDF">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderAPI.prvMSI">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderAPI.prvPDF417">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderAPI.prvPLESSEY">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderAPI.prvPOSICODE">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderAPI.prvQRCODE">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderAPI.prvRSS14">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderAPI.prvSTRT2OF5">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderAPI.prvTELEPEN">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderAPI.prvTLC39">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderAPI.prvTRIOPTIC39">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderAPI.prvUPCA">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderAPI.prvUPCE0">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderAPI.prvUPCE1">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderAPI.prvUSPLANET">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderAPI.prvUSPOSTNET">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderAPI.prvUSPS4">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderAPI.prvRSSLIMITED">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderAPI.prvRSSEXPANDED">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderAPI.prvOCR">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderAPI.prvUPCEANGENERAL">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="M:PT.Barcode.DecoderAPI.#ctor(PT.Barcode.Reader)">
+            <summary>
+            The DecoderAPI constructor
+            </summary>
+            <param name="clsReader">A Reader object to obtain decoder information from.</param>
+        </member>
+        <member name="M:PT.Barcode.DecoderAPI.DisableAll">
+            <summary>
+            Disable all symbologies
+            </summary>
+        </member>
+        <member name="M:PT.Barcode.DecoderAPI.DisableDefaults">
+            <summary>
+            Disable symbologies that are enabled by default
+            </summary>
+        </member>
+        <member name="M:PT.Barcode.DecoderAPI.EnableAll">
+            <summary>
+            Enable all symbologies
+            </summary>
+        </member>
+        <member name="M:PT.Barcode.DecoderAPI.EnableDefaults">
+            <summary>
+            Enable default symbologies
+            </summary>
+        </member>
+        <member name="M:PT.Barcode.DecoderAPI.IsEnabled(PT.Barcode.DecoderTypes)">
+            <summary>
+            Returns whether or not the given decoder is currently enabled
+            </summary>
+            <param name="dt">A DecoderTypes enum that specifies a particular decoder.</param>
+            <returns> true if enabled, false otherwise</returns>
+        </member>
+        <member name="M:PT.Barcode.DecoderAPI.IsSupported(PT.Barcode.DecoderTypes)">
+            <summary>
+            Returns whether or not the given decoder is supported
+            </summary>
+            <param name="dt">A DecoderTypes enum that specifies a particular decoder.</param>
+            <returns> true if supported, false otherwise</returns>
+        </member>
+        <member name="M:PT.Barcode.DecoderAPI.Restore">
+            <summary>
+            Restored the symbologies setting
+            </summary>
+        </member>
+        <member name="M:PT.Barcode.DecoderAPI.Save">
+            <summary>
+            Saved the current symbologies setting
+            </summary>
+        </member>
+        <member name="M:PT.Barcode.DecoderAPI.SetEnabled(PT.Barcode.DecoderTypes,System.Boolean)">
+            <summary>
+            Sets whether or not a specified decoder should be enabled
+            </summary>
+            <param name="dt">A DecoderTypes enum that specifies a particular decoder.</param>
+            <param name="bValue">true if enabling a decoder, false if disabling a decoder</param>
+        </member>
+        <member name="M:PT.Barcode.DecoderAPI.OptionSupported(PT.Barcode.DecoderTypes)">
+            <summary>
+            Return option that the barcode supported
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.DecoderAPI.AUSPOSTAL">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.DecoderAPI.AZTEC">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.DecoderAPI.BRITISH">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.DecoderAPI.CANPOSTAL">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.DecoderAPI.CHINAPOSTAL">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.DecoderAPI.CODABAR">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.DecoderAPI.CODABLOCK">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.DecoderAPI.CODE11">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.DecoderAPI.CODE128">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.DecoderAPI.CODE16K">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.DecoderAPI.CODE32">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.DecoderAPI.CODE39">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.DecoderAPI.CODE49">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.DecoderAPI.CODE93">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.DecoderAPI.COMPOSITE">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.DecoderAPI.COUPON">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.DecoderAPI.DATAMATRIX">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.DecoderAPI.DUTCHPOSTAL">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.DecoderAPI.EAN13">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.DecoderAPI.EAN8">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.DecoderAPI.IATA2OF5">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.DecoderAPI.IDTAG">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.DecoderAPI.INT2OF5">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.DecoderAPI.ISBT">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.DecoderAPI.JAPPOSTAL">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.DecoderAPI.KOREAPOSTAL">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.DecoderAPI.MATRIX2OF5">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.DecoderAPI.MAXICODE">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.DecoderAPI.MICROPDF">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.DecoderAPI.MSI">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.DecoderAPI.PDF417">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.DecoderAPI.PLESSEY">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.DecoderAPI.POSICODE">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.DecoderAPI.QRCODE">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.DecoderAPI.RSS14">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.DecoderAPI.STRT2OF5">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.DecoderAPI.TELEPEN">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.DecoderAPI.TLC39">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.DecoderAPI.TRIOPTIC39">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.DecoderAPI.UPCA">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.DecoderAPI.UPCE0">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.DecoderAPI.UPCE1">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.DecoderAPI.USPLANET">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.DecoderAPI.USPOSTNET">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.DecoderAPI.USPS4">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.DecoderAPI.RSSLIMITED">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.DecoderAPI.RSSEXPANDED">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.DecoderAPI.OCR">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.DecoderAPI.UPCEANGENERAL">
+            <summary>
+            Parameters for this decoder can be viewed/modified using this object
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderSupportedOption.F_CHK_ENA">
+            <summary>
+            Check Enabled
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderSupportedOption.F_CHK_XMIT">
+            <summary>
+            Check Transmitted
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderSupportedOption.F_STRT_STP">
+            <summary>
+            Start/Stop
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderSupportedOption.F_APPEND">
+            <summary>
+            Append
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderSupportedOption.F_FULLASC">
+            <summary>
+            Full ASCII
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderSupportedOption.F_CONCAT">
+            <summary>
+            Concat
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderSupportedOption.F_2CHKDIG">
+            <summary>
+            2 Check Digit
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderSupportedOption.F_OLDSTYLE">
+            <summary>
+            Old Style
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderSupportedOption.F_EXPAND">
+            <summary>
+            Expand
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderSupportedOption.F_NUMSYSXMIT">
+            <summary>
+            Number Sys Transmit
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderSupportedOption.F_2DIGADDA">
+            <summary>
+            2 Dig Addenda
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderSupportedOption.F_5DIGADDA">
+            <summary>
+            5 Dig Addenda
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderSupportedOption.F_ADDAREQ">
+            <summary>
+            Addenda Req
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderSupportedOption.F_ADDASEP">
+            <summary>
+            Addenda Sep
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderSupportedOption.F_AZTECRUNE">
+            <summary>
+            Aztec Rune
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderSupportedOption.F_UPCCOMP">
+            <summary>
+            UPC Comp
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderSupportedOption.F_CONCATREQ">
+            <summary>
+            Concat Required
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderSupportedOption.F_ISBTCONCAT">
+            <summary>
+            ISBT Concat
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderSupportedOption.F_BASE32">
+            <summary>
+            Base 32
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderSupportedOption.F_ISBN">
+            <summary>
+            ISBN
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderSupportedOption.F_MINMAX">
+            <summary>
+            Minimum/Maximum
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderSupportedOption.F_EAN128">
+            <summary>
+            EAN128
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderSupportedOption.F_ISBT128">
+            <summary>
+            ISBT128
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderSupportedOption.F_OTHER128">
+            <summary>
+            Other 128
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderSupportedOption.F_CHECKISBTTABLE">
+            <summary>
+            Check ISBT Table
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderSupportedOption.F_ISBTCONCATREDUNDANCY">
+            <summary>
+            ISBT Concatenation Redundancy
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderSupportedOption.F_CLSIEDIT">
+            <summary>
+            CLSI Editing
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderSupportedOption.F_NOTISEDIT">
+            <summary>
+            NOTIS Editing
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderSupportedOption.F_CHECKDIGITCOUNTS_ONE_TWO">
+            <summary>
+            Check Digit Counts (One or Two)
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderSupportedOption.F_CHECKDIGITALGORITHMS">
+            <summary>
+            Check Digit Algorithms (MOD_11_10 or MOD_10_10)
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderSupportedOption.F_CONVERTTOEAN13">
+            <summary>
+            Convert to EAN13
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderSupportedOption.F_CODE32PREFIX">
+            <summary>
+            CODE32 Prefix
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderSupportedOption.F_REDUNDANCY">
+            <summary>
+            Redundancy
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderSupportedOption.F_BOOKLANDCODE">
+            <summary>
+            Bookland Code
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderSupportedOption.F_SUPPLEMENTALMODE">
+            <summary>
+            Supplemental Mode
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderSupportedOption.F_SUPPLEMENTALRETRIES">
+            <summary>
+            Supplemental Retries
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderSupportedOption.F_BOOKLANDFORMAT">
+            <summary>
+            Bookland Format
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderSupportedOption.F_SECURITYLEVEL">
+            <summary>
+            Security Level
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderSupportedOption.F_COUPONCODE">
+            <summary>
+            Coupon Code
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderSupportedOption.F_CONVERTRSSTOUPCEAN">
+            <summary>
+            Convert RSS to UPCEAN
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderSupportedOption.F_FORMATSTANDARDCLSI">
+            <summary>
+            Format (Standard/CLSI)
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderSupportedOption.F_CONVERTXTOAF">
+            <summary>
+            Convert X to A-F
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderSupportedOption.F_LIMITED">
+            <summary>
+            Limited
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.DecoderSupportedOption.F_CHECKDIGITSCHEME">
+            <summary>
+            Check Digit Scheme
+            </summary>
+        </member>
+        <member name="T:PT.Barcode.BarcodeStatus">
+            <summary>
+            The BarcodeStatus class provides access to notification information.
+            </summary>
+        </member>
+        <member name="M:PT.Barcode.BarcodeStatus.#ctor(PT.Barcode.EventTypes,PT.Barcode.States,System.String)">
+            <summary>
+            The BarcodeStatus constructor
+            </summary>
+            <param name="et">An EventTypes enumerated type that defines the type of event that has occurred.</param>
+            <param name="es">A States enumerated type that defines the new state of the Reader.</param>
+            <param name="s">The state of the Reader in string form.</param>
+        </member>
+        <member name="P:PT.Barcode.BarcodeStatus.State">
+            <summary>
+            Retrieves the Barcode.Reader event state.
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.BarcodeStatus.Text">
+            <summary>
+            Retrieves the Barcode.Reader state in string form.
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.BarcodeStatus.Type">
+            <summary>
+            Retrieves the Barcode Reader event type.
+            </summary>
+        </member>
+        <member name="T:PT.Barcode.EventTypes">
+            <summary>
+            Defines the different types of events that can occur for the barcode Reader.  
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.EventTypes.ACTIVITY">
+            <summary>
+            The Scanner is busy/active
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.EventTypes.ERROR">
+            <summary>
+            An error occurred while trying to wait for an event
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.EventTypes.FIRST">
+            <summary>
+            The first item in the EventTypes enumeration
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.EventTypes.IMAGE_CAPTURE">
+            <summary>
+            The Scanner has captured an image and started to download
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.EventTypes.IMAGE_ERROR">
+            <summary>
+            The Scanner has encountered a fatal error downloading an image
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.EventTypes.LAST">
+            <summary>
+            The last item in the EventTypes enumeration
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.EventTypes.SEQUENCE_CONTINUE">
+            <summary>
+            The Scanner has captured another barcode in a concatenation sequence
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.EventTypes.SEQUENCE_ERROR">
+            <summary>
+            The Scanner has encountered a non-fatal concatenation error
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.EventTypes.SEQUENCE_FAIL">
+            <summary>
+            The Scanner has encountered a fatal concatenation error
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.EventTypes.SEQUENCE_START">
+            <summary>
+            The Scanner has captured the first barcode in a concatenation sequence
+            </summary>
+        </member>
+        <member name="F:PT.Barcode.EventTypes.STATE_CHANGE">
+            <summary>
+            The state of the scanner has changed
+            </summary>
+        </member>
+        <member name="T:PT.Barcode.DecoderParamsAPI">
+            <summary>
+            The DecoderParamsAPI Class contains decoder parameters that are used by multiple decoder symbologies.
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.DecoderParamsAPI.IsSupported">
+            <summary>
+            Returns whether or not the Decoder is supported by the Reader.
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.DecoderParamsAPI.Text">
+            <summary>
+            The Text property returns the name of the Decoder.
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.DecoderParamsAPI.MaximumLength">
+            <summary>
+            Returns the maximum length of a valid barcode for the decoder.
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.DecoderParamsAPI.MinimumLength">
+            <summary>
+            Returns the minimum length of a valid barcode for the decoder.
+            </summary>
+        </member>
+        <member name="T:PT.Barcode.dpAUSPOSTAL">
+            <summary>
+            The dpAUSPOSTAL class provides access to parameters that are available for the AUSPOSTAL decoder.
+            </summary>
+        </member>
+        <member name="M:PT.Barcode.dpAUSPOSTAL.#ctor(PT.Barcode.Reader)">
+            <summary>
+            The dpAUSPOSTAL constructor.
+            </summary>
+            <param name="clsReader">The Reader object in which decoder information should come from.</param>
+        </member>
+        <member name="T:PT.Barcode.dpAZTEC">
+            <summary>
+            The dpAZTEC class provides access to parameters that are available for the AZTEC decoder.
+            </summary>
+        </member>
+        <member name="M:PT.Barcode.dpAZTEC.#ctor(PT.Barcode.Reader)">
+            <summary>
+            The dpAZTEC constructor.
+            </summary>
+            <param name="clsReader">The Reader object in which decoder information should come from.</param>
+        </member>
+        <member name="T:PT.Barcode.dpBRITISH">
+            <summary>
+            The dpBRITISH class provides access to parameters that are available for the BRITISH decoder.
+            </summary>
+        </member>
+        <member name="M:PT.Barcode.dpBRITISH.#ctor(PT.Barcode.Reader)">
+            <summary>
+            The dpBRITISH constructor.
+            </summary>
+            <param name="clsReader">The Reader object in which decoder information should come from.</param>
+        </member>
+        <member name="T:PT.Barcode.dpCANPOSTAL">
+            <summary>
+            The dpCANPOSTAL class provides access to parameters that are available for the CANPOSTAL decoder.
+            </summary>
+        </member>
+        <member name="M:PT.Barcode.dpCANPOSTAL.#ctor(PT.Barcode.Reader)">
+            <summary>
+            The dpCANPOSTAL constructor.
+            </summary>
+            <param name="clsReader">The Reader object in which decoder information should come from.</param>
+        </member>
+        <member name="T:PT.Barcode.dpCHINAPOSTAL">
+            <summary>
+            The dpCHINAPOSTAL class provides access to parameters that are available for the CHINAPOSTAL decoder.
+            </summary>
+        </member>
+        <member name="M:PT.Barcode.dpCHINAPOSTAL.#ctor(PT.Barcode.Reader)">
+            <summary>
+            The dpCHINAPOSTAL constructor
+            </summary>
+            <param name="clsReader">The Reader object in which decoder information should come from.</param>
+        </member>
+        <member name="T:PT.Barcode.dpCODABAR">
+            <summary>
+            The dpCODABAR class provides access to parameters that are available for the CODABAR decoder.
+            </summary>
+        </member>
+        <member name="M:PT.Barcode.dpCODABAR.#ctor(PT.Barcode.Reader)">
+            <summary>
+            The dpCODABAR constructor.
+            </summary>
+            <param name="clsReader">The Reader object in which decoder information should come from.</param>
+        </member>
+        <member name="T:PT.Barcode.dpCODABLOCK">
+            <summary>
+            The dpCODABLOCK class provides access to parameters that are available for the CODABLOCK decoder.
+            </summary>
+        </member>
+        <member name="M:PT.Barcode.dpCODABLOCK.#ctor(PT.Barcode.Reader)">
+            <summary>
+            The dpCODABLOCK constructor.
+            </summary>
+            <param name="clsReader">The Reader object in which decoder information should come from.</param>
+        </member>
+        <member name="T:PT.Barcode.dpCODE11">
+            <summary>
+            The dpCODE11 class provides access to parameters that are available for the CODE11 decoder.
+            </summary>
+        </member>
+        <member name="M:PT.Barcode.dpCODE11.#ctor(PT.Barcode.Reader)">
+            <summary>
+            The dpCODE11 constructor.
+            </summary>
+            <param name="clsReader">The Reader object in which decoder information should come from.</param>
+        </member>
+        <member name="T:PT.Barcode.dpCODE128">
+            <summary>
+            The dpCODE128 class provides access to parameters that are available for the CODE128 decoder.
+            </summary>
+        </member>
+        <member name="M:PT.Barcode.dpCODE128.#ctor(PT.Barcode.Reader)">
+            <summary>
+            The dpCODE128 constructor.
+            </summary>
+            <param name="clsReader">The Reader object in which decoder information should come from.</param>
+        </member>
+        <member name="T:PT.Barcode.dpCODE16K">
+            <summary>
+            The dpCODE16K class provides access to parameters that are available for the CODE16K decoder.
+            </summary>
+        </member>
+        <member name="M:PT.Barcode.dpCODE16K.#ctor(PT.Barcode.Reader)">
+            <summary>
+            The dpCODE16K constructor.
+            </summary>
+            <param name="clsReader">The Reader object in which decoder information should come from.</param>
+        </member>
+        <member name="T:PT.Barcode.dpCODE32">
+            <summary>
+            The dpCODE32 class provides access to parameters that are available for the CODE32 decoder.
+            </summary>
+        </member>
+        <member name="M:PT.Barcode.dpCODE32.#ctor(PT.Barcode.Reader)">
+            <summary>
+            The dpCODE32 constructor.
+            </summary>
+            <param name="clsReader">The Reader object in which decoder information should come from.</param>
+        </member>
+        <member name="T:PT.Barcode.dpCODE39">
+            <summary>
+            The dpCODE39 class provides access to parameters that are available for the CODE39 decoder.
+            </summary>
+        </member>
+        <member name="M:PT.Barcode.dpCODE39.#ctor(PT.Barcode.Reader)">
+            <summary>
+            The dpCODE39 constructor.
+            </summary>
+            <param name="clsReader">The Reader object in which decoder information should come from.</param>
+        </member>
+        <member name="P:PT.Barcode.dpCODE39.FullAscii">
+            <summary>
+            Flag to enable full ASCII conversion of the bar code.  
+            </summary>
+        </member>
+        <member name="P:PT.Barcode.dpCODE39.Code32Conv">
+            <summary>
+            Flag to enable conversion of Code 39 bar codes to Code 32.  
+            </summary>
+        </member>
+        <member name="T:PT.Barcode.dpCODE49">
+            <summary>
+            The dpCODE49 class provides access to parameters that are available for the CODE49 decoder.  
+            </summary>
+        </member>
+        <member name="T:PT.Barcode.dpCODE93">
+            <summary>
+            The dpCODE93 class provides access to parameters that are available for the CODE93 decoder.
+            </summary>
+        </member>
+        <member name="M:PT.Barcode.dpCODE93.#ctor(PT.Barcode.Reader)">
+            <summary>
+            The dpCODE93 constructor.
+            </summary>
+            <param name="clsReader">The Reader object in which decoder information should come from.</param>
+        </member>
+        <member name="T:PT.Barcode.dpCOMPOSITE">
+            <summary>
+            The dpCOMPOSITE class provides access to parameters that are available for the COMPOSITE decoder.
+            </summary>
+        </member>
+        <member name="M:PT.Barcode.dpCOMPOSITE.#ctor(PT.Barcode.Reader)">
+            <summary>
+            The dpCOMPOSITE constructor.
+            </summary>
+            <param name="clsReader">The Reader object in which decoder information should come from.</param>
+        </member>
+        <member name="T:PT.Barcode.dpCOUPON">
+            <summary>
+            The dpCOUPON class provides access to parameters that are available for the COUPON decoder. 
+            </summary>
+        </member>
+        <member name="M:PT.Barcode.dpCOUPON.#ctor(PT.Barcode.Reader)">
+            <summary>
+            The dpCOUPON constructor.
+            </summary>
+            <param name="clsReader"></param>
+        </member>
+        <member name="T:PT.Barcode.dpDATAMATRIX">
+            <summary>
+            The dpDATAMATRIX class provides access to parameters that are available for the DATAMATRIX decoder. 
+            </summary>
+        </member>
+        <member name="M:PT.Barcode.dpDATAMATRIX.#ctor(PT.Barcode.Reader)">
+            <summary>
+            The dpDATAMATRIX constructor.
+            </summary>
+            <param name="clsReader">The Reader object in which decoder information should come from.</param>
+        </member>
+        <member name="T:PT.Barcode.dpDUTCHPOSTAL">
+            <summary>
+            The dpDUTCHPOSTAL class provides access to parameters that are available for the DUTCHPOSTAL decoder. 
+            </summary>
+        </member>
+        <member name="M:PT.Barcode.dpDUTCHPOSTAL.#ctor(PT.Barcode.Reader)">
+            <summary>
+            The dpDUTCHPOSTAL constructor.
+            </summary>
+            <param name="clsReader">The Reader object in which decoder information should come from.</param>
+        </member>
+        <member name="T:PT.Barcode.dpEAN13">
+            <summary>
+            The dpEAN13 class provides access to parameters that are available for the EAN13 decoder.  
+            </summary>
+        </member>
+        <member name="M:PT.Barcode.dpEAN13.#ctor(PT.Barcode.Reader)">
+            <summary>
+            The dpEAN13 constructor.
+            </summary>
+            <param name="clsReader">The Reader object in which decoder information should come from.</param>
+        </member>
+        <member name="T:PT.Barcode.dpEAN8">
+            <summary>
+            The dpEAN8 class provides access to parameters that are available for the EAN8 decoder.  
+            </summary>
+        </member>
+        <member name="M:PT.Barcode.dpEAN8.#ctor(PT.Barcode.Reader)">
+            <summary>
+            The dpEAN8 constructor.
+            </summary>
+            <param name="clsReader">The Reader object in which decoder information should come from.</param>
+        </member>
+        <member name="T:PT.Barcode.dpIATA2OF5">
+            <summary>
+            The dpIATA2OF5 class provides access to parameters that are available for the IATA2OF5 decoder.  
+            </summary>
+        </member>
+        <member name="M:PT.Barcode.dpIATA2OF5.#ctor(PT.Barcode.Reader)">
+            <summary>
+            The dpIATA2OF5 constructor.
+            </summary>
+            <param name="clsReader">The Reader object in which decoder information should come from.</param>
+        </member>
+        <member name="T:PT.Barcode.dpIDTAG">
+            <summary>
+            The dpIDTAG class provides access to parameters that are available for the IDTAG decoder.
+            </summary>
+        </member>
+        <member name="M:PT.Barcode.dpIDTAG.#ctor(PT.Barcode.Reader)">
+            <summary>
+            The dpIDTAG constructor.
+            </summary>
+            <param name="clsReader">The Reader object in which decoder information should come from.</param>
+        </member>
+        <member name="T:PT.Barcode.dpINT2OF5">
+            <summary>
+            The dpINT2OF5 class provides access to parameters that are available for the INT2OF5 decoder.
+            </summary>
+        </member>
+        <member name="M:PT.Barcode.dpINT2OF5.#ctor(PT.Barcode.Reader)">
+            <summary>
+            The dpINT2OF5 constructor.
+            </summary>
+            <param name="clsReader">The Reader object in which decoder information should come from.</param>
+        </member>
+        <member name="T:PT.Barcode.dpISBT">
+            <summary>
+            The dpISBT class provides access to parameters that are available for the ISBT decoder.  
+            </summary>
+        </member>
+        <member name="M:PT.Barcode.dpISBT.#ctor(PT.Barcode.Reader)">
+            <summary>
+            The dpISBT constructor.
+            </summary>
+            <param name="clsReader">The Reader object in which decoder information should come from.</param>
+        </member>
+        <member name="T:PT.Barcode.dpJAPPOSTAL">
+            <summary>
+            The dpJAPPOSTAL class provides access to parameters that are available for the JAPOSTAL decoder.
+            </summary>
+        </member>
+        <member name="M:PT.Barcode.dpJAPPOSTAL.#ctor(PT.Barcode.Reader)">
+            <summary>
+            The dpJAPPOSTAL constructor.
+            </summary>
+            <param name="clsReader">The Reader object in which decoder information should come from.</param>
+        </member>
+        <member name="T:PT.Barcode.dpKOREAPOSTAL">
+            <summary>
+            The dpKOREAPOSTAL class provides access to parameters that are available for the KOREAPOSTAL decoder.
+            </summary>
+        </member>
+        <member name="M:PT.Barcode.dpKOREAPOSTAL.#ctor(PT.Barcode.Reader)">
+            <summary>
+            The dpKOREAPOSTAL constructor.
+            </summary>
+            <param name="clsReader">The Reader object in which decoder information should come from.</param>
+        </member>
+        <member name="T:PT.Barcode.dpMATRIX2OF5">
+            <summary>
+            The dpMATRIX2OF5 class provides access to parameters that are available for the MATRIX2OF5 decoder.
+            </summary>
+        </member>
+        <member name="M:PT.Barcode.dpMATRIX2OF5.#ctor(PT.Barcode.Reader)">
+            <summary>
+            The dpMATRIX2OF5 constructor.
+            </summary>
+            <param name="clsReader">The Reader object in which decoder information should come from.</param>
+        </member>
+        <member name="T:PT.Barcode.dpMAXICODE">
+            <summary>
+            The dpMAXICODE class provides access to parameters that are available for the MAXICODE decoder.
+            </summary>
+        </member>
+        <member name="M:PT.Barcode.dpMAXICODE.#ctor(PT.Barcode.Reader)">
+            <summary>
+            The dpMAXICODE constructor.
+            </summary>
+            <param name="clsReader">The Reader object in which decoder information should come from.</param>
+        </member>
+        <member name="T:PT.Barcode.dpMICROPDF">
+            <summary>
+            The dpMICROPDF class provides access to parameters that are available for the MICROPDF decoder.
+            </summary>
+        </member>
+        <member name="M:PT.Barcode.dpMICROPDF.#ctor(PT.Barcode.Reader)">
+            <summary>
+            The dpMICROPDF constructor.
+            </summary>
+            <param name="clsReader">The Reader object in which decoder information should come from.</param>
+        </member>
+        <member name="T:PT.Barcode.dpMSI">
+            <summary>
+            The dpMSI class provides access to parameters that are available for the MSI decoder.
+            </summary>
+        </member>
+        <member name="M:PT.Barcode.dpMSI.#ctor(PT.Barcode.Reader)">
+            <summary>
+            The dpMSI constructor.
+            </summary>
+            <param name="clsReader">The Reader object in which decoder information should come from.</param>
+        </member>
+        <member name="T:PT.Barcode.dpPDF417">
+            <summary>
+            The dpPDF417 class provides access to parameters that are available for the PDF417 decoder.  
+            </summary>
+        </member>
+        <member name="M:PT.Barcode.dpPDF417.#ctor(PT.Barcode.Reader)">
+            <summary>
+            The dpPDF417 constructor.
+            </summary>
+            <param name="clsReader">The Reader object in which decoder information should come from.</param>
+        </member>
+        <member name="T:PT.Barcode.dpPLESSEY">
+            <summary>
+            The dpPLESSEY class provides access to parameters that are available for the PLESSEY decoder. 
+            </summary>
+        </member>
+        <member name="M:PT.Barcode.dpPLESSEY.#ctor(PT.Barcode.Reader)">
+            <summary>
+            The dpPLESSEY constructor.
+            </summary>
+            <param name="clsReader">The Reader object in which decoder information should come from.</param>
+        </member>
+        <member name="T:PT.Barcode.dpPOSICODE">
+            <summary>
+            The dpPOSICODE class provides access to parameters that are available for the POSICODE decoder.
+            </summary>
+        </member>
+        <member name="M:PT.Barcode.dpPOSICODE.#ctor(PT.Barcode.Reader)">
+            <summary>
+            The dpPOSICODE constructor.
+            </summary>
+            <param name="clsReader">The Reader object in which decoder information should come from.</param>
+        </member>
+        <member name="T:PT.Barcode.dpQRCODE">
+            <summary>
+            The dpQRCODE class provides access to parameters that are available for the QRCODE decoder. 
+            </summary>
+        </member>
+        <member name="M:PT.Barcode.dpQRCODE.#ctor(PT.Barcode.Reader)">
+            <summary>
+            The dpQRCODE constructor.
+            </summary>
+            <param name="clsReader">The Reader object in which decoder information should come from.</param>
+        </member>
+        <member name="T:PT.Barcode.dpRSS14">
+            <summary>
+            The dpRSS14 class provides access to parameters that are available for the RSS14 decoder.  
+            </summary>
+        </member>
+        <member name="M:PT.Barcode.dpRSS14.#ctor(PT.Barcode.Reader)">
+            <summary>
+            The dpRSS14 constructor.
+            </summary>
+            <param name="clsReader">The Reader object in which decoder information should come from.</param>
+        </member>
+        <member name="T:PT.Barcode.dpRSSLIMITED">
+            <summary>
+            The dpRSSLIMITED class provides access to parameters that are available for the RSS LIMITED decoder.  
+            </summary>
+        </member>
+        <member name="M:PT.Barcode.dpRSSLIMITED.#ctor(PT.Barcode.Reader)">
+            <summary>
+            The dpRSSLIMITED constructor.
+            </summary>
+            <param name="clsReader">The Reader object in which decoder information should come from.</param>
+        </member>
+        <member name="T:PT.Barcode.dpRSSEXPANDED">
+            <summary>
+            The dpRSSEXPANDED class provides access to parameters that are available for the RSS EXPANDED decoder.  
+            </summary>
+        </member>
+        <member name="M:PT.Barcode.dpRSSEXPANDED.#ctor(PT.Barcode.Reader)">
+            <summary>
+            The dpRSSEXPANDED constructor.
+            </summary>
+            <param name="clsReader">The Reader object in which decoder information should come from.</param>
+        </member>
+        <member name="T:PT.Barcode.dpOCR">
+            <summary>
+            The dpOCR class provides access to parameters that are available for the OCR decoder.  
+            </summary>
+        </member>
+        <member name="M:PT.Barcode.dpOCR.#ctor(PT.Barcode.Reader)">
+            <summary>
+            The dpOCR constructor.
+            </summary>
+            <param name="clsReader">The Reader object in which decoder information should come from.</param>
+        </member>
+        <member name="T:PT.Barcode.dpSTRT2OF5">
+            <summary>
+            The dpSTRT2OF5 class provides access to parameters that are available for the STRT2OF5 decoder.  
+            </summary>
+        </member>
+        <member name="M:PT.Barcode.dpSTRT2OF5.#ctor(PT.Barcode.Reader)">
+            <summary>
+            The dpSTRT2OF5 constructor.
+            </summary>
+            <param name="clsReader">The Reader object in which decoder information should come from.</param>
+        </member>
+        <member name="T:PT.Barcode.dpTELEPEN">
+            <summary>
+            The dpTELEPEN class provides access to parameters that are available for the TELEPEN decoder.  
+            </summary>
+        </member>
+        <member name="M:PT.Barcode.dpTELEPEN.#ctor(PT.Barcode.Reader)">
+            <summary>
+            The dpTELEPEN constructor.
+            </summary>
+            <param name="clsReader">The Reader object in which decoder information should come from.</param>
+        </member>
+        <member name="T:PT.Barcode.dpTLC39">
+            <summary>
+            The dpTLC39 class provides access to parameters that are available for the TLC39 decoder.  
+            </summary>
+        </member>
+        <member name="M:PT.Barcode.dpTLC39.#ctor(PT.Barcode.Reader)">
+            <summary>
+            The dpTLC39 constructor.
+            </summary>
+            <param name="clsReader">The Reader object in which decoder information should come from.</param>
+        </member>
+        <member name="T:PT.Barcode.dpTRIOPTIC39">
+            <summary>
+            The dpTRIOPTIC39 class provides access to parameters that are available for the TRIOPTIC39 decoder. 
+            </summary>
+        </member>
+        <member name="M:PT.Barcode.dpTRIOPTIC39.#ctor(PT.Barcode.Reader)">
+            <summary>
+            The dpTRIOPTIC39 constructor.
+            </summary>
+            <param name="clsReader">The Reader object in which decoder information should come from.</param>
+        </member>
+        <member name="T:PT.Barcode.dpUPCA">
+            <summary>
+            The dpUPCA class provides access to parameters that are available for the UPCA decoder.  
+            </summary>
+        </member>
+        <member name="M:PT.Barcode.dpUPCA.#ctor(PT.Barcode.Reader)">
+            <summary>
+            The dpUPCA constructor.
+            </summary>
+            <param name="clsReader">The Reader object in which decoder information should come from.</param>
+        </member>
+        <member name="T:PT.Barcode.dpUPCE0">
+            <summary>
+            The dpUPCE0 class provides access to parameters that are available for the UPCE0 decoder.  
+            </summary>
+        </member>
+        <member name="M:PT.Barcode.dpUPCE0.#ctor(PT.Barcode.Reader)">
+            <summary>
+            The dpUPCE0 constructor.
+            </summary>
+            <param name="clsReader">The Reader object in which decoder information should come from.</param>
+        </member>
+        <member name="T:PT.Barcode.dpUPCE1">
+            <summary>
+            The dpUPCE1 class provides access to parameters that are available for the UPCE1 decoder.  
+            </summary>
+        </member>
+        <member name="M:PT.Barcode.dpUPCE1.#ctor(PT.Barcode.Reader)">
+            <summary>
+            The dpUPCE1 constructor.
+            </summary>
+            <param name="clsReader">The Reader object in which decoder information should come from.</param>
+        </member>
+        <member name="T:PT.Barcode.dpUSPLANET">
+            <summary>
+            The dpUSPLANET class provides access to parameters that are available for the USPLANET decoder.
+            </summary>
+        </member>
+        <member name="M:PT.Barcode.dpUSPLANET.#ctor(PT.Barcode.Reader)">
+            <summary>
+            The dpUSPLANET constructor.
+            </summary>
+            <param name="clsReader">The Reader object in which decoder information should come from.</param>
+        </member>
+        <member name="T:PT.Barcode.dpUSPOSTNET">
+            <summary>
+            The dpUSPOSTNET class provides access to parameters that are available for the USPOSTNET decoder. 
+            </summary>
+        </member>
+        <member name="M:PT.Barcode.dpUSPOSTNET.#ctor(PT.Barcode.Reader)">
+            <summary>
+            The dpUSPOSTNET constructor.
+            </summary>
+            <param name="clsReader">The Reader object in which decoder information should come from.</param>
+        </member>
+        <member name="T:PT.Barcode.dpUSPS4">
+            <summary>
+            The dpUSPS4 class provides access to parameters that are available for the USPS4 decoder.
+            </summary>
+        </member>
+        <member name="M:PT.Barcode.dpUSPS4.#ctor(PT.Barcode.Reader)">
+            <summary>
+            The dpUSPS4 constructor.
+            </summary>
+            <param name="clsReader">The Reader object in which decoder information should come from.</param>
+        </member>
+        <member name="T:PT.Barcode.dpUPCEANGENERAL">
+            <summary>
+            The dpUPCEANGENERAL class provides access to parameters of UPC EAN General
+            </summary>
+        </member>
+        <member name="M:PT.Barcode.dpUPCEANGENERAL.#ctor(PT.Barcode.Reader)">
+            <summary>
+            The dpUPCEANGENERAL constructor.
+            </summary>
+            <param name="clsReader">The Reader object in which decoder information should come from.</param>
+        </member>
+    </members>
+</doc>
