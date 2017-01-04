@@ -94,6 +94,13 @@ namespace BRB
                     cTerminal = new TerminalMotorola();
                     break;
 
+                case TypeTerminal.PitechLPT80:
+                    hToolbarTerminal = 0;
+                    icoSize = 64;
+                    tCoefficient = 2;
+                    cTerminal = new TerminalPitech();
+                    break;
+
             }
                 
         }
