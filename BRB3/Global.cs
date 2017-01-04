@@ -11,7 +11,8 @@ namespace BRB
     {
      NoDetect=0,
      BitatekIT8000=1,
-     MotorolaMC75Ax=2
+     MotorolaMC75Ax=2,
+     PitechLPT80 = 3
     }
 
     public enum TypeDoc
@@ -48,7 +49,7 @@ namespace BRB
         static public int WeightBarQtyChar=4;
 
         static public Data cData;
-        static public BRB.BL cBL;
+        //static public BRB.BL cBL;
         static public Terminal cTerminal;
         static public TypeTerminal eTypeTerminal;
         static public int hToolbarTerminal = 0;
@@ -73,7 +74,7 @@ namespace BRB
     static public void Init(TypeTerminal parTypeTerminal)
         {
             cData = new Data(new MSCeSQL(SqlCeConectionBRB));
-            cBL = new BL(cData);
+            //cBL = new BL(cData);
             eTypeTerminal = parTypeTerminal;
             InitKeyMap(eTypeTerminal);
             
@@ -274,6 +275,7 @@ namespace BRB
     {
         private const string MotorolaMC75A0 = "MOTOROLA MC75A";
         private const string BitatekIT8000 = "Intel MainstoneIII";
+        private const string PitechLPT80 = "Pitech LPT80";
 
         private const int SPI_GETOEMINFO = 258;
         private const int MAX_OEM_NAME_LENGTH = 128;
@@ -297,6 +299,10 @@ namespace BRB
                 else if (string.Compare(OEMName, BitatekIT8000) == 0)
                 {
                     return TypeTerminal.BitatekIT8000;
+                }
+                if (string.Compare(OEMName, PitechLPT80) == 0)
+                {
+                    return TypeTerminal.PitechLPT80;
                 }
                 else
                 {

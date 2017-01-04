@@ -66,12 +66,32 @@ namespace BRB
         }*/
         /// <summary>
         /// Чи можна редагувати товар напряму з гріда
-        /// !!!! Треба доробити логіку.
         /// </summary>
         /// <param name="parCodeWares"></param>
         public static bool IsEditWaresManual(int parCodeWares)
         {
+            SetCurWaresDoc(parCodeWares);
+            return IsEditWaresManual();
+        }
+        
+        /// <summary>
+        /// Чи можна редагувати товар напряму з гріда
+        /// </summary>
+        /// <param name="parCodeWares"></param>
+        public static bool IsEditWaresManual()
+        {            
+            if (Convert.ToInt32(CurWaresDoc["div"]) == 0 && Convert.ToInt32(CurDoc["input_code"]) == 0)
+                return false;
             return true;
+        }
+
+        /// <summary>
+        /// Чи дозволена дробна кількість товару.
+        /// </summary>
+        /// <returns></returns>
+        public static bool IsFractional()
+        {
+            return Convert.ToInt32(CurWaresDoc["div"]) == 1; 
         }
         /*/// <summary>
         /// Зберігаємо текучий рядок документа
@@ -171,23 +191,21 @@ namespace BRB
             Status res = new Status();
             try
             {
-               
                 // Проверим номер по порядку
                 if (parNumPop == 0)
                     parNumPop = cData.GetWaresOrder(CurNumDoc);
 
-
                 if (parPrice != 0)
                 {
-                    
                    int flag = Convert.ToInt32( CurDoc["flag_price_with_vat"]);
                    int vat = Convert.ToInt32( CurWaresDoc["vat"]);
                    if (flag == 1 && vat!=0 )
-                     parPrice = decimal.Round(parPrice / (1 + vat / 100), 4); 
-                    
+                     parPrice = decimal.Round(parPrice / (1 + vat / 100), 4);                     
                 }
               cData.SaveDocWares(CurNumDoc, CurCodeWares, parNumPop, parQty, parPrice);
-
+              CurWaresDoc["num_pop"] = parNumPop;
+              CurWaresDoc["parQty"] = parQty;
+              CurWaresDoc["price"] = parPrice;
             }
             catch (System.Exception Ex)
             {                

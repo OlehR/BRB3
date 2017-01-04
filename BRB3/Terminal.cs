@@ -292,4 +292,67 @@ using BCD.net;
 
     }
 
+
+
+    /// <summary>
+    /// PitechLPT80
+    /// </summary>
+    class TerminalPitech : Terminal
+    {
+    //    private PT.Barcode.Reader MyReader = null;
+    //    private PT.Barcode.ReaderData MyReaderData = null;
+        private System.EventHandler MyEventHandler = null;
+				
+        private Symbol.Barcode2.Design.Barcode2 barcodeMoto = new Symbol.Barcode2.Design.Barcode2();
+
+        public override bool init()
+        {
+            try
+            {
+            /*    //If reader is already present then fail initalize
+                if (this.MyReader != null)
+                {
+                    return false;
+                }
+
+                //Create new reader, first available reader will be used.
+                this.MyReader = new PT.Barcode.Reader();
+
+                //Create reader data
+                this.MyReaderData = new PT.Barcode.ReaderData(
+                                        PT.Barcode.ReaderDataTypes.Text,
+                                        PT.Barcode.ReaderDataLengths.MaximumLabel);
+
+                //Create event handler delegate
+                this.MyEventHandler = new EventHandler(MyReader_ReadNotify);
+
+                //Enable reader
+                this.MyReader.Actions.Enable();
+
+                //Success Init Complete
+                return true;*/
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                return false;
+               
+            }
+            return true;
+        }
+        private void barcodeMoto_OnScan(ScanDataCollection scanDataCollection)
+        {
+            ScanData scanData = scanDataCollection.GetFirst;
+            if (scanData.Result == Results.SUCCESS)
+            {
+                varCallBackBarcode(scanData.Text);
+
+            }
+        }
+        public override void close()
+        {
+            barcodeMoto.EnableScanner = false;
+        }
+
+    }
  
