@@ -18,7 +18,7 @@ namespace BRB
         }
 
         static private TypeDoc CurTypeDoc;
-        static private int CurNumDoc;
+        public int CurNumDoc;
         static private int CurCodeWares;
         static private DataTable dtDocs;
         static private DataTable dtWaresDoc;

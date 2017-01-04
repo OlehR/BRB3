@@ -99,12 +99,16 @@ namespace BRB.Forms
         }
         private void btnEdit()
         {
-            frmWaresScan newfrmWaresScan = new frmWaresScan(Convert.ToInt32(advancedList.DataRows[advancedList.ActiveRowIndex][ "code_wares"]));
-            newfrmWaresScan.Show();
+            if (Global.cBL.IsEditWaresManual(Convert.ToInt32(advancedList.DataRows[advancedList.ActiveRowIndex]["code_wares"])))
+            {
+                frmWaresScan newfrmWaresScan = new frmWaresScan(Convert.ToInt32(advancedList.DataRows[advancedList.ActiveRowIndex]["code_wares"]));
+                newfrmWaresScan.Show();
+            }
+            else clsDialogBox.InformationBoxShow("Ручне редагування к-ті товару заборонено!");
         }
         private void btnScan()
         {
-            frmWaresScan newfrmWaresScan = new frmWaresScan(); // пуста форма
+            frmWaresScan newfrmWaresScan = new frmWaresScan();
             newfrmWaresScan.Show();
         }
         private void btnFilter()

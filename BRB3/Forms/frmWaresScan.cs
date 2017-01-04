@@ -65,7 +65,8 @@ namespace BRB.Forms
         {
             if (dr != null)
             {
-                this.mplDocNum.Text = dr["number_doc"].ToString();
+                //this.mplDocNum.Text = dr["number_doc"].ToString();
+                this.mplDocNum.Text = Global.cBL.CurNumDoc.ToString();
                 this.mplArticle.Text = dr["code_wares"].ToString();
                 this.mplCode.Text = dr["bar_code"].ToString();
                 this.mplName.Text = "                      " + dr["name_wares"].ToString();
@@ -95,6 +96,7 @@ namespace BRB.Forms
                 }
                 else mplQtyTempl.Text = string.Empty;
             }
+            else this.mplDocNum.Text = Global.cBL.CurNumDoc.ToString();
         }
 
         public void InitializeComponentManual()
@@ -123,7 +125,6 @@ namespace BRB.Forms
         {
             dr = Global.cBL.FindGoodBarCode(Barcode);
             fillDataForm();
-            clsDialogBox.InformationBoxShow(Barcode);
         }
         
     }

@@ -348,6 +348,7 @@ namespace BRB.Forms
                 }
                  try
                  {
+                   Global.cBL.LoadWaresDocs(typeDoc, Convert.ToInt32(advancedList.DataRows[advancedList.ActiveRowIndex]["number_doc"]));
                    frmWaresScan newfrmWaresScan = new frmWaresScan();
                    newfrmWaresScan.Show();
                  }
