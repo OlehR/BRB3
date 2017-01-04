@@ -14,6 +14,7 @@ namespace BRB.Forms
         public frmMain()
         {
             InitializeComponent();
+            this.WindowState = FormWindowState.Maximized;
             InitializeComponentManual();
         }
          

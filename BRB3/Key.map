@@ -50,6 +50,12 @@ WaresGrid_Edit = F8
 WaresGrid_Scan = F3
 WaresGrid_Filter = F4
 
+[PitechLPT80]
+Up = Up
+Down = Down
+Enter = Enter
+
+
  
 //Не модифікуємо цю секцію!!!!
 [KeyCode]

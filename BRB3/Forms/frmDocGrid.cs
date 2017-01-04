@@ -21,6 +21,7 @@ namespace BRB.Forms
             typeDoc = parTypeDoc;
             dt = Global.cBL.LoadDocs(parTypeDoc);
             InitializeComponent();
+            this.WindowState = FormWindowState.Maximized;
             InitializeComponentManual();
         }
 
