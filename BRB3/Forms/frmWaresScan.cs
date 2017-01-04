@@ -16,7 +16,7 @@ namespace BRB.Forms
 
         public frmWaresScan(int panCodeWares)
         {
-            dr = BL.FindGoodCode(panCodeWares);
+            dr = Global.cBL.FindGoodCode(panCodeWares);
             InitializeComponent();
             InitializeComponentManual();
         }
@@ -121,7 +121,7 @@ namespace BRB.Forms
 
         void scanBarcode(string Barcode)
         {
-            dr = BL.FindGoodBarCode(Barcode);
+            dr = Global.cBL.FindGoodBarCode(Barcode);
             fillDataForm();
             clsDialogBox.InformationBoxShow(Barcode);
         }

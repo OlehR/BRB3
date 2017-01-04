@@ -31,6 +31,7 @@ namespace BRB
         NoMark = 0,
         Mark = 1
     }
+    
     static class Global
     {
         static public string varPathIni = @"\Program Files\brb3\";//\Program Files\brb3\
@@ -49,7 +50,7 @@ namespace BRB
         static public int WeightBarQtyChar=4;
 
         static public Data cData;
-        //static public BRB.BL cBL;
+        static public BRB.BL cBL;
         static public Terminal cTerminal;
         static public TypeTerminal eTypeTerminal;
         static public int hToolbarTerminal = 0;
@@ -74,7 +75,7 @@ namespace BRB
     static public void Init(TypeTerminal parTypeTerminal)
         {
             cData = new Data(new MSCeSQL(SqlCeConectionBRB));
-            //cBL = new BL(cData);
+            cBL = new BL(cData);
             eTypeTerminal = parTypeTerminal;
             InitKeyMap(eTypeTerminal);
             
@@ -97,7 +98,7 @@ namespace BRB
                 case TypeTerminal.PitechLPT80:
                     hToolbarTerminal = 0;
                     icoSize = 64;
-                    tCoefficient = 2;
+                    tCoefficient = 1;
                     cTerminal = new TerminalPitech();
                     break;
 
@@ -282,7 +283,7 @@ namespace BRB
     {
         private const string MotorolaMC75A0 = "MOTOROLA MC75A";
         private const string BitatekIT8000 = "Intel MainstoneIII";
-        private const string PitechLPT80 = "Pitech LPT80";
+        private const string PitechLPT80 = "Freescale i.MX25 3DS";
 
         private const int SPI_GETOEMINFO = 258;
         private const int MAX_OEM_NAME_LENGTH = 128;

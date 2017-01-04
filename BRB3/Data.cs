@@ -65,7 +65,9 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
                                            COALESCE (ud.div, 0) AS div,
                                            w.vat,
                                            au.bar_code,
-                                           d.type_doc
+                                           d.type_doc,
+                                           1.0 as coef_bar_code,
+                                           '' as abr_unit_bar_code
                                  FROM      DOCS AS d INNER JOIN
                                            DOCS_WARES AS dw ON d.number_doc = dw.number_doc INNER JOIN
                                            WARES AS w ON dw.code_wares = w.code_wares INNER JOIN
@@ -107,8 +109,12 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
                                   change_date = @parChangeDate 
 						   where  code_wares = @parCodeWares
                            and    number_doc = @parNumberDoc";
-  
-        private string varSQLFindBarCode(bool parIsComplect,bool parIsBarCode)
+
+        private string varSQLFindCodeWaresFromBarCode = @"SELECT        au.code_wares, au.code_unit,au.coefficient, ud.abr_unit
+                FROM   ADDITION_UNIT AS au INNER JOIN
+                   UNIT_DIMENSION AS ud ON au.code_unit = ud.code_unit
+                WHERE        (au.bar_code = @parBarCode)";
+/*        private string varSQLFindBarCode(bool parIsComplect,bool parIsBarCode)
         {
             return
                 @"SELECT  dw.code_wares, 
@@ -143,7 +149,7 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
 " +
  (parIsBarCode?@"                (aus.bar_code = @parBarCode)": @"(dw.code_wares = @parCodeWares)")+
 @"                              ORDER BY dw.quantity";
-        }
+        }*/
         #endregion
         private string varError=null;
         private DataTable tDocs;
@@ -241,35 +247,42 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
             object o = SQL.ExecuteScalar(varSQLGetWaresOrder);
             return (o == null?1:Convert.ToInt32(o));
         }
-
-
-        /// <summary>
-        /// Шукає товар по штрихкоду MetGetScanGoods
-        /// </summary>
-        /// <param name="parBarCode"></param>
-        /// <returns>DataTable З знайденими товарами</returns>
-        public DataTable FindGoodBarCode(int parNumberDoc, string parBarCode, bool parIsComplect)
+        public DataRow GetCodeWaresFromBarCode(string parBarCode)
         {
-            SQL.AddWithValueF("@parNumberDoc", parNumberDoc);
-            SQL.AddWithValue("@parBarCode", parBarCode);
-            string varSQL = varSQLFindBarCode(parIsComplect, true);
-            DataTable dt = SQL.ExecuteQuery(varSQL);
-            return dt;
+            SQL.AddWithValueF("@parBarCode", parBarCode);
+            DataTable dt = SQL.ExecuteQuery(varSQLFindCodeWaresFromBarCode);
+            if (dt!=null &&dt.Rows.Count>0)
+                return dt.Rows[0];
+            return null;
         }
+        /*
+                /// <summary>
+                /// Шукає товар по штрихкоду MetGetScanGoods
+                /// </summary>
+                /// <param name="parBarCode"></param>
+                /// <returns>DataTable З знайденими товарами</returns>
+                public DataTable FindGoodBarCode(int parNumberDoc, string parBarCode, bool parIsComplect)
+                {
+                    SQL.AddWithValueF("@parNumberDoc", parNumberDoc);
+                    SQL.AddWithValue("@parBarCode", parBarCode);
+                    string varSQL = varSQLFindBarCode(parIsComplect, true);
+                    DataTable dt = SQL.ExecuteQuery(varSQL);
+                    return dt;
+                }
 
-        /// <summary>
-        /// Шукає товар по коду MetGetScanVesGoods
-        /// </summary>
-        /// <param name="parBarCode"></param>
-        /// <returns>DataTable З знайденими товарами</returns>
-        public DataTable FindGoodCodeWares(int parNumberDoc, string parCodeWares, bool parIsComplect)
-        {
-            SQL.AddWithValueF("@parNumberDoc", parNumberDoc);
-            SQL.AddWithValue("@parCodeWares", parCodeWares);
-            DataTable dt = SQL.ExecuteQuery(varSQLFindBarCode(parIsComplect,false));
-            return dt;
-        }
-
+                /// <summary>
+                /// Шукає товар по коду MetGetScanVesGoods
+                /// </summary>
+                /// <param name="parBarCode"></param>
+                /// <returns>DataTable З знайденими товарами</returns>
+                public DataTable FindGoodCodeWares(int parNumberDoc, string parCodeWares, bool parIsComplect)
+                {
+                    SQL.AddWithValueF("@parNumberDoc", parNumberDoc);
+                    SQL.AddWithValue("@parCodeWares", parCodeWares);
+                    DataTable dt = SQL.ExecuteQuery(varSQLFindBarCode(parIsComplect,false));
+                    return dt;
+                }
+                */
         public void SaveDocWares(int parNumberDoc, int parCodeWares,int parNupPop ,decimal parQty, decimal @parPrice)
         {
             SQL.AddWithValueF("@parNumberDoc", parNumberDoc);
@@ -477,7 +490,7 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
                 }
                 catch(Exception Ex)
                 {
-                    varError="Звязок відсутній! Провірте підключення ТЗД!!!";
+                    varError = "Звязок відсутній! Провірте підключення ТЗД!!!" + Ex.Message;
                     return;
                 }
                 #endregion

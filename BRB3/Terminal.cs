@@ -167,6 +167,161 @@ using BCD.net;
         }
 
     }
+
+    /// <summary>
+    /// PitechLPT80
+    /// </summary>
+     class TerminalPitech : Terminal
+    {
+        private PT.Barcode.Reader MyReader = null;
+        private PT.Barcode.ReaderData MyReaderData = null;
+        private System.EventHandler MyEventHandler = null;
+
+        private Symbol.Barcode2.Design.Barcode2 barcodeMoto = new Symbol.Barcode2.Design.Barcode2();
+
+        public override bool init()
+        {
+            try
+            {
+                //If reader is already present then fail initalize
+                if (this.MyReader != null)
+                {
+                    return false;
+                }
+
+                //Create new reader, first available reader will be used.
+                this.MyReader = new PT.Barcode.Reader();
+
+                //Create reader data
+                this.MyReaderData = new PT.Barcode.ReaderData(
+                                        PT.Barcode.ReaderDataTypes.Text,
+                                        PT.Barcode.ReaderDataLengths.MaximumLabel);
+
+                //Create event handler delegate
+                this.MyEventHandler = new EventHandler(MyReader_ReadNotify);
+
+                //Enable reader
+                this.MyReader.Actions.Enable();
+
+                this.MyReader.Actions.ToggleSoftTrigger();
+                //Success Init Complete
+                // return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                return false;
+
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// Read complete or failure notification
+        /// </summary>
+        private void MyReader_ReadNotify(object sender, EventArgs e)
+        {
+            PT.Barcode.ReaderData TheReaderData = this.MyReader.GetNextReaderData();
+
+            // Handle the data from this read
+            this.HandleData(TheReaderData);
+
+            // Start the next read
+            this.StartRead();
+        }
+
+        /// <summary>
+        /// Stop all reads on the reader
+        /// </summary>
+        private void StopRead()
+        {
+            // If we have a reader
+            if (this.MyReader != null)
+            {
+                // Flush (Cancel all pending reads)
+                this.MyReader.ReadNotify -= this.MyEventHandler;
+                this.MyReader.Actions.Flush();
+            }
+        }
+
+        /// <summary>
+        /// Start a read on the reader
+        /// </summary>
+        private void StartRead()
+        {
+            if ((this.MyReader != null) && (this.MyReaderData != null))
+            {
+                //Enable Read Notification
+                this.MyReader.ReadNotify += this.MyEventHandler;
+                this.MyReader.Actions.Read(this.MyReaderData);
+            }
+        }
+
+        /// <summary>
+        /// Handle data from the reader
+        /// </summary>
+        private void HandleData(PT.Barcode.ReaderData TheReaderData)
+        {
+            //string MessageToDisplay;// = TheReaderData.Source;
+            //MessageToDisplay = TheReaderData.Source + ": " + TheReaderData.Text;
+            //ReaderDataListBox.Items.Add(MessageToDisplay);
+
+            if (TheReaderData.Result == PT.Results.SUCCESS)
+            {
+                varCallBackBarcode(TheReaderData.Text);
+
+            }
+        }
+
+        /// <summary>
+        /// Stop reading and disable/close reader
+        /// </summary>
+        private void TermReader()
+        {
+            // If we have a reader
+            if (this.MyReader != null)
+            {
+                //Disable the reader
+                this.MyReader.Actions.Disable();
+
+                //Free it up
+                this.MyReader.Dispose();
+
+                //Indicate we no longer have one
+                this.MyReader = null;
+            }
+
+            // If we have a reader data
+            if (this.MyReaderData != null)
+            {
+                //Free it up
+                this.MyReaderData.Dispose();
+
+                //Indicate we no longer have one
+                this.MyReaderData = null;
+            }
+        }
+
+        /*
+                private void TriggerButton_Click(object sender, EventArgs e)
+                {
+                    if (this.MyReader == null)
+                    {
+                        return;
+                    }
+                    this.MyReader.Actions.ToggleSoftTrigger();
+                }
+                */
+
+        public override void close()
+        {
+            this.TermReader();
+        }
+
+
+    }
+ 
+
 /// <summary>
     /// Bitatek IT8000
 /// </summary>
@@ -294,158 +449,4 @@ using BCD.net;
 
 
 
-    /// <summary>
-    /// PitechLPT80
-    /// </summary>
-    class TerminalPitech : Terminal
-    {
-        private PT.Barcode.Reader MyReader = null;
-        private PT.Barcode.ReaderData MyReaderData = null;
-        private System.EventHandler MyEventHandler = null;
-				
-        private Symbol.Barcode2.Design.Barcode2 barcodeMoto = new Symbol.Barcode2.Design.Barcode2();
-
-        public override bool init()
-        {
-            try
-            {
-                //If reader is already present then fail initalize
-                if (this.MyReader != null)
-                {
-                    return false;
-                }
-
-                //Create new reader, first available reader will be used.
-                this.MyReader = new PT.Barcode.Reader();
-
-                //Create reader data
-                this.MyReaderData = new PT.Barcode.ReaderData(
-                                        PT.Barcode.ReaderDataTypes.Text,
-                                        PT.Barcode.ReaderDataLengths.MaximumLabel);
-
-                //Create event handler delegate
-                this.MyEventHandler = new EventHandler(MyReader_ReadNotify);
-
-                //Enable reader
-                this.MyReader.Actions.Enable();
-             
-                this.MyReader.Actions.ToggleSoftTrigger();
-                //Success Init Complete
-                return true;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-                return false;
-               
-            }
-            return true;
-        }
-
-        /// <summary>
-        /// Read complete or failure notification
-        /// </summary>
-        private void MyReader_ReadNotify(object sender, EventArgs e)
-        {
-            PT.Barcode.ReaderData TheReaderData = this.MyReader.GetNextReaderData();
-
-            // Handle the data from this read
-            this.HandleData(TheReaderData);
-
-            // Start the next read
-            this.StartRead();
-        }
-
-       
-
-        /// <summary>
-        /// Stop all reads on the reader
-        /// </summary>
-        private void StopRead()
-        {
-            // If we have a reader
-            if (this.MyReader != null)
-            {
-                // Flush (Cancel all pending reads)
-                this.MyReader.ReadNotify -= this.MyEventHandler;
-                this.MyReader.Actions.Flush();
-            }
-        }
-
-        /// <summary>
-        /// Start a read on the reader
-        /// </summary>
-        private void StartRead()
-        {
-            if ((this.MyReader != null) && (this.MyReaderData != null))
-            {
-                //Enable Read Notification
-                this.MyReader.ReadNotify += this.MyEventHandler;
-                this.MyReader.Actions.Read(this.MyReaderData);
-            }
-        }
-
-        /// <summary>
-        /// Handle data from the reader
-        /// </summary>
-        private void HandleData(PT.Barcode.ReaderData TheReaderData)
-        {
-            //string MessageToDisplay;// = TheReaderData.Source;
-            //MessageToDisplay = TheReaderData.Source + ": " + TheReaderData.Text;
-            //ReaderDataListBox.Items.Add(MessageToDisplay);
-
-            if (TheReaderData.Result  == PT.Results.SUCCESS )
-            {
-                varCallBackBarcode(TheReaderData.Text);
-
-            }
-        }
-
-        /// <summary>
-        /// Stop reading and disable/close reader
-        /// </summary>
-        private void TermReader()
-        {
-            // If we have a reader
-            if (this.MyReader != null)
-            {
-                //Disable the reader
-                this.MyReader.Actions.Disable();
-
-                //Free it up
-                this.MyReader.Dispose();
-
-                //Indicate we no longer have one
-                this.MyReader = null;
-            }
-
-            // If we have a reader data
-            if (this.MyReaderData != null)
-            {
-                //Free it up
-                this.MyReaderData.Dispose();
-
-                //Indicate we no longer have one
-                this.MyReaderData = null;
-            }
-        }
-
-
-/*
-        private void TriggerButton_Click(object sender, EventArgs e)
-        {
-            if (this.MyReader == null)
-            {
-                return;
-            }
-            this.MyReader.Actions.ToggleSoftTrigger();
-        }
-        */
-
-        public override void close()
-        {
-            this.TermReader();
-        }
-
-    }
- 
+  

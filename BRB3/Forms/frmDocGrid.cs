@@ -19,7 +19,7 @@ namespace BRB.Forms
         public frmDocGrid(TypeDoc parTypeDoc)
         {
             typeDoc = parTypeDoc;
-            dt = BL.LoadDocs(parTypeDoc);
+            dt = Global.cBL.LoadDocs(parTypeDoc);
             InitializeComponent();
             InitializeComponentManual();
         }
@@ -239,7 +239,7 @@ namespace BRB.Forms
         private void btnMarkDoc()
         {
             //MessageBox.Show("Помітка документа ще не реалізовано");
-            BL.SetCurDoc(Convert.ToInt32(advancedList.DataRows[advancedList.ActiveRowIndex]["number_doc"]));
+            Global.cBL.SetCurDoc(Convert.ToInt32(advancedList.DataRows[advancedList.ActiveRowIndex]["number_doc"]));
             {
                 
                 if (advancedList.ActiveRowIndex >= 0)
@@ -257,7 +257,7 @@ namespace BRB.Forms
                                 try
                                 {
                                       //функція упдейта Docs.status
-                                    BL.SetStatusDoc(Convert.ToInt16(TypeStatusDoc.Mark));
+                                    Global.cBL.SetStatusDoc(Convert.ToInt16(TypeStatusDoc.Mark));
                                      //_formClass.SetStatusDoc(Convert.ToInt32(advancedList.DataRows[advancedList.ActiveRowIndex]["number_doc"]), 1);
                                     advancedList.DataRows[advancedList.ActiveRowIndex]["status"] = Convert.ToInt16(TypeStatusDoc.Mark);
                                     advancedList.DataRows[advancedList.ActiveRowIndex]["StatusName"] = "+";
@@ -293,7 +293,7 @@ namespace BRB.Forms
                         {
                             try
                             {
-                                BL.SetStatusDoc(Convert.ToInt16(TypeStatusDoc.NoMark));
+                                Global.cBL.SetStatusDoc(Convert.ToInt16(TypeStatusDoc.NoMark));
                                 advancedList.DataRows[advancedList.ActiveRowIndex]["status"] = Convert.ToInt16(TypeStatusDoc.NoMark);
                                 advancedList.DataRows[advancedList.ActiveRowIndex]["StatusName"] = "-";
 

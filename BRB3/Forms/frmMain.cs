@@ -146,6 +146,7 @@ namespace BRB.Forms
             }
             catch (Exception ex)
             {
+                string er = ex.Message;
                // ViSoft.Common.clsException.EnableException(ex);
             }
             finally
