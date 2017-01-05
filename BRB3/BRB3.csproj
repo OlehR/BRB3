@@ -177,6 +177,7 @@
     <Compile Include="Global.cs" />
     <Compile Include="Proc.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="Proto.cs" />
     <Compile Include="SqlBulkCopy\DestinationTableDefaultMetadata.cs" />
     <Compile Include="SqlBulkCopy\ISqlCeBulkCopyInsertAdapter.cs" />
     <Compile Include="SqlBulkCopy\SqlCeBulkCopy.cs" />

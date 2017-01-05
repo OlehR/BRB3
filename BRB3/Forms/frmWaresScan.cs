@@ -80,9 +80,9 @@ namespace BRB.Forms
 
                 if (dr["price"] != DBNull.Value)
                 {
-                    this.mptbAddPrice.Text = dr["price"].ToString();
+                    this.mptbAddPrice.Text = Proto.DeleteZeroEnds(dr["price"].ToString());
                 }
-                else this.mptbAddPrice.Text = dr["price_temp"].ToString();
+                else this.mptbAddPrice.Text = Proto.DeleteZeroEnds(dr["price_temp"].ToString());
 
                 if (dr["quantity_temp"] != DBNull.Value)
                 {
@@ -95,6 +95,8 @@ namespace BRB.Forms
                     else this.mplQtyTempl.Text = decimal.Round(Convert.ToDecimal(dr["quantity_temp"]), 3).ToString("0.000");
                 }
                 else mplQtyTempl.Text = string.Empty;
+                // TMPPPPPP
+                this.mplQtyTempl.Text = decimal.Round(Convert.ToDecimal(dr["quantity_temp"]), 3).ToString("0.000");
             }
             else this.mplDocNum.Text = Global.cBL.CurNumDoc.ToString();
         }
@@ -102,7 +104,9 @@ namespace BRB.Forms
         public void InitializeComponentManual()
         {
             this.labelDown.Size = new System.Drawing.Size(100, (1 + Global.hToolbarTerminal));
-            this.Text = "BRB 3b " + Global.eTypeTerminal.ToString();
+            this.Text = "BRB3 " + Global.eTypeTerminal.ToString();
+            this.mpbtnAdd.Text = mpbtnAdd.Text + " " + HotKey.strWaresScan_Add;
+            this.mpbtnCancel.Text = mpbtnCancel.Text + " " + HotKey.strWaresScan_Cancel;
 
             // BitatekIT8000 примусово вставляє тулбар
             if (Global.eTypeTerminal == TypeTerminal.BitatekIT8000)
@@ -126,6 +130,44 @@ namespace BRB.Forms
             dr = Global.cBL.FindGoodBarCode(Barcode);
             fillDataForm();
         }
-        
+
+        private void WaresScan_KeyUp(object sender, KeyEventArgs e)
+        {
+             if (e.KeyValue == HotKey.WaresScan_Add)
+            {
+                btnAdd();
+            }
+             else if (e.KeyValue == HotKey.WaresScan_Cancel)
+             {
+                 btnCancel();
+             }
+        }
+
+        // Клік по пункту меню
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            btnAdd();
+        }
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            btnCancel();
+        }
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            btnExit();
+        }
+
+         // Функції
+        private void btnExit()
+        {
+            this.Close();
+        }
+        private void btnAdd()
+        {
+            
+        }
+        private void btnCancel()
+        {
+        }
     }
 }

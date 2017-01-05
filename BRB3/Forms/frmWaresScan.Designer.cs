@@ -327,7 +327,7 @@
             this.mpbtnAdd.Name = "mpbtnAdd";
             this.mpbtnAdd.Size = new System.Drawing.Size(141, 20);
             this.mpbtnAdd.TabIndex = 4;
-            this.mpbtnAdd.Text = "Додати товар [F1]";
+            this.mpbtnAdd.Text = "Додати товар";
             // 
             // mpbtnCancel
             // 
@@ -338,7 +338,7 @@
             this.mpbtnCancel.Name = "mpbtnCancel";
             this.mpbtnCancel.Size = new System.Drawing.Size(86, 20);
             this.mpbtnCancel.TabIndex = 5;
-            this.mpbtnCancel.Text = "Відміна [F4]";
+            this.mpbtnCancel.Text = "Відміна";
             // 
             // mainPanel
             // 
@@ -389,6 +389,7 @@
             this.MinimizeBox = false;
             this.Name = "frmWaresScan";
             this.mainPanel.ResumeLayout(false);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.WaresScan_KeyUp);
             this.Load += new System.EventHandler(this.frmWaresScan_Load);
             this.Closed += new System.EventHandler(this.frmWaresScan_Closed);
             this.ResumeLayout(false);

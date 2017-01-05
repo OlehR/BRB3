@@ -24,6 +24,9 @@ WaresGrid_Edit = F1
 WaresGrid_Scan = F2
 WaresGrid_Filter = F4
 
+WaresScan_Add = F1
+WaresScan_Cancel =F4
+
 [MotorolaMC75Ax]
 Up = Up
 Down = Down
@@ -49,6 +52,9 @@ WaresGrid_Exit = F10
 WaresGrid_Edit = F8
 WaresGrid_Scan = F3
 WaresGrid_Filter = F4
+
+WaresScan_Add = F3
+WaresScan_Cancel =F4
 
 [PitechLPT80]
 Up = Up
