@@ -13,6 +13,12 @@ namespace BRB.Forms
     {
         DataRow dr;
         int type_doc;
+        int num_pop;
+
+        int Article;
+        decimal AddQty;
+        decimal QtyNow;
+        decimal AddPrice;
 
         public frmWaresScan(int panCodeWares)
         {
@@ -75,6 +81,7 @@ namespace BRB.Forms
                 if (dr["quantity"] != DBNull.Value)
                 {
                     this.mplQtyNow.Text = decimal.Round(Convert.ToDecimal(dr["quantity"]), 3).ToString("0.000");
+                    QtyNow = decimal.Round(Convert.ToDecimal(dr["quantity"]), 3);
                 }
                 else this.mplQtyNow.Text = string.Empty;
 
@@ -158,13 +165,99 @@ namespace BRB.Forms
         }
 
          // Функції
+        //Читаєм і провіряєм коректність даних з форми
+        private void readDataFromForm()
+        {
+            Article = 0;
+            AddQty = 0;
+            AddPrice = 0;
+
+            if (!String.IsNullOrEmpty(mplArticle.Text))
+            {
+                try
+                {
+                    Article = Convert.ToInt32(mplArticle.Text);
+                }
+                catch { Article = 0; }
+            }
+            else
+            {
+                clsDialogBox.InformationBoxShow("Вкажіть товар!");
+                mptbAddQty.Focus();
+                return;
+            }
+
+            if (!String.IsNullOrEmpty(mptbAddQty.Text))
+            {
+                try
+                {
+                    AddQty = Convert.ToDecimal(mptbAddQty.Text);
+                }
+                catch
+                {
+                    clsDialogBox.InformationBoxShow("Внесіть правильну кіл-ть товару!");
+                    mptbAddQty.Focus();
+                }
+            }
+            else
+            {
+                clsDialogBox.InformationBoxShow("Внесіть кіл-ть товару!");
+                mptbAddQty.Focus();
+                return;
+            }
+
+            if (!String.IsNullOrEmpty(mptbAddPrice.Text))
+            {
+              if (mptbAddPrice.Text.Length > 14)
+              {
+              clsDialogBox.InformationBoxShow("Кількість символів повинна бути менше 15");
+              mptbAddPrice.Focus();
+              return;
+              }
+
+                try
+                {
+                    AddPrice = Convert.ToDecimal(mptbAddPrice.Text);
+                }
+                catch
+                {
+                    clsDialogBox.InformationBoxShow("Внесіть правильну ціну товару!");
+                    mptbAddPrice.Focus();
+                }
+            }
+            else
+            {
+                clsDialogBox.InformationBoxShow("Внесіть ціну товару!");
+                mptbAddPrice.Focus();
+                return;
+            }
+
+        }
+
         private void btnExit()
         {
             this.Close();
         }
         private void btnAdd()
         {
+            readDataFromForm();
             
+            //Провірка к-ть на дробність
+            decimal QtyNew = decimal.Round((AddQty + QtyNow), 15);
+            if (QtyNew != Decimal.Truncate(QtyNew) && !Global.cBL.IsFractional())
+            {
+                clsDialogBox.InformationBoxShow("Кількість даного товару не може бути дробною!");
+                mptbAddQty.Focus();
+                return;
+            }
+            //Провірим порядковий номер
+            if ((dr != null) && dr["num_pop"] != DBNull.Value)
+            {
+                num_pop = Convert.ToInt32(dr["num_pop"]);
+            }
+            else num_pop = 0;
+            //Зберігаємо в базу
+            Global.cBL.SaveGoods(num_pop, QtyNew, AddPrice);
         }
         private void btnCancel()
         {

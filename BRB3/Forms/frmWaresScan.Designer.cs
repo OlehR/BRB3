@@ -328,7 +328,8 @@
             this.mpbtnAdd.Size = new System.Drawing.Size(141, 20);
             this.mpbtnAdd.TabIndex = 4;
             this.mpbtnAdd.Text = "Додати товар";
-            // 
+            this.mpbtnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // ;
             // mpbtnCancel
             // 
             this.mpbtnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)

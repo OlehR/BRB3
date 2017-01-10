@@ -291,6 +291,7 @@
             this.Name = "frmWaresGrid";
             this.Text = "BRB3";
             this.Load += new System.EventHandler(this.frmWaresGrid_Load);
+            this.Activated += new System.EventHandler(this.frmWaresGrid_Activated);
             this.ResumeLayout(false);
 
         }

@@ -46,6 +46,15 @@ namespace BRB.Forms
             }
         }
 
+        private void frmDocGrid_Activated(object sender, EventArgs e)
+        {
+            try
+            {
+                Global.cTerminal.StartScan(this.scanBarcode);
+            }
+            catch { }
+        }
+
         private void frmDocGrid_Load(object sender, EventArgs e)
         {
             try
@@ -339,6 +348,8 @@ namespace BRB.Forms
 
         private void btnWaresScan()
         {
+            Global.cTerminal.StopScan();
+
             if (advancedList.ActiveRowIndex >= 0)
             {
                  if (Convert.ToInt32(advancedList.DataRows[advancedList.ActiveRowIndex]["status"]) == 1)
