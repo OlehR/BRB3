@@ -100,7 +100,7 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
 
         private string varSQLGetDateOutInvoice = @"select COALESCE (LEN(date_out_invoice), 0) from Docs where number_doc = @parNumberDoc";
 
-        private string varSQLGetWaresOrder  = @"SELECT   COALESCE (MAX(num_pop), 0)+1 as  num_pop  FROM     docs_wares   WHERE    number_doc  = @number_doc";
+        private string varSQLGetWaresOrder = @"SELECT   COALESCE (MAX(num_pop), 0)+1 as  num_pop  FROM     docs_wares   WHERE    number_doc  = @parNumberDoc";
 
         private string varSQLSaveDocWares = @"update docs_wares
 						   set    quantity = @parQty,
