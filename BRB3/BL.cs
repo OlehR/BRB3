@@ -22,7 +22,7 @@ namespace BRB
         static private int CurCodeWares;
         static private DataTable dtDocs;
         static private DataTable dtWaresDoc;
-        static private DataRow CurDoc;
+        public DataRow CurDoc;
         static private DataRow CurWaresDoc;
         static public Data cData;
 

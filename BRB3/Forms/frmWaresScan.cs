@@ -18,6 +18,7 @@ namespace BRB.Forms
         int Article;
         decimal AddQty;
         decimal QtyNow;
+        decimal QtyTempl;
         decimal AddPrice;
 
         public frmWaresScan(int panCodeWares)
@@ -93,6 +94,7 @@ namespace BRB.Forms
 
                 if (dr["quantity_temp"] != DBNull.Value)
                 {
+                    QtyTempl = decimal.Round(Convert.ToDecimal(dr["quantity_temp"]), 3);
                     type_doc = Convert.ToInt32(dr["type_doc"]);
 
                     if (type_doc == 3 | type_doc == 8)
@@ -102,7 +104,7 @@ namespace BRB.Forms
                     else this.mplQtyTempl.Text = decimal.Round(Convert.ToDecimal(dr["quantity_temp"]), 3).ToString("0.000");
                 }
                 else mplQtyTempl.Text = string.Empty;
-                // TMPPPPPP
+                // TMPPPPPP Витерти!!!!
                 this.mplQtyTempl.Text = decimal.Round(Convert.ToDecimal(dr["quantity_temp"]), 3).ToString("0.000");
             }
             else this.mplDocNum.Text = Global.cBL.CurNumDoc.ToString();
@@ -241,9 +243,29 @@ namespace BRB.Forms
         private void btnAdd()
         {
             readDataFromForm();
+
+            
+            //Провірка к-ті в ЗНП
+            decimal OldQty;
+            if (Convert.ToInt32(Global.cBL.CurDoc["flag_sum_qty_doc"]) == 0)
+                OldQty = 0;
+            else OldQty = QtyNow;
+
+                if (!Global.cBL.IsFractional() && true && (AddQty + OldQty) > QtyTempl)//!Ваговий і !clsCommon.PropQtyBigZNP
+                {
+                    clsDialogBox.InformationBoxShow("Кіл-ть товару > ніж в ЗНП!");
+                    mptbAddQty.Focus();
+                    return;
+                }
+                else if (Global.cBL.IsFractional() && true && ((AddQty + OldQty) > (QtyTempl + QtyTempl*Global.WeightQtyPersent/100)))
+                {
+                    clsDialogBox.InformationBoxShow("Кіл-ть товару > ніж в ЗНП!");
+                    mptbAddQty.Focus();
+                    return;
+                }
             
             //Провірка к-ть на дробність
-            decimal QtyNew = decimal.Round((AddQty + QtyNow), 15);
+            decimal QtyNew = decimal.Round((AddQty + QtyNow), 3);
             if (QtyNew != Decimal.Truncate(QtyNew) && !Global.cBL.IsFractional())
             {
                 clsDialogBox.InformationBoxShow("Кількість даного товару не може бути дробною!");
