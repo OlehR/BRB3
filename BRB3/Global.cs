@@ -49,6 +49,11 @@ namespace BRB
         /// </summary>
         static public int WeightBarQtyChar=4;
 
+        /// <summary>
+        /// Відхилення в % в кількості для вагового товару
+        /// </summary>
+        static public int WeightQtyPersent = 20;
+
         static public Data cData;
         static public BRB.BL cBL;
         static public Terminal cTerminal;
