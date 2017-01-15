@@ -46,7 +46,7 @@ using BCD.net;
 /// <summary>
 /// MotorolaMC75Ax
 /// </summary>
-    class TerminalMotorola : Terminal 
+    public class TerminalMotorola : Terminal 
     {
         private Symbol.Barcode2.Design.Barcode2 barcodeMoto = new Symbol.Barcode2.Design.Barcode2();
 
@@ -327,7 +327,7 @@ using BCD.net;
 /// <summary>
     /// Bitatek IT8000
 /// </summary>
-    class TerminalBitatek : Terminal  
+    public class TerminalBitatek : Terminal  
     {
         MsgWindow MsgWin = new MsgWindow();
         public override bool init()

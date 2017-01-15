@@ -35,13 +35,14 @@ namespace BRB
                                      number_out_invoice,
                                      date_out_invoice,
                                      COALESCE(flag_sum_qty_doc, 0) as flag_sum_qty_doc,
-                                     COALESCE(input_code, 0) as input_code
+                                     COALESCE(input_code, 0) as input_code,
+                                     COALESCE(flag_change_doc_sup, 0) as flag_change_doc_sup
                               FROM  DOCS AS d LEFT OUTER JOIN
                                      DOCS_WARES AS dw ON d.number_doc = dw.number_doc LEFT OUTER JOIN
                                       WARES AS w ON dw.code_wares=w.code_wares
                               WHERE type_doc=@parTypeDoc 
 GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_with_vat, d.sum_without_vat, d.sum_with_vat, d.status, d.okpo_supplier,  
-                         d.number_out_invoice, d.date_out_invoice, d.flag_sum_qty_doc, input_code";
+                         d.number_out_invoice, d.date_out_invoice, d.flag_sum_qty_doc, input_code,flag_change_doc_sup";
         ////type_doc in (1, 3, 4, 5, 6, 7, 8)
         //TMP Є трохи магії з комплектацією Інший запит() треба буде розібратись
         private string varSQLDocsWares = @"SELECT DISTINCT dw.number_doc, 

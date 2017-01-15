@@ -104,7 +104,8 @@ namespace BRB
                     hToolbarTerminal = 0;
                     icoSize = 64;
                     tCoefficient = 1;
-                    cTerminal = new TerminalPitech();
+                    //TMP
+                    //cTerminal = new TerminalPitech();
                     break;
 
             }
