@@ -50,7 +50,7 @@ namespace BRB.Forms
         {
             try
             {
-                Global.cTerminal.StartScan(this.scanBarcode);
+                 Global.cTerminal.StartScan(this.scanBarcode);
 
                 //RefreshAdvList();
                 //this.Text = clsCommon.PropMiniInventoryCaption;

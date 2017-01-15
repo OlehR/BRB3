@@ -171,13 +171,12 @@ using BCD.net;
     /// <summary>
     /// PitechLPT80
     /// </summary>
-     class TerminalPitech : Terminal
+    public class TerminalPitech : Terminal
     {
         private PT.Barcode.Reader MyReader = null;
         private PT.Barcode.ReaderData MyReaderData = null;
         private System.EventHandler MyEventHandler = null;
 
-        private Symbol.Barcode2.Design.Barcode2 barcodeMoto = new Symbol.Barcode2.Design.Barcode2();
 
         public override bool init()
         {
@@ -204,6 +203,7 @@ using BCD.net;
                 this.MyReader.Actions.Enable();
 
                 this.MyReader.Actions.ToggleSoftTrigger();
+                StartRead();
                 //Success Init Complete
                 // return true;
             }
@@ -227,7 +227,7 @@ using BCD.net;
             this.HandleData(TheReaderData);
 
             // Start the next read
-            this.StartRead();
+            //this.StartRead();
         }
 
         /// <summary>
@@ -315,12 +315,14 @@ using BCD.net;
 
         public override void close()
         {
-            this.TermReader();
+            this.StopRead();
+            this.TermReader();           
         }
 
 
     }
  
+     
 
 /// <summary>
     /// Bitatek IT8000
