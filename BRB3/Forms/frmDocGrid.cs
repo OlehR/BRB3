@@ -261,6 +261,17 @@ namespace BRB.Forms
                             {
                                 clsDialogBox.ErrorBoxShow("По даному документу товар не приймався!");
                             }
+                            else if (Convert.ToInt32(Global.cBL.CurDoc["type_doc"]) == 1 && true) //clsCommon.PropControlDocSup
+                            {
+                                if (Global.cBL.CurDoc["number_out_invoice"].ToString().Length > 0)
+                                {
+                                    clsDialogBox.ErrorBoxShow("Введіть номер розхідної від постачальника!");
+                                }
+                                else if (Global.cBL.CurDoc["date_out_invoice"].ToString().Length > 0)
+                                {
+                                    clsDialogBox.ErrorBoxShow("Введіть дату розхідної від постачальника!");
+                                }
+                            }
                             else
                             {
                                 try
