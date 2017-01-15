@@ -38,7 +38,7 @@ namespace BRB.Forms
             this.miSync.Text += " " + HotKey.strDocGrid_Sync;
             this.miSettings.Text += " " + HotKey.strDocGrid_Settings;
 
-            if (Global.cBL.CurTypeDoc != TypeDoc.Invoice)
+            if (Global.cBL.CurTypeDoc != TypeDoc.SupplyLogistic)
             {
                 this.miGroupingDoc.Enabled = false;
             }
@@ -46,7 +46,7 @@ namespace BRB.Forms
 
         private void frmDocGrid_Activated(object sender, EventArgs e)
         {
-            dt = Global.cBL.LoadDocs(TypeDoc.Invoice);
+            dt = Global.cBL.LoadDocs(TypeDoc.SupplyLogistic);
             advancedList.DataSource = dt;
             advancedList.ResumeRedraw();
             advancedList.ActiveRowIndex = rowIndex;
@@ -263,11 +263,11 @@ namespace BRB.Forms
                             }
                             else if (Convert.ToInt32(Global.cBL.CurDoc["type_doc"]) == 1 && true) //clsCommon.PropControlDocSup
                             {
-                                if (Global.cBL.CurDoc["number_out_invoice"].ToString().Length > 0)
+                                if (Global.cBL.CurDoc["number_out_invoice"].ToString().Length == 0)
                                 {
                                     clsDialogBox.ErrorBoxShow("Введіть номер розхідної від постачальника!");
                                 }
-                                else if (Global.cBL.CurDoc["date_out_invoice"].ToString().Length > 0)
+                                else if (Global.cBL.CurDoc["date_out_invoice"].ToString().Length == 0)
                                 {
                                     clsDialogBox.ErrorBoxShow("Введіть дату розхідної від постачальника!");
                                 }

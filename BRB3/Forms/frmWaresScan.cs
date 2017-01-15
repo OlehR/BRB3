@@ -12,7 +12,7 @@ namespace BRB.Forms
     public partial class frmWaresScan : Form
     {
         DataRow dr;
-        int type_doc;
+        //TypeDoc type_doc;
         int num_pop;
 
         int Article;
@@ -95,9 +95,8 @@ namespace BRB.Forms
                 if (dr["quantity_temp"] != DBNull.Value)
                 {
                     QtyTempl = decimal.Round(Convert.ToDecimal(dr["quantity_temp"]), 3);
-                    type_doc = Convert.ToInt32(dr["type_doc"]);
-
-                    if (type_doc == 3 | type_doc == 8)
+                    
+                    if (Global.cBL.CurTypeDoc == TypeDoc.SupplyLogistic || Global.cBL.CurTypeDoc == TypeDoc.Inventories)
                     {
                         mplQtyTempl.Text = string.Empty;
                     }
@@ -251,13 +250,13 @@ namespace BRB.Forms
                 OldQty = 0;
             else OldQty = QtyNow;
 
-                if (!Global.cBL.IsFractional() && true && (AddQty + OldQty) > QtyTempl)//!Ваговий і !clsCommon.PropQtyBigZNP
+                if (!Global.cBL.IsFractional() && !Global.isQtyBiggerZNP && (AddQty + OldQty) > QtyTempl)//!Ваговий і !clsCommon.PropQtyBigZNP
                 {
                     clsDialogBox.InformationBoxShow("Кіл-ть товару > ніж в ЗНП!");
                     mptbAddQty.Focus();
                     return;
                 }
-                else if (Global.cBL.IsFractional() && true && ((AddQty + OldQty) > (QtyTempl + QtyTempl*Global.WeightQtyPersent/100)))
+                else if (Global.cBL.IsFractional() && !Global.isQtyBiggerZNP && ((AddQty + OldQty) > (QtyTempl + QtyTempl * Global.WeightQtyPersent / 100)))
                 {
                     clsDialogBox.InformationBoxShow("Кіл-ть товару > ніж в ЗНП!");
                     mptbAddQty.Focus();

@@ -66,7 +66,7 @@ namespace BRB.Forms
         {
             if (e.KeyValue == HotKey.Main_Invoice)
             {
-                btnNewDocGrid(TypeDoc.Invoice);
+                btnNewDocGrid(TypeDoc.SupplyLogistic);
             }
             else if (e.KeyValue == HotKey.Main_MAudit)
             {
@@ -92,7 +92,7 @@ namespace BRB.Forms
             switch (listView.Items.IndexOf(listView.FocusedItem))
             {
                 case 0:
-                    btnNewDocGrid(TypeDoc.Invoice);
+                    btnNewDocGrid(TypeDoc.SupplyLogistic);
                     break;
                 case 1:
                     btnNewDocGrid(TypeDoc.Inventories); // Переписати на мініревізію
@@ -116,7 +116,7 @@ namespace BRB.Forms
         }
         private void btnInvoice_Click(object sender, EventArgs e)
         {
-            btnNewDocGrid(TypeDoc.Invoice);
+            btnNewDocGrid(TypeDoc.SupplyLogistic);
         }
         private void btnMAudit_Click(object sender, EventArgs e)
         {
