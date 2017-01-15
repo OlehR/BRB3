@@ -111,10 +111,10 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
 						   where  code_wares = @parCodeWares
                            and    number_doc = @parNumberDoc";
 
-        private string varSQLSaveDocEx= @"update docs_wares
+        private string varSQLSaveDocEx= @"update docs
 						   set    number_out_invoice =@parNumberOutInvoice,
                                   date_out_invoice = @parDateOutInvoice,
-                                  flag_price_with_vat = @parFlagPriceWithVat
+                                  flag_price_with_vat = @parFlagPriceWithVat,
                                   flag_change_doc_sup = @parFlagChangeDocSup,
                                   flag_sum_qty_doc = @parFlagSumQtyDoc
                             where  number_doc = @parNumberDoc";

@@ -17,14 +17,42 @@ namespace BRB
 
     public enum TypeDoc
     {
+        /// <summary>
+        /// ЗНП
+        /// </summary>
         Supply = 1,
-        Inventories = 2,
-        Invoice = 3,
-        WriteOffInvoice =4,
-        InReturnInvoice
+        /// <summary>
+        /// 2-Міні-ревізія
+        /// </summary>
+        MiniInventories = 2,
+        /// <summary>
+        /// 3-Пер.Логістик
+        /// </summary>
+        SupplyLogistic = 3,
+        /// <summary>
+        /// 4-Перед.334
+        /// </summary>
+        WriteOffInvoice334 = 4,
+        /// <summary>
+        /// 5-Списання
+        /// </summary>
+        WriteOffInvoice = 5,
+        /// <summary>
+        /// 6-Поверн.Постач
+        /// </summary>
+        InReturnInvoice = 6,
+        /// <summary>
+        /// 7-Перед.забір.лист
+        /// </summary>
+        WriteOffInvoiceProd = 7,
+        /// <summary>
+        /// 9-Ревізія
+        /// </summary>
+        Inventories = 9
+
+        //Тип документа:1-ЗНП,2-Міні-ревізія,3-Пер.Логістик,4-Перед.334,5-Списання,6-Поверн.Постач,7-Перед.забір.лист,9-Ревізія
   
-    //(1, 3, 4, 5, 6, 7, 8)
-    }
+      }
 
     public enum TypeStatusDoc
     {
@@ -57,8 +85,10 @@ namespace BRB
         /// Чи обов'язково заповнювати інформацію по постачальнику номер дату)
         /// </summary>
         static public bool isControlDocSup = true;
-        
-        static public isQtyBigerZNP = false;
+        /// <summary>
+        /// Чи можна вводити кількість більшу чим ЗНП.
+        /// </summary>
+        static public bool isQtyBiggerZNP = false;
         static public Data cData;
         static public BRB.BL cBL;
         static public Terminal cTerminal;

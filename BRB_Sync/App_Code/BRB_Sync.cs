@@ -24,7 +24,7 @@ public class BRB_Sync : System.Web.Services.WebService
 	[WebMethod(Description = "Вказує розробника і версію сервісу")]
 	public string GetServiceVersion()
 	{
-		return " Pakko Holding, 2014, BRB(C) Версія:  1.0 " ;        
+		return " Pakko Holding, 2017, BRB(C) Версія:  3.0 " ;        
 	}
 
     [WebMethod(Description = "Вказує версію файла на сервері")]
@@ -1766,7 +1766,7 @@ public class BRB_Sync : System.Web.Services.WebService
             cmdRows.Parameters.Add("num_pop", OracleType.Number);
             cmdRows.Parameters.Add("change_date", OracleType.DateTime);
             cmdRows.Parameters.Add("type_doc", OracleType.Number);
-
+            
             OracleTransaction tran = null;
             try
             {
