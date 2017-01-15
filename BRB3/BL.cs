@@ -221,6 +221,17 @@ namespace BRB
             return res;
         }
 
+        public Status SaveDocEx( int parNumberOutInvoice, DateTime parDateOutInvoice, int parFlagPriceWithVat, int parFlagChangeDocSup, int parFlagSumQtyDoc)
+        {
+            CurDoc["number_out_invoice"]=parNumberOutInvoice;
+            CurDoc["date_out_invoice"] = parDateOutInvoice;
+            CurDoc["flag_price_with_vat"] = parFlagPriceWithVat ;
+            CurDoc["flag_change_doc_sup"] = parFlagChangeDocSup;
+            CurDoc["flag_sum_qty_doc"] = parFlagSumQtyDoc ;
+            
+            cData.SaveDocEx(CurNumDoc, parNumberOutInvoice, parDateOutInvoice, parFlagPriceWithVat, parFlagChangeDocSup, parFlagSumQtyDoc);
+            return new Status();
+        }
 
 
         public  Status SetStatusDoc( int parStatus)

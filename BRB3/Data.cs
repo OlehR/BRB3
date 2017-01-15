@@ -110,6 +110,14 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
 						   where  code_wares = @parCodeWares
                            and    number_doc = @parNumberDoc";
 
+        private string varSQLSaveDocEx= @"update docs_wares
+						   set    number_out_invoice =@parNumberOutInvoice,
+                                  date_out_invoice = @parDateOutInvoice,
+                                  flag_price_with_vat = @parFlagPriceWithVat
+                                  flag_change_doc_sup = @parFlagChangeDocSup,
+                                  flag_sum_qty_doc = @parFlagSumQtyDoc
+                            where  number_doc = @parNumberDoc";
+ 
         private string varSQLFindCodeWaresFromBarCode = @"SELECT        au.code_wares, au.code_unit,au.coefficient, ud.abr_unit
                 FROM   ADDITION_UNIT AS au INNER JOIN
                    UNIT_DIMENSION AS ud ON au.code_unit = ud.code_unit
@@ -294,7 +302,18 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
             SQL.ExecuteNonQuery(varSQLSaveDocWares);
         }
 
-                
+        public void SaveDocEx(int parNumberDoc, int parNumberOutInvoice, DateTime parDateOutInvoice, int parFlagPriceWithVat, int parFlagChangeDocSup, int parFlagSumQtyDoc)
+        {
+            SQL.AddWithValueF("@parNumberDoc", parNumberDoc);
+            SQL.AddWithValue("@parNumberOutInvoice", parNumberOutInvoice);
+            SQL.AddWithValue("@parDateOutInvoice", parDateOutInvoice);
+            SQL.AddWithValue("@parFlagPriceWithVat", parFlagPriceWithVat);
+            SQL.AddWithValue("@parFlagChangeDocSup", parFlagChangeDocSup);
+            SQL.AddWithValue("@parFlagSumQtyDoc", parFlagSumQtyDoc);
+
+
+            SQL.ExecuteNonQuery(varSQLSaveDocEx);
+        }
         /// <summary>
         /// Синхронізація з сервером.
         /// </summary>
