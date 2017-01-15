@@ -53,7 +53,12 @@ namespace BRB
         /// Відхилення в % в кількості для вагового товару
         /// </summary>
         static public int WeightQtyPersent = 20;
-
+        /// <summary>
+        /// Чи обов'язково заповнювати інформацію по постачальнику номер дату)
+        /// </summary>
+        static public bool isControlDocSup = true;
+        
+        static public isQtyBigerZNP = false;
         static public Data cData;
         static public BRB.BL cBL;
         static public Terminal cTerminal;
