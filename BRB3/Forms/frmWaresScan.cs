@@ -241,6 +241,18 @@ namespace BRB.Forms
         }
         private void btnAdd()
         {
+            Status st= Global.cBL.SaveGoods(mplArticle.Text,mptbAddQty.Text, mptbAddPrice.Text);
+            if (st.status != EStatus.Ok)
+                clsDialogBox.InformationBoxShow(st.StrStatus);
+            
+            if(st.status==EStatus.QuantityCanNotBeFractional|| st.status==EStatus.QuantityTooMuch || st.status==EStatus.NoQuantity || st.status==EStatus.NoCorectQuantity)
+                mptbAddQty.Focus();
+            else if(st.status==EStatus.PriceTooLong || st.status==EStatus.NoCorectPrice || st.status==EStatus.NoPrice)
+                mptbAddPrice.Focus();
+
+        }
+        private void btnAdd_old()
+        {
             readDataFromForm();
 
             

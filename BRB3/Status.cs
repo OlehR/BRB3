@@ -5,6 +5,32 @@ using System.Text;
 
 namespace BRB
 {
+    public enum EStatus
+        {
+            Ok = 0,
+            NoWares,
+            NoCorectQuantity,
+            NoQuantity,
+            QuantityTooMuch,
+            QuantityCanNotBeFractional,
+            NoCorectPrice,
+            NoPrice,
+            PriceTooLong,
+            
+            UserCodeNotFound,
+            UserNotFound,
+
+            DBError,
+            BadLoginPassword,
+
+            NoDataFound,
+            NoGoodData,
+            ErrorSerializer,
+            DontGetKey,
+            HttpPOSTError,
+            Error
+        }
+
     public class Status
         {
             public Status()
@@ -25,49 +51,67 @@ namespace BRB
             }
             public EStatus status { get; set; }
             public string message { get; set; }
-            public string strStatus { get { return StrStatus.strStatus(status); } }
-
+           // public string strStatus { get { return StrStatus.strStatus(status); } }
+/*
             public string LocalizationMessage { get {return "У вас сталась помилка"; } }
             public string GetLocalizationMessage(EStatus parStatus,string parLang)
             {
                 string varMessage=null;
-/*                if(parLang==null)
-                    parLang=globalLogic.system.Localization.Lang;
-                
-                */
+
 
                 return varMessage;
             }
+        */
+        public string StrStatus
+            { 
+                get 
+                {
+                    string res = string.Empty;
+                    switch (status)
+                    {
+                        case EStatus.NoWares:
+                            res = "Вкажіть товар!";
+                            break;
 
+                        case EStatus.NoCorectQuantity:
+                            res = "Внесіть правильну кіл-ть товару!";
+                            break;
+                        case EStatus.NoQuantity:
+                            res = "Внесіть кіл-ть товару!";
+                            break;
+                        
+                        case EStatus.QuantityTooMuch:
+                            res = "Кіл-ть товару > ніж в ЗНП!";
+                            break;
+                        case EStatus.QuantityCanNotBeFractional:
+                            res = "Кількість даного товару не може бути дробною!";
+                            break;
+                        case EStatus.NoCorectPrice:
+                            res = "Внесіть правильну ціну товару!";
+                            break;
+                        case EStatus.NoPrice:
+                            res = "Внесіть ціну товару!";
+                            break;
+                        case EStatus.PriceTooLong:
+                            res = "Кількість символів повинна бути менше 15";
+                            break;
+                       default:
+                            res = status.ToString();
+                            break;
+                    }
+
+
+                    return res; 
+                
+                } 
             
+            }
 
+    
         }
 
-        public enum EStatus
-        {
-            Ok = 0,
-            Success = 1,
-
-            BadOrderStatus, //
-            BadSecretCode,
-            BadSecretCodeTooLate,
-            BadSecretCodeAlreadyUse,
-
-            UserCodeNotFound,
-            CodeNotFound,
-            UserNotFound,
-
-            DBError,
-            BadLoginPassword,
-
-            NoDataFound,
-            NoGoodData,
-            ErrorSerializer,
-            DontGetKey,
-            HttpPOSTError,
-            Error
-
-        }
+      
+   /*
 
         public static class StrStatus
         {
@@ -100,4 +144,5 @@ namespace BRB
             static string DBError { get { return "DBError"; } }
             
         }
+  */  
 }

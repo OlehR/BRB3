@@ -15,8 +15,8 @@ namespace Test
               //Global.cData.Sync();
 
               BL bl = new BL(Global.cData );
-              var Docs = bl.LoadDocs( TypeDoc.Invoice);
-              var DocsWares = bl.LoadWaresDocs(TypeDoc.Invoice,3702947);
+              var Docs = bl.LoadDocs( TypeDoc.SupplyLogistic);
+              var DocsWares = bl.LoadWaresDocs(TypeDoc.SupplyLogistic, 3702947);
               var res = bl.FindGoodCode(163142);
 
               bl.SaveDocEx(12, DateTime.Now, 0, 0, 0);

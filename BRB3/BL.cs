@@ -250,5 +250,89 @@ namespace BRB
             return res;
 
         }
+
+        public Status SaveGoods(string parArticle,string parQty,string parPrice)
+        {
+            int varArticle;
+            decimal varQty;
+            decimal varPrice;
+            int num_pop;
+            if (!String.IsNullOrEmpty(parArticle))
+            {
+                try
+                {
+                    varArticle = Convert.ToInt32(parArticle);
+                }
+                catch 
+                {
+                    return new Status(EStatus.NoWares);
+                }
+            }
+            else
+                return new Status(EStatus.NoWares);
+
+            if (!String.IsNullOrEmpty(parQty))
+            {
+                try
+                {
+                    varQty = Convert.ToDecimal(parQty);
+                }
+                catch
+                {
+                    return new Status(EStatus.NoCorectQuantity);
+                }
+            }
+            else
+                return new Status(EStatus.NoQuantity);
+
+
+            if (!String.IsNullOrEmpty(parPrice))
+            {
+                if (parPrice.Length > 14)
+                {
+                    return new Status(EStatus.PriceTooLong);
+                }
+
+                try
+                {
+                    varPrice = Convert.ToDecimal(parPrice);
+                }
+                catch
+                {
+                    return new Status(EStatus.NoCorectPrice);
+                }
+            }
+            else
+                return new Status(EStatus.NoPrice);
+
+
+            //Провірка к-ті в ЗНП
+            decimal OldQty;
+            if (Convert.ToInt32(Global.cBL.CurDoc["flag_sum_qty_doc"]) == 0)
+                OldQty = 0;
+            else
+                OldQty = decimal.Round(Convert.ToDecimal(CurWaresDoc["quantity"]), 3);
+            decimal QtyTempl = decimal.Round(Convert.ToDecimal(CurWaresDoc["quantity_temp"]), 3);
+
+            if (!Global.cBL.IsFractional() && !Global.isQtyBiggerZNP && (varQty + OldQty) > QtyTempl)//!Ваговий і !clsCommon.PropQtyBigZNP
+                return new Status(EStatus.QuantityTooMuch);
+            else if (Global.cBL.IsFractional() && !Global.isQtyBiggerZNP && ((varQty + OldQty) > (QtyTempl + QtyTempl * Global.WeightQtyPersent / 100)))
+                return new Status(EStatus.QuantityTooMuch);
+
+            //Провірка к-ть на дробність
+            decimal QtyNew = decimal.Round((varQty + OldQty), 3);
+            if (QtyNew != Decimal.Truncate(QtyNew) && !Global.cBL.IsFractional())
+                return new Status(EStatus.QuantityCanNotBeFractional);
+
+            //Провірим порядковий номер
+            if ((CurWaresDoc != null) && CurWaresDoc["num_pop"] != DBNull.Value)
+            {
+                num_pop = Convert.ToInt32(CurWaresDoc["num_pop"]);
+            }
+            else num_pop = 0;
+            //Зберігаємо в базу
+            return Global.cBL.SaveGoods(num_pop, QtyNew, varPrice);
+
+        }
     }
 }
