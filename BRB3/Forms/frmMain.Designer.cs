@@ -182,6 +182,7 @@
             this.Name = "frmMain";
             this.Text = "BRB3";
             this.ResumeLayout(false);
+            this.Closed += new System.EventHandler(this.frmWaresScan_Closed);
 
         }
 

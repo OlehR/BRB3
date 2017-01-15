@@ -13,12 +13,10 @@ namespace BRB.Forms
     public partial class frmDocGrid : Form
     {
         DataTable dt;
-        //int number_doc;
-        TypeDoc typeDoc;
-
+        int rowIndex;
+       
         public frmDocGrid(TypeDoc parTypeDoc)
         {
-            typeDoc = parTypeDoc;
             dt = Global.cBL.LoadDocs(parTypeDoc);
             InitializeComponent();
             this.WindowState = FormWindowState.Maximized;
@@ -40,22 +38,31 @@ namespace BRB.Forms
             this.miSync.Text += " " + HotKey.strDocGrid_Sync;
             this.miSettings.Text += " " + HotKey.strDocGrid_Settings;
 
-            if (typeDoc != TypeDoc.Invoice)
+            if (Global.cBL.CurTypeDoc != TypeDoc.Invoice)
             {
                 this.miGroupingDoc.Enabled = false;
             }
+        }
+
+        private void frmDocGrid_Activated(object sender, EventArgs e)
+        {
+            dt = Global.cBL.LoadDocs(TypeDoc.Invoice);
+            advancedList.DataSource = dt;
+            advancedList.ResumeRedraw();
+            advancedList.ActiveRowIndex = rowIndex;
+
+            try
+            {
+                Global.cTerminal.StartScan(this.scanBarcode);
+            }
+            catch { }
         }
 
         private void frmDocGrid_Load(object sender, EventArgs e)
         {
             try
             {
-                 Global.cTerminal.StartScan(this.scanBarcode);
-
-                //RefreshAdvList();
-                //this.Text = clsCommon.PropMiniInventoryCaption;
-                //this.DialogResult = DialogResult.None;
-                //StartScan();
+                Global.cTerminal.StartScan(this.scanBarcode);
 
                 if (Global.eTypeTerminal == TypeTerminal.MotorolaMC75Ax)
                 {
@@ -80,10 +87,11 @@ namespace BRB.Forms
                     advancedList.ActiveRowIndex = 0;
                 }
             }
-            catch (System.Exception)
+            catch (Exception ex)
             {
                  this.Close();
-                clsDialogBox.ErrorBoxShow("Неможливо зайти в модуль!");
+               // clsException.EnableException(ex);
+                clsDialogBox.ErrorBoxShow("Неможливо зайти в модуль! ");
             }
         }
 
@@ -213,6 +221,7 @@ namespace BRB.Forms
         private void btnWares()
         {
             Global.cTerminal.StopScan();
+            rowIndex = advancedList.ActiveRowIndex;
 
             if (advancedList.ActiveRowIndex >= 0)
             {
@@ -223,8 +232,7 @@ namespace BRB.Forms
                 }
                  try
                  {
-                     // запускаєм форму з товарами frmWaresGrid(TypeDoc, number_doc)
-                     frmWaresGrid newfrmWaresGrid = new frmWaresGrid(typeDoc, Convert.ToInt32(advancedList.DataRows[advancedList.ActiveRowIndex]["number_doc"]));
+                     frmWaresGrid newfrmWaresGrid = new frmWaresGrid(Global.cBL.CurTypeDoc, Convert.ToInt32(advancedList.DataRows[advancedList.ActiveRowIndex]["number_doc"]));
                      newfrmWaresGrid.Show();
                  }
                  catch (Exception ex)
@@ -239,17 +247,17 @@ namespace BRB.Forms
         }
         private void btnMarkDoc()
         {
-            //MessageBox.Show("Помітка документа ще не реалізовано");
             Global.cBL.SetCurDoc(Convert.ToInt32(advancedList.DataRows[advancedList.ActiveRowIndex]["number_doc"]));
             {
-                
                 if (advancedList.ActiveRowIndex >= 0)
                 {
-                    if (Convert.ToInt32(advancedList.DataRows[advancedList.ActiveRowIndex]["status"]) == Convert.ToInt16(TypeStatusDoc.NoMark))
+                    rowIndex = advancedList.ActiveRowIndex;
+
+                    if (Convert.ToInt32(advancedList.DataRows[rowIndex]["status"]) == Convert.ToInt16(TypeStatusDoc.NoMark))
                     {
-                        if (clsDialogBox.ConfirmationBoxShow("Відмітити документ для відправки на сервер?") == DialogResult.Yes)
+                        if(clsDialogBox.ConfirmationBoxShow("Відмітити документ для відправки на сервер?") == DialogResult.Yes)
                         {
-                            if (Convert.ToInt32(advancedList.DataRows[advancedList.ActiveRowIndex]["SumWaresInv"]) == 0)
+                            if (Convert.ToInt32(advancedList.DataRows[rowIndex]["SumWaresInv"]) == 0)
                             {
                                 clsDialogBox.ErrorBoxShow("По даному документу товар не приймався!");
                             }
@@ -259,20 +267,19 @@ namespace BRB.Forms
                                 {
                                       //функція упдейта Docs.status
                                     Global.cBL.SetStatusDoc(Convert.ToInt16(TypeStatusDoc.Mark));
-                                     //_formClass.SetStatusDoc(Convert.ToInt32(advancedList.DataRows[advancedList.ActiveRowIndex]["number_doc"]), 1);
-                                    advancedList.DataRows[advancedList.ActiveRowIndex]["status"] = Convert.ToInt16(TypeStatusDoc.Mark);
-                                    advancedList.DataRows[advancedList.ActiveRowIndex]["StatusName"] = "+";
+                                    advancedList.DataRows[rowIndex]["status"] = Convert.ToInt16(TypeStatusDoc.Mark);
+                                    advancedList.DataRows[rowIndex]["StatusName"] = "+";
 
                                     // Шаблон для помічених
                                     int i = 0;
                                     try
-                                    { i = Convert.ToInt32(advancedList.DataRows[advancedList.ActiveRowIndex]["status"]); }
+                                    { i = Convert.ToInt32(advancedList.DataRows[rowIndex]["status"]); }
                                     catch { }
 
                                     if (i == 1)
-                                        advancedList.DataRows[advancedList.ActiveRowIndex].TemplateIndex = 3;
+                                    { advancedList.DataRows[rowIndex].TemplateIndex = 3; }
                                     else
-                                        advancedList.DataRows[advancedList.ActiveRowIndex].TemplateIndex = 1;
+                                    { advancedList.DataRows[rowIndex].TemplateIndex = 1; }
 
                                     //advancedList.Refresh();
                                     advancedList.ResumeRedraw();
@@ -281,12 +288,10 @@ namespace BRB.Forms
                                 {
                                    clsException.EnableException(ex);
                                 }
-                                finally
-                                {
-                                    //StartScan();
-                                }
+                                
                             }
                         }
+                        
                     }
                     else
                     {
@@ -295,19 +300,19 @@ namespace BRB.Forms
                             try
                             {
                                 Global.cBL.SetStatusDoc(Convert.ToInt16(TypeStatusDoc.NoMark));
-                                advancedList.DataRows[advancedList.ActiveRowIndex]["status"] = Convert.ToInt16(TypeStatusDoc.NoMark);
-                                advancedList.DataRows[advancedList.ActiveRowIndex]["StatusName"] = "-";
+                                advancedList.DataRows[rowIndex]["status"] = Convert.ToInt16(TypeStatusDoc.NoMark);
+                                advancedList.DataRows[rowIndex]["StatusName"] = "-";
 
                                 // Шаблон для помічених
                                 int i = 0;
                                 try
-                                { i = Convert.ToInt32(advancedList.DataRows[advancedList.ActiveRowIndex]["status"]); }
+                                { i = Convert.ToInt32(advancedList.DataRows[rowIndex]["status"]); }
                                 catch { }
 
                                 if (i == 0)
-                                    advancedList.DataRows[advancedList.ActiveRowIndex].TemplateIndex = 1;
+                                    advancedList.DataRows[rowIndex].TemplateIndex = 1;
                                 else
-                                    advancedList.DataRows[advancedList.ActiveRowIndex].TemplateIndex = 3;
+                                    advancedList.DataRows[rowIndex].TemplateIndex = 3;
 
                                 //advancedList.Refresh();
                                 advancedList.ResumeRedraw();
@@ -316,17 +321,17 @@ namespace BRB.Forms
                             {
                               clsException.EnableException(ex);
                             }
-                            finally
-                            {
-                               // StartScan();
-                            }
+                            
                         }
                     }
+
+                    advancedList.ActiveRowIndex = rowIndex;
                 }
             }
         }
         private void btnFilter()
-        { //clsDialogBox.InformationBoxShow("Фільтр документів ще не реалізовано");
+        { 
+            clsDialogBox.InformationBoxShow("Фільтр документів ще не реалізовано");
 
             DataView dv;
             
@@ -339,6 +344,9 @@ namespace BRB.Forms
 
         private void btnWaresScan()
         {
+            Global.cTerminal.StopScan();
+            rowIndex = advancedList.ActiveRowIndex;
+
             if (advancedList.ActiveRowIndex >= 0)
             {
                  if (Convert.ToInt32(advancedList.DataRows[advancedList.ActiveRowIndex]["status"]) == 1)
@@ -348,6 +356,7 @@ namespace BRB.Forms
                 }
                  try
                  {
+                   Global.cBL.LoadWaresDocs(Global.cBL.CurTypeDoc, Convert.ToInt32(advancedList.DataRows[advancedList.ActiveRowIndex]["number_doc"]));
                    frmWaresScan newfrmWaresScan = new frmWaresScan();
                    newfrmWaresScan.Show();
                  }

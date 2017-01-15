@@ -14,7 +14,10 @@ namespace BRB.Forms
         public frmMain()
         {
             InitializeComponent();
-            this.WindowState = FormWindowState.Maximized;
+            if (Global.eTypeTerminal == TypeTerminal.BitatekIT8000)
+            {
+                this.WindowState = FormWindowState.Maximized;
+            }
             InitializeComponentManual();
         }
          
@@ -138,6 +141,19 @@ namespace BRB.Forms
 
 
         // функції
+        private void frmWaresScan_Closed(object sender, EventArgs e)
+        {
+            try
+            {
+                
+                Global.cTerminal.StopScan();
+            }
+            catch (System.Exception) // --------------------------
+            {
+                clsDialogBox.ErrorBoxShow(e.ToString());
+            }
+        }
+
         private void btnNewDocGrid(TypeDoc typeDoc)
         {
             try

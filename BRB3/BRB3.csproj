@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{30FF68EB-C947-4FF8-969E-7453444781CE}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -177,6 +177,7 @@
     <Compile Include="Global.cs" />
     <Compile Include="Proc.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="Proto.cs" />
     <Compile Include="SqlBulkCopy\DestinationTableDefaultMetadata.cs" />
     <Compile Include="SqlBulkCopy\ISqlCeBulkCopyInsertAdapter.cs" />
     <Compile Include="SqlBulkCopy\SqlCeBulkCopy.cs" />
@@ -271,9 +272,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="BRB.config" />
-    <Content Include="Database\BRB.sdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <None Include="Database\BRB.sdf">
+    </None>
     <Content Include="Key.map">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

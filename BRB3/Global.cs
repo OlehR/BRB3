@@ -194,6 +194,11 @@ namespace BRB
         public static string strWaresGrid_Scan;
         public static int WaresGrid_Filter = 0;
         public static string strWaresGrid_Filter;
+
+        public static int WaresScan_Add = 0;
+        public static string strWaresScan_Add;
+        public static int WaresScan_Cancel = 0;
+        public static string strWaresScan_Cancel;
         
         public static void Init( TypeTerminal parType)
         {
@@ -247,6 +252,11 @@ namespace BRB
             strWaresGrid_Scan = Global.BildStrKeyCode(varNameSection, "WaresGrid_Scan");
             WaresGrid_Filter = Global.BildKeyCode(varNameSection, "WaresGrid_Filter");
             strWaresGrid_Filter = Global.BildStrKeyCode(varNameSection, "WaresGrid_Filter");
+
+            WaresScan_Add = Global.BildKeyCode(varNameSection, "WaresScan_Add");
+            strWaresScan_Add = Global.BildStrKeyCode(varNameSection, "WaresScan_Add");
+            WaresScan_Cancel = Global.BildKeyCode(varNameSection, "WaresScan_Cancel");
+            strWaresScan_Cancel = Global.BildStrKeyCode(varNameSection, "WaresScan_Cancel");
         }
     
     }
@@ -394,4 +404,5 @@ namespace BRB
             clsDialogBox.ErrorBoxShow(errorMessages);
         }
     }
+
 }

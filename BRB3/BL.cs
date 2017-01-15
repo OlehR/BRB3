@@ -17,8 +17,8 @@ namespace BRB
             cData = parData;        
         }
 
-        static private TypeDoc CurTypeDoc;
-        static private int CurNumDoc;
+        public TypeDoc CurTypeDoc;
+        public int CurNumDoc;
         static private int CurCodeWares;
         static private DataTable dtDocs;
         static private DataTable dtWaresDoc;

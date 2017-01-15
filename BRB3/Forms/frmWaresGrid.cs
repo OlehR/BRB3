@@ -12,13 +12,19 @@ namespace BRB.Forms
     public partial class frmWaresGrid : Form
     {
         DataTable dt;
+        //TEMPPPP
+        TypeDoc _TypeDoc;
+        int _NumberDoc;
 
-        public frmWaresGrid(TypeDoc parTypeDoc, int panNumberDoc)
+        public frmWaresGrid(TypeDoc parTypeDoc, int parNumberDoc)
         {
-            dt = Global.cBL.LoadWaresDocs(parTypeDoc, panNumberDoc);
+            _TypeDoc = parTypeDoc;
+            _NumberDoc = parNumberDoc;
+
+            dt = Global.cBL.LoadWaresDocs(parTypeDoc, parNumberDoc);
             InitializeComponent();
             InitializeComponentManual();
-            this.Text += panNumberDoc.ToString();
+            this.Text += parNumberDoc.ToString();
         }
 
         public void InitializeComponentManual()
@@ -45,6 +51,13 @@ namespace BRB.Forms
             {
                 advancedList.ActiveRowIndex = 0;
             }
+        }
+
+        private void frmWaresGrid_Activated(object sender, EventArgs e)
+        {
+            dt = Global.cBL.LoadWaresDocs(_TypeDoc, _NumberDoc);
+            advancedList.DataSource = dt;
+            advancedList.ResumeRedraw();
         }
 
         private void advancedList_KeyUp(object sender, KeyEventArgs e)
@@ -99,12 +112,16 @@ namespace BRB.Forms
         }
         private void btnEdit()
         {
-            frmWaresScan newfrmWaresScan = new frmWaresScan(Convert.ToInt32(advancedList.DataRows[advancedList.ActiveRowIndex][ "code_wares"]));
-            newfrmWaresScan.Show();
+            if (Global.cBL.IsEditWaresManual(Convert.ToInt32(advancedList.DataRows[advancedList.ActiveRowIndex]["code_wares"])))
+            {
+                frmWaresScan newfrmWaresScan = new frmWaresScan(Convert.ToInt32(advancedList.DataRows[advancedList.ActiveRowIndex]["code_wares"]));
+                newfrmWaresScan.Show();
+            }
+            else clsDialogBox.InformationBoxShow("Ручне редагування к-ті товару заборонено!");
         }
         private void btnScan()
         {
-            frmWaresScan newfrmWaresScan = new frmWaresScan(); // пуста форма
+            frmWaresScan newfrmWaresScan = new frmWaresScan();
             newfrmWaresScan.Show();
         }
         private void btnFilter()
