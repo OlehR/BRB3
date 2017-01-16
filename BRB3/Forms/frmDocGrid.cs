@@ -245,7 +245,37 @@ namespace BRB.Forms
                 clsDialogBox.InformationBoxShow("Відсутній документ для перегляду!");
             }
         }
+
         private void btnMarkDoc()
+        {
+            if (advancedList.ActiveRowIndex >= 0)
+            {
+                Global.cBL.SetCurDoc(Convert.ToInt32(advancedList.DataRows[advancedList.ActiveRowIndex]["number_doc"]));
+                rowIndex = advancedList.ActiveRowIndex;
+
+                
+                if(clsDialogBox.ConfirmationBoxShow(Convert.ToInt32(advancedList.DataRows[rowIndex]["status"]) == Convert.ToInt32(TypeStatusDoc.NoMark)?
+                    "Відмітити документ для відправки на сервер?":"Зняти з документа відмітку відправки на сервер?") == DialogResult.Yes)
+                {
+                    TypeStatusDoc varNewStatuaDoc = (Convert.ToInt32(advancedList.DataRows[rowIndex]["status"]) == Convert.ToInt32(TypeStatusDoc.NoMark)?
+                                                                    TypeStatusDoc.Mark:TypeStatusDoc.NoMark);
+                    Status res=Global.cBL.SetStatusDoc(varNewStatuaDoc);
+                    if (res.status != EStatus.Ok)
+                        clsDialogBox.ErrorBoxShow(res.StrStatus);
+
+                    advancedList.DataRows[rowIndex]["status"] = Convert.ToInt32(varNewStatuaDoc);
+                    advancedList.DataRows[rowIndex]["StatusName"] = (varNewStatuaDoc == TypeStatusDoc.Mark ? "+" : "-");
+                    advancedList.DataRows[rowIndex].TemplateIndex = (varNewStatuaDoc == TypeStatusDoc.Mark ? 3 : 1);
+                    advancedList.ResumeRedraw();
+                }
+  
+            }
+        
+        
+        }
+
+/*
+        private void btnMarkDoc_old()
         {
             Global.cBL.SetCurDoc(Convert.ToInt32(advancedList.DataRows[advancedList.ActiveRowIndex]["number_doc"]));
             {
@@ -340,6 +370,7 @@ namespace BRB.Forms
                 }
             }
         }
+ */       
         private void btnFilter()
         { 
             clsDialogBox.InformationBoxShow("Фільтр документів ще не реалізовано");

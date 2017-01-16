@@ -17,6 +17,10 @@ namespace BRB
             NoPrice,
             PriceTooLong,
             
+            NoInputWares,
+            NoDocSupply,
+            NoDateDocSupply,
+
             UserCodeNotFound,
             UserNotFound,
 
@@ -95,6 +99,16 @@ namespace BRB
                         case EStatus.PriceTooLong:
                             res = "Кількість символів повинна бути менше 15";
                             break;
+                        case EStatus.NoInputWares:
+                            res = "По даному документу товар не приймався!";
+                            break;
+                        case EStatus.NoDocSupply:
+                            res = "Введіть номер розхідної від постачальника!";
+                            break;
+                        case EStatus.NoDateDocSupply:
+                            res = "Введіть дату розхідної від постачальника!";
+                            break;
+
                        default:
                             res = status.ToString();
                             break;
