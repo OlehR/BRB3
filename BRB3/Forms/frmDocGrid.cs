@@ -262,11 +262,13 @@ namespace BRB.Forms
                     Status res=Global.cBL.SetStatusDoc(varNewStatuaDoc);
                     if (res.status != EStatus.Ok)
                         clsDialogBox.ErrorBoxShow(res.StrStatus);
-
-                    advancedList.DataRows[rowIndex]["status"] = Convert.ToInt32(varNewStatuaDoc);
-                    advancedList.DataRows[rowIndex]["StatusName"] = (varNewStatuaDoc == TypeStatusDoc.Mark ? "+" : "-");
-                    advancedList.DataRows[rowIndex].TemplateIndex = (varNewStatuaDoc == TypeStatusDoc.Mark ? 3 : 1);
-                    advancedList.ResumeRedraw();
+                    else
+                    {
+                        advancedList.DataRows[rowIndex]["status"] = Convert.ToInt32(varNewStatuaDoc);
+                        advancedList.DataRows[rowIndex]["StatusName"] = (varNewStatuaDoc == TypeStatusDoc.Mark ? "+" : "-");
+                        advancedList.DataRows[rowIndex].TemplateIndex = (varNewStatuaDoc == TypeStatusDoc.Mark ? 3 : 1);
+                        advancedList.ResumeRedraw();
+                    }
                 }
   
             }
