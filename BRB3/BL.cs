@@ -234,8 +234,8 @@ namespace BRB
             return new Status();
         }
 
-
-        public  Status SetStatusDoc( int parStatus)
+/*
+        public Status SetStatusDoc(TypeStatusDoc parStatus)
         {
          Status res = new Status();
 
@@ -251,7 +251,7 @@ namespace BRB
             return res;
 
         }
-
+*/
         public Status SaveGoods(string parArticle,string parQty,string parPrice)
         {
             int varArticle;
@@ -335,5 +335,37 @@ namespace BRB
             return Global.cBL.SaveGoods(num_pop, QtyNew, varPrice);
 
         }
+
+
+        public Status SetStatusDoc(TypeStatusDoc parNewStatuaDoc)
+        {
+            if (parNewStatuaDoc == TypeStatusDoc.Mark)
+            {
+                if (Convert.ToInt32(CurDoc["SumWaresInv"]) == 0)
+                {
+                    return new Status(EStatus.NoInputWares);
+                }
+                else if (Convert.ToInt32(Global.cBL.CurDoc["type_doc"]) == 1 && true) //clsCommon.PropControlDocSup
+                {
+                    if (CurDoc["number_out_invoice"].ToString().Length == 0)
+                    {
+                        return new Status(EStatus.NoDocSupply);
+                    }
+                    else if (Global.cBL.CurDoc["date_out_invoice"].ToString().Length == 0)
+                    {
+                        return new Status(EStatus.NoDateDocSupply);
+                    }
+                }
+            }
+            Status st = cData.SetStatusDoc(CurNumDoc, parNewStatuaDoc);
+            if (st.status != EStatus.Ok)
+                return st;
+            CurDoc["status"] = Convert.ToInt32(parNewStatuaDoc);
+            
+ 
+            return new Status();
+        
+        }
+    
     }
 }

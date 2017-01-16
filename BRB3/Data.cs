@@ -209,11 +209,12 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
             return Convert.ToDecimal(SQL.ExecuteScalar(varSQLSumDocsWaresInv));
         }
 
-        public void SetStatusDoc(int parNumberDoc, int parStatus)
+        public Status SetStatusDoc(int parNumberDoc, TypeStatusDoc parStatus)
         {
             SQL.AddWithValueF("@parNumberDoc", parNumberDoc);
             SQL.AddWithValue("@parStatus", parStatus);
             SQL.ExecuteNonQuery(varSQLSetStatusDoc);
+            return new Status();
         }
 
         public int GetTypeDoc(int parNumberDoc)
