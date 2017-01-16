@@ -78,7 +78,8 @@
             // 
             // miExit
             // 
-            this.miExit.Text = "Завершення роботи";
+            this.miExit.Text = "Вихід";
+            this.miExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // miSeparator
             // 
@@ -340,6 +341,7 @@
             this.mpbtnCancel.Size = new System.Drawing.Size(86, 20);
             this.mpbtnCancel.TabIndex = 5;
             this.mpbtnCancel.Text = "Відміна";
+            this.mpbtnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // mainPanel
             // 

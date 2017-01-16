@@ -15,5 +15,18 @@ namespace BRB
             }
             return s;
         }
+
+        public static System.Globalization.NumberFormatInfo nfi = new System.Globalization.NumberFormatInfo() { NumberDecimalSeparator = "." };
+
+        public static decimal ToDecimal(string parS)
+        {
+            try
+            {
+                return Convert.ToDecimal(parS.Replace(",", "."), nfi);
+            }
+            catch //(Exception ex)
+            { }
+            return 0;
+        }
     }
 }

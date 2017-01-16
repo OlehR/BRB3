@@ -209,11 +209,12 @@ namespace BRB
                 }
               cData.SaveDocWares(CurNumDoc, CurCodeWares, parNumPop, parQty, parPrice);
               CurWaresDoc["num_pop"] = parNumPop;
-              CurWaresDoc["parQty"] = parQty;
+              CurWaresDoc["quantity"] = parQty;
               CurWaresDoc["price"] = parPrice;
             }
             catch (System.Exception Ex)
-            {                
+            {
+                string ss = Ex.ToString();
                 res.status=EStatus.Error;
                 res.message = "Помилка оновлення ціни, кількості і  т.д.! "+ Ex.Message;
             }
@@ -305,14 +306,14 @@ namespace BRB
             else
                 return new Status(EStatus.NoPrice);
 
-
+            
             //Провірка к-ті в ЗНП
             decimal OldQty;
             if (Convert.ToInt32(Global.cBL.CurDoc["flag_sum_qty_doc"]) == 0)
                 OldQty = 0;
             else
-                OldQty = decimal.Round(Convert.ToDecimal(CurWaresDoc["quantity"]), 3);
-            decimal QtyTempl = decimal.Round(Convert.ToDecimal(CurWaresDoc["quantity_temp"]), 3);
+                OldQty = decimal.Round(Proto.ToDecimal(CurWaresDoc["quantity"].ToString()), 3);
+            decimal QtyTempl = decimal.Round(Proto.ToDecimal(CurWaresDoc["quantity_temp"].ToString()), 3);
 
             if (!Global.cBL.IsFractional() && !Global.isQtyBiggerZNP && (varQty + OldQty) > QtyTempl)//!Ваговий і !clsCommon.PropQtyBigZNP
                 return new Status(EStatus.QuantityTooMuch);
