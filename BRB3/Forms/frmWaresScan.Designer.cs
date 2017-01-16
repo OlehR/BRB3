@@ -395,6 +395,7 @@
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.WaresScan_KeyUp);
             this.Load += new System.EventHandler(this.frmWaresScan_Load);
             this.Closed += new System.EventHandler(this.frmWaresScan_Closed);
+            this.Closing += new System.ComponentModel.CancelEventHandler(this.frmWaresScan_Closing);
             this.ResumeLayout(false);
 
         }

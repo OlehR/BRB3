@@ -45,9 +45,17 @@ namespace BRB.Forms
             }
         }
 
-        private void frmWaresScan_Closing(object sender, CancelEventArgs e)
+        private void frmWaresScan_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            //FullScreen.StopFullScreen(this);
+            if (mplArticle.Text != string.Empty)
+            {
+                //if (clsDialogBox.ConfirmationBoxShow("Завершити сканування товарів?") == DialogResult.Yes)
+                DialogResult result = clsDialogBox.ConfirmationBoxShow("Є незбережений товар. Продовжити?");
+                if (result != DialogResult.Yes)
+                {
+                    e.Cancel = true;
+                }
+            }
         }
         public void fillDataForm()
         {
@@ -155,10 +163,8 @@ namespace BRB.Forms
 
         private void btnExit()
         {
-            if (clsDialogBox.ConfirmationBoxShow("Завершити сканування товарів?") == DialogResult.Yes)
-            {
-                this.Close();
-            }
+            this.Close();
+            //if (clsDialogBox.ConfirmationBoxShow("Завершити сканування товарів?") == DialogResult.Yes)
         }
 
         private void btnAdd()

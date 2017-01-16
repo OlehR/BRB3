@@ -19,7 +19,7 @@ namespace BRB.Forms
         {
             dt = Global.cBL.LoadDocs(parTypeDoc);
             InitializeComponent();
-            this.WindowState = FormWindowState.Maximized;
+            //this.WindowState = FormWindowState.Maximized;
             InitializeComponentManual();
         }
 

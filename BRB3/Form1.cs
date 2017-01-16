@@ -38,6 +38,10 @@ namespace BRB
             this.textBox1.Text = "Стоп";
         }
 
+        private void Form1_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+        }
+
 
     }
 }

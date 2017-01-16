@@ -111,6 +111,7 @@
             this.Menu = this.mainMenu1;
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Closing += new System.ComponentModel.CancelEventHandler(this.Form1_Closing);
             this.ResumeLayout(false);
 
         }
