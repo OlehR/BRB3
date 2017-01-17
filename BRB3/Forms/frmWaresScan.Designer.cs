@@ -376,6 +376,7 @@
             this.mainPanel.Location = new System.Drawing.Point(1, 1);
             this.mainPanel.Name = "mainPanel";
             this.mainPanel.Size = new System.Drawing.Size(236, 293);
+            this.mainPanel.ResumeLayout(false);
             // 
             // frmWaresScan
             // 
@@ -391,7 +392,7 @@
             this.Menu = this.mainMenu;
             this.MinimizeBox = false;
             this.Name = "frmWaresScan";
-            this.mainPanel.ResumeLayout(false);
+            this.KeyPreview = true;
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.WaresScan_KeyUp);
             this.Load += new System.EventHandler(this.frmWaresScan_Load);
             this.Closed += new System.EventHandler(this.frmWaresScan_Closed);

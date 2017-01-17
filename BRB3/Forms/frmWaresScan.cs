@@ -110,6 +110,8 @@ namespace BRB.Forms
             this.Text = "BRB3 " + Global.eTypeTerminal.ToString();
             this.mpbtnAdd.Text = mpbtnAdd.Text + " " + HotKey.strWaresScan_Add;
             this.mpbtnCancel.Text = mpbtnCancel.Text + " " + HotKey.strWaresScan_Cancel;
+            this.miExit.Text = miExit.Text + " " + HotKey.strWaresScan_Exit;
+
 
             // BitatekIT8000 примусово вставляє тулбар
             if (Global.eTypeTerminal == TypeTerminal.BitatekIT8000)
@@ -131,12 +133,16 @@ namespace BRB.Forms
         private void WaresScan_KeyUp(object sender, KeyEventArgs e)
         {
              if (e.KeyValue == HotKey.WaresScan_Add)
-            {
-                btnAdd();
-            }
+             {
+                 btnAdd();
+             }
              else if (e.KeyValue == HotKey.WaresScan_Cancel)
              {
                  btnCancel();
+             }
+             else if (e.KeyValue == HotKey.WaresScan_Exit)
+             {
+                 btnExit();
              }
         }
 

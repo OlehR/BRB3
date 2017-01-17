@@ -242,6 +242,8 @@ namespace BRB
         public static string strWaresScan_Add;
         public static int WaresScan_Cancel = 0;
         public static string strWaresScan_Cancel;
+        public static int WaresScan_Exit = 0;
+        public static string strWaresScan_Exit;
         
         public static void Init( TypeTerminal parType)
         {
@@ -300,6 +302,8 @@ namespace BRB
             strWaresScan_Add = Global.BildStrKeyCode(varNameSection, "WaresScan_Add");
             WaresScan_Cancel = Global.BildKeyCode(varNameSection, "WaresScan_Cancel");
             strWaresScan_Cancel = Global.BildStrKeyCode(varNameSection, "WaresScan_Cancel");
+            WaresScan_Exit = Global.BildKeyCode(varNameSection, "WaresScan_Exit");
+            strWaresScan_Exit = Global.BildStrKeyCode(varNameSection, "WaresScan_Exit");
         }
     
     }
