@@ -22,7 +22,7 @@ namespace BRB.Forms
             //this.labelDown.Size = new System.Drawing.Size(236 * Global.tCoefficient, (1 + Global.hToolbarTerminal) * Global.tCoefficient);
             this.Text = "BRB3 " + Global.eTypeTerminal.ToString();
 
-            this.miExit.Text += " " + HotKey.strDocGrid_Exit;
+            this.miExit.Text += " " + HotKey.strSearch_Exit;
             this.mpbSelect.Text += " " + HotKey.strSearch_Select;
             this.mpbCancel.Text += " " + HotKey.strSearch_Cancel;
             this.mpbCancelFilter.Text += " " + HotKey.strSearch_CancelFilter;

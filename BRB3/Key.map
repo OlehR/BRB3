@@ -28,7 +28,7 @@ WaresScan_Add = F1
 WaresScan_Cancel =F4
 WaresScan_Exit =F10
 
-Search_Exit = F10
+Search_Exit = F7
 Search_Select = F1
 Search_Cancel = F4
 Search_CancelFilter = F5
