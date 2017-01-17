@@ -28,6 +28,11 @@ WaresScan_Add = F1
 WaresScan_Cancel =F4
 WaresScan_Exit =F10
 
+Search_Exit = F10
+Search_Select = F1
+Search_Cancel = F4
+Search_CancelFilter = F5
+
 [MotorolaMC75Ax]
 Up = Up
 Down = Down
@@ -57,6 +62,11 @@ WaresGrid_Filter = F4
 WaresScan_Add = F3
 WaresScan_Cancel = F4
 WaresScan_Exit = F10
+
+Search_Exit = F10
+Search_Select = F3
+Search_Cancel = F4
+Search_CancelFilter = F5
 
 [PitechLPT80]
 Up = Up

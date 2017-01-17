@@ -30,6 +30,8 @@
         {
             this.mainMenu = new System.Windows.Forms.MainMenu();
             this.miMovements = new System.Windows.Forms.MenuItem();
+            this.miExit = new System.Windows.Forms.MenuItem();
+            this.mAbout = new System.Windows.Forms.MenuItem();
             this.labelLeft = new System.Windows.Forms.Label();
             this.labelRigth = new System.Windows.Forms.Label();
             this.labelTop = new System.Windows.Forms.Label();
@@ -39,18 +41,30 @@
             this.mplZKPO = new System.Windows.Forms.Label();
             this.mptbNumDoc = new System.Windows.Forms.TextBox();
             this.mptbZKPO = new System.Windows.Forms.TextBox();
-            this.mpbSelect = new System.Windows.Forms.Button();
             this.mpbCancel = new System.Windows.Forms.Button();
             this.mpbCancelFilter = new System.Windows.Forms.Button();
+            this.mpbSelect = new System.Windows.Forms.Button();
+            this.mainPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainMenu
             // 
             this.mainMenu.MenuItems.Add(this.miMovements);
+            this.mainMenu.MenuItems.Add(this.mAbout);
             // 
             // miMovements
             // 
+            this.miMovements.MenuItems.Add(this.miExit);
             this.miMovements.Text = "Додатково";
+            // 
+            // miExit
+            // 
+            this.miExit.Text = "Вихід";
+            this.miExit.Click += new System.EventHandler(this.btnExit_Click);
+            // 
+            // mAbout
+            // 
+            this.mAbout.Text = "Про ...";
             // 
             // labelLeft
             // 
@@ -84,79 +98,82 @@
             this.labelDown.Name = "labelDown";
             this.labelDown.Size = new System.Drawing.Size(236, 1);
             // 
+            // mainPanel
+            // 
+            this.mainPanel.Controls.Add(this.mplNumDoc);
+            this.mainPanel.Controls.Add(this.mplZKPO);
+            this.mainPanel.Controls.Add(this.mptbNumDoc);
+            this.mainPanel.Controls.Add(this.mptbZKPO);
+            this.mainPanel.Controls.Add(this.mpbCancel);
+            this.mainPanel.Controls.Add(this.mpbCancelFilter);
+            this.mainPanel.Controls.Add(this.mpbSelect);
+            this.mainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mainPanel.Location = new System.Drawing.Point(1, 1);
+            this.mainPanel.Name = "mainPanel";
+            this.mainPanel.Size = new System.Drawing.Size(236, 293);
+            // 
             // mplNumDoc
             // 
             this.mplNumDoc.Location = new System.Drawing.Point(5, 7);
             this.mplNumDoc.Name = "mplNumDoc";
-            this.mplNumDoc.Size = new System.Drawing.Size(63, 20);
+            this.mplNumDoc.Size = new System.Drawing.Size(65, 20);
             this.mplNumDoc.Text = "№ Док:";
             // 
             // mplZKPO
             // 
             this.mplZKPO.Location = new System.Drawing.Point(5, 33);
             this.mplZKPO.Name = "mplZKPO";
-            this.mplZKPO.Size = new System.Drawing.Size(63, 20);
+            this.mplZKPO.Size = new System.Drawing.Size(65, 20);
             this.mplZKPO.Text = "ЗКПО:";
             // 
             // mptbNumDoc
             // 
             this.mptbNumDoc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.mptbNumDoc.Location = new System.Drawing.Point(63, 5);
+            this.mptbNumDoc.Location = new System.Drawing.Point(73, 5);
             this.mptbNumDoc.Name = "mptbNumDoc";
-            this.mptbNumDoc.Size = new System.Drawing.Size(135, 23);
+            this.mptbNumDoc.Size = new System.Drawing.Size(155, 23);
             this.mptbNumDoc.TabIndex = 7;
             // 
             // mptbZKPO
             // 
             this.mptbZKPO.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.mptbZKPO.Location = new System.Drawing.Point(63, 31);
+            this.mptbZKPO.Location = new System.Drawing.Point(73, 31);
             this.mptbZKPO.Name = "mptbZKPO";
-            this.mptbZKPO.Size = new System.Drawing.Size(135, 23);
+            this.mptbZKPO.Size = new System.Drawing.Size(155, 23);
             this.mptbZKPO.TabIndex = 1;
-            // 
-            // mpbSelect
-            // 
-            this.mpbSelect.Location = new System.Drawing.Point(5, 63);
-            this.mpbSelect.Name = "mpbSelect";
-            this.mpbSelect.Size = new System.Drawing.Size(88, 20);
-            this.mpbSelect.TabIndex = 2;
-            this.mpbSelect.Text = "Шукати [F1]";
-            //this.mpbSelect.Click += new System.EventHandler(this.btnSelect_Click);
             // 
             // mpbCancel
             // 
-            this.mpbCancel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.mpbCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.mpbCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.mpbCancel.Location = new System.Drawing.Point(99, 63);
+            this.mpbCancel.Location = new System.Drawing.Point(120, 65);
             this.mpbCancel.Name = "mpbCancel";
-            this.mpbCancel.Size = new System.Drawing.Size(102, 20);
+            this.mpbCancel.Size = new System.Drawing.Size(110, 40);
             this.mpbCancel.TabIndex = 3;
-            this.mpbCancel.Text = "Відміна [F4]";
+            this.mpbCancel.Text = "Відміна";
+            this.mpbCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // mpbCancelFilter
             // 
-            this.mpbCancelFilter.Location = new System.Drawing.Point(5, 93);
+            this.mpbCancelFilter.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.mpbCancelFilter.Location = new System.Drawing.Point(5, 113);
             this.mpbCancelFilter.Name = "mpbCancelFilter";
-            this.mpbCancelFilter.Size = new System.Drawing.Size(180, 20);
+            this.mpbCancelFilter.Size = new System.Drawing.Size(225, 25);
             this.mpbCancelFilter.TabIndex = 3;
-            this.mpbCancelFilter.Text = "Відміна Пошуку";
+            this.mpbCancelFilter.Text = "Скасувати фільтр";
+            this.mpbCancelFilter.Click += new System.EventHandler(this.btnCancelFilter_Click);
             // 
-            // mainPanel
+            // mpbSelect
             // 
-            this.mainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mainPanel.Location = new System.Drawing.Point(1, 1);
-            this.mainPanel.Name = "mainPanel";
-            this.mainPanel.Size = new System.Drawing.Size(236, 293);
-            this.mainPanel.Controls.Add(mplNumDoc);
-            this.mainPanel.Controls.Add(mplZKPO);
-            this.mainPanel.Controls.Add(mptbNumDoc);
-            this.mainPanel.Controls.Add(mptbZKPO);
-            this.mainPanel.Controls.Add(mpbCancel);
-            this.mainPanel.Controls.Add(mpbCancelFilter);
-            this.mainPanel.Controls.Add(mpbSelect);
+            this.mpbSelect.Location = new System.Drawing.Point(5, 65);
+            this.mpbSelect.Name = "mpbSelect";
+            this.mpbSelect.Size = new System.Drawing.Size(110, 40);
+            this.mpbSelect.TabIndex = 2;
+            this.mpbSelect.Text = "Шукати";
+            this.mpbSelect.Click += new System.EventHandler(this.btnSelect_Click);
             // 
             // frmDocSearch
             // 
@@ -175,17 +192,18 @@
             this.MinimizeBox = false;
             this.Name = "frmDocSearch";
             this.Text = "BRB3";
+            this.KeyPreview = true;
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.DocSerch_KeyUp);
+            this.mainPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private System.Windows.Forms.ColumnHeader columnHeader;
         private System.Windows.Forms.Label labelLeft;
         private System.Windows.Forms.Label labelRigth;
         private System.Windows.Forms.Label labelTop;
         private System.Windows.Forms.Label labelDown;
-        private System.Windows.Forms.ListView listView;
         private System.Windows.Forms.MainMenu mainMenu;
         private System.Windows.Forms.MenuItem miMovements;
         private System.Windows.Forms.Panel mainPanel;
@@ -196,6 +214,8 @@
         private System.Windows.Forms.Button mpbSelect;
         private System.Windows.Forms.Button mpbCancel;
         private System.Windows.Forms.Button mpbCancelFilter;
+        private System.Windows.Forms.MenuItem mAbout;
+        private System.Windows.Forms.MenuItem miExit;
         
 
     }

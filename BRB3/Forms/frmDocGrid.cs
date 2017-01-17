@@ -252,7 +252,6 @@ namespace BRB.Forms
             {
                 Global.cBL.SetCurDoc(Convert.ToInt32(advancedList.DataRows[advancedList.ActiveRowIndex]["number_doc"]));
                 rowIndex = advancedList.ActiveRowIndex;
-
                 
                 if(clsDialogBox.ConfirmationBoxShow(Convert.ToInt32(advancedList.DataRows[rowIndex]["status"]) == Convert.ToInt32(TypeStatusDoc.NoMark)?
                     "Відмітити документ для відправки на сервер?":"Зняти з документа відмітку відправки на сервер?") == DialogResult.Yes)
@@ -270,109 +269,9 @@ namespace BRB.Forms
                         advancedList.ResumeRedraw();
                     }
                 }
-  
-            }
-        
-        
-        }
-
-/*
-        private void btnMarkDoc_old()
-        {
-            Global.cBL.SetCurDoc(Convert.ToInt32(advancedList.DataRows[advancedList.ActiveRowIndex]["number_doc"]));
-            {
-                if (advancedList.ActiveRowIndex >= 0)
-                {
-                    rowIndex = advancedList.ActiveRowIndex;
-
-                    if (Convert.ToInt32(advancedList.DataRows[rowIndex]["status"]) == Convert.ToInt16(TypeStatusDoc.NoMark))
-                    {
-                        if(clsDialogBox.ConfirmationBoxShow("Відмітити документ для відправки на сервер?") == DialogResult.Yes)
-                        {
-                            if (Convert.ToInt32(advancedList.DataRows[rowIndex]["SumWaresInv"]) == 0)
-                            {
-                                clsDialogBox.ErrorBoxShow("По даному документу товар не приймався!");
-                            }
-                            else if (Convert.ToInt32(Global.cBL.CurDoc["type_doc"]) == 1 && true) //clsCommon.PropControlDocSup
-                            {
-                                if (Global.cBL.CurDoc["number_out_invoice"].ToString().Length == 0)
-                                {
-                                    clsDialogBox.ErrorBoxShow("Введіть номер розхідної від постачальника!");
-                                }
-                                else if (Global.cBL.CurDoc["date_out_invoice"].ToString().Length == 0)
-                                {
-                                    clsDialogBox.ErrorBoxShow("Введіть дату розхідної від постачальника!");
-                                }
-                            }
-                            else
-                            {
-                                try
-                                {
-                                      //функція упдейта Docs.status
-                                    Global.cBL.SetStatusDoc(Convert.ToInt16(TypeStatusDoc.Mark));
-                                    advancedList.DataRows[rowIndex]["status"] = Convert.ToInt16(TypeStatusDoc.Mark);
-                                    advancedList.DataRows[rowIndex]["StatusName"] = "+";
-
-                                    // Шаблон для помічених
-                                    int i = 0;
-                                    try
-                                    { i = Convert.ToInt32(advancedList.DataRows[rowIndex]["status"]); }
-                                    catch { }
-
-                                    if (i == 1)
-                                    { advancedList.DataRows[rowIndex].TemplateIndex = 3; }
-                                    else
-                                    { advancedList.DataRows[rowIndex].TemplateIndex = 1; }
-
-                                    //advancedList.Refresh();
-                                    advancedList.ResumeRedraw();
-                                }
-                                catch (Exception ex)
-                                {
-                                   clsException.EnableException(ex);
-                                }
-                                
-                            }
-                        }
-                        
-                    }
-                    else
-                    {
-                        if (clsDialogBox.ConfirmationBoxShow("Зняти з документа відмітку відправки на сервер?") == DialogResult.Yes)
-                        {
-                            try
-                            {
-                                Global.cBL.SetStatusDoc(Convert.ToInt16(TypeStatusDoc.NoMark));
-                                advancedList.DataRows[rowIndex]["status"] = Convert.ToInt16(TypeStatusDoc.NoMark);
-                                advancedList.DataRows[rowIndex]["StatusName"] = "-";
-
-                                // Шаблон для помічених
-                                int i = 0;
-                                try
-                                { i = Convert.ToInt32(advancedList.DataRows[rowIndex]["status"]); }
-                                catch { }
-
-                                if (i == 0)
-                                    advancedList.DataRows[rowIndex].TemplateIndex = 1;
-                                else
-                                    advancedList.DataRows[rowIndex].TemplateIndex = 3;
-
-                                //advancedList.Refresh();
-                                advancedList.ResumeRedraw();
-                            }
-                            catch (Exception ex)
-                            {
-                              clsException.EnableException(ex);
-                            }
-                            
-                        }
-                    }
-
-                    advancedList.ActiveRowIndex = rowIndex;
-                }
             }
         }
- */       
+
         private void btnFilter()
         { 
             clsDialogBox.InformationBoxShow("Фільтр документів ще не реалізовано");

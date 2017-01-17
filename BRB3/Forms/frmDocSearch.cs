@@ -19,8 +19,75 @@ namespace BRB.Forms
 
         public void InitializeComponentManual()
         {
-            this.labelDown.Size = new System.Drawing.Size(236 * Global.tCoefficient, (1 + Global.hToolbarTerminal) * Global.tCoefficient);
+            //this.labelDown.Size = new System.Drawing.Size(236 * Global.tCoefficient, (1 + Global.hToolbarTerminal) * Global.tCoefficient);
             this.Text = "BRB3 " + Global.eTypeTerminal.ToString();
+
+            this.miExit.Text += " " + HotKey.strDocGrid_Exit;
+            this.mpbSelect.Text += " " + HotKey.strSearch_Select;
+            this.mpbCancel.Text += " " + HotKey.strSearch_Cancel;
+            this.mpbCancelFilter.Text += " " + HotKey.strSearch_CancelFilter;
+
+            if (Global.eTypeTerminal ==TypeTerminal.BitatekIT8000)
+                this.WindowState = FormWindowState.Maximized;
         }
+
+        #region Кнопки/функції ---------------------
+
+        private void DocSerch_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue == HotKey.Search_Exit)
+            {
+                btnExit();
+            }
+            else if (e.KeyValue == HotKey.Search_Select)
+            {
+                btnSelect();
+            }
+            else if (e.KeyValue == HotKey.Search_Cancel)
+            {
+                btnCancel();
+            }
+            else if (e.KeyValue == HotKey.Search_CancelFilter)
+            {
+                btnCancelFilter();
+            }
+        }
+
+        // Клік по пункту меню
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            btnExit();
+        }
+        private void btnSelect_Click(object sender, EventArgs e)
+        {
+            btnSelect();
+        }
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            btnCancel();
+        }
+        private void btnCancelFilter_Click(object sender, EventArgs e)
+        {
+            btnCancelFilter();
+        }
+
+        // Функції
+        private void btnExit()
+        {
+            this.Close();
+        }
+        private void btnSelect()
+        {
+            MessageBox.Show("Select");
+        }
+        private void btnCancel()
+        {
+            MessageBox.Show("Cancel");
+        }
+        private void btnCancelFilter()
+        {
+            MessageBox.Show("CancelFilter");
+        }
+        #endregion
     }
 }

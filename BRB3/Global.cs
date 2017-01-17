@@ -244,6 +244,15 @@ namespace BRB
         public static string strWaresScan_Cancel;
         public static int WaresScan_Exit = 0;
         public static string strWaresScan_Exit;
+
+        public static int Search_Exit = 0;
+        public static string strSearch_Exit;
+        public static int Search_Select = 0;
+        public static string strSearch_Select;
+        public static int Search_Cancel = 0;
+        public static string strSearch_Cancel;
+        public static int Search_CancelFilter = 0;
+        public static string strSearch_CancelFilter;
         
         public static void Init( TypeTerminal parType)
         {
@@ -304,6 +313,16 @@ namespace BRB
             strWaresScan_Cancel = Global.BildStrKeyCode(varNameSection, "WaresScan_Cancel");
             WaresScan_Exit = Global.BildKeyCode(varNameSection, "WaresScan_Exit");
             strWaresScan_Exit = Global.BildStrKeyCode(varNameSection, "WaresScan_Exit");
+
+            Search_Exit = Global.BildKeyCode(varNameSection, "Search_Exit");
+            strSearch_Exit = Global.BildStrKeyCode(varNameSection, "Search_Exit");
+            Search_Select = Global.BildKeyCode(varNameSection, "Search_Select");
+            strSearch_Select = Global.BildStrKeyCode(varNameSection, "Search_Select");
+            Search_Cancel = Global.BildKeyCode(varNameSection, "Search_Cancel");
+            strSearch_Cancel = Global.BildStrKeyCode(varNameSection, "Search_Cancel");
+            Search_CancelFilter = Global.BildKeyCode(varNameSection, "Search_CancelFilter");
+            strSearch_CancelFilter = Global.BildStrKeyCode(varNameSection, "Search_CancelFilter");
+            
         }
     
     }
