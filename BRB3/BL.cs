@@ -20,12 +20,14 @@ namespace BRB
         public TypeDoc CurTypeDoc;
         public int CurNumDoc;
         private int CurCodeWares;
-        private DataTable dtDocs;
-        private DataTable dtWaresDoc;
+        public DataTable dtDocs;
+        public DataTable dtWaresDoc;
         public DataRow CurDoc;
         private DataRow CurWaresDoc;
         static public Data cData;
         public DataView dvFilterDoc;
+        private int CurFilterZKPO;
+        private int CurFilterNumberDoc;
 
         public  DataTable LoadDocs(TypeDoc parTypeDoc)
         {
@@ -370,8 +372,10 @@ namespace BRB
 
         public Status filterDoc (string parNumberDoc, string parZKPO)
         {
-            int varZKPO = 0;
-            int varNumberDoc = 0;
+            int varZKPO = CurFilterZKPO;
+            int varNumberDoc = CurFilterNumberDoc;
+            CurFilterZKPO = 0;
+            CurFilterNumberDoc = 0;
 
             if (String.IsNullOrEmpty(parZKPO) && String.IsNullOrEmpty(parNumberDoc))
             {
@@ -382,10 +386,12 @@ namespace BRB
             {
                 try
                 {
-                    varZKPO = Convert.ToInt32(parZKPO);
+                    CurFilterZKPO = Convert.ToInt32(parZKPO);
                 }
                 catch
                 {
+                    CurFilterZKPO = varZKPO;
+                    CurFilterNumberDoc = varNumberDoc;
                     return new Status(EStatus.NoCorectZKPO);
                 }
             }
@@ -393,26 +399,34 @@ namespace BRB
             {
                 try
                 {
-                    varNumberDoc = Convert.ToInt32(parNumberDoc);
+                    CurFilterNumberDoc = Convert.ToInt32(parNumberDoc);
                 }
                 catch
                 {
+                    CurFilterZKPO = varZKPO;
+                    CurFilterNumberDoc = varNumberDoc;
                     return new Status(EStatus.NoCorectNumberDoc);
                 }
             }
 
-            if (varZKPO != 0)
+            return filterDoc();
+
+        }
+
+        public Status filterDoc()
+        {
+            if (CurFilterZKPO != 0)
             {
-                dvFilterDoc = dtDocs.AsEnumerable().Where(x => (Convert.ToInt32(x["okpo_supplier"]) == varZKPO)).AsDataView();
+                dvFilterDoc = dtDocs.AsEnumerable().Where(x => (Convert.ToInt32(x["okpo_supplier"]) == CurFilterZKPO)).AsDataView();
             }
-            else if (varNumberDoc != 0)
+            else if (CurFilterNumberDoc != 0)
             {
-                dvFilterDoc = dtDocs.AsEnumerable().Where(x => (Convert.ToInt32(x["number_doc"]) == varNumberDoc)).AsDataView();
+                dvFilterDoc = dtDocs.AsEnumerable().Where(x => (Convert.ToInt32(x["number_doc"]) == CurFilterNumberDoc)).AsDataView();
             }
 
             if (dvFilterDoc.Count == 0)
                 return new Status(EStatus.NoFoundRows);
-         
+
             return new Status();
         }
     

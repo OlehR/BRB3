@@ -51,11 +51,16 @@ namespace BRB.Forms
         {
             if (isFilter)
             {
+                //TMPPPP
+                dt = Global.cBL.LoadDocs(Global.cBL.CurTypeDoc);
+                Global.cBL.filterDoc();
                 dv = Global.cBL.dvFilterDoc;
                 advancedList.DataSource = dv;
             }
             else
             {
+                //dt = Global.cBL.dtDocs;
+                //TMPPPP
                 dt = Global.cBL.LoadDocs(Global.cBL.CurTypeDoc);
                 advancedList.DataSource = dt;
             }
@@ -275,10 +280,10 @@ namespace BRB.Forms
                 else
                     rowIndexFilter = advancedList.ActiveRowIndex;
 
-                if(clsDialogBox.ConfirmationBoxShow(Convert.ToInt32(advancedList.DataRows[rowIndex]["status"]) == Convert.ToInt32(TypeStatusDoc.NoMark)?
+                if (clsDialogBox.ConfirmationBoxShow(Convert.ToInt32(advancedList.DataRows[(isFilter ? rowIndexFilter : rowIndex)]["status"]) == Convert.ToInt32(TypeStatusDoc.NoMark) ?
                     "Відмітити документ для відправки на сервер?":"Зняти з документа відмітку відправки на сервер?") == DialogResult.Yes)
                 {
-                    TypeStatusDoc varNewStatuaDoc = (Convert.ToInt32(advancedList.DataRows[rowIndex]["status"]) == Convert.ToInt32(TypeStatusDoc.NoMark)?
+                    TypeStatusDoc varNewStatuaDoc = (Convert.ToInt32(advancedList.DataRows[(isFilter ? rowIndexFilter : rowIndex)]["status"]) == Convert.ToInt32(TypeStatusDoc.NoMark) ?
                                                                     TypeStatusDoc.Mark:TypeStatusDoc.NoMark);
                     Status res=Global.cBL.SetStatusDoc(varNewStatuaDoc);
                     if (res.status != EStatus.Ok)

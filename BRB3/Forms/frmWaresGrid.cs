@@ -13,13 +13,13 @@ namespace BRB.Forms
     {
         DataTable dt;
         //TEMPPPP
-        TypeDoc _TypeDoc;
-        int _NumberDoc;
+        //TypeDoc _TypeDoc;
+        //int _NumberDoc;
 
         public frmWaresGrid(TypeDoc parTypeDoc, int parNumberDoc)
         {
-            _TypeDoc = parTypeDoc;
-            _NumberDoc = parNumberDoc;
+            //_TypeDoc = parTypeDoc;
+            //_NumberDoc = parNumberDoc;
 
             dt = Global.cBL.LoadWaresDocs(parTypeDoc, parNumberDoc);
             InitializeComponent();
@@ -55,7 +55,7 @@ namespace BRB.Forms
 
         private void frmWaresGrid_Activated(object sender, EventArgs e)
         {
-            dt = Global.cBL.LoadWaresDocs(_TypeDoc, _NumberDoc);
+            dt = Global.cBL.dtWaresDoc;
             advancedList.DataSource = dt;
             advancedList.ResumeRedraw();
         }
