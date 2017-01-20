@@ -3,7 +3,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Text;
 using System.Data;
-
+using BRB;
 namespace BRB
 {
     /// <summary>
@@ -19,11 +19,11 @@ namespace BRB
 
         public TypeDoc CurTypeDoc;
         public int CurNumDoc;
-        static private int CurCodeWares;
-        static private DataTable dtDocs;
-        static private DataTable dtWaresDoc;
+        private int CurCodeWares;
+        private DataTable dtDocs;
+        private DataTable dtWaresDoc;
         public DataRow CurDoc;
-        static private DataRow CurWaresDoc;
+        private DataRow CurWaresDoc;
         static public Data cData;
         public DataView dvFilterDoc;
 
@@ -333,7 +333,7 @@ namespace BRB
             }
             else num_pop = 0;
             //Зберігаємо в базу
-            return Global.cBL.SaveGoods(num_pop, QtyNew, varPrice);
+            return SaveGoods(num_pop, QtyNew, varPrice);
 
         }
 

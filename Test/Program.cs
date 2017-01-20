@@ -14,10 +14,11 @@ namespace Test
               Global.DeviceID = "123454321";
               //Global.cData.Sync();
 
-              BL bl = new BL(Global.cData );
+              var bl = Global.cBL;
               var Docs = bl.LoadDocs( TypeDoc.SupplyLogistic);
               var DocsWares = bl.LoadWaresDocs(TypeDoc.SupplyLogistic, 3702947);
               var res = bl.FindGoodCode(163142);
+              var res2 = bl.SaveGoods("163142", "3", "9.88");
 
               bl.SaveDocEx(12, DateTime.Now, 0, 0, 0);
               //bl.SetStatusDoc(11,);
