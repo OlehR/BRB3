@@ -57,12 +57,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -131,6 +125,12 @@
   <ItemGroup>
     <Compile Include="BL.cs" />
     <Compile Include="Data.cs" />
+    <Compile Include="Forms\frmAdvSettingsDoc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmAdvSettingsDoc.Designer.cs">
+      <DependentUpon>frmAdvSettingsDoc.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\frmDocGrid.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -154,6 +154,12 @@
     </Compile>
     <Compile Include="Forms\frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmSettings.Designer.cs">
+      <DependentUpon>frmSettings.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\frmTest.cs">
       <SubType>Form</SubType>
@@ -189,9 +195,8 @@
     <Compile Include="SqlBulkCopy\SqlCeRowsCopiedEventArgs.cs" />
     <Compile Include="Status.cs" />
     <Compile Include="Terminal.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
-      <SubType>Designer</SubType>
+    <EmbeddedResource Include="Forms\frmAdvSettingsDoc.resx">
+      <DependentUpon>frmAdvSettingsDoc.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmDocGrid.resx">
       <DependentUpon>frmDocGrid.cs</DependentUpon>
@@ -208,6 +213,9 @@
     <EmbeddedResource Include="Forms\frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmSettings.resx">
+      <DependentUpon>frmSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmTest.resx">
       <DependentUpon>frmTest.cs</DependentUpon>
