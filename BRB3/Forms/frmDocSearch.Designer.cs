@@ -133,7 +133,7 @@
             this.mptbNumDoc.Location = new System.Drawing.Point(73, 5);
             this.mptbNumDoc.Name = "mptbNumDoc";
             this.mptbNumDoc.Size = new System.Drawing.Size(155, 23);
-            this.mptbNumDoc.TabIndex = 7;
+            this.mptbNumDoc.TabIndex = 1;
             // 
             // mptbZKPO
             // 
@@ -142,7 +142,7 @@
             this.mptbZKPO.Location = new System.Drawing.Point(73, 31);
             this.mptbZKPO.Name = "mptbZKPO";
             this.mptbZKPO.Size = new System.Drawing.Size(155, 23);
-            this.mptbZKPO.TabIndex = 1;
+            this.mptbZKPO.TabIndex = 2;
             // 
             // mpbCancel
             // 
@@ -151,7 +151,7 @@
             this.mpbCancel.Location = new System.Drawing.Point(120, 65);
             this.mpbCancel.Name = "mpbCancel";
             this.mpbCancel.Size = new System.Drawing.Size(110, 40);
-            this.mpbCancel.TabIndex = 3;
+            this.mpbCancel.TabIndex = 4;
             this.mpbCancel.Text = "Відміна";
             this.mpbCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
@@ -162,7 +162,7 @@
             this.mpbCancelFilter.Location = new System.Drawing.Point(5, 113);
             this.mpbCancelFilter.Name = "mpbCancelFilter";
             this.mpbCancelFilter.Size = new System.Drawing.Size(225, 25);
-            this.mpbCancelFilter.TabIndex = 3;
+            this.mpbCancelFilter.TabIndex = 5;
             this.mpbCancelFilter.Text = "Скасувати фільтр";
             this.mpbCancelFilter.Click += new System.EventHandler(this.btnCancelFilter_Click);
             // 
@@ -171,7 +171,7 @@
             this.mpbSelect.Location = new System.Drawing.Point(5, 65);
             this.mpbSelect.Name = "mpbSelect";
             this.mpbSelect.Size = new System.Drawing.Size(110, 40);
-            this.mpbSelect.TabIndex = 2;
+            this.mpbSelect.TabIndex = 3;
             this.mpbSelect.Text = "Шукати";
             this.mpbSelect.Click += new System.EventHandler(this.btnSelect_Click);
             // 
@@ -194,6 +194,7 @@
             this.Text = "BRB3";
             this.KeyPreview = true;
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.DocSerch_KeyUp);
+            this.Load += new System.EventHandler(this.DocSearch_Load);
             this.mainPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 

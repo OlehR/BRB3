@@ -21,6 +21,11 @@ namespace BRB
             NoDocSupply,
             NoDateDocSupply,
 
+            NoCorectNumberDoc,
+            NoCorectZKPO,
+            NoNumberDocOrZKPO,
+            NoFoundRows,
+
             UserCodeNotFound,
             UserNotFound,
 
@@ -107,6 +112,18 @@ namespace BRB
                             break;
                         case EStatus.NoDateDocSupply:
                             res = "Введіть дату розхідної від постачальника!";
+                            break;
+                        case EStatus.NoCorectNumberDoc:
+                            res = "Введіть числове значение номера документа";
+                            break;
+                        case EStatus.NoCorectZKPO:
+                            res = "Введіть числове значение ЗКПО!";
+                            break;
+                        case EStatus.NoNumberDocOrZKPO:
+                            res = "Вкажіть ЗКПО або № документа!";
+                            break;
+                        case EStatus.NoFoundRows:
+                            res = "Нічого не знайдено!";
                             break;
 
                        default:

@@ -31,11 +31,28 @@ namespace BRB.Forms
                 this.WindowState = FormWindowState.Maximized;
         }
 
+        private void DocSearch_Load(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.None;
+            this.mptbNumDoc.Text = string.Empty;
+            this.mptbZKPO.Text = string.Empty;
+            this.mptbNumDoc.Focus();
+            
+        }
+
         #region Кнопки/функції ---------------------
 
         private void DocSerch_KeyUp(object sender, KeyEventArgs e)
         {
-            if (e.KeyValue == HotKey.Search_Exit)
+            if (e.KeyValue == HotKey.Up)  // переміщення стрілками треба доробити
+            {
+                this.mainPanel.SelectNextControl(this, false, true, true, false);
+            }
+            else if (e.KeyValue == HotKey.Down)
+            {
+                this.mainPanel.SelectNextControl(this, true, true, true, false);
+            }
+            else if (e.KeyValue == HotKey.Search_Exit)
             {
                 btnExit();
             }
@@ -78,15 +95,31 @@ namespace BRB.Forms
         }
         private void btnSelect()
         {
-            MessageBox.Show("Select");
+            Status st = Global.cBL.filterDoc(mptbNumDoc.Text, mptbZKPO.Text);
+            if (st.status != EStatus.Ok)
+            {
+                clsDialogBox.InformationBoxShow(st.StrStatus);
+
+                if (st.status == EStatus.NoCorectZKPO)
+                    this.mptbZKPO.Focus();
+                else if (st.status == EStatus.NoCorectNumberDoc || st.status == EStatus.NoNumberDocOrZKPO)
+                    this.mptbNumDoc.Focus();
+                else if (st.status == EStatus.NoFoundRows && !String.IsNullOrEmpty(mptbNumDoc.Text))
+                    this.mptbNumDoc.Focus();
+                else if (st.status == EStatus.NoFoundRows && !String.IsNullOrEmpty(mptbZKPO.Text))
+                    this.mptbZKPO.Focus();
+            }
+            else
+               this.DialogResult = DialogResult.Yes;
+            
         }
         private void btnCancel()
         {
-            MessageBox.Show("Cancel");
+            this.DialogResult = DialogResult.Cancel;
         }
         private void btnCancelFilter()
         {
-            MessageBox.Show("CancelFilter");
+            this.DialogResult = DialogResult.Abort;
         }
         #endregion
     }

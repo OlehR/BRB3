@@ -12,8 +12,11 @@ namespace BRB.Forms
 {
     public partial class frmDocGrid : Form
     {
-        DataTable dt;
+        DataTable dt; 
+        DataView dv; // Виборка по фільтру
         int rowIndex;
+        int rowIndexFilter;
+        bool isFilter;
        
         public frmDocGrid(TypeDoc parTypeDoc)
         {
@@ -46,14 +49,27 @@ namespace BRB.Forms
 
         private void frmDocGrid_Activated(object sender, EventArgs e)
         {
-            dt = Global.cBL.LoadDocs(TypeDoc.SupplyLogistic);
-            advancedList.DataSource = dt;
+            if (isFilter)
+            {
+                dv = Global.cBL.dvFilterDoc;
+                advancedList.DataSource = dv;
+            }
+            else
+            {
+                dt = Global.cBL.LoadDocs(Global.cBL.CurTypeDoc);
+                advancedList.DataSource = dt;
+            }
+
             advancedList.ResumeRedraw();
-            advancedList.ActiveRowIndex = rowIndex;
+
+            if (isFilter)
+                advancedList.ActiveRowIndex = rowIndexFilter;
+            else
+                advancedList.ActiveRowIndex = rowIndex;
 
             try
             {
-                Global.cTerminal.StartScan(this.scanBarcode);
+                // Global.cTerminal.StartScan(this.scanBarcode); //Розкоментарити!!!
             }
             catch { }
         }
@@ -62,7 +78,7 @@ namespace BRB.Forms
         {
             try
             {
-                Global.cTerminal.StartScan(this.scanBarcode);
+                //Global.cTerminal.StartScan(this.scanBarcode); // Розкоментарити!!!
 
                 if (Global.eTypeTerminal == TypeTerminal.MotorolaMC75Ax)
                 {
@@ -221,7 +237,10 @@ namespace BRB.Forms
         private void btnWares()
         {
             Global.cTerminal.StopScan();
-            rowIndex = advancedList.ActiveRowIndex;
+            if (!isFilter)
+                rowIndex = advancedList.ActiveRowIndex;
+            else
+                rowIndexFilter = advancedList.ActiveRowIndex;
 
             if (advancedList.ActiveRowIndex >= 0)
             {
@@ -251,8 +270,11 @@ namespace BRB.Forms
             if (advancedList.ActiveRowIndex >= 0)
             {
                 Global.cBL.SetCurDoc(Convert.ToInt32(advancedList.DataRows[advancedList.ActiveRowIndex]["number_doc"]));
-                rowIndex = advancedList.ActiveRowIndex;
-                
+                if (!isFilter)
+                    rowIndex = advancedList.ActiveRowIndex;
+                else
+                    rowIndexFilter = advancedList.ActiveRowIndex;
+
                 if(clsDialogBox.ConfirmationBoxShow(Convert.ToInt32(advancedList.DataRows[rowIndex]["status"]) == Convert.ToInt32(TypeStatusDoc.NoMark)?
                     "Відмітити документ для відправки на сервер?":"Зняти з документа відмітку відправки на сервер?") == DialogResult.Yes)
                 {
@@ -263,9 +285,13 @@ namespace BRB.Forms
                         clsDialogBox.ErrorBoxShow(res.StrStatus);
                     else
                     {
-                        advancedList.DataRows[rowIndex]["status"] = Convert.ToInt32(varNewStatuaDoc);
-                        advancedList.DataRows[rowIndex]["StatusName"] = (varNewStatuaDoc == TypeStatusDoc.Mark ? "+" : "-");
-                        advancedList.DataRows[rowIndex].TemplateIndex = (varNewStatuaDoc == TypeStatusDoc.Mark ? 3 : 1);
+                        advancedList.DataRows[(isFilter ? rowIndexFilter : rowIndex)]["status"] = Convert.ToInt32(varNewStatuaDoc);
+                        advancedList.DataRows[(isFilter ? rowIndexFilter : rowIndex)]["StatusName"] = (varNewStatuaDoc == TypeStatusDoc.Mark ? "+" : "-");
+                        advancedList.DataRows[(isFilter ? rowIndexFilter : rowIndex)].TemplateIndex = (varNewStatuaDoc == TypeStatusDoc.Mark ? 3 : 1);
+                        
+                        //advancedList.DataRows[rowIndex]["status"] = Convert.ToInt32(varNewStatuaDoc);
+                        //advancedList.DataRows[rowIndex]["StatusName"] = (varNewStatuaDoc == TypeStatusDoc.Mark ? "+" : "-");
+                        //advancedList.DataRows[rowIndex].TemplateIndex = (varNewStatuaDoc == TypeStatusDoc.Mark ? 3 : 1);
                         advancedList.ResumeRedraw();
                     }
                 }
@@ -273,22 +299,39 @@ namespace BRB.Forms
         }
 
         private void btnFilter()
-        { 
-            clsDialogBox.InformationBoxShow("Фільтр документів ще не реалізовано");
+        {
+            if (!isFilter)
+                rowIndex = advancedList.ActiveRowIndex;
+            else rowIndexFilter = advancedList.ActiveRowIndex;
 
-            DataView dv;
+            frmDocSearch formSearch = new frmDocSearch();
+            DialogResult result = formSearch.ShowDialog();
+
+            if (result == DialogResult.Yes)
+            {
+                isFilter = true;
+                dv = Global.cBL.dvFilterDoc;
+                advancedList.DataSource = dv;
+                advancedList.ResumeRedraw();
+            }
+            else if (result == DialogResult.Abort)
+            {
+                isFilter = false;
+                dv = null;
+                advancedList.DataSource = dt;
+                advancedList.ResumeRedraw();
+                advancedList.ActiveRowIndex = rowIndex;
+            }
             
-            dv = dt.AsEnumerable().Where(x => (Convert.ToInt32(x["number_doc"]) == 3699652)).AsDataView();
-            advancedList.DataSource = dv;
-            string rr = dv.ToString();
-            advancedList.Refresh();
-            //advancedList.ResumeRedraw();
         }
 
         private void btnWaresScan()
         {
             Global.cTerminal.StopScan();
-            rowIndex = advancedList.ActiveRowIndex;
+            if (!isFilter)
+               rowIndex = advancedList.ActiveRowIndex;
+            else 
+            rowIndexFilter = advancedList.ActiveRowIndex;
 
             if (advancedList.ActiveRowIndex >= 0)
             {

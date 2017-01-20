@@ -25,6 +25,7 @@ namespace BRB
         public DataRow CurDoc;
         static private DataRow CurWaresDoc;
         static public Data cData;
+        public DataView dvFilterDoc;
 
         public  DataTable LoadDocs(TypeDoc parTypeDoc)
         {
@@ -365,6 +366,54 @@ namespace BRB
  
             return new Status();
         
+        }
+
+        public Status filterDoc (string parNumberDoc, string parZKPO)
+        {
+            int varZKPO = 0;
+            int varNumberDoc = 0;
+
+            if (String.IsNullOrEmpty(parZKPO) && String.IsNullOrEmpty(parNumberDoc))
+            {
+                return new Status(EStatus.NoNumberDocOrZKPO);
+            }
+
+            else if (!String.IsNullOrEmpty(parZKPO))
+            {
+                try
+                {
+                    varZKPO = Convert.ToInt32(parZKPO);
+                }
+                catch
+                {
+                    return new Status(EStatus.NoCorectZKPO);
+                }
+            }
+            else if (!String.IsNullOrEmpty(parNumberDoc))
+            {
+                try
+                {
+                    varNumberDoc = Convert.ToInt32(parNumberDoc);
+                }
+                catch
+                {
+                    return new Status(EStatus.NoCorectNumberDoc);
+                }
+            }
+
+            if (varZKPO != 0)
+            {
+                dvFilterDoc = dtDocs.AsEnumerable().Where(x => (Convert.ToInt32(x["okpo_supplier"]) == varZKPO)).AsDataView();
+            }
+            else if (varNumberDoc != 0)
+            {
+                dvFilterDoc = dtDocs.AsEnumerable().Where(x => (Convert.ToInt32(x["number_doc"]) == varNumberDoc)).AsDataView();
+            }
+
+            if (dvFilterDoc.Count == 0)
+                return new Status(EStatus.NoFoundRows);
+         
+            return new Status();
         }
     
     }
