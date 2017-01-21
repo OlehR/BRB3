@@ -37,7 +37,16 @@
             this.labelTop = new System.Windows.Forms.Label();
             this.labelDown = new System.Windows.Forms.Label();
             this.mainPanel = new System.Windows.Forms.Panel();
-            this.pmlNumberDoc = new System.Windows.Forms.Label();
+            this.mpbExit = new System.Windows.Forms.Button();
+            this.mpbSave = new System.Windows.Forms.Button();
+            this.mptbDateDoc = new System.Windows.Forms.TextBox();
+            this.mptbNumberDoc = new System.Windows.Forms.TextBox();
+            this.mplDateDoc = new System.Windows.Forms.Label();
+            this.mplNumberDoc = new System.Windows.Forms.Label();
+            this.mpcbInsMas = new System.Windows.Forms.CheckBox();
+            this.mpcbSumQtyZNP = new System.Windows.Forms.CheckBox();
+            this.mpcbChangeDocPost = new System.Windows.Forms.CheckBox();
+            this.mpcbPriceWizVat = new System.Windows.Forms.CheckBox();
             this.mainPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -94,18 +103,98 @@
             // 
             // mainPanel
             // 
-            this.mainPanel.Controls.Add(this.pmlNumberDoc);
+            this.mainPanel.Controls.Add(this.mpbExit);
+            this.mainPanel.Controls.Add(this.mpbSave);
+            this.mainPanel.Controls.Add(this.mptbDateDoc);
+            this.mainPanel.Controls.Add(this.mptbNumberDoc);
+            this.mainPanel.Controls.Add(this.mplDateDoc);
+            this.mainPanel.Controls.Add(this.mplNumberDoc);
+            this.mainPanel.Controls.Add(this.mpcbInsMas);
+            this.mainPanel.Controls.Add(this.mpcbSumQtyZNP);
+            this.mainPanel.Controls.Add(this.mpcbChangeDocPost);
+            this.mainPanel.Controls.Add(this.mpcbPriceWizVat);
             this.mainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainPanel.Location = new System.Drawing.Point(1, 1);
             this.mainPanel.Name = "mainPanel";
             this.mainPanel.Size = new System.Drawing.Size(236, 293);
             // 
-            // pmlNumberDoc
+            // mpbExit
             // 
-            this.pmlNumberDoc.Location = new System.Drawing.Point(5, 10);
-            this.pmlNumberDoc.Name = "pmlNumberDoc";
-            this.pmlNumberDoc.Size = new System.Drawing.Size(230, 20);
-            this.pmlNumberDoc.Text = "№ розхідної накл. постачальника";
+            this.mpbExit.Location = new System.Drawing.Point(146, 195);
+            this.mpbExit.Name = "mpbExit";
+            this.mpbExit.Size = new System.Drawing.Size(85, 35);
+            this.mpbExit.TabIndex = 8;
+            this.mpbExit.Text = "Вийти";
+            this.mpbExit.Click += new System.EventHandler(this.btnExit_Click);
+            // 
+            // mpbSave
+            // 
+            this.mpbSave.Location = new System.Drawing.Point(5, 195);
+            this.mpbSave.Name = "mpbSave";
+            this.mpbSave.Size = new System.Drawing.Size(138, 35);
+            this.mpbSave.TabIndex = 7;
+            this.mpbSave.Text = "Зберегти";
+            this.mpbSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // mptbDateDoc
+            // 
+            this.mptbDateDoc.Location = new System.Drawing.Point(5, 60);
+            this.mptbDateDoc.Name = "mptbDateDoc";
+            this.mptbDateDoc.Size = new System.Drawing.Size(226, 23);
+            this.mptbDateDoc.TabIndex = 2;
+            // 
+            // mptbNumberDoc
+            // 
+            this.mptbNumberDoc.Location = new System.Drawing.Point(5, 18);
+            this.mptbNumberDoc.Name = "mptbNumberDoc";
+            this.mptbNumberDoc.Size = new System.Drawing.Size(226, 23);
+            this.mptbNumberDoc.TabIndex = 1;
+            // 
+            // mplDateDoc
+            // 
+            this.mplDateDoc.Location = new System.Drawing.Point(5, 44);
+            this.mplDateDoc.Name = "mplDateDoc";
+            this.mplDateDoc.Size = new System.Drawing.Size(226, 20);
+            this.mplDateDoc.Text = "Дата розхідної накл. постач-ка";
+            // 
+            // mplNumberDoc
+            // 
+            this.mplNumberDoc.Location = new System.Drawing.Point(5, 3);
+            this.mplNumberDoc.Name = "mplNumberDoc";
+            this.mplNumberDoc.Size = new System.Drawing.Size(226, 20);
+            this.mplNumberDoc.Text = "№ розхідної накл. постачальника";
+            // 
+            // mpcbInsMas
+            // 
+            this.mpcbInsMas.Location = new System.Drawing.Point(5, 165);
+            this.mpcbInsMas.Name = "mpcbInsMas";
+            this.mpcbInsMas.Size = new System.Drawing.Size(226, 20);
+            this.mpcbInsMas.TabIndex = 6;
+            this.mpcbInsMas.Text = "Вибирати масу з штрик-коду";
+            // 
+            // mpcbSumQtyZNP
+            // 
+            this.mpcbSumQtyZNP.Location = new System.Drawing.Point(5, 140);
+            this.mpcbSumQtyZNP.Name = "mpcbSumQtyZNP";
+            this.mpcbSumQtyZNP.Size = new System.Drawing.Size(226, 20);
+            this.mpcbSumQtyZNP.TabIndex = 5;
+            this.mpcbSumQtyZNP.Text = "Сумувати кіл-ть в ЗНП";
+            // 
+            // mpcbChangeDocPost
+            // 
+            this.mpcbChangeDocPost.Location = new System.Drawing.Point(5, 115);
+            this.mpcbChangeDocPost.Name = "mpcbChangeDocPost";
+            this.mpcbChangeDocPost.Size = new System.Drawing.Size(226, 20);
+            this.mpcbChangeDocPost.TabIndex = 4;
+            this.mpcbChangeDocPost.Text = "Потребує заміни док. постач-ка";
+            // 
+            // mpcbPriceWizVat
+            // 
+            this.mpcbPriceWizVat.Location = new System.Drawing.Point(5, 90);
+            this.mpcbPriceWizVat.Name = "mpcbPriceWizVat";
+            this.mpcbPriceWizVat.Size = new System.Drawing.Size(226, 20);
+            this.mpcbPriceWizVat.TabIndex = 3;
+            this.mpcbPriceWizVat.Text = "Ціни в накладній з ПДВ";
             // 
             // frmAdvSettingsDoc
             // 
@@ -142,7 +231,16 @@
         private System.Windows.Forms.Panel mainPanel;
         private System.Windows.Forms.MenuItem mAbout;
         private System.Windows.Forms.MenuItem miExit;
-        private System.Windows.Forms.Label pmlNumberDoc;
+        private System.Windows.Forms.Label mplNumberDoc;
+        private System.Windows.Forms.TextBox mptbNumberDoc;
+        private System.Windows.Forms.Label mplDateDoc;
+        private System.Windows.Forms.TextBox mptbDateDoc;
+        private System.Windows.Forms.CheckBox mpcbPriceWizVat;
+        private System.Windows.Forms.CheckBox mpcbChangeDocPost;
+        private System.Windows.Forms.CheckBox mpcbSumQtyZNP;
+        private System.Windows.Forms.CheckBox mpcbInsMas;
+        private System.Windows.Forms.Button mpbSave;
+        private System.Windows.Forms.Button mpbExit;
 
 
     }

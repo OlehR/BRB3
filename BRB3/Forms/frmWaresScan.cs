@@ -123,8 +123,8 @@ namespace BRB.Forms
             // Для MotorolaMC75Ax робимо великі кнопки
             if (Global.eTypeTerminal == TypeTerminal.MotorolaMC75Ax)
             {
-                this.mpbtnAdd.Size = new System.Drawing.Size(141 * Global.tCoefficient, 40 * Global.tCoefficient);
-                this.mpbtnCancel.Size = new System.Drawing.Size(86 * Global.tCoefficient, 40 * Global.tCoefficient);
+                this.mpbtnAdd.Size = new System.Drawing.Size(138 * Global.tCoefficient, 45 * Global.tCoefficient);
+                this.mpbtnCancel.Size = new System.Drawing.Size(85 * Global.tCoefficient, 45 * Global.tCoefficient);
             }
         }
         #region Кнопки/функції ---------------------

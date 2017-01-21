@@ -33,6 +33,10 @@ Search_Select = F1
 Search_Cancel = F4
 Search_CancelFilter = F5
 
+AdvSettingsDoc_Save = F1
+AdvSettingsDoc_Exit = F4
+
+
 [MotorolaMC75Ax]
 Up = Up
 Down = Down
@@ -67,6 +71,11 @@ Search_Exit = F10
 Search_Select = F3
 Search_Cancel = F4
 Search_CancelFilter = F5
+
+AdvSettingsDoc_Save = F3
+AdvSettingsDoc_Exit = F10
+
+
 
 [PitechLPT80]
 Up = Up

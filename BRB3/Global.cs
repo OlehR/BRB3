@@ -253,6 +253,11 @@ namespace BRB
         public static string strSearch_Cancel;
         public static int Search_CancelFilter = 0;
         public static string strSearch_CancelFilter;
+
+        public static int AdvSettingsDoc_Save = 0;
+        public static string strAdvSettingsDoc_Save;
+        public static int AdvSettingsDoc_Exit = 0;
+        public static string strAdvSettingsDoc_Exit;
         
         public static void Init( TypeTerminal parType)
         {
@@ -322,7 +327,11 @@ namespace BRB
             strSearch_Cancel = Global.BildStrKeyCode(varNameSection, "Search_Cancel");
             Search_CancelFilter = Global.BildKeyCode(varNameSection, "Search_CancelFilter");
             strSearch_CancelFilter = Global.BildStrKeyCode(varNameSection, "Search_CancelFilter");
-            
+
+            AdvSettingsDoc_Save = Global.BildKeyCode(varNameSection, "AdvSettingsDoc_Save");
+            strAdvSettingsDoc_Save = Global.BildStrKeyCode(varNameSection, "AdvSettingsDoc_Save");
+            AdvSettingsDoc_Exit = Global.BildKeyCode(varNameSection, "AdvSettingsDoc_Exit");
+            strAdvSettingsDoc_Exit = Global.BildStrKeyCode(varNameSection, "AdvSettingsDoc_Exit");
         }
     
     }
