@@ -214,6 +214,7 @@ namespace BRB
               CurWaresDoc["num_pop"] = parNumPop;
               CurWaresDoc["quantity"] = parQty;
               CurWaresDoc["price"] = parPrice;
+              ChangeDoc();
             }
             catch (System.Exception Ex)
             {
@@ -335,10 +336,19 @@ namespace BRB
             }
             else num_pop = 0;
             //Зберігаємо в базу
+            
             return SaveGoods(num_pop, QtyNew, varPrice);
+            
 
         }
-
+        void ChangeDoc()
+        {
+            var varSum = this.dtWaresDoc.AsEnumerable().Sum(dw => dw.Field<decimal?>("price") * dw.Field<decimal?>("quantity"));
+            this.CurDoc["SummaPrih"] = varSum;
+            var varNum = this.dtWaresDoc.AsEnumerable().Sum(dw => dw.Field<int?>("num_pop"));
+            this.CurDoc["SumWaresInv"] = varNum;
+        
+        }
 
         public Status SetStatusDoc(TypeStatusDoc parNewStatuaDoc)
         {

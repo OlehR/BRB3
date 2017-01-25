@@ -18,7 +18,9 @@ namespace Test
               var Docs = bl.LoadDocs( TypeDoc.SupplyLogistic);
               var DocsWares = bl.LoadWaresDocs(TypeDoc.SupplyLogistic, 3702947);
               var res = bl.FindGoodCode(163142);
-              var res2 = bl.SaveGoods("163142", "3", "9.88");
+              var res2 = bl.SaveGoods("163142", "10", "9.88");
+               res = bl.FindGoodCode(163146);
+              res2 = bl.SaveGoods("163146", "10", "20.00");
 
               bl.SaveDocEx(12, DateTime.Now, 0, 0, 0);
               //bl.SetStatusDoc(11,);
