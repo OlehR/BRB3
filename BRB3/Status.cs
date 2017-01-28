@@ -25,6 +25,8 @@ namespace BRB
             NoCorectZKPO,
             NoNumberDocOrZKPO,
             NoFoundRows,
+            NoCorectCodeWares,
+            NoCodeOrNameWares,
 
             NoCorectDate,
 
@@ -129,6 +131,12 @@ namespace BRB
                             break;
                         case EStatus.NoCorectDate:
                             res = "Введіть правельну дату";
+                            break;
+                        case EStatus.NoCorectCodeWares:
+                            res = "Введіть правельно код товару";
+                            break;
+                        case EStatus.NoCodeOrNameWares:
+                            res = "Введіть код товару чи назву";
                             break;
 
                        default:

@@ -26,8 +26,11 @@ namespace BRB
         private DataRow CurWaresDoc;
         static public Data cData;
         public DataView dvFilterDoc;
+        public DataView dvFilterWares;
         private int CurFilterZKPO;
         private int CurFilterNumberDoc;
+        private int CurFilterCodeWares;
+        private string CurFilterNameWares;
 
         public  DataTable LoadDocs(TypeDoc parTypeDoc)
         {
@@ -369,6 +372,56 @@ namespace BRB
             return new Status();
         
         }
+
+        public Status filterWares(string parCodeWares, string parNameWares)
+        {
+            int varCodeWares = CurFilterCodeWares;
+            string varNameWares = CurFilterNameWares;
+            CurFilterCodeWares = 0;
+            CurFilterNameWares = string.Empty;
+
+            if (String.IsNullOrEmpty(parCodeWares) && String.IsNullOrEmpty(parNameWares))
+            {
+                return new Status(EStatus.NoCodeOrNameWares);
+            }
+            else if (!String.IsNullOrEmpty(parCodeWares))
+            {
+                try
+                {
+                    CurFilterCodeWares = Convert.ToInt32(parCodeWares);
+                }
+                catch
+                {
+                    CurFilterCodeWares = varCodeWares;
+                    CurFilterNameWares = varNameWares;
+                    return new Status(EStatus.NoCorectCodeWares);
+                }
+            }
+            else if (!String.IsNullOrEmpty(parNameWares))
+            {
+                CurFilterNameWares = parNameWares;
+            }
+
+            return filterWares();
+        }
+
+        public Status filterWares()
+        {
+            if (CurFilterCodeWares != 0)
+            {
+                dvFilterWares = dtWaresDoc.AsEnumerable().Where(x => (Convert.ToInt32(x["code_wares"]) == CurFilterCodeWares)).AsDataView();
+            }
+            else if (CurFilterNameWares != string.Empty)
+            {
+                dvFilterWares = dtWaresDoc.AsEnumerable().Where(x => x["name_wares"].ToString().Contains(CurFilterNameWares)).AsDataView();
+            }
+
+            if (dvFilterWares.Count == 0)
+                return new Status(EStatus.NoFoundRows);
+
+            return new Status();
+        }
+
 
         public Status filterDoc (string parNumberDoc, string parZKPO)
         {
