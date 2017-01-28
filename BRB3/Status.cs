@@ -26,6 +26,8 @@ namespace BRB
             NoNumberDocOrZKPO,
             NoFoundRows,
 
+            NoCorectDate,
+
             UserCodeNotFound,
             UserNotFound,
 
@@ -124,6 +126,9 @@ namespace BRB
                             break;
                         case EStatus.NoFoundRows:
                             res = "Нічого не знайдено!";
+                            break;
+                        case EStatus.NoCorectDate:
+                            res = "Введіть правельну дату";
                             break;
 
                        default:

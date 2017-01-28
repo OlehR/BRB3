@@ -39,7 +39,21 @@ namespace BRB.Forms
 
         private void AdvSettingsDoc_Load(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.None;
+            if (Global.cBL.CurDoc != null)
+            {
+                if (Global.cBL.CurDoc["number_out_invoice"] != DBNull.Value)
+                    this.mptbNumberDoc.Text = Global.cBL.CurDoc["number_out_invoice"].ToString();
+                if (Global.cBL.CurDoc["date_out_invoice"] != DBNull.Value)
+                    this.mptbDateDoc.Text = Convert.ToDateTime(Global.cBL.CurDoc["date_out_invoice"]).ToShortDateString();
+                if (Global.cBL.CurDoc["flag_price_with_vat"] != DBNull.Value)
+                    this.mpcbPriceWizVat.Checked = (Convert.ToInt32(Global.cBL.CurDoc["flag_price_with_vat"]) == 1 ? true : false);
+                if (Global.cBL.CurDoc["flag_change_doc_sup"] != DBNull.Value)
+                    this.mpcbChangeDocSup.Checked = (Convert.ToInt32(Global.cBL.CurDoc["flag_change_doc_sup"]) == 1 ? true : false);
+                if (Global.cBL.CurDoc["flag_sum_qty_doc"] != DBNull.Value)
+                    this.mpcbSumQtyZNP.Checked = (Convert.ToInt32(Global.cBL.CurDoc["flag_sum_qty_doc"]) == 1 ? true : false);
+                if (Global.cBL.CurDoc["flag_insert_weigth_from_barcode"] != DBNull.Value)
+                    this.mpcbInsMas.Checked = (Convert.ToInt32(Global.cBL.CurDoc["flag_insert_weigth_from_barcode"]) == 1 ? true : false);
+            }
 
         }
 
@@ -76,7 +90,18 @@ namespace BRB.Forms
         }
         private void btnSave()
         {
-            clsDialogBox.InformationBoxShow("Save");
+            Status st = Global.cBL.saveAdvSetDoc(this.mptbNumberDoc.Text, this.mptbDateDoc.Text, Convert.ToInt32(this.mpcbPriceWizVat.Checked), Convert.ToInt32(this.mpcbChangeDocSup.Checked),
+                                                                                                 Convert.ToInt32(this.mpcbSumQtyZNP.Checked), Convert.ToInt32(this.mpcbInsMas.Checked));
+            if (st.status != EStatus.Ok)
+            {
+                clsDialogBox.InformationBoxShow(st.StrStatus);
+
+                if (st.status == EStatus.NoCorectDate)
+                    this.mptbDateDoc.Focus();
+            }
+            else
+                if (clsDialogBox.ConfirmationBoxShow("Зміни збережено! Вийти?") == DialogResult.Yes)
+                    this.Close();
         }
 
 

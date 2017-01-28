@@ -51,17 +51,13 @@ namespace BRB.Forms
         {
             if (isFilter)
             {
-                //TMPPPP
-                dt = Global.cBL.LoadDocs(Global.cBL.CurTypeDoc);
                 Global.cBL.filterDoc();
                 dv = Global.cBL.dvFilterDoc;
                 advancedList.DataSource = dv;
             }
             else
             {
-                //dt = Global.cBL.dtDocs;
-                //TMPPPP
-                dt = Global.cBL.LoadDocs(Global.cBL.CurTypeDoc);
+                dt = Global.cBL.dtDocs;
                 advancedList.DataSource = dt;
             }
 
@@ -294,9 +290,6 @@ namespace BRB.Forms
                         advancedList.DataRows[(isFilter ? rowIndexFilter : rowIndex)]["StatusName"] = (varNewStatuaDoc == TypeStatusDoc.Mark ? "+" : "-");
                         advancedList.DataRows[(isFilter ? rowIndexFilter : rowIndex)].TemplateIndex = (varNewStatuaDoc == TypeStatusDoc.Mark ? 3 : 1);
                         
-                        //advancedList.DataRows[rowIndex]["status"] = Convert.ToInt32(varNewStatuaDoc);
-                        //advancedList.DataRows[rowIndex]["StatusName"] = (varNewStatuaDoc == TypeStatusDoc.Mark ? "+" : "-");
-                        //advancedList.DataRows[rowIndex].TemplateIndex = (varNewStatuaDoc == TypeStatusDoc.Mark ? 3 : 1);
                         advancedList.ResumeRedraw();
                     }
                 }
@@ -365,7 +358,10 @@ namespace BRB.Forms
 
         private void btnExtraProperties()
         {
-            MessageBox.Show("Немає форми ExtraProperties");
+            Global.cBL.SetCurDoc(Convert.ToInt32(advancedList.DataRows[advancedList.ActiveRowIndex]["number_doc"]));
+
+            frmAdvSettingsDoc formAdvSettingsDoc = new frmAdvSettingsDoc();
+            formAdvSettingsDoc.Show();
         }
         private void btnGroupingDoc()
         {

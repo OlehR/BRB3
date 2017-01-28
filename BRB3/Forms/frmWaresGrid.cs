@@ -12,15 +12,9 @@ namespace BRB.Forms
     public partial class frmWaresGrid : Form
     {
         DataTable dt;
-        //TEMPPPP
-        //TypeDoc _TypeDoc;
-        //int _NumberDoc;
-
+        
         public frmWaresGrid(TypeDoc parTypeDoc, int parNumberDoc)
         {
-            //_TypeDoc = parTypeDoc;
-            //_NumberDoc = parNumberDoc;
-
             dt = Global.cBL.LoadWaresDocs(parTypeDoc, parNumberDoc);
             InitializeComponent();
             InitializeComponentManual();

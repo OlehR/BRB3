@@ -28,5 +28,11 @@ namespace BRB
             { }
             return 0;
         }
+        
+        public static string ToDateStr (string s)
+         {
+            s = s.Replace('.', '/');
+             return s;
+         }
     }
 }

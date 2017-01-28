@@ -45,7 +45,7 @@
             this.mplNumberDoc = new System.Windows.Forms.Label();
             this.mpcbInsMas = new System.Windows.Forms.CheckBox();
             this.mpcbSumQtyZNP = new System.Windows.Forms.CheckBox();
-            this.mpcbChangeDocPost = new System.Windows.Forms.CheckBox();
+            this.mpcbChangeDocSup = new System.Windows.Forms.CheckBox();
             this.mpcbPriceWizVat = new System.Windows.Forms.CheckBox();
             this.mainPanel.SuspendLayout();
             this.SuspendLayout();
@@ -111,7 +111,7 @@
             this.mainPanel.Controls.Add(this.mplNumberDoc);
             this.mainPanel.Controls.Add(this.mpcbInsMas);
             this.mainPanel.Controls.Add(this.mpcbSumQtyZNP);
-            this.mainPanel.Controls.Add(this.mpcbChangeDocPost);
+            this.mainPanel.Controls.Add(this.mpcbChangeDocSup);
             this.mainPanel.Controls.Add(this.mpcbPriceWizVat);
             this.mainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainPanel.Location = new System.Drawing.Point(1, 1);
@@ -180,13 +180,13 @@
             this.mpcbSumQtyZNP.TabIndex = 5;
             this.mpcbSumQtyZNP.Text = "Сумувати кіл-ть в ЗНП";
             // 
-            // mpcbChangeDocPost
+            // mpcbChangeDocSup
             // 
-            this.mpcbChangeDocPost.Location = new System.Drawing.Point(5, 115);
-            this.mpcbChangeDocPost.Name = "mpcbChangeDocPost";
-            this.mpcbChangeDocPost.Size = new System.Drawing.Size(226, 20);
-            this.mpcbChangeDocPost.TabIndex = 4;
-            this.mpcbChangeDocPost.Text = "Потребує заміни док. постач-ка";
+            this.mpcbChangeDocSup.Location = new System.Drawing.Point(5, 115);
+            this.mpcbChangeDocSup.Name = "mpcbChangeDocSup";
+            this.mpcbChangeDocSup.Size = new System.Drawing.Size(226, 20);
+            this.mpcbChangeDocSup.TabIndex = 4;
+            this.mpcbChangeDocSup.Text = "Потребує заміни док. постач-ка";
             // 
             // mpcbPriceWizVat
             // 
@@ -236,7 +236,7 @@
         private System.Windows.Forms.Label mplDateDoc;
         private System.Windows.Forms.TextBox mptbDateDoc;
         private System.Windows.Forms.CheckBox mpcbPriceWizVat;
-        private System.Windows.Forms.CheckBox mpcbChangeDocPost;
+        private System.Windows.Forms.CheckBox mpcbChangeDocSup;
         private System.Windows.Forms.CheckBox mpcbSumQtyZNP;
         private System.Windows.Forms.CheckBox mpcbInsMas;
         private System.Windows.Forms.Button mpbSave;

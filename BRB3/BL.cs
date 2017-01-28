@@ -345,7 +345,7 @@ namespace BRB
         {
             var varSum = this.dtWaresDoc.AsEnumerable().Sum(dw => dw.Field<decimal?>("price") * dw.Field<decimal?>("quantity"));
             this.CurDoc["SummaPrih"] = varSum;
-            var varNum = this.dtWaresDoc.AsEnumerable().Sum(dw => dw.Field<int?>("num_pop"));
+            var varNum = this.dtWaresDoc.AsEnumerable().Max(dw => dw.Field<int?>("num_pop"));
             this.CurDoc["SumWaresInv"] = varNum;
         
         }
@@ -437,6 +437,22 @@ namespace BRB
             if (dvFilterDoc.Count == 0)
                 return new Status(EStatus.NoFoundRows);
 
+            return new Status();
+        }
+
+
+        public Status saveAdvSetDoc(string parNumberDoc, string parDateStr, int parPriceWizVat, int parChangeDocSup, int parSumQtyZNP, int parInsMas)
+        {
+            try
+            {
+                if (Convert.ToDateTime(Proto.ToDateStr(parDateStr)) < Convert.ToDateTime("01/01/2016"))
+                    return new Status(EStatus.NoCorectDate);
+            }
+            catch
+            {
+                return new Status(EStatus.NoCorectDate);
+            }
+            //процедура збереження в ДТ і Базу
             return new Status();
         }
     
