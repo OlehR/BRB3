@@ -226,17 +226,7 @@ namespace BRB
             return res;
         }
 
-        public Status SaveDocEx( int parNumberOutInvoice, DateTime parDateOutInvoice, int parFlagPriceWithVat, int parFlagChangeDocSup, int parFlagSumQtyDoc)
-        {
-            CurDoc["number_out_invoice"]=parNumberOutInvoice;
-            CurDoc["date_out_invoice"] = parDateOutInvoice;
-            CurDoc["flag_price_with_vat"] = parFlagPriceWithVat ;
-            CurDoc["flag_change_doc_sup"] = parFlagChangeDocSup;
-            CurDoc["flag_sum_qty_doc"] = parFlagSumQtyDoc ;
-            
-            cData.SaveDocEx(CurNumDoc, parNumberOutInvoice, parDateOutInvoice, parFlagPriceWithVat, parFlagChangeDocSup, parFlagSumQtyDoc);
-            return new Status();
-        }
+       
 
 /*
         public Status SetStatusDoc(TypeStatusDoc parStatus)
@@ -440,20 +430,37 @@ namespace BRB
             return new Status();
         }
 
-
-        public Status saveAdvSetDoc(string parNumberDoc, string parDateStr, int parPriceWizVat, int parChangeDocSup, int parSumQtyZNP, int parInsMas)
+        public Status SaveDocEx(int parNumberOutInvoice, DateTime parDateOutInvoice, int parFlagPriceWithVat, int parFlagChangeDocSup, int parFlagSumQtyDoc, int parFlagInsertWeigthFromBarcode)
         {
+            CurDoc["number_out_invoice"] = parNumberOutInvoice;
+            CurDoc["date_out_invoice"] = parDateOutInvoice;
+            CurDoc["flag_price_with_vat"] = parFlagPriceWithVat;
+            CurDoc["flag_change_doc_sup"] = parFlagChangeDocSup;
+            CurDoc["flag_sum_qty_doc"] = parFlagSumQtyDoc;
+            CurDoc["flag_insert_weigth_from_barcode"] = parFlagInsertWeigthFromBarcode;
+
+            cData.SaveDocEx(CurNumDoc, parNumberOutInvoice, parDateOutInvoice, parFlagPriceWithVat, parFlagChangeDocSup, parFlagSumQtyDoc, parFlagInsertWeigthFromBarcode);
+            return new Status();
+        }
+
+        public Status saveAdvSetDoc(string parNumberOutInvoice, string parDateOutInvoice, int parFlagPriceWithVat, int parFlagChangeDocSup, int parFlagSumQtyDoc, int parFlagInsertWeigthFromBarcode)
+        {
+            DateTime varDateOutInvoice;
+            int varNumberOutInvoice;
             try
             {
-                if (Convert.ToDateTime(Proto.ToDateStr(parDateStr)) < Convert.ToDateTime("01/01/2016"))
+                varNumberOutInvoice = Convert.ToInt32(parNumberOutInvoice);
+                varDateOutInvoice =Convert.ToDateTime(Proto.ToDateStr(parDateOutInvoice));
+                if ( varDateOutInvoice < new DateTime(2016,01,01))
                     return new Status(EStatus.NoCorectDate);
+
             }
             catch
             {
                 return new Status(EStatus.NoCorectDate);
             }
             //процедура збереження в ДТ і Базу
-            return new Status();
+            return SaveDocEx( varNumberOutInvoice, varDateOutInvoice,  parFlagPriceWithVat,  parFlagChangeDocSup,  parFlagSumQtyDoc,  parFlagInsertWeigthFromBarcode);
         }
     
     }
