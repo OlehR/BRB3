@@ -29,7 +29,7 @@ namespace BRB.Forms
        
         private void frmWaresScan_Load(object sender, EventArgs e)
         {
-            Global.cTerminal.StartScan(this.scanBarcode);
+            //Global.cTerminal.StartScan(this.scanBarcode); //Розкоментувати!!!!
             fillDataForm();
         }
 
@@ -65,7 +65,7 @@ namespace BRB.Forms
                 this.mplArticle.Text = dr["code_wares"].ToString();
                 this.mplCode.Text = dr["bar_code"].ToString();
                 this.mplName.Text = "                      " + dr["name_wares"].ToString();
-                mptbAddQty.Text = "";
+                this.mptbAddQty.Text = "";
 
                 if (dr["quantity"] != DBNull.Value)
                 {
@@ -88,6 +88,23 @@ namespace BRB.Forms
                     else this.mplQtyTempl.Text = decimal.Round(Proto.ToDecimal(dr["quantity_temp"].ToString()), 3).ToString("0.000");
                 }
                 else mplQtyTempl.Text = string.Empty;
+
+                if (dr["term"] != DBNull.Value)
+                {
+                    decimal d = Convert.ToDecimal(dr["term"]);
+                    int prom = (int)d;
+                    prom = prom * 2 / 3;
+                    DateTime dd = Convert.ToDateTime(Global.TimeSync).Date;  // замінити на дату знп?й
+                    dd = dd.AddDays(prom);
+                    mplDateReal.Text = dd.Date.ToString();
+                    mplDateReal.BackColor = System.Drawing.Color.YellowGreen; 
+                }
+                else
+                {
+                    mplDateReal.Text = DateTime.Now.Date.ToString();
+                    mplDateReal.BackColor = System.Drawing.Color.YellowGreen;
+                }
+
                 // TMPPPPPP Витерти!!!!
                 this.mplQtyTempl.Text = decimal.Round(Proto.ToDecimal(dr["quantity_temp"].ToString()), 3).ToString("0.000");
             }
@@ -101,6 +118,10 @@ namespace BRB.Forms
                 this.mplQtyNow.Text = string.Empty;
                 this.mptbAddPrice.Text = string.Empty;
                 this.mplQtyTempl.Text = string.Empty;
+
+                this.mplDateReal.Text = string.Empty;
+                this.mplDateReal.BackColor = System.Drawing.Color.Gainsboro;
+                //this.mpcbTempl.Text = string.Empty;
             }
         }
 

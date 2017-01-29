@@ -144,6 +144,7 @@
             this.mpchBoxAutoScan.Size = new System.Drawing.Size(82, 20);
             this.mpchBoxAutoScan.TabIndex = 0;
             this.mpchBoxAutoScan.Text = "АвтоЗбер";
+            this.mpchBoxAutoScan.Enabled = false;
             // 
             // mplBorderTop
             // 
