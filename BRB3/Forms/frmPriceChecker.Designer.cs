@@ -37,9 +37,25 @@
             this.labelTop = new System.Windows.Forms.Label();
             this.labelDown = new System.Windows.Forms.Label();
             this.mainPanel = new System.Windows.Forms.Panel();
+            this.statusBar = new System.Windows.Forms.StatusBar();
+            this.button1 = new System.Windows.Forms.Button();
+            this.mplLine4 = new System.Windows.Forms.Label();
+            this.mplLine3 = new System.Windows.Forms.Label();
+            this.mplLine2 = new System.Windows.Forms.Label();
+            this.mplInfo = new System.Windows.Forms.Label();
+            this.mplPriceOpt = new System.Windows.Forms.Label();
+            this.mplPriceOptCapt = new System.Windows.Forms.Label();
+            this.mplPrice = new System.Windows.Forms.Label();
+            this.mplPriceCapt = new System.Windows.Forms.Label();
+            this.mplNameCapt = new System.Windows.Forms.Label();
+            this.mplName = new System.Windows.Forms.Label();
+            this.mplArticle = new System.Windows.Forms.Label();
+            this.mplWaresInfCapt = new System.Windows.Forms.Label();
             this.mplBarCode = new System.Windows.Forms.Label();
             this.mplBarCodeCapt = new System.Windows.Forms.Label();
-            this.mplWaresInfCapt = new System.Windows.Forms.Label();
+            this.mplArticleCapt = new System.Windows.Forms.Label();
+            this.mplLine1 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
             this.mainPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -96,13 +112,135 @@
             // 
             // mainPanel
             // 
+            this.mainPanel.Controls.Add(this.button2);
+            this.mainPanel.Controls.Add(this.statusBar);
+            this.mainPanel.Controls.Add(this.button1);
+            this.mainPanel.Controls.Add(this.mplLine4);
+            this.mainPanel.Controls.Add(this.mplLine3);
+            this.mainPanel.Controls.Add(this.mplLine2);
+            this.mainPanel.Controls.Add(this.mplInfo);
+            this.mainPanel.Controls.Add(this.mplPriceOpt);
+            this.mainPanel.Controls.Add(this.mplPriceOptCapt);
+            this.mainPanel.Controls.Add(this.mplPrice);
+            this.mainPanel.Controls.Add(this.mplPriceCapt);
+            this.mainPanel.Controls.Add(this.mplNameCapt);
+            this.mainPanel.Controls.Add(this.mplName);
+            this.mainPanel.Controls.Add(this.mplArticle);
             this.mainPanel.Controls.Add(this.mplWaresInfCapt);
             this.mainPanel.Controls.Add(this.mplBarCode);
             this.mainPanel.Controls.Add(this.mplBarCodeCapt);
+            this.mainPanel.Controls.Add(this.mplArticleCapt);
+            this.mainPanel.Controls.Add(this.mplLine1);
             this.mainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainPanel.Location = new System.Drawing.Point(1, 1);
             this.mainPanel.Name = "mainPanel";
             this.mainPanel.Size = new System.Drawing.Size(236, 293);
+            // 
+            // statusBar
+            // 
+            this.statusBar.Location = new System.Drawing.Point(0, 269);
+            this.statusBar.Name = "statusBar";
+            this.statusBar.Size = new System.Drawing.Size(236, 24);
+            this.statusBar.Text = "statusBar";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(5, 190);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(72, 26);
+            this.button1.TabIndex = 16;
+            this.button1.Text = "button1";
+            // 
+            // mplLine4
+            // 
+            this.mplLine4.BackColor = System.Drawing.SystemColors.WindowText;
+            this.mplLine4.Location = new System.Drawing.Point(235, 34);
+            this.mplLine4.Name = "mplLine4";
+            this.mplLine4.Size = new System.Drawing.Size(1, 125);
+            // 
+            // mplLine3
+            // 
+            this.mplLine3.BackColor = System.Drawing.SystemColors.WindowText;
+            this.mplLine3.Location = new System.Drawing.Point(1, 34);
+            this.mplLine3.Name = "mplLine3";
+            this.mplLine3.Size = new System.Drawing.Size(1, 124);
+            // 
+            // mplLine2
+            // 
+            this.mplLine2.BackColor = System.Drawing.SystemColors.WindowText;
+            this.mplLine2.Location = new System.Drawing.Point(1, 158);
+            this.mplLine2.Name = "mplLine2";
+            this.mplLine2.Size = new System.Drawing.Size(234, 1);
+            // 
+            // mplInfo
+            // 
+            this.mplInfo.BackColor = System.Drawing.Color.Gainsboro;
+            this.mplInfo.Font = new System.Drawing.Font("Tahoma", 16F, System.Drawing.FontStyle.Bold);
+            this.mplInfo.ForeColor = System.Drawing.Color.Blue;
+            this.mplInfo.Location = new System.Drawing.Point(3, 162);
+            this.mplInfo.Name = "mplInfo";
+            this.mplInfo.Size = new System.Drawing.Size(231, 26);
+            this.mplInfo.Text = "Ціна не вірна";
+            this.mplInfo.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // mplPriceOpt
+            // 
+            this.mplPriceOpt.BackColor = System.Drawing.Color.Gainsboro;
+            this.mplPriceOpt.Location = new System.Drawing.Point(72, 135);
+            this.mplPriceOpt.Name = "mplPriceOpt";
+            this.mplPriceOpt.Size = new System.Drawing.Size(162, 20);
+            // 
+            // mplPriceOptCapt
+            // 
+            this.mplPriceOptCapt.Location = new System.Drawing.Point(3, 135);
+            this.mplPriceOptCapt.Name = "mplPriceOptCapt";
+            this.mplPriceOptCapt.Size = new System.Drawing.Size(69, 20);
+            this.mplPriceOptCapt.Text = "Ціна опт.: ";
+            this.mplPriceOptCapt.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // mplPrice
+            // 
+            this.mplPrice.BackColor = System.Drawing.Color.Gainsboro;
+            this.mplPrice.Location = new System.Drawing.Point(72, 113);
+            this.mplPrice.Name = "mplPrice";
+            this.mplPrice.Size = new System.Drawing.Size(162, 20);
+            // 
+            // mplPriceCapt
+            // 
+            this.mplPriceCapt.Location = new System.Drawing.Point(3, 113);
+            this.mplPriceCapt.Name = "mplPriceCapt";
+            this.mplPriceCapt.Size = new System.Drawing.Size(69, 20);
+            this.mplPriceCapt.Text = "Ціна: ";
+            this.mplPriceCapt.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // mplNameCapt
+            // 
+            this.mplNameCapt.Location = new System.Drawing.Point(3, 67);
+            this.mplNameCapt.Name = "mplNameCapt";
+            this.mplNameCapt.Size = new System.Drawing.Size(69, 20);
+            this.mplNameCapt.Text = "Назва: ";
+            this.mplNameCapt.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // mplName
+            // 
+            this.mplName.BackColor = System.Drawing.Color.Gainsboro;
+            this.mplName.Location = new System.Drawing.Point(4, 67);
+            this.mplName.Name = "mplName";
+            this.mplName.Size = new System.Drawing.Size(230, 44);
+            // 
+            // mplArticle
+            // 
+            this.mplArticle.BackColor = System.Drawing.Color.Gainsboro;
+            this.mplArticle.Location = new System.Drawing.Point(72, 45);
+            this.mplArticle.Name = "mplArticle";
+            this.mplArticle.Size = new System.Drawing.Size(162, 20);
+            // 
+            // mplWaresInfCapt
+            // 
+            this.mplWaresInfCapt.Location = new System.Drawing.Point(7, 25);
+            this.mplWaresInfCapt.Name = "mplWaresInfCapt";
+            this.mplWaresInfCapt.Size = new System.Drawing.Size(142, 20);
+            this.mplWaresInfCapt.Text = "Інформація про товар:";
             // 
             // mplBarCode
             // 
@@ -110,7 +248,7 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.mplBarCode.BackColor = System.Drawing.Color.Gainsboro;
             this.mplBarCode.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
-            this.mplBarCode.Location = new System.Drawing.Point(73, 3);
+            this.mplBarCode.Location = new System.Drawing.Point(73, 2);
             this.mplBarCode.Name = "mplBarCode";
             this.mplBarCode.Size = new System.Drawing.Size(162, 20);
             this.mplBarCode.Text = "8032625972082_123456789";
@@ -122,12 +260,28 @@
             this.mplBarCodeCapt.Size = new System.Drawing.Size(69, 20);
             this.mplBarCodeCapt.Text = "Штрих-код:";
             // 
-            // mplWaresInfCapt
+            // mplArticleCapt
             // 
-            this.mplWaresInfCapt.Location = new System.Drawing.Point(5, 25);
-            this.mplWaresInfCapt.Name = "mplWaresInfCapt";
-            this.mplWaresInfCapt.Size = new System.Drawing.Size(150, 20);
-            this.mplWaresInfCapt.Text = "Інформація про товар:";
+            this.mplArticleCapt.Location = new System.Drawing.Point(3, 45);
+            this.mplArticleCapt.Name = "mplArticleCapt";
+            this.mplArticleCapt.Size = new System.Drawing.Size(69, 20);
+            this.mplArticleCapt.Text = "Артикул: ";
+            this.mplArticleCapt.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // mplLine1
+            // 
+            this.mplLine1.BackColor = System.Drawing.SystemColors.WindowText;
+            this.mplLine1.Location = new System.Drawing.Point(1, 34);
+            this.mplLine1.Name = "mplLine1";
+            this.mplLine1.Size = new System.Drawing.Size(234, 1);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(101, 190);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(72, 26);
+            this.button2.TabIndex = 33;
+            this.button2.Text = "button2";
             // 
             // frmPriceChecker
             // 
@@ -167,6 +321,22 @@
         private System.Windows.Forms.Label mplBarCodeCapt;
         private System.Windows.Forms.Label mplBarCode;
         private System.Windows.Forms.Label mplWaresInfCapt;
+        private System.Windows.Forms.Label mplArticleCapt;
+        private System.Windows.Forms.Label mplArticle;
+        private System.Windows.Forms.Label mplNameCapt;
+        private System.Windows.Forms.Label mplName;
+        private System.Windows.Forms.Label mplPriceCapt;
+        private System.Windows.Forms.Label mplPrice;
+        private System.Windows.Forms.Label mplPriceOpt;
+        private System.Windows.Forms.Label mplPriceOptCapt;
+        private System.Windows.Forms.Label mplInfo;
+        private System.Windows.Forms.Label mplLine2;
+        private System.Windows.Forms.Label mplLine1;
+        private System.Windows.Forms.Label mplLine3;
+        private System.Windows.Forms.Label mplLine4;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.StatusBar statusBar;
+        private System.Windows.Forms.Button button2;
 
 
     }
