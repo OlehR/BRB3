@@ -23,6 +23,9 @@ namespace BRB
             SingleInstanceApplication.Run(new Forms.frmMain());
             //SingleInstanceApplication.Run(new Forms.frmDocSearch());
             //SingleInstanceApplication.Run(new Forms.frmAdvSettingsDoc());
+            //SingleInstanceApplication.Run(new Forms.frmPriceChecker());
+            //SingleInstanceApplication.Run(new Forms.frmTest());
+            SingleInstanceApplication.Run(new Forms.frmWaresScan());
         }
     }
 }

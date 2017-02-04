@@ -94,7 +94,8 @@ namespace BRB.Forms
                     decimal d = Convert.ToDecimal(dr["term"]);
                     int prom = (int)d;
                     prom = prom * 2 / 3;
-                    DateTime dd = Convert.ToDateTime(Global.TimeSync).Date;  // замінити на дату знп?й
+                    //DateTime dd = Convert.ToDateTime(Global.TimeSync).Date;  // замінити на дату знп?
+                    DateTime dd = Convert.ToDateTime(Global.cBL.CurDoc["date_doc"]).Date;
                     dd = dd.AddDays(prom);
                     mplDateReal.Text = dd.Date.ToString();
                     mplDateReal.BackColor = System.Drawing.Color.YellowGreen; 
@@ -103,6 +104,20 @@ namespace BRB.Forms
                 {
                     mplDateReal.Text = DateTime.Now.Date.ToString();
                     mplDateReal.BackColor = System.Drawing.Color.YellowGreen;
+                }
+                if (dr["abr_unit"] != DBNull.Value)
+                {
+                    this.mplAUTempl.Text = dr["abr_unit"].ToString();
+                }
+                if (dr["coef_bar_code"] != DBNull.Value && Convert.ToDecimal(dr["coef_bar_code"]) != 1)
+                {
+                    this.mplCoef.Text = "X" + dr["coef_bar_code"].ToString();
+                    this.mplCoef.BackColor = System.Drawing.Color.LimeGreen;
+                }
+                else
+                {
+                    this.mplCoef.Text = String.Empty;
+                    this.mplCoef.Visible = false;
                 }
 
                 // TMPPPPPP Витерти!!!!
@@ -118,10 +133,13 @@ namespace BRB.Forms
                 this.mplQtyNow.Text = string.Empty;
                 this.mptbAddPrice.Text = string.Empty;
                 this.mplQtyTempl.Text = string.Empty;
+                this.mplAUTempl.Text = string.Empty;
 
                 this.mplDateReal.Text = string.Empty;
                 this.mplDateReal.BackColor = System.Drawing.Color.Gainsboro;
-                //this.mpcbTempl.Text = string.Empty;
+
+                this.mplCoef.Text = String.Empty;
+                this.mplCoef.Visible = false;
             }
         }
 

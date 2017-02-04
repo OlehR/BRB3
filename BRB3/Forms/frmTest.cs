@@ -14,9 +14,24 @@ namespace BRB.Forms
         public frmTest()
         {
             InitializeComponent();
+           
         }
 
-        private void menuItem1_Click(object sender, EventArgs e)
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            Pen blackPen = new Pen(Color.Black);
+            System.Windows.Forms.Label labelDraw = null;
+            labelDraw = mplBarCodeCapt;
+            
+            e.Graphics.DrawLine(blackPen, labelDraw.Location.X - 1, labelDraw.Location.Y - 1, labelDraw.Location.X + labelDraw.Size.Width, labelDraw.Location.Y - 1); // верхняя
+            e.Graphics.DrawLine(blackPen, labelDraw.Location.X - 1, labelDraw.Location.Y - 1, labelDraw.Location.X - 1, labelDraw.Location.Y + labelDraw.Size.Height); // левая
+            e.Graphics.DrawLine(blackPen, labelDraw.Location.X + labelDraw.Size.Width, labelDraw.Location.Y - 1, labelDraw.Location.X + labelDraw.Size.Width, labelDraw.Location.Y + labelDraw.Size.Height); // правая
+            e.Graphics.DrawLine(blackPen, labelDraw.Location.X - 1, labelDraw.Location.Y + labelDraw.Size.Height, labelDraw.Location.X + labelDraw.Size.Width, labelDraw.Location.Y + labelDraw.Size.Height); // нижняя
+
+            e.Graphics.DrawLine(blackPen, 5, 20, 200, 20);
+        }
+
+        private void frmTest_Load(object sender, EventArgs e)
         {
 
         }

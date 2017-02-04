@@ -53,7 +53,7 @@
             this.mplNameCaptB = new System.Windows.Forms.Label();
             this.mplTemplCapt = new System.Windows.Forms.Label();
             this.mplQtyTempl = new System.Windows.Forms.Label();
-            this.mpcbTempl = new System.Windows.Forms.ComboBox();
+            this.mplAUTempl = new System.Windows.Forms.Label();
             this.mplNowCapt = new System.Windows.Forms.Label();
             this.mplQtyNow = new System.Windows.Forms.Label();
             this.mplDateReal = new System.Windows.Forms.Label();
@@ -64,6 +64,7 @@
             this.mpbtnAdd = new System.Windows.Forms.Button();
             this.mpbtnCancel = new System.Windows.Forms.Button();
             this.mainPanel = new System.Windows.Forms.Panel();
+            this.mplCoef = new System.Windows.Forms.Label();
             this.mainPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -139,12 +140,12 @@
             this.mpchBoxAutoScan.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.mpchBoxAutoScan.Checked = true;
             this.mpchBoxAutoScan.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.mpchBoxAutoScan.Enabled = false;
             this.mpchBoxAutoScan.Location = new System.Drawing.Point(156, 2);
             this.mpchBoxAutoScan.Name = "mpchBoxAutoScan";
             this.mpchBoxAutoScan.Size = new System.Drawing.Size(82, 20);
             this.mpchBoxAutoScan.TabIndex = 0;
             this.mpchBoxAutoScan.Text = "АвтоЗбер";
-            this.mpchBoxAutoScan.Enabled = false;
             // 
             // mplBorderTop
             // 
@@ -254,14 +255,12 @@
             this.mplQtyTempl.Name = "mplQtyTempl";
             this.mplQtyTempl.Size = new System.Drawing.Size(56, 20);
             // 
-            // mpcbTempl
+            // mplAUTempl
             // 
-            this.mpcbTempl.DisplayMember = "info";
-            this.mpcbTempl.Location = new System.Drawing.Point(132, 145);
-            this.mpcbTempl.Name = "mpcbTempl";
-            this.mpcbTempl.Size = new System.Drawing.Size(102, 23);
-            this.mpcbTempl.TabIndex = 1;
-            this.mpcbTempl.ValueMember = "code_unit";
+            this.mplAUTempl.BackColor = System.Drawing.Color.Gainsboro;
+            this.mplAUTempl.Location = new System.Drawing.Point(133, 145);
+            this.mplAUTempl.Name = "mplAUTempl";
+            this.mplAUTempl.Size = new System.Drawing.Size(100, 20);
             // 
             // mplNowCapt
             // 
@@ -291,27 +290,27 @@
             // 
             // mptbAddQtyCapt
             // 
-            this.mptbAddQtyCapt.Location = new System.Drawing.Point(2, 191);
+            this.mptbAddQtyCapt.Location = new System.Drawing.Point(2, 193);
             this.mptbAddQtyCapt.Name = "mptbAddQtyCapt";
-            this.mptbAddQtyCapt.Size = new System.Drawing.Size(70, 20);
+            this.mptbAddQtyCapt.Size = new System.Drawing.Size(50, 20);
             this.mptbAddQtyCapt.Text = "Додати:";
             this.mptbAddQtyCapt.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // mptbAddPriceCapt
             // 
             this.mptbAddPriceCapt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.mptbAddPriceCapt.Location = new System.Drawing.Point(126, 191);
+            this.mptbAddPriceCapt.Location = new System.Drawing.Point(139, 193);
             this.mptbAddPriceCapt.Name = "mptbAddPriceCapt";
-            this.mptbAddPriceCapt.Size = new System.Drawing.Size(45, 20);
+            this.mptbAddPriceCapt.Size = new System.Drawing.Size(35, 20);
             this.mptbAddPriceCapt.Text = "Ціна:";
             this.mptbAddPriceCapt.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // mptbAddQty
             // 
-            this.mptbAddQty.Location = new System.Drawing.Point(72, 191);
+            this.mptbAddQty.Location = new System.Drawing.Point(52, 191);
             this.mptbAddQty.Name = "mptbAddQty";
-            this.mptbAddQty.Size = new System.Drawing.Size(58, 23);
-            this.mptbAddQty.TabIndex = 18;
+            this.mptbAddQty.Size = new System.Drawing.Size(55, 23);
+            this.mptbAddQty.TabIndex = 1;
             // 
             // mptbAddPrice
             // 
@@ -320,7 +319,7 @@
             this.mptbAddPrice.Location = new System.Drawing.Point(175, 191);
             this.mptbAddPrice.Name = "mptbAddPrice";
             this.mptbAddPrice.Size = new System.Drawing.Size(58, 23);
-            this.mptbAddPrice.TabIndex = 20;
+            this.mptbAddPrice.TabIndex = 2;
             // 
             // mpbtnAdd
             // 
@@ -331,7 +330,7 @@
             this.mpbtnAdd.TabIndex = 4;
             this.mpbtnAdd.Text = "Додати товар";
             this.mpbtnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // ;
+            // 
             // mpbtnCancel
             // 
             this.mpbtnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
@@ -346,6 +345,7 @@
             // 
             // mainPanel
             // 
+            this.mainPanel.Controls.Add(this.mplCoef);
             this.mainPanel.Controls.Add(this.mplDocNumCapt);
             this.mainPanel.Controls.Add(this.mplDocNum);
             this.mainPanel.Controls.Add(this.mpchBoxAutoScan);
@@ -361,14 +361,14 @@
             this.mainPanel.Controls.Add(this.mplName);
             this.mainPanel.Controls.Add(this.mplTemplCapt);
             this.mainPanel.Controls.Add(this.mplQtyTempl);
-            this.mainPanel.Controls.Add(this.mpcbTempl);
+            this.mainPanel.Controls.Add(this.mplAUTempl);
             this.mainPanel.Controls.Add(this.mplNowCapt);
             this.mainPanel.Controls.Add(this.mplQtyNow);
             this.mainPanel.Controls.Add(this.mplDateReal);
             this.mainPanel.Controls.Add(this.mptbAddQtyCapt);
             this.mainPanel.Controls.Add(this.mptbAddQty);
-            this.mainPanel.Controls.Add(this.mptbAddPriceCapt);
             this.mainPanel.Controls.Add(this.mptbAddPrice);
+            this.mainPanel.Controls.Add(this.mptbAddPriceCapt);
             this.mainPanel.Controls.Add(this.mpbtnAdd);
             this.mainPanel.Controls.Add(this.mpbtnCancel);
             this.mainPanel.Controls.Add(this.mplBorderTop);
@@ -377,7 +377,13 @@
             this.mainPanel.Location = new System.Drawing.Point(1, 1);
             this.mainPanel.Name = "mainPanel";
             this.mainPanel.Size = new System.Drawing.Size(236, 293);
-            this.mainPanel.ResumeLayout(false);
+            // 
+            // mplCoef
+            // 
+            this.mplCoef.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Regular);
+            this.mplCoef.Location = new System.Drawing.Point(108, 193);
+            this.mplCoef.Name = "mplCoef";
+            this.mplCoef.Size = new System.Drawing.Size(32, 18);
             // 
             // frmWaresScan
             // 
@@ -389,15 +395,16 @@
             this.Controls.Add(this.labelDown);
             this.Controls.Add(this.labelLeft);
             this.Controls.Add(this.labelRigth);
+            this.KeyPreview = true;
             this.MaximizeBox = false;
             this.Menu = this.mainMenu;
             this.MinimizeBox = false;
             this.Name = "frmWaresScan";
-            this.KeyPreview = true;
-            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.WaresScan_KeyUp);
             this.Load += new System.EventHandler(this.frmWaresScan_Load);
             this.Closed += new System.EventHandler(this.frmWaresScan_Closed);
             this.Closing += new System.ComponentModel.CancelEventHandler(this.frmWaresScan_Closing);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.WaresScan_KeyUp);
+            this.mainPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -428,7 +435,7 @@
         private System.Windows.Forms.Label mplNameCaptB;
         private System.Windows.Forms.Label mplTemplCapt;
         private System.Windows.Forms.Label mplQtyTempl;
-        private System.Windows.Forms.ComboBox mpcbTempl;
+        private System.Windows.Forms.Label mplAUTempl;
         private System.Windows.Forms.Label mplNowCapt;
         private System.Windows.Forms.Label mplQtyNow;
         private System.Windows.Forms.Label mplDateReal;
@@ -439,5 +446,6 @@
         private System.Windows.Forms.Button mpbtnAdd;
         private System.Windows.Forms.Button mpbtnCancel;
         private System.Windows.Forms.Panel mainPanel;
+        private System.Windows.Forms.Label mplCoef;
     }
 }
