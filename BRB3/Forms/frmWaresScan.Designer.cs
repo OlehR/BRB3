@@ -380,12 +380,10 @@
             // 
             // mplCoef
             // 
-            this.mplCoef.BackColor = System.Drawing.Color.LimeGreen;
             this.mplCoef.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Regular);
             this.mplCoef.Location = new System.Drawing.Point(108, 193);
             this.mplCoef.Name = "mplCoef";
             this.mplCoef.Size = new System.Drawing.Size(32, 18);
-            this.mplCoef.Text = "x1000";
             // 
             // frmWaresScan
             // 
