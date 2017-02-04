@@ -12,12 +12,12 @@ using System.Reflection;
 
 [WebService(Namespace = "http://pakko.org/")]
 [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
-public class BRB_Sync : System.Web.Services.WebService
+public class BRB3_Sync : System.Web.Services.WebService
 {
 	// --------------------------------------------------------------------------------------
 
 
-    public BRB_Sync() 
+    public BRB3_Sync() 
 	{
     }
 

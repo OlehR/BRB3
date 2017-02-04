@@ -46,7 +46,7 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
                          d.number_out_invoice, d.date_out_invoice, d.flag_sum_qty_doc, input_code, flag_change_doc_sup, flag_insert_weigth_from_barcode";
         ////type_doc in (1, 3, 4, 5, 6, 7, 8)
         //TMP Є трохи магії з комплектацією Інший запит() треба буде розібратись
-        private string varSQLDocsWares = @"SELECT DISTINCT dw.number_doc, 
+        private string varSQLDocsWares = @"SELECT dw.number_doc, 
                                            dw.code_wares, 
                                            dw.code_unit, 
                                            CASE
@@ -74,7 +74,7 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
                                  FROM      DOCS AS d INNER JOIN
                                            DOCS_WARES AS dw ON d.number_doc = dw.number_doc INNER JOIN
                                            WARES AS w ON dw.code_wares = w.code_wares INNER JOIN
-                                           ADDITION_UNIT AS au ON dw.code_wares = au.code_wares AND dw.code_unit = au.code_unit INNER JOIN
+                                           ADDITION_UNIT AS au ON dw.code_wares = au.code_wares AND dw.code_unit = au.code_unit AND au.default_unit = 'Y' INNER JOIN
                                            UNIT_DIMENSION AS ud ON dw.code_unit = ud.code_unit 
                                  WHERE     dw.number_doc = @parNumberDoc";
 
