@@ -94,7 +94,8 @@ namespace BRB.Forms
                     decimal d = Convert.ToDecimal(dr["term"]);
                     int prom = (int)d;
                     prom = prom * 2 / 3;
-                    DateTime dd = Convert.ToDateTime(Global.TimeSync).Date;  // замінити на дату знп?й
+                    //DateTime dd = Convert.ToDateTime(Global.TimeSync).Date;  // замінити на дату знп?
+                    DateTime dd = Convert.ToDateTime(Global.cBL.CurDoc["date_doc"]).Date;
                     dd = dd.AddDays(prom);
                     mplDateReal.Text = dd.Date.ToString();
                     mplDateReal.BackColor = System.Drawing.Color.YellowGreen; 
@@ -103,6 +104,10 @@ namespace BRB.Forms
                 {
                     mplDateReal.Text = DateTime.Now.Date.ToString();
                     mplDateReal.BackColor = System.Drawing.Color.YellowGreen;
+                }
+                if (dr["abr_unit"] != DBNull.Value)
+                {
+                    this.mplAUTempl.Text = dr["abr_unit"].ToString();
                 }
 
                 // TMPPPPPP Витерти!!!!
