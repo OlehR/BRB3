@@ -279,6 +279,20 @@ namespace BRB
                 {
                     return new Status(EStatus.NoCorectQuantity);
                 }
+
+                if (CurWaresDoc["coef_bar_code"] != null)
+                {
+                    try
+                    {
+                        decimal varCoef = Convert.ToDecimal(CurWaresDoc["coef_bar_code"]);
+                        if (varCoef != 0 && varCoef != 1)
+                            varQty *= varCoef;
+
+                    }
+                    catch { }
+
+                
+                }
             }
             else
                 return new Status(EStatus.NoQuantity);

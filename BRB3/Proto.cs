@@ -34,5 +34,9 @@ namespace BRB
             s = s.Replace('.', '/');
              return s;
          }
+        public static bool IsData(System.Data.DataTable parData)
+        {
+            return parData != null && parData.Rows.Count > 0 && parData.Rows[0] != null;
+        }
     }
 }

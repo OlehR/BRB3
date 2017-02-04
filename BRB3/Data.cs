@@ -324,7 +324,7 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
         /// <summary>
         /// Синхронізація з сервером.
         /// </summary>
-        public void Sync()
+        public Status Sync()
         {
             
             try
@@ -341,7 +341,7 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
 
 
                 #region Завантаження  даних на сервер
-                SQL.ClearParam();
+                
                 //налаштування для WEB-сервісу
                 BRB.WebReference.BRB_Sync webService = new BRB.WebReference.BRB_Sync();
                 webService.Url = Global.ServiceUrl; //@wsUrl;
@@ -351,6 +351,8 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
                          date_out_invoice, number_tax_invoice, date_tax_invoice, flag_sum_qty_doc, change_date, input_code, flag_change_doc_sup, okpo_supplier, 
                          flag_insert_weigth_from_barcode AS flag_insert_weigth_from_barcod
                             FROM DOCS  WHERE  (status = 1) AND EXISTS  (SELECT 1 AS Expr1 FROM DOCS_WARES  WHERE (number_doc = DOCS.number_doc))";
+                
+                SQL.ClearParam();
                 dtDocs=SQL.ExecuteQuery(sqlStr);
                 dsInvoice.Tables.Add(dtDocs);
                 
@@ -516,8 +518,7 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
                 }
                 catch(Exception Ex)
                 {
-                    varError = "Звязок відсутній! Провірте підключення ТЗД!!!" + Ex.Message;
-                    return;
+                    return new Status(EStatus.Error,"Звязок відсутній! Провірте підключення ТЗД!!!" + Ex.Message);
                 }
                 #endregion
 
@@ -547,8 +548,111 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
             }
             catch
             { }
+            return new Status(EStatus.Ok, varError);
         }
-        
+
+
+        private Status btnSyncPr()
+        {
+            // Синхронизация           
+            //доработка
+            int start_web, end_web, result_web, start_base, end_base, result_base, start_proc, end_proc, result_proc;
+            int sum = 0;
+            try
+            {
+
+                string errText = string.Empty;
+                string errDocs = "'-0'";
+                //int i=0;
+
+                    start_proc = Environment.TickCount;
+
+                    
+                
+                //налаштування для WEB-сервісу
+                    var webService = new BRB.WebReference.BRB_Sync();
+                    webService.Url = Global.ServiceUrl; //@wsUrl;
+                    webService.Timeout = Global.ServiceTimeOut;
+
+
+                    // Вычитаем готовые к отправке
+                    DataSet dsCheckLogs = new DataSet("dsCheckLogs");
+                                      
+
+                    string sqlStr = @"select clID, clGoodsArticle, clBarcode, clStatus   from CheckLogs";
+                    var dt= SQL.ExecuteQuery(sqlStr);
+                    dt.TableName = "dtCheckLogs";
+                    dsCheckLogs.Tables.Add(dt);
+
+                    
+
+                    if (Proto.IsData(dt) )
+                    {
+
+                        DataSet ds = webService.UpLoadPriceLogs(dsCheckLogs, Global.DeviceID, Global.ShopName);
+                        foreach (DataRow dr in ds.Tables["dtReturn"].Rows)
+                        {
+                            sum++;
+                                errText = (string.IsNullOrEmpty(errText) ? "" : errText + ",") + dr["clGoodsArticle"].ToString();
+                                errDocs = (string.IsNullOrEmpty(errDocs) ? "" :errText + ",") + "'" + dr["clID"].ToString() + "'";
+                        }
+                    }
+
+
+                    // Удалим все локальные загруженные документы
+
+                   
+                    sqlStr = @"delete from CheckLogs where clID not in (" + errDocs + ") ";
+                    SQL.ExecuteNonQuery(sqlStr);
+                    
+                    //Удалим все цены на товары!!! 08.04.2011
+                    sqlStr = @"delete from CheckPrices";
+                    SQL.ExecuteNonQuery(sqlStr);
+                    
+                    // Загрузим новые документы -------------------------------------------
+
+                    DataSet dsCheckPrices = new DataSet("dsCheckPrices");
+                    sqlStr = @"select cpID  from CheckPrices ";
+                    dt = SQL.ExecuteQuery(sqlStr);
+                    dt.TableName = "dtCheckPrices";
+                    dsCheckLogs.Tables.Add(dt);
+
+                    start_web = Environment.TickCount;
+
+                    DataSet ds1 = webService.LoadCheckPrices(dsCheckPrices, Global.DeviceID, Global.ShopName);
+
+                    end_web = Environment.TickCount;
+                    result_web = (end_web - start_web) / 1000;
+
+
+                    start_base = Environment.TickCount;
+                    if (ds1 != null && Proto.IsData(ds1.Tables["CheckPrices"]))
+                    {
+                        SQL.BulkInsert(ds1.Tables["CheckPrices"], "CheckPrices");
+                    }
+                    end_base = Environment.TickCount;
+                    result_base = (end_base - start_base) / 1000;
+
+
+                    
+                    end_proc = Environment.TickCount;
+                    result_proc = (end_proc - start_proc) / 1000;
+                    
+                    // Вычитаем 
+                    if (errText == "")
+                        varError="Синхронізація завершена успішно!";
+                    else
+                        varError="Завершено з помилками! Не загрузилось " + sum + " товарів";                
+
+            }
+            catch (Exception)
+            {
+                varError="Звязок відсутній! Провірте підключення ТЗД!!!";
+            }
+            return new Status(EStatus.Ok, varError);
+            
+        }
+
         /// <summary>
         /// Оновлюємо файл з сервера. 
         /// </summary>
