@@ -354,6 +354,7 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
                 
                 SQL.ClearParam();
                 dtDocs=SQL.ExecuteQuery(sqlStr);
+                dtDocs.TableName = "dtDocs";
                 dsInvoice.Tables.Add(dtDocs);
                 
                 sqlStr = @"SELECT   DW.number_doc, DW.code_wares, DW.code_unit, DW.price,  DW.price_temp, 
@@ -362,7 +363,9 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
                                 INNER JOIN DOCS AS D ON DW.number_doc = D.number_doc
                                WHERE    (D.status = 1)";
                 dtDocsWares = SQL.ExecuteQuery(sqlStr);
+                dtDocsWares.TableName = "dtDocsWares";
                 dsInvoice.Tables.Add(dtDocsWares);
+
                 
                 // Вигружаємо дані на сервер,якщо є що
                 string varWrongUpLoadDocs = string.Empty;
