@@ -31,14 +31,19 @@
             this.mainMenu = new System.Windows.Forms.MainMenu();
             this.miMovements = new System.Windows.Forms.MenuItem();
             this.miExit = new System.Windows.Forms.MenuItem();
+            this.miAdd = new System.Windows.Forms.MenuItem();
+            this.miFindAdd = new System.Windows.Forms.MenuItem();
+            this.miSync = new System.Windows.Forms.MenuItem();
+            this.miSettings = new System.Windows.Forms.MenuItem();
             this.mAbout = new System.Windows.Forms.MenuItem();
             this.labelLeft = new System.Windows.Forms.Label();
             this.labelRigth = new System.Windows.Forms.Label();
             this.labelTop = new System.Windows.Forms.Label();
             this.labelDown = new System.Windows.Forms.Label();
             this.mainPanel = new System.Windows.Forms.Panel();
+            this.mpbFindAdd = new System.Windows.Forms.Button();
             this.statusBar = new System.Windows.Forms.StatusBar();
-            this.button1 = new System.Windows.Forms.Button();
+            this.mpbAdd = new System.Windows.Forms.Button();
             this.mplLine4 = new System.Windows.Forms.Label();
             this.mplLine3 = new System.Windows.Forms.Label();
             this.mplLine2 = new System.Windows.Forms.Label();
@@ -55,7 +60,6 @@
             this.mplBarCodeCapt = new System.Windows.Forms.Label();
             this.mplArticleCapt = new System.Windows.Forms.Label();
             this.mplLine1 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
             this.mainPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -67,6 +71,10 @@
             // miMovements
             // 
             this.miMovements.MenuItems.Add(this.miExit);
+            this.miMovements.MenuItems.Add(this.miAdd);
+            this.miMovements.MenuItems.Add(this.miFindAdd);
+            this.miMovements.MenuItems.Add(this.miSync);
+            this.miMovements.MenuItems.Add(this.miSettings);
             this.miMovements.Text = "Додатково";
             // 
             // miExit
@@ -74,9 +82,30 @@
             this.miExit.Text = "Вихід";
             this.miExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
+            // miAdd
+            // 
+            this.miAdd.Text = "Add";
+            this.miAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // miFindAdd
+            // 
+            this.miFindAdd.Text = "FindAdd";
+            this.miFindAdd.Click += new System.EventHandler(this.btnFindAdd_Click);
+            // 
+            // miSync
+            // 
+            this.miSync.Text = "Sync";
+            this.miSync.Click += new System.EventHandler(this.btnSync_Click);
+            // 
+            // miSettings
+            // 
+            this.miSettings.Text = "Settings";
+            this.miSettings.Click += new System.EventHandler(this.btnSettings_Click);
+            // 
             // mAbout
             // 
             this.mAbout.Text = "Про ...";
+            this.mAbout.Click += new System.EventHandler(this.btnAbout_Click);
             // 
             // labelLeft
             // 
@@ -112,9 +141,9 @@
             // 
             // mainPanel
             // 
-            this.mainPanel.Controls.Add(this.button2);
+            this.mainPanel.Controls.Add(this.mpbFindAdd);
             this.mainPanel.Controls.Add(this.statusBar);
-            this.mainPanel.Controls.Add(this.button1);
+            this.mainPanel.Controls.Add(this.mpbAdd);
             this.mainPanel.Controls.Add(this.mplLine4);
             this.mainPanel.Controls.Add(this.mplLine3);
             this.mainPanel.Controls.Add(this.mplLine2);
@@ -136,6 +165,15 @@
             this.mainPanel.Name = "mainPanel";
             this.mainPanel.Size = new System.Drawing.Size(236, 293);
             // 
+            // mpbFindAdd
+            // 
+            this.mpbFindAdd.Location = new System.Drawing.Point(120, 190);
+            this.mpbFindAdd.Name = "mpbFindAdd";
+            this.mpbFindAdd.Size = new System.Drawing.Size(110, 26);
+            this.mpbFindAdd.TabIndex = 33;
+            this.mpbFindAdd.Text = "Знайти";
+            this.mpbFindAdd.Click += new System.EventHandler(this.btnFindAdd_Click);
+            // 
             // statusBar
             // 
             this.statusBar.Location = new System.Drawing.Point(0, 269);
@@ -143,13 +181,14 @@
             this.statusBar.Size = new System.Drawing.Size(236, 24);
             this.statusBar.Text = "statusBar";
             // 
-            // button1
+            // mpbAdd
             // 
-            this.button1.Location = new System.Drawing.Point(5, 190);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(72, 26);
-            this.button1.TabIndex = 16;
-            this.button1.Text = "button1";
+            this.mpbAdd.Location = new System.Drawing.Point(5, 190);
+            this.mpbAdd.Name = "mpbAdd";
+            this.mpbAdd.Size = new System.Drawing.Size(110, 26);
+            this.mpbAdd.TabIndex = 16;
+            this.mpbAdd.Text = "Додати";
+            this.mpbAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // mplLine4
             // 
@@ -275,14 +314,6 @@
             this.mplLine1.Name = "mplLine1";
             this.mplLine1.Size = new System.Drawing.Size(234, 1);
             // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(101, 190);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(72, 26);
-            this.button2.TabIndex = 33;
-            this.button2.Text = "button2";
-            // 
             // frmPriceChecker
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -334,9 +365,13 @@
         private System.Windows.Forms.Label mplLine1;
         private System.Windows.Forms.Label mplLine3;
         private System.Windows.Forms.Label mplLine4;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button mpbAdd;
         private System.Windows.Forms.StatusBar statusBar;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button mpbFindAdd;
+        private System.Windows.Forms.MenuItem miAdd;
+        private System.Windows.Forms.MenuItem miFindAdd;
+        private System.Windows.Forms.MenuItem miSync;
+        private System.Windows.Forms.MenuItem miSettings;
 
 
     }

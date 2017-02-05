@@ -36,6 +36,13 @@ Search_CancelFilter = F5
 AdvSettingsDoc_Save = F1
 AdvSettingsDoc_Exit = F4
 
+PriceChecker_Exit = F7
+PriceChecker_About = F3
+PriceChecker_Add = F1
+PriceChecker_FindAdd = F2
+PriceChecker_Settings = F9
+PriceChecker_Sync = F8
+
 
 [MotorolaMC75Ax]
 Up = Up
@@ -75,6 +82,12 @@ Search_CancelFilter = F5
 AdvSettingsDoc_Save = F3
 AdvSettingsDoc_Exit = F10
 
+PriceChecker_Exit = F10
+PriceChecker_About = F3
+PriceChecker_Add = F4
+PriceChecker_FindAdd = F5
+PriceChecker_Settings = F9
+PriceChecker_Sync = F8
 
 
 [PitechLPT80]

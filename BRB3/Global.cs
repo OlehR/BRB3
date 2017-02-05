@@ -258,6 +258,19 @@ namespace BRB
         public static string strAdvSettingsDoc_Save;
         public static int AdvSettingsDoc_Exit = 0;
         public static string strAdvSettingsDoc_Exit;
+
+        public static int PriceChecker_Exit = 0;
+        public static string strPriceChecker_Exit;
+        public static int PriceChecker_About = 0;
+        public static string strPriceChecker_About;
+        public static int PriceChecker_Add = 0;
+        public static string strPriceChecker_Add;
+        public static int PriceChecker_FindAdd = 0;
+        public static string strPriceChecker_FindAdd;
+        public static int PriceChecker_Settings = 0;
+        public static string strPriceChecker_Settings;
+        public static int PriceChecker_Sync = 0;
+        public static string strPriceChecker_Sync;
         
         public static void Init( TypeTerminal parType)
         {
@@ -332,6 +345,19 @@ namespace BRB
             strAdvSettingsDoc_Save = Global.BildStrKeyCode(varNameSection, "AdvSettingsDoc_Save");
             AdvSettingsDoc_Exit = Global.BildKeyCode(varNameSection, "AdvSettingsDoc_Exit");
             strAdvSettingsDoc_Exit = Global.BildStrKeyCode(varNameSection, "AdvSettingsDoc_Exit");
+
+            PriceChecker_Exit = Global.BildKeyCode(varNameSection, "PriceChecker_Exit");
+            strPriceChecker_Exit = Global.BildStrKeyCode(varNameSection, "PriceChecker_Exit");
+            PriceChecker_About = Global.BildKeyCode(varNameSection, "PriceChecker_About");
+            strPriceChecker_About = Global.BildStrKeyCode(varNameSection, "PriceChecker_About");
+            PriceChecker_Add = Global.BildKeyCode(varNameSection, "PriceChecker_Add");
+            strPriceChecker_Add = Global.BildStrKeyCode(varNameSection, "PriceChecker_Add");
+            PriceChecker_FindAdd = Global.BildKeyCode(varNameSection, "PriceChecker_FindAdd");
+            strPriceChecker_FindAdd = Global.BildStrKeyCode(varNameSection, "PriceChecker_FindAdd");
+            PriceChecker_Settings = Global.BildKeyCode(varNameSection, "PriceChecker_Settings");
+            strPriceChecker_Settings = Global.BildStrKeyCode(varNameSection, "PriceChecker_Settings");
+            PriceChecker_Sync = Global.BildKeyCode(varNameSection, "PriceChecker_Sync");
+            strPriceChecker_Sync = Global.BildStrKeyCode(varNameSection, "PriceChecker_Sync");
         }
     
     }
