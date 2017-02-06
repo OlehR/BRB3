@@ -79,6 +79,11 @@ namespace BRB
         /// </summary>
         static public int WeightBarQtyChar=4;
 
+
+        static public int PChBarCodeBegin = 29;
+        static public int PChPrice2Pos = 14;
+
+
         /// <summary>
         /// Відхилення в % в кількості для вагового товару
         /// </summary>

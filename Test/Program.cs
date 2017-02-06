@@ -12,9 +12,9 @@ namespace Test
             Global.dbPathBRB = @"D:\WORK\CS4\BRB3\BRB3\Database\BRB.sdf";//@"c:" + Global.dbPathBRB;
               Global.Init(TypeTerminal.MotorolaMC75Ax);
               Global.DeviceID = "123454321";
-              //Global.cData.Sync();
-
-              var bl = Global.cBL;
+              Global.cData.SyncPr();
+              return;
+/*              var bl = Global.cBL;
               var Docs = bl.LoadDocs( TypeDoc.SupplyLogistic);
               var DocsWares = bl.LoadWaresDocs(TypeDoc.SupplyLogistic, 3702947);
               var res = bl.FindGoodCode(163142);
@@ -26,7 +26,7 @@ namespace Test
               //bl.SetStatusDoc(11,);
 
               //BL.SaveGoods(0, 2, 99.99m);
-              //var rw = BL.FindGoodBarCode("2816314200191"); 
+              //var rw = BL.FindGoodBarCode("2816314200191"); */
         }
         
     }

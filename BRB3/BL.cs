@@ -529,6 +529,120 @@ namespace BRB
             //процедура збереження в ДТ і Базу
             return SaveDocEx( varNumberOutInvoice, varDateOutInvoice,  parFlagPriceWithVat,  parFlagChangeDocSup,  parFlagSumQtyDoc,  parFlagInsertWeigthFromBarcode);
         }
+
+
+        private Status SerchGoodsPriceCheck(string parBarCode,out DataRow parRes)
+        {
+            // Вызовем поиск по коду
+            parRes=null;
+            
+            if (string.IsNullOrEmpty(parBarCode))
+                return new Status(EStatus.BadInputData); 
+
+            
+            string bcID = string.Empty;
+            decimal bcPrice1 = decimal.Zero;
+            decimal bcPrice2 = decimal.Zero;
+            DataTable dt;
+                try
+                {
+
+                    if (parBarCode.Substring(0, 2) == Global.PChBarCodeBegin.ToString())
+                    {
+                        // внутренний ШК - разберем строку
+                        bcID = parBarCode.Substring(2, Global.WeightBarCodeWares).TrimStart('0');
+
+                        string priceStr = string.Empty;
+
+                         priceStr = parBarCode.Substring(2 + Global.WeightBarCodeWares, parBarCode.Length - Global.PChPrice2Pos + 1);
+                            try
+                            {
+                                bcPrice1 = Convert.ToDecimal(priceStr);
+                            }
+                            catch { }
+                            bcPrice1 = Decimal.Round(bcPrice1 / 100, 2);
+                        if (parBarCode.Length > Global.PChPrice2Pos + 3)
+                        {
+                            priceStr = parBarCode.Substring(Global.PChPrice2Pos - 1, parBarCode.Length - Global.PChPrice2Pos + 1);
+                            try
+                            {
+                                bcPrice2 = Convert.ToDecimal(priceStr);
+                            }
+                            catch { }
+                            bcPrice2 = Decimal.Round(bcPrice2 / 100, 2);
+                        }
+                        dt=cData.FindPCh(bcID,0);
+                    }
+                    else
+                    {
+                        dt=cData.FindPCh(bcID,1);
+                        cData.SavePCh(string.Empty,parBarCode,"2");
+                    }
+
+                    // вычитаем из базы
+                    
+
+                    if (!Proto.IsData(dt))
+                    {
+                        // Не выбралось вообще ничего
+                        if (true /*clsCommon.PropEnableSaveLogNotFoundPrice*/) //TMP!!!
+                        {
+                            cData.SavePCh(string.Empty,parBarCode,"1");
+                        }
+                        return new Status(EStatus.NoDataFound);
+                    }
+                    else 
+                    {
+                        parRes= dt.Rows[0];
+
+                        if (parBarCode.Substring(0, 2) == Global.PChBarCodeBegin.ToString())
+                        {
+                            // Преобразуем полученную цену
+                            decimal price1 = decimal.Zero;
+                            if (parRes["cpPrice1"] != DBNull.Value)
+                            {
+                                try
+                                {
+                                    price1 = Convert.ToDecimal(parRes["cpPrice1"]);
+                                }
+                                catch { }
+                            }
+
+                            decimal price2 = decimal.Zero;
+                            if (parRes["cpPrice2"] != DBNull.Value)
+                            {
+                                try
+                                {
+                                    price2 = Convert.ToDecimal(parRes["cpPrice2"]);
+                                }
+                                catch { }
+                            }
+
+                            // сравним цены
+                            if (bcPrice1 != price1 || (bcPrice2 > 0 && bcPrice2 != price2))
+                            {
+                                cData.SavePCh(bcID, parBarCode, "0");
+                                return new Status(EStatus.BadPrice);
+                            }
+                            else
+                            {
+                                cData.SavePCh(bcID, parBarCode, "0");
+                                return new Status();
+                            }
+                        }
+                        else
+                            return new Status(EStatus.AddByBarCode);
+                        
+                    }
+                }
+                catch (System.Exception ex)
+                {
+                    return new Status(EStatus.Error, ex.Message);
+
+                }
+             
+            }
+        
     
     }
 }

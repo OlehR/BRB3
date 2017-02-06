@@ -41,7 +41,10 @@ namespace BRB
             ErrorSerializer,
             DontGetKey,
             HttpPOSTError,
-            Error
+            Error,
+            BadPrice,
+            AddByBarCode,
+            BadInputData
         }
 
     public class Status

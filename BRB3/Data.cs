@@ -321,6 +321,47 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
 
             SQL.ExecuteNonQuery(varSQLSaveDocEx);
         }
+        
+        /// <summary>
+        /// Зберігає інформацію про ціну(Прайсчекер)
+        /// </summary>
+        /// <param name="parCodeWares"></param>
+        /// <param name="parBarCode"></param>
+        /// <param name="parStatus"></param>
+        /// <returns></returns>
+        public Status SavePCh(string parCodeWares, string parBarCode, string parStatus)
+        {
+            try
+            {
+            SQL.ClearParam();
+            var o=SQL.ExecuteScalar(@"SELECT count(clID)+1 from CheckLogs");
+            int clID = 1;
+            if (o != null && o != DBNull.Value)
+                clID = Convert.ToInt32(o);
+            
+            string sqlStr = @"insert into CheckLogs(clID, clGoodsArticle, clBarcode, clStatus) values(@clID, @clGoodsArticle, @clBarcode, @clStatus)";
+            SQL.AddWithValueF("@clID", clID);
+            SQL.AddWithValue("@clGoodsArticle",parCodeWares );
+            SQL.AddWithValue("@clBarcode",parBarCode );
+            SQL.AddWithValue("@clStatus", parStatus);
+            SQL.ExecuteNonQuery(sqlStr);
+                return new Status();
+            }
+            catch(Exception ex)
+            {
+                return new Status(EStatus.DBError, ex.Message);
+            }
+         }
+
+        public DataTable  FindPCh(string parStrFind,int TypeFind )
+        {
+            string sqlFindPCh= "select cpID, cpGoodsName, cpGoodsArticle, cpBarcode, cpPrice1, cpPrice2 from CheckPrices where " + 
+                (TypeFind==0?"cpGoodsArticle":"cpBarcode") + "=@parStrFind";
+            SQL.AddWithValueF("@parStrFind", parStrFind);
+            return SQL.ExecuteQuery(sqlFindPCh);
+         
+        }
+
         /// <summary>
         /// Синхронізація з сервером.
         /// </summary>
@@ -555,7 +596,7 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
         }
 
 
-        private Status btnSyncPr()
+        public Status SyncPr()
         {
             // Синхронизация           
             //доработка
