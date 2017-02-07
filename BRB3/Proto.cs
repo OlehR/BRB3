@@ -26,7 +26,7 @@ namespace BRB
             }
             catch //(Exception ex)
             { }
-            return 0;
+            return decimal.Zero;
         }
         
         public static string ToDateStr (string s)

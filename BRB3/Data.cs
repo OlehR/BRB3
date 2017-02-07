@@ -41,7 +41,7 @@ namespace BRB
                               FROM  DOCS AS d LEFT OUTER JOIN
                                      DOCS_WARES AS dw ON d.number_doc = dw.number_doc LEFT OUTER JOIN
                                       WARES AS w ON dw.code_wares=w.code_wares
-                              WHERE type_doc = @parTypeDoc 
+                              WHERE type_doc {0} 
 GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_with_vat, d.sum_without_vat, d.sum_with_vat, d.status, d.okpo_supplier,  
                          d.number_out_invoice, d.date_out_invoice, d.flag_sum_qty_doc, input_code, flag_change_doc_sup, flag_insert_weigth_from_barcode";
         ////type_doc in (1, 3, 4, 5, 6, 7, 8)
@@ -178,8 +178,10 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
 
         public DataTable FillDocs(TypeDoc parTypeDoc)
         {
-            SQL.AddWithValueF("@parTypeDoc", parTypeDoc);
-            tDocs = SQL.ExecuteQuery(varSQLDocs);
+            string varSQL = string.Format(varSQLDocs,(parTypeDoc == TypeDoc.Supply ? " in (1,3) " : string.Concat(" = ", (int)parTypeDoc)));
+            //SQL.AddWithValueF("@parTypeDoc", parTypeDoc);
+            SQL.ClearParam();
+            tDocs = SQL.ExecuteQuery(varSQL);
             return tDocs;
         }
 

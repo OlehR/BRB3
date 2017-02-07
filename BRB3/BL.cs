@@ -538,7 +538,6 @@ namespace BRB
             
             if (string.IsNullOrEmpty(parBarCode))
                 return new Status(EStatus.BadInputData); 
-
             
             string bcID = string.Empty;
             decimal bcPrice1 = decimal.Zero;
@@ -546,7 +545,6 @@ namespace BRB
             DataTable dt;
                 try
                 {
-
                     if (parBarCode.Substring(0, 2) == Global.PChBarCodeBegin.ToString())
                     {
                         // внутренний ШК - разберем строку
@@ -579,16 +577,13 @@ namespace BRB
                         cData.SavePCh(string.Empty,parBarCode,"2");
                     }
 
-                    // вычитаем из базы
                     
 
                     if (!Proto.IsData(dt))
                     {
                         // Не выбралось вообще ничего
                         if (true /*clsCommon.PropEnableSaveLogNotFoundPrice*/) //TMP!!!
-                        {
                             cData.SavePCh(string.Empty,parBarCode,"1");
-                        }
                         return new Status(EStatus.NoDataFound);
                     }
                     else 
@@ -598,25 +593,12 @@ namespace BRB
                         if (parBarCode.Substring(0, 2) == Global.PChBarCodeBegin.ToString())
                         {
                             // Преобразуем полученную цену
-                            decimal price1 = decimal.Zero;
+                            decimal price1 = decimal.Zero, price2 = decimal.Zero;
                             if (parRes["cpPrice1"] != DBNull.Value)
-                            {
-                                try
-                                {
-                                    price1 = Convert.ToDecimal(parRes["cpPrice1"]);
-                                }
-                                catch { }
-                            }
-
-                            decimal price2 = decimal.Zero;
+                               price1 = Proto.ToDecimal(parRes["cpPrice1"].ToString());
+                            
                             if (parRes["cpPrice2"] != DBNull.Value)
-                            {
-                                try
-                                {
-                                    price2 = Convert.ToDecimal(parRes["cpPrice2"]);
-                                }
-                                catch { }
-                            }
+                                        price1 = Proto.ToDecimal(parRes["cpPrice2"].ToString());
 
                             // сравним цены
                             if (bcPrice1 != price1 || (bcPrice2 > 0 && bcPrice2 != price2))
@@ -631,8 +613,7 @@ namespace BRB
                             }
                         }
                         else
-                            return new Status(EStatus.AddByBarCode);
-                        
+                            return new Status(EStatus.AddByBarCode);                        
                     }
                 }
                 catch (System.Exception ex)
