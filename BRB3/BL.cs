@@ -531,7 +531,7 @@ namespace BRB
         }
 
 
-        private Status SerchGoodsPriceCheck(string parBarCode,out DataRow parRes)
+        public Status SerchGoodsPriceCheck(string parBarCode,out DataRow parRes)
         {
             // Вызовем поиск по коду
             parRes=null;
@@ -549,7 +549,7 @@ namespace BRB
                     {
                         // внутренний ШК - разберем строку
                         bcID = parBarCode.Substring(2, Global.WeightBarCodeWares).TrimStart('0');
-
+                        
                         string priceStr = string.Empty;
 
                          priceStr = parBarCode.Substring(2 + Global.WeightBarCodeWares, parBarCode.Length - Global.PChPrice2Pos + 1);

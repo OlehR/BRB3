@@ -11,6 +11,8 @@ namespace BRB.Forms
 {
     public partial class frmPriceChecker : Form
     {
+        DataRow dr;
+
         public frmPriceChecker()
         {
             InitializeComponent();
@@ -39,10 +41,21 @@ namespace BRB.Forms
             }
         }
 
-        private void DocSearch_Load(object sender, EventArgs e)
+        private void PriceChecker_Load(object sender, EventArgs e)
         {
-            
+            Global.cTerminal.StartScan(this.scanBarcode);
+        }
 
+        private void PriceChecker_Closed(object sender, EventArgs e)
+        {
+            try
+            {
+                Global.cTerminal.StopScan();
+            }
+            catch (System.Exception) // --------------------------
+            {
+                clsDialogBox.ErrorBoxShow(e.ToString());
+            }
         }
 
         #region Кнопки/функції ---------------------
@@ -111,25 +124,64 @@ namespace BRB.Forms
         }
         private void btnAbout()
         {
-            this.Close();
         }
         private void btnSync()
         {
-            this.Close();
         }
         private void btnAdd()
         {
-            this.Close();
         }
         private void btnFindAdd()
         {
-            this.Close();
         }
         private void btnSettings()
         {
-            this.Close();
         }
 
+
+        void scanBarcode(string Barcode)
+        {
+            Status st = Global.cBL.SerchGoodsPriceCheck(Barcode, out dr);
+
+            if (st.status == EStatus.BadPrice)
+            {
+                this.mplInfo.ForeColor = System.Drawing.Color.Blue;
+                this.mplInfo.Text = "Ціна не вірна";
+            }
+            else if (st.status == EStatus.AddByBarCode)
+            {
+                this.mplInfo.ForeColor = System.Drawing.Color.DarkBlue;
+                this.mplInfo.Text = "Занесено по ШК";
+            }
+            else if (st.status == EStatus.NoDataFound)
+            {
+             //   this.mplInfo.ForeColor = System.Drawing.Color.Red;
+                this.mplInfo.Text = "Не знайдено";
+            }
+
+            fillDataForm();
+        }
+
+        public void fillDataForm()
+        {
+            if (dr != null)
+            {
+                this.mplArticle.Text = dr["cpGoodsArticle"].ToString();
+                this.mplBarCode.Text = dr["cpBarcode"].ToString();
+                this.mplName.Text = "                 " + dr["cpGoodsName"].ToString();
+                this.mplPrice.Text = dr["cpPrice1"].ToString();
+                this.mplPriceOpt.Text = dr["cpPrice2"].ToString();
+            }
+            else
+            {
+                this.mplArticle.Text = string.Empty;
+                this.mplBarCode.Text = string.Empty;
+                this.mplInfo.Text = string.Empty;
+                this.mplName.Text = string.Empty;
+                this.mplPrice.Text = string.Empty;
+                this.mplPriceOpt.Text = string.Empty;
+            }
+        }
 
         #endregion
     }

@@ -215,11 +215,9 @@
             // 
             this.mplInfo.BackColor = System.Drawing.Color.Gainsboro;
             this.mplInfo.Font = new System.Drawing.Font("Tahoma", 16F, System.Drawing.FontStyle.Bold);
-            this.mplInfo.ForeColor = System.Drawing.Color.Blue;
             this.mplInfo.Location = new System.Drawing.Point(3, 162);
             this.mplInfo.Name = "mplInfo";
             this.mplInfo.Size = new System.Drawing.Size(231, 26);
-            this.mplInfo.Text = "Ціна не вірна";
             this.mplInfo.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // mplPriceOpt
@@ -256,7 +254,7 @@
             // 
             this.mplNameCapt.Location = new System.Drawing.Point(3, 67);
             this.mplNameCapt.Name = "mplNameCapt";
-            this.mplNameCapt.Size = new System.Drawing.Size(69, 20);
+            this.mplNameCapt.Size = new System.Drawing.Size(69, 16);
             this.mplNameCapt.Text = "Назва: ";
             this.mplNameCapt.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
@@ -332,7 +330,8 @@
             this.MinimizeBox = false;
             this.Name = "frmPriceChecker";
             this.Text = "BRB3";
-            this.Load += new System.EventHandler(this.DocSearch_Load);
+            this.Load += new System.EventHandler(this.PriceChecker_Load);
+            this.Closed += new System.EventHandler(this.PriceChecker_Closed);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.DocSerch_KeyUp);
             this.mainPanel.ResumeLayout(false);
             this.ResumeLayout(false);
