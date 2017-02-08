@@ -36,14 +36,17 @@ namespace BRB
             DBError,
             BadLoginPassword,
 
+            NoFoundByCodeWares,
+            NoFoundByBarCode,
+            BadPrice,
+            FoundByBarCode,
+
             NoDataFound,
             NoGoodData,
             ErrorSerializer,
             DontGetKey,
             HttpPOSTError,
             Error,
-            BadPrice,
-            AddByBarCode,
             BadInputData
         }
 

@@ -12,6 +12,7 @@ namespace BRB.Forms
     public partial class frmPriceChecker : Form
     {
         DataRow dr;
+        Status st;
 
         public frmPriceChecker()
         {
@@ -124,42 +125,109 @@ namespace BRB.Forms
         }
         private void btnAbout()
         {
+            clsDialogBox.InformationBoxShow("Немає форми btnAbout");
         }
         private void btnSync()
         {
+            clsDialogBox.InformationBoxShow("Немає форми btnSync");
         }
         private void btnAdd()
         {
+            if (st.status == EStatus.FoundByBarCode)
+               Global.cData.SavePCh(Global.cBL.CurbcID, Global.cBL.CurBarCode, "2");
+            else if (st.status == EStatus.NoFoundByBarCode || st.status == EStatus.NoFoundByCodeWares)
+                Global.cData.SavePCh(Global.cBL.CurbcID, Global.cBL.CurBarCode, "0");
+
+            this.mplInfo.Text = "Збережено!";
+            this.mpbAdd.Enabled = false;
+
         }
         private void btnFindAdd()
         {
+            if (!mptbArticle.Enabled)
+            {
+                this.mptbArticle.Enabled = true;
+                this.mptbArticle.Visible = true;
+                this.mptbArticle.Focus();
+                this.mpbFindAdd.Text = "Знайти " + HotKey.strPriceChecker_FindAdd; ;
+            }
+            else
+            {
+                int varCodeWares;
+
+                if (mptbArticle.Text.Length > 0 && mptbArticle.Text.Length <= Global.WeightBarCodeWares)
+                {
+                    try
+                    {
+                        varCodeWares = Convert.ToInt32(mptbArticle.Text);
+
+                        //this.mptbArticle.Enabled = false;
+                        //this.mptbArticle.Visible = false;
+                        //this.mpbFindAdd.Text = "Пошук " + HotKey.strPriceChecker_FindAdd; ;
+                    }
+                    catch
+                    {
+                        this.mplInfo.Text = "Не коректний код товару";
+                        this.mptbArticle.Focus();
+                    }
+                }
+                else
+                {
+                    this.mplInfo.Text = "Не коректний код товару";
+                    this.mptbArticle.Focus();
+                }
+                
+            }
         }
         private void btnSettings()
         {
+            clsDialogBox.InformationBoxShow("Немає форми Налаштувань");
         }
 
 
         void scanBarcode(string Barcode)
         {
-            Status st = Global.cBL.SerchGoodsPriceCheck(Barcode, out dr);
+            st = Global.cBL.SerchGoodsPriceCheck(Barcode, out dr);
 
-            if (st.status == EStatus.BadPrice)
+            if (st.status == EStatus.Ok)
             {
+                this.mplInfo.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
                 this.mplInfo.ForeColor = System.Drawing.Color.Blue;
-                this.mplInfo.Text = "Ціна не вірна";
+                this.mplInfo.Text = "Ціна вірна";
+                this.mpbAdd.Enabled = false;
             }
-            else if (st.status == EStatus.AddByBarCode)
+            else if (st.status == EStatus.BadPrice)
             {
-                this.mplInfo.ForeColor = System.Drawing.Color.DarkBlue;
-                this.mplInfo.Text = "Занесено по ШК";
+                this.mplInfo.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
+                this.mplInfo.ForeColor = System.Drawing.Color.Red;
+                this.mplInfo.Text = "Ціна не вірна! Збережено.";
+                this.mpbAdd.Enabled = false;
             }
-            else if (st.status == EStatus.NoDataFound)
+            else if (st.status == EStatus.FoundByBarCode)
             {
-             //   this.mplInfo.ForeColor = System.Drawing.Color.Red;
-                this.mplInfo.Text = "Не знайдено";
+                this.mplInfo.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
+                this.mplInfo.ForeColor = System.Drawing.Color.Green;
+                this.mplInfo.Text = "По ШК. Перевірте ціну!";
+                this.mpbAdd.Enabled = true;
+            }
+            else if (st.status == EStatus.NoFoundByBarCode) 
+            {
+                this.mplInfo.ForeColor = System.Drawing.Color.Red;
+                this.mplInfo.Text = "По ШК не знайдено";
+                this.mpbAdd.Enabled = true;
+            }
+            else if (st.status == EStatus.NoFoundByCodeWares) 
+            {
+                this.mplInfo.ForeColor = System.Drawing.Color.Red;
+                this.mplInfo.Text = "По коду не знайдено";
+                this.mpbAdd.Enabled = true;
             }
 
             fillDataForm();
+
+            this.mplBarCode.Text = (st.status == EStatus.NoFoundByCodeWares? string.Empty : Barcode);
+            if (st.status == EStatus.NoFoundByCodeWares) 
+                this.mplArticle.Text = Barcode.Substring(2, Global.WeightBarCodeWares).TrimStart('0');
         }
 
         public void fillDataForm()
@@ -167,7 +235,6 @@ namespace BRB.Forms
             if (dr != null)
             {
                 this.mplArticle.Text = dr["cpGoodsArticle"].ToString();
-                this.mplBarCode.Text = dr["cpBarcode"].ToString();
                 this.mplName.Text = "                 " + dr["cpGoodsName"].ToString();
                 this.mplPrice.Text = dr["cpPrice1"].ToString();
                 this.mplPriceOpt.Text = dr["cpPrice2"].ToString();
@@ -176,7 +243,6 @@ namespace BRB.Forms
             {
                 this.mplArticle.Text = string.Empty;
                 this.mplBarCode.Text = string.Empty;
-                this.mplInfo.Text = string.Empty;
                 this.mplName.Text = string.Empty;
                 this.mplPrice.Text = string.Empty;
                 this.mplPriceOpt.Text = string.Empty;

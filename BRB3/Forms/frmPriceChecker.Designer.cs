@@ -41,6 +41,7 @@
             this.labelTop = new System.Windows.Forms.Label();
             this.labelDown = new System.Windows.Forms.Label();
             this.mainPanel = new System.Windows.Forms.Panel();
+            this.mptbArticle = new System.Windows.Forms.TextBox();
             this.mpbFindAdd = new System.Windows.Forms.Button();
             this.statusBar = new System.Windows.Forms.StatusBar();
             this.mpbAdd = new System.Windows.Forms.Button();
@@ -141,6 +142,7 @@
             // 
             // mainPanel
             // 
+            this.mainPanel.Controls.Add(this.mptbArticle);
             this.mainPanel.Controls.Add(this.mpbFindAdd);
             this.mainPanel.Controls.Add(this.statusBar);
             this.mainPanel.Controls.Add(this.mpbAdd);
@@ -165,13 +167,22 @@
             this.mainPanel.Name = "mainPanel";
             this.mainPanel.Size = new System.Drawing.Size(236, 293);
             // 
+            // mptbArticle
+            // 
+            this.mptbArticle.Enabled = false;
+            this.mptbArticle.Visible = false;
+            this.mptbArticle.Location = new System.Drawing.Point(72, 44);
+            this.mptbArticle.Name = "mptbArticle";
+            this.mptbArticle.Size = new System.Drawing.Size(162, 23);
+            this.mptbArticle.TabIndex = 51;
+            // 
             // mpbFindAdd
             // 
             this.mpbFindAdd.Location = new System.Drawing.Point(120, 190);
             this.mpbFindAdd.Name = "mpbFindAdd";
             this.mpbFindAdd.Size = new System.Drawing.Size(110, 26);
             this.mpbFindAdd.TabIndex = 33;
-            this.mpbFindAdd.Text = "Знайти";
+            this.mpbFindAdd.Text = "Пошук";
             this.mpbFindAdd.Click += new System.EventHandler(this.btnFindAdd_Click);
             // 
             // statusBar
@@ -183,6 +194,7 @@
             // 
             // mpbAdd
             // 
+            this.mpbAdd.Enabled = false;
             this.mpbAdd.Location = new System.Drawing.Point(5, 190);
             this.mpbAdd.Name = "mpbAdd";
             this.mpbAdd.Size = new System.Drawing.Size(110, 26);
@@ -214,7 +226,7 @@
             // mplInfo
             // 
             this.mplInfo.BackColor = System.Drawing.Color.Gainsboro;
-            this.mplInfo.Font = new System.Drawing.Font("Tahoma", 16F, System.Drawing.FontStyle.Bold);
+            this.mplInfo.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
             this.mplInfo.Location = new System.Drawing.Point(3, 162);
             this.mplInfo.Name = "mplInfo";
             this.mplInfo.Size = new System.Drawing.Size(231, 26);
@@ -288,7 +300,6 @@
             this.mplBarCode.Location = new System.Drawing.Point(73, 2);
             this.mplBarCode.Name = "mplBarCode";
             this.mplBarCode.Size = new System.Drawing.Size(162, 20);
-            this.mplBarCode.Text = "8032625972082_123456789";
             // 
             // mplBarCodeCapt
             // 
@@ -371,6 +382,7 @@
         private System.Windows.Forms.MenuItem miFindAdd;
         private System.Windows.Forms.MenuItem miSync;
         private System.Windows.Forms.MenuItem miSettings;
+        private System.Windows.Forms.TextBox mptbArticle;
 
 
     }
