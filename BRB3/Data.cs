@@ -481,12 +481,15 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
 
                 DataSet temp = null, dsInvoiceTemplate = null;
                
-                DateTime t = Convert.ToDateTime(Global.TimeSync).Date;
+                DateTime t = Global.TimeSync.Date;
                 
                 int w = 0, a = 0, u = 0;
+                //Якщо синхронізація відбувалась вчора то повне оновлення.
+                if (Global.TimeSync.Date!=DateTime.Now.Date)
+                 w = a =u = 1;
 
 
-              
+             
                 try
                 {
                     dsInvoiceTemplate = webService.LoadDocs(temp, Global.DeviceID, Global.ShopName, w, a, u, t, varNumberDoc);
@@ -531,8 +534,7 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
                                
                             }
                             catch (System.Exception)
-                            {
-                                
+                            {                                
                                 varError= "Оновлення конфіг файла невдале!!";
                             }
                             
@@ -540,8 +542,7 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
                         }
                            
                         SQL.AddWithValueF("@timesync",Global.TimeSync);
-                        SQL.ExecuteNonQuery( @"update Settings set  TimeSync = @timesync"); 
-                          
+                        SQL.ExecuteNonQuery( @"update Settings set  TimeSync = @timesync");                           
                        
                     }
 
@@ -612,8 +613,6 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
                 //int i=0;
 
                     start_proc = Environment.TickCount;
-
-                    
                 
                 //налаштування для WEB-сервісу
                     var webService = new BRB.WebReference.BRB_Sync();
@@ -646,8 +645,6 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
 
 
                     // Удалим все локальные загруженные документы
-
-                   
                     sqlStr = @"delete from CheckLogs where clID not in (" + errDocs + ") ";
                     SQL.ExecuteNonQuery(sqlStr);
                     
@@ -656,7 +653,6 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
                     SQL.ExecuteNonQuery(sqlStr);
                     
                     // Загрузим новые документы -------------------------------------------
-
                     DataSet dsCheckPrices = new DataSet("dsCheckPrices");
                     sqlStr = @"select cpID  from CheckPrices ";
                     dt = SQL.ExecuteQuery(sqlStr);
@@ -673,14 +669,11 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
 
                     start_base = Environment.TickCount;
                     if (ds1 != null && Proto.IsData(ds1.Tables["CheckPrices"]))
-                    {
-                        SQL.BulkInsert(ds1.Tables["CheckPrices"], "CheckPrices");
-                    }
+                         SQL.BulkInsert(ds1.Tables["CheckPrices"], "CheckPrices");
+
                     end_base = Environment.TickCount;
                     result_base = (end_base - start_base) / 1000;
 
-
-                    
                     end_proc = Environment.TickCount;
                     result_proc = (end_proc - start_proc) / 1000;
                     
