@@ -36,7 +36,7 @@ namespace BRB.Forms
             this.imageList.Images.Add((System.Drawing.Icon)(res.GetObject("Ico_06_" + Global.icoSize.ToString())));
             
             this.Text = "BRB3 " + Global.eTypeTerminal.ToString();
-            this.labelDown.Size = new System.Drawing.Size(236, (1 + Global.hToolbarTerminal));
+            //this.labelDown.Size = new System.Drawing.Size(236, (1 + Global.hToolbarTerminal));
 
             this.lviInvoice.Text = HotKey.strMain_Invoice + " " + lviInvoice.Text;
             this.lviMAudit.Text = HotKey.strMain_MAudit + " " + lviMAudit.Text;
@@ -120,7 +120,7 @@ namespace BRB.Forms
         }
         private void btnMAudit_Click(object sender, EventArgs e)
         {
-            btnNewDocGrid(TypeDoc.Inventories); //Міні ревізія
+            btnNewDocGrid(TypeDoc.MiniInventories); //Міні ревізія
         }
         private void btnPriceChecker_Click(object sender, EventArgs e)
         {
@@ -173,7 +173,15 @@ namespace BRB.Forms
         }
         private void btnNewPriceChecker()
         {
-            MessageBox.Show("Немає форми PriceChecker");
+            try
+            {
+                frmPriceChecker formPriceChecker = new frmPriceChecker();
+                formPriceChecker.Show();
+            }
+            catch (Exception ex)
+            {
+                string er = ex.Message;
+            }
         }
         private void btnSettings()
         {

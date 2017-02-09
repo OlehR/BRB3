@@ -22,13 +22,16 @@ namespace BRB.Forms
         {
             dt = Global.cBL.LoadDocs(parTypeDoc);
             InitializeComponent();
-            //this.WindowState = FormWindowState.Maximized;
+            if (Global.eTypeTerminal == TypeTerminal.BitatekIT8000)
+            {
+                this.WindowState = FormWindowState.Maximized;
+            }
             InitializeComponentManual();
         }
 
         public void InitializeComponentManual()
         {
-            this.labelDown.Size = new System.Drawing.Size(236 * Global.tCoefficient, (1 + Global.hToolbarTerminal) * Global.tCoefficient);
+            //this.labelDown.Size = new System.Drawing.Size(236 * Global.tCoefficient, (1 + Global.hToolbarTerminal) * Global.tCoefficient);
             this.Text = "BRB3 " + Global.eTypeTerminal.ToString();
 
             this.miExit.Text += " " + HotKey.strDocGrid_Exit;
