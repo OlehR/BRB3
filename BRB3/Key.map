@@ -42,6 +42,7 @@ PriceChecker_Add = F1
 PriceChecker_FindAdd = F2
 PriceChecker_Settings = F9
 PriceChecker_Sync = F8
+PriceChecker_Cancel = F10
 
 
 [MotorolaMC75Ax]
@@ -83,11 +84,12 @@ AdvSettingsDoc_Save = F3
 AdvSettingsDoc_Exit = F10
 
 PriceChecker_Exit = F10
-PriceChecker_About = F3
+//PriceChecker_About = F3
 PriceChecker_Add = F4
 PriceChecker_FindAdd = F5
 PriceChecker_Settings = F9
 PriceChecker_Sync = F8
+PriceChecker_Cancel = F3
 
 
 [PitechLPT80]

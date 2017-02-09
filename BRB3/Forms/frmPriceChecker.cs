@@ -32,6 +32,7 @@ namespace BRB.Forms
             this.mAbout.Text += " " + HotKey.strPriceChecker_About;
             this.mpbAdd.Text += " " + HotKey.strPriceChecker_Add;
             this.mpbFindAdd.Text += " " + HotKey.strPriceChecker_FindAdd;
+            this.mpbCancel.Text += " " + HotKey.strPriceChecker_Cancel;
         
             if (Global.eTypeTerminal == TypeTerminal.BitatekIT8000)
                 this.WindowState = FormWindowState.Maximized;
@@ -39,6 +40,7 @@ namespace BRB.Forms
             {
                 this.mpbAdd.Size = new System.Drawing.Size(110 * Global.tCoefficient, 54 * Global.tCoefficient);
                 this.mpbFindAdd.Size = new System.Drawing.Size(110 * Global.tCoefficient, 54 * Global.tCoefficient);
+                this.mpbCancel.Size = new System.Drawing.Size(110 * Global.tCoefficient, 54 * Global.tCoefficient);
             }
         }
 
@@ -73,11 +75,17 @@ namespace BRB.Forms
             }
             if (e.KeyValue == HotKey.PriceChecker_Add)
             {
-                btnAdd();
+                if (this.mpbAdd.Enabled)
+                    btnAdd();
             }
             if (e.KeyValue == HotKey.PriceChecker_FindAdd)
             {
                 btnFindAdd();
+            }
+            if (e.KeyValue == HotKey.PriceChecker_Cancel)
+            {
+                if (this.mpbCancel.Enabled)
+                    btnCancel();
             }
             if (e.KeyValue == HotKey.PriceChecker_Settings)
             {
@@ -112,6 +120,10 @@ namespace BRB.Forms
         {
             btnFindAdd();
         }
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            btnCancel();
+        }
         private void btnSettings_Click(object sender, EventArgs e)
         {
             btnSettings();
@@ -131,12 +143,19 @@ namespace BRB.Forms
         {
             clsDialogBox.InformationBoxShow("Немає форми btnSync");
         }
+        private void btnSettings()
+        {
+            clsDialogBox.InformationBoxShow("Немає форми Налаштувань");
+        }
+
         private void btnAdd()
         {
             if (st.status == EStatus.FoundByBarCode)
                Global.cData.SavePCh(Global.cBL.CurbcID, Global.cBL.CurBarCode, "2");
             else if (st.status == EStatus.NoFoundByBarCode || st.status == EStatus.NoFoundByCodeWares)
-                Global.cData.SavePCh(Global.cBL.CurbcID, Global.cBL.CurBarCode, "0");
+                Global.cData.SavePCh(Global.cBL.CurbcID, Global.cBL.CurBarCode, "1");
+            else if (st.status == EStatus.FoundByCodeWares || st.status == EStatus.NoFoundRows)//
+                Global.cData.SavePCh(this.mplArticle.Text, string.Empty, "1");
 
             this.mplInfo.Text = "Збережено!";
             this.mpbAdd.Enabled = false;
@@ -144,46 +163,83 @@ namespace BRB.Forms
         }
         private void btnFindAdd()
         {
+            Global.cTerminal.StopScan();
+            string varCodeWares = null;
+
             if (!mptbArticle.Enabled)
             {
                 this.mptbArticle.Enabled = true;
                 this.mptbArticle.Visible = true;
                 this.mptbArticle.Focus();
-                this.mpbFindAdd.Text = "Знайти " + HotKey.strPriceChecker_FindAdd; ;
+                this.mpbAdd.Enabled = false;
+                dr = null;
+                fillDataForm();
+                this.mplInfo.Text = string.Empty;
+                this.mpbFindAdd.Text = "Знайти " + HotKey.strPriceChecker_FindAdd;
+                this.mpbCancel.Enabled = true;
+                this.mpbCancel.Visible = true;
             }
             else
             {
-                int varCodeWares;
+                st = Global.cBL.SerchCodeGoodsPriceCheck(mptbArticle.Text, out dr);
 
-                if (mptbArticle.Text.Length > 0 && mptbArticle.Text.Length <= Global.WeightBarCodeWares)
+                if (st.status == EStatus.NoCorectCodeWares)
                 {
-                    try
-                    {
-                        varCodeWares = Convert.ToInt32(mptbArticle.Text);
-
-                        //this.mptbArticle.Enabled = false;
-                        //this.mptbArticle.Visible = false;
-                        //this.mpbFindAdd.Text = "Пошук " + HotKey.strPriceChecker_FindAdd; ;
-                    }
-                    catch
-                    {
-                        this.mplInfo.Text = "Не коректний код товару";
-                        this.mptbArticle.Focus();
-                    }
+                    this.mplInfo.ForeColor = System.Drawing.Color.DarkBlue;
+                    this.mplInfo.Text = "Не коректний код товару";
+                    dr = null;
+                    this.mptbArticle.Focus();
                 }
                 else
                 {
-                    this.mplInfo.Text = "Не коректний код товару";
-                    this.mptbArticle.Focus();
+                    if (st.status == EStatus.NoFoundRows)
+                    {
+                        this.mplInfo.Text = "По коду товар не знайдено";
+                        varCodeWares = this.mptbArticle.Text;
+                        dr = null;
+                    }
+                    else if (st.status == EStatus.FoundByCodeWares)
+                    {
+                        this.mplInfo.Text = "По коду знайдено!";
+                    }
+
+                    this.mplInfo.ForeColor = System.Drawing.Color.DarkBlue;
+                    this.mptbArticle.Text = string.Empty;
+                    this.mptbArticle.Enabled = false;
+                    this.mptbArticle.Visible = false;
+                    this.mpbCancel.Enabled = false;
+                    this.mpbCancel.Visible = false;
+                    this.mpbAdd.Enabled = true;
+                    this.mpbFindAdd.Text = "Пошук " + HotKey.strPriceChecker_FindAdd;
+
+                    Global.cTerminal.StartScan(this.scanBarcode);
                 }
-                
+            }
+
+            fillDataForm();
+            if (varCodeWares != null)
+                this.mplArticle.Text = varCodeWares.TrimStart('0');
+              
+        }
+        private void btnCancel()
+        {
+            dr = null;
+            fillDataForm();
+            this.mptbArticle.Text = string.Empty;
+            this.mplInfo.Text = string.Empty;
+            this.mptbArticle.Visible = false;
+            this.mptbArticle.Enabled = false;
+            this.mpbCancel.Visible = false;
+            this.mpbCancel.Enabled = false;
+            try
+            {
+                Global.cTerminal.StartScan(this.scanBarcode);
+            }
+            catch
+            {
             }
         }
-        private void btnSettings()
-        {
-            clsDialogBox.InformationBoxShow("Немає форми Налаштувань");
-        }
-
+        
 
         void scanBarcode(string Barcode)
         {

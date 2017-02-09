@@ -40,6 +40,7 @@ namespace BRB
             NoFoundByBarCode,
             BadPrice,
             FoundByBarCode,
+            FoundByCodeWares,
 
             NoDataFound,
             NoGoodData,

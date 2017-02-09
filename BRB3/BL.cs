@@ -532,11 +532,34 @@ namespace BRB
             return SaveDocEx( varNumberOutInvoice, varDateOutInvoice,  parFlagPriceWithVat,  parFlagChangeDocSup,  parFlagSumQtyDoc,  parFlagInsertWeigthFromBarcode);
         }
 
-        //public Status SerchCodeGoodsPriceCheck(string parBarCode, out DataRow parRes)
-        //{
-        //    // Вызовем поиск по коду
-        //    parRes = null;
-        //}qq
+        public Status SerchCodeGoodsPriceCheck(string parCodeWares, out DataRow parRes)
+        {
+            parRes = null;
+            DataTable dt;
+            int varCodeWares;
+
+            try
+            {
+                varCodeWares = Convert.ToInt32(parCodeWares);
+
+                if (varCodeWares == 0 || varCodeWares >999999)
+                    return new Status(EStatus.NoCorectCodeWares);
+            }
+            catch
+            {
+                return new Status(EStatus.NoCorectCodeWares);
+            }
+
+            dt = cData.FindPCh(parCodeWares, 0);
+
+            if (!Proto.IsData(dt))
+                return new Status(EStatus.NoFoundRows);
+            else
+            {
+                parRes = dt.Rows[0];
+                return new Status(EStatus.FoundByCodeWares);
+            }
+        }
 
         public Status SerchGoodsPriceCheck(string parBarCode,out DataRow parRes)
         {

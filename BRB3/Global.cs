@@ -276,6 +276,9 @@ namespace BRB
         public static string strPriceChecker_Settings;
         public static int PriceChecker_Sync = 0;
         public static string strPriceChecker_Sync;
+        public static int PriceChecker_Cancel = 0;
+        public static string strPriceChecker_Cancel;
+        
         
         public static void Init( TypeTerminal parType)
         {
@@ -363,6 +366,8 @@ namespace BRB
             strPriceChecker_Settings = Global.BildStrKeyCode(varNameSection, "PriceChecker_Settings");
             PriceChecker_Sync = Global.BildKeyCode(varNameSection, "PriceChecker_Sync");
             strPriceChecker_Sync = Global.BildStrKeyCode(varNameSection, "PriceChecker_Sync");
+            PriceChecker_Cancel = Global.BildKeyCode(varNameSection, "PriceChecker_Cancel");
+            strPriceChecker_Cancel = Global.BildStrKeyCode(varNameSection, "PriceChecker_Cancel");
         }
     
     }

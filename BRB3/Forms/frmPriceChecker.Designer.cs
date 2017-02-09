@@ -41,6 +41,7 @@
             this.labelTop = new System.Windows.Forms.Label();
             this.labelDown = new System.Windows.Forms.Label();
             this.mainPanel = new System.Windows.Forms.Panel();
+            this.mpbCancel = new System.Windows.Forms.Button();
             this.mptbArticle = new System.Windows.Forms.TextBox();
             this.mpbFindAdd = new System.Windows.Forms.Button();
             this.statusBar = new System.Windows.Forms.StatusBar();
@@ -142,6 +143,7 @@
             // 
             // mainPanel
             // 
+            this.mainPanel.Controls.Add(this.mpbCancel);
             this.mainPanel.Controls.Add(this.mptbArticle);
             this.mainPanel.Controls.Add(this.mpbFindAdd);
             this.mainPanel.Controls.Add(this.statusBar);
@@ -167,14 +169,25 @@
             this.mainPanel.Name = "mainPanel";
             this.mainPanel.Size = new System.Drawing.Size(236, 293);
             // 
+            // mpbCancel
+            // 
+            this.mpbCancel.Enabled = false;
+            this.mpbCancel.Location = new System.Drawing.Point(5, 190);
+            this.mpbCancel.Name = "mpbCancel";
+            this.mpbCancel.Size = new System.Drawing.Size(110, 26);
+            this.mpbCancel.TabIndex = 69;
+            this.mpbCancel.Text = "Відмінити";
+            this.mpbCancel.Visible = false;
+            this.mpbCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
             // mptbArticle
             // 
             this.mptbArticle.Enabled = false;
-            this.mptbArticle.Visible = false;
             this.mptbArticle.Location = new System.Drawing.Point(72, 44);
             this.mptbArticle.Name = "mptbArticle";
             this.mptbArticle.Size = new System.Drawing.Size(162, 23);
             this.mptbArticle.TabIndex = 51;
+            this.mptbArticle.Visible = false;
             // 
             // mpbFindAdd
             // 
@@ -383,6 +396,7 @@
         private System.Windows.Forms.MenuItem miSync;
         private System.Windows.Forms.MenuItem miSettings;
         private System.Windows.Forms.TextBox mptbArticle;
+        private System.Windows.Forms.Button mpbCancel;
 
 
     }
