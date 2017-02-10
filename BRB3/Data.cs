@@ -126,6 +126,7 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
                 FROM   ADDITION_UNIT AS au INNER JOIN
                    UNIT_DIMENSION AS ud ON au.code_unit = ud.code_unit
                 WHERE        (au.bar_code = @parBarCode)";
+                //tree
 /*        private string varSQLFindBarCode(bool parIsComplect,bool parIsBarCode)
         {
             return
