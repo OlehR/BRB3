@@ -137,11 +137,29 @@ namespace BRB.Forms
         }
         private void btnAbout()
         {
-            clsDialogBox.InformationBoxShow("Немає форми btnAbout");
+            try
+            {
+                frmInfo formInfo = new frmInfo();
+                formInfo.Show();
+            }
+            catch (Exception ex)
+            {
+                string er = ex.Message;
+            }
         }
         private void btnSync()
         {
-            clsDialogBox.InformationBoxShow("Немає форми btnSync");
+            if (clsDialogBox.ConfirmationBoxShow("Почати синхронізацію?") == DialogResult.Yes)
+            {
+                Status st = Global.cData.SyncPr();
+                //if (st.status == EStatus.Ok)
+                clsDialogBox.InformationBoxShow(st.StrStatus);
+            }
+
+            else
+            {
+                clsDialogBox.InformationBoxShow("Синхронізація відмінена!");
+            }
         }
         private void btnSettings()
         {
