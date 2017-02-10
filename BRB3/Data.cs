@@ -178,7 +178,8 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
 
         public DataTable FillDocs(TypeDoc parTypeDoc)
         {
-            string varSQL = string.Format(varSQLDocs,(parTypeDoc == TypeDoc.Supply ? " in (1,3) " : string.Concat(" = ", (int)parTypeDoc)));
+            string varSQL = string.Format(varSQLDocs,
+                (parTypeDoc == TypeDoc.Supply || parTypeDoc == TypeDoc.SupplyLogistic  ? " in (1,3,4,5,6,7) " : string.Concat(" = ", (int)parTypeDoc)));
             //SQL.AddWithValueF("@parTypeDoc", parTypeDoc);
             SQL.ClearParam();
             tDocs = SQL.ExecuteQuery(varSQL);
