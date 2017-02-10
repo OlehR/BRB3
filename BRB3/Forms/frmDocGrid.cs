@@ -236,7 +236,15 @@ namespace BRB.Forms
         }
         private void btnAbout()
         {
-            MessageBox.Show("Немає форми About");
+            try
+            {
+                frmInfo formInfo = new frmInfo();
+                formInfo.Show();
+            }
+            catch (Exception ex)
+            {
+                string er = ex.Message;
+            }
         }
         private void btnWares()
         {
@@ -372,7 +380,9 @@ namespace BRB.Forms
         }
         private void btnSync()
         {
-            MessageBox.Show("btnSync Ще не реалізовано");
+            Status st = Global.cData.Sync();
+            //if (st.status == EStatus.Ok)
+                clsDialogBox.InformationBoxShow(st.StrStatus);
         }
         private void btnSettings()
         {
