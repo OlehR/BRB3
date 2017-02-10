@@ -380,9 +380,17 @@ namespace BRB.Forms
         }
         private void btnSync()
         {
-            Status st = Global.cData.Sync();
-            //if (st.status == EStatus.Ok)
+            if (clsDialogBox.ConfirmationBoxShow("Почати синхронізацію?") == DialogResult.Yes)
+            {
+                Status st = Global.cData.Sync();
+                //if (st.status == EStatus.Ok)
                 clsDialogBox.InformationBoxShow(st.StrStatus);
+            }
+
+            else
+            {
+                clsDialogBox.InformationBoxShow("Синхронізація відмінена!");
+            }
         }
         private void btnSettings()
         {
