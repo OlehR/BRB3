@@ -193,7 +193,15 @@ namespace BRB.Forms
         }
         private void btnAbout()
         {
-            MessageBox.Show("Немає форми About");
+            try
+            {
+                frmInfo formInfo = new frmInfo();
+                formInfo.Show();
+            }
+            catch (Exception ex)
+            {
+                string er = ex.Message;
+            }
         }
 
         #endregion // Кнопки/функції
