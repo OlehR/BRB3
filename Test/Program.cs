@@ -43,10 +43,13 @@ namespace Test
     {
         static void Main(string[] args)
         {
-            Global.dbPathBRB = @"D:\BRB2\BRB git\BRB3\BRB3\Database\BRB.sdf";//@"c:" + Global.dbPathBRB;
+            Global.DeviceID = "6922660";
+            Global.dbPathBRB = @"D:\WORK\CS4\BRB3\BRB3\Database\BRB.sdf";//@"c:" + Global.dbPathBRB;
             Global.Init(TypeTerminal.MotorolaMC75Ax);
-            Global.DeviceID = "‎123454321";
-            Global.cData.SyncPr();
+            //webService.Url = Global.ServiceUrl; //@wsUrl;
+            //Global.ServiceUrl = "http://localhost:20416/BRB3_Sync/BRB3_Sync.asmx"; //TMP LocalHost
+
+          //  Global.cData.Sync(TypeSynchronization.);
             return;
         }
     }

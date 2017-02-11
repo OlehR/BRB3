@@ -151,7 +151,7 @@ namespace BRB.Forms
         {
             if (clsDialogBox.ConfirmationBoxShow("Почати синхронізацію?") == DialogResult.Yes)
             {
-                Status st = Global.cData.SyncPr();
+                Status st = Global.cData.Sync(TypeSynchronization.Price,null);
                 //if (st.status == EStatus.Ok)
                 clsDialogBox.InformationBoxShow(st.StrStatus);
             }

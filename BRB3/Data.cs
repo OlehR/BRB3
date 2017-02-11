@@ -372,6 +372,8 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
         {
             try
             {
+                if (parCallProgressBar != null)
+                    parCallProgressBar(0);
                 int start_web = Environment.TickCount;
                 string varLocalVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
 
@@ -401,7 +403,11 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
 
                     if (Proto.IsData(dt))
                     {
+                        if (parCallProgressBar != null)
+                            parCallProgressBar(15);
                         DataSet ds = webService.UpLoadPriceLogs(dsCheckLogs, Global.DeviceID, Global.ShopName);
+                        if(parCallProgressBar!=null)
+                            parCallProgressBar(35);
                         foreach (DataRow dr in ds.Tables["dtReturn"].Rows)
                         {
                             //sum++;
@@ -411,7 +417,10 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
                     }
                     // Видаляємо всі документи крім тих що не синхронізувались
                     sqlStr = @"delete from CheckLogs where clID not in (" + varWrongUpLoadDocs + ") ";
-                    SQL.ExecuteNonQuery(sqlStr);                    
+                    SQL.ExecuteNonQuery(sqlStr);
+                    if (parCallProgressBar != null)
+                        parCallProgressBar(50);
+                  
                 }
                 else
                 {
@@ -441,7 +450,10 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
                     {
                         try
                         {
+                            if (parCallProgressBar != null)
+                                parCallProgressBar(15);
                             var ds = webService.UpLoadDocsNew(dsInvoice, varLocalVersion);
+                            parCallProgressBar(35);
                             foreach (DataRow dr in ds.Tables["dtReturnHead"].Rows)
                             {  //Формуємо список успішно вигружених документів.
                                 varWrongUpLoadDocs += (varWrongUpLoadDocs == "" ? "" : ",") + dr["number_doc"].ToString();
@@ -490,6 +502,8 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
                                WHERE  (dw.number_doc IS NULL)
                                AND    (d.type_doc <> 9)";
                     SQL.ExecuteNonQuery(sqlStr);
+                    if (parCallProgressBar != null)
+                        parCallProgressBar(50);
 
                 }
                 #endregion
@@ -522,6 +536,8 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
 
                 try
                 {
+                    if (parCallProgressBar != null)
+                        parCallProgressBar(65);
                     switch (parTSync)
                     {
                         case TypeSynchronization.Document:
@@ -548,6 +564,8 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
                                 SQL.BulkInsert(dsAnswer.Tables["CheckPrices"], "CheckPrices");
                             break;
                     }
+                    if (parCallProgressBar != null)
+                        parCallProgressBar(75);
 
                     if (SQL.IsData(dsAnswer.Tables["dtDocs"]))
                         SQL.BulkInsert(dsAnswer.Tables["dtDocs"], "Docs");
@@ -598,6 +616,8 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
                         SQL.AddWithValueF("@timesync", Global.TimeSync);
                         SQL.ExecuteNonQuery(@"update Settings set  TimeSync = @timesync");
                     }
+                    if (parCallProgressBar != null)
+                        parCallProgressBar(85);
 
                     if (dsAnswer.Tables["dtDelDocs"].Rows.Count > 0)
                     {
@@ -613,6 +633,8 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
                                 catch { }
                             }
                     }
+                    if (parCallProgressBar != null)
+                        parCallProgressBar(90);
 
 
                 }
@@ -642,6 +664,8 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
                 else
                     varError = "Завершено з помилками! Документи №" + varWrongUpLoadDocs + " не загрузились на сервер! Час синхронізації:" + result_web.ToString();
 
+                if (parCallProgressBar != null)
+                    parCallProgressBar(100);
             }
             catch
             { }
