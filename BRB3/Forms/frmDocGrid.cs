@@ -382,7 +382,7 @@ namespace BRB.Forms
         {
             if (clsDialogBox.ConfirmationBoxShow("Почати синхронізацію?") == DialogResult.Yes)
             {
-                Status st = Global.cData.Sync();
+                Status st = Global.cData.Sync(TypeSynchronization.Document,null);
                 //if (st.status == EStatus.Ok)
                 clsDialogBox.InformationBoxShow(st.StrStatus);
             }

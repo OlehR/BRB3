@@ -16,6 +16,13 @@ namespace BRB
      MotorolaMC75Ax=2,
      PitechLPT80 = 3
     }
+    public enum TypeSynchronization
+    {
+        Document = 1,
+        Price = 2,
+        Inventories =3
+
+    }
     /// <summary>
     /// Тип документа:1-ЗНП,2-Міні-ревізія,3-Пер.Логістик,4-Перед.334,5-Списання,6-Поверн.Постач,7-Перед.забір.лист,9-Ревізія
     /// </summary>
@@ -125,9 +132,12 @@ namespace BRB
         {
             cData = new Data(new MSCeSQL(SqlCeConectionBRB));
             cBL = new BL(cData);
+            TimeSync = cData.GetDateSync();
+            
             eTypeTerminal = parTypeTerminal;
             InitKeyMap(eTypeTerminal);
-            
+            if(string.IsNullOrEmpty(DeviceID))
+               DeviceID = PocketID.GetDeviceID(); 
             switch(parTypeTerminal)
             {
                 case TypeTerminal.BitatekIT8000:
