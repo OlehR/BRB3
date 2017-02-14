@@ -31,6 +31,8 @@ namespace BRB
         private int CurFilterNumberDoc;
         private int CurFilterCodeWares;
         private string CurFilterNameWares;
+        public string CurBarCode;
+        public string CurbcID;
 
         public  DataTable LoadDocs(TypeDoc parTypeDoc)
         {
@@ -530,8 +532,36 @@ namespace BRB
             return SaveDocEx( varNumberOutInvoice, varDateOutInvoice,  parFlagPriceWithVat,  parFlagChangeDocSup,  parFlagSumQtyDoc,  parFlagInsertWeigthFromBarcode);
         }
 
+        public Status SerchCodeGoodsPriceCheck(string parCodeWares, out DataRow parRes)
+        {
+            parRes = null;
+            DataTable dt;
+            int varCodeWares;
 
-        private Status SerchGoodsPriceCheck(string parBarCode,out DataRow parRes)
+            try
+            {
+                varCodeWares = Convert.ToInt32(parCodeWares);
+
+                if (varCodeWares == 0 || varCodeWares >999999)
+                    return new Status(EStatus.NoCorectCodeWares);
+            }
+            catch
+            {
+                return new Status(EStatus.NoCorectCodeWares);
+            }
+
+            dt = cData.FindPCh(parCodeWares, 0);
+
+            if (!Proto.IsData(dt))
+                return new Status(EStatus.NoFoundRows);
+            else
+            {
+                parRes = dt.Rows[0];
+                return new Status(EStatus.FoundByCodeWares);
+            }
+        }
+
+        public Status SerchGoodsPriceCheck(string parBarCode,out DataRow parRes)
         {
             // Вызовем поиск по коду
             parRes=null;
@@ -549,7 +579,7 @@ namespace BRB
                     {
                         // внутренний ШК - разберем строку
                         bcID = parBarCode.Substring(2, Global.WeightBarCodeWares).TrimStart('0');
-
+                        
                         string priceStr = string.Empty;
 
                          priceStr = parBarCode.Substring(2 + Global.WeightBarCodeWares, parBarCode.Length - Global.PChPrice2Pos + 1);
@@ -574,17 +604,30 @@ namespace BRB
                     else
                     {
                         dt = cData.FindPCh(parBarCode, 1);
-                        cData.SavePCh(string.Empty,parBarCode,"2");
+                       // cData.SavePCh(string.Empty,parBarCode,"2");
                     }
 
                     
 
                     if (!Proto.IsData(dt))
                     {
-                        // Не выбралось вообще ничего
-                        if (true /*clsCommon.PropEnableSaveLogNotFoundPrice*/) //TMP!!!
-                            cData.SavePCh(string.Empty,parBarCode,"1");
-                        return new Status(EStatus.NoDataFound);
+                        if (parBarCode.Substring(0, 2) == Global.PChBarCodeBegin.ToString())
+                        {
+                            CurbcID = bcID;
+                            CurBarCode = string.Empty;
+                            return new Status(EStatus.NoFoundByCodeWares);
+                        }
+                        else
+                        {
+                            CurbcID = string.Empty;
+                            CurBarCode = parBarCode;
+                            return new Status(EStatus.NoFoundByBarCode);
+                        }
+
+                        //// Не выбралось вообще ничего
+                        //if (true /*clsCommon.PropEnableSaveLogNotFoundPrice*/) //TMP!!!
+                        //    cData.SavePCh(string.Empty,parBarCode,"1");
+                        //return new Status(EStatus.NoDataFound);
                     }
                     else 
                     {
@@ -598,7 +641,7 @@ namespace BRB
                                price1 = Proto.ToDecimal(parRes["cpPrice1"].ToString());
                             
                             if (parRes["cpPrice2"] != DBNull.Value)
-                                        price1 = Proto.ToDecimal(parRes["cpPrice2"].ToString());
+                                        price2 = Proto.ToDecimal(parRes["cpPrice2"].ToString());
 
                             // сравним цены
                             if (bcPrice1 != price1 || (bcPrice2 > 0 && bcPrice2 != price2))
@@ -608,12 +651,14 @@ namespace BRB
                             }
                             else
                             {
-                                cData.SavePCh(bcID, parBarCode, "0");
+                                cData.SavePCh(bcID, parBarCode, "-1");
                                 return new Status();
                             }
                         }
                         else
-                            return new Status(EStatus.AddByBarCode);                        
+                            CurbcID = bcID;
+                            CurBarCode = parBarCode;
+                            return new Status(EStatus.FoundByBarCode);                        
                     }
                 }
                 catch (System.Exception ex)

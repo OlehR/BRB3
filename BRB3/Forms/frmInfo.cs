@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Linq;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,8 +19,47 @@ namespace BRB.Forms
 
         public void InitializeComponentManual()
         {
-            this.labelDown.Size = new System.Drawing.Size(236 * Global.tCoefficient, (1 + Global.hToolbarTerminal) * Global.tCoefficient);
             this.Text = "BRB3 " + Global.eTypeTerminal.ToString();
+
+            this.miExit.Text += " " + HotKey.strSearch_Exit;
+
+            this.mplDeviceName.Text = Global.eTypeTerminal.ToString() + " ";
+            this.mplDeviceID.Text = " " + PocketID.GetDeviceID();
+            
+            if (Global.eTypeTerminal == TypeTerminal.BitatekIT8000)
+                this.WindowState = FormWindowState.Maximized;
         }
+
+        private void DocSearch_Load(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.None;
+           
+        }
+
+        #region Кнопки/функції ---------------------
+
+        private void DocSerch_KeyUp(object sender, KeyEventArgs e)
+        {
+           if (e.KeyValue == HotKey.Search_Exit)
+            {
+                btnExit();
+            }
+   
+        }
+
+        // Клік по пункту меню
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            btnExit();
+        }
+
+
+        // Функції
+        private void btnExit()
+        {
+            this.Close();
+        }
+       
+        #endregion
     }
 }

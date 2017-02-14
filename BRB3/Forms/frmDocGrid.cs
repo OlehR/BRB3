@@ -22,13 +22,16 @@ namespace BRB.Forms
         {
             dt = Global.cBL.LoadDocs(parTypeDoc);
             InitializeComponent();
-            //this.WindowState = FormWindowState.Maximized;
+            if (Global.eTypeTerminal == TypeTerminal.BitatekIT8000)
+            {
+                this.WindowState = FormWindowState.Maximized;
+            }
             InitializeComponentManual();
         }
 
         public void InitializeComponentManual()
         {
-            this.labelDown.Size = new System.Drawing.Size(236 * Global.tCoefficient, (1 + Global.hToolbarTerminal) * Global.tCoefficient);
+            //this.labelDown.Size = new System.Drawing.Size(236 * Global.tCoefficient, (1 + Global.hToolbarTerminal) * Global.tCoefficient);
             this.Text = "BRB3 " + Global.eTypeTerminal.ToString();
 
             this.miExit.Text += " " + HotKey.strDocGrid_Exit;
@@ -233,7 +236,15 @@ namespace BRB.Forms
         }
         private void btnAbout()
         {
-            MessageBox.Show("Немає форми About");
+            try
+            {
+                frmInfo formInfo = new frmInfo();
+                formInfo.Show();
+            }
+            catch (Exception ex)
+            {
+                string er = ex.Message;
+            }
         }
         private void btnWares()
         {
@@ -369,7 +380,17 @@ namespace BRB.Forms
         }
         private void btnSync()
         {
-            MessageBox.Show("btnSync Ще не реалізовано");
+            if (clsDialogBox.ConfirmationBoxShow("Почати синхронізацію?") == DialogResult.Yes)
+            {
+                Status st = Global.cData.Sync(TypeSynchronization.Document,null);
+                //if (st.status == EStatus.Ok)
+                clsDialogBox.InformationBoxShow(st.StrStatus);
+            }
+
+            else
+            {
+                clsDialogBox.InformationBoxShow("Синхронізація відмінена!");
+            }
         }
         private void btnSettings()
         {

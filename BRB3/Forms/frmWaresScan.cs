@@ -17,6 +17,10 @@ namespace BRB.Forms
         {
             dr = Global.cBL.FindGoodCode(panCodeWares);
             InitializeComponent();
+            if (Global.eTypeTerminal == TypeTerminal.BitatekIT8000)
+            {
+                this.WindowState = FormWindowState.Maximized;
+            }
             InitializeComponentManual();
         }
 
@@ -24,12 +28,16 @@ namespace BRB.Forms
         {
             dr = null;
             InitializeComponent();
+            if (Global.eTypeTerminal == TypeTerminal.BitatekIT8000)
+            {
+                this.WindowState = FormWindowState.Maximized;
+            }
             InitializeComponentManual();
         }
        
         private void frmWaresScan_Load(object sender, EventArgs e)
         {
-            //Global.cTerminal.StartScan(this.scanBarcode); //Розкоментувати!!!!
+            Global.cTerminal.StartScan(this.scanBarcode); //Розкоментувати!!!!
             fillDataForm();
         }
 
@@ -120,8 +128,10 @@ namespace BRB.Forms
                     this.mplCoef.Visible = false;
                 }
 
+                this.mptbAddQty.Focus();
+
                 // TMPPPPPP Витерти!!!!
-                this.mplQtyTempl.Text = decimal.Round(Proto.ToDecimal(dr["quantity_temp"].ToString()), 3).ToString("0.000");
+                //this.mplQtyTempl.Text = decimal.Round(Proto.ToDecimal(dr["quantity_temp"].ToString()), 3).ToString("0.000");
             }
             else
             {
@@ -145,21 +155,19 @@ namespace BRB.Forms
 
         public void InitializeComponentManual()
         {
-            this.labelDown.Size = new System.Drawing.Size(100, (1 + Global.hToolbarTerminal));
+            //this.labelDown.Size = new System.Drawing.Size(100, (1 + Global.hToolbarTerminal));
             this.Text = "BRB3 " + Global.eTypeTerminal.ToString();
             this.mpbtnAdd.Text = mpbtnAdd.Text + " " + HotKey.strWaresScan_Add;
             this.mpbtnCancel.Text = mpbtnCancel.Text + " " + HotKey.strWaresScan_Cancel;
             this.miExit.Text = miExit.Text + " " + HotKey.strWaresScan_Exit;
 
 
-            // BitatekIT8000 примусово вставляє тулбар
+            // BitatekIT8000 
             if (Global.eTypeTerminal == TypeTerminal.BitatekIT8000)
             {
                 this.mplBorderDown.Location = new System.Drawing.Point(1, (263 - Global.hToolbarTerminal));
-                this.mplBorderLeft.Size = new System.Drawing.Size(1, (231 - Global.hToolbarTerminal));
-                this.mplBorderRight.Size = new System.Drawing.Size(1, (231 - Global.hToolbarTerminal));
             }
-            // Для MotorolaMC75Ax робимо великі кнопки
+             //Для MotorolaMC75Ax робимо великі кнопки
             if (Global.eTypeTerminal == TypeTerminal.MotorolaMC75Ax)
             {
                 this.mpbtnAdd.Size = new System.Drawing.Size(138 * Global.tCoefficient, 45 * Global.tCoefficient);

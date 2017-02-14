@@ -38,7 +38,7 @@ namespace BRB.Forms
             this.mptbNameWares.Text = string.Empty;
             this.mptbCodeWares.Focus();
             //TMPPPP
-            this.mptbNameWares.Text = "асіб";
+            //this.mptbNameWares.Text = "асіб";
 
         }
 

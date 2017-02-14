@@ -230,7 +230,7 @@
             // 
             this.mplNameCapt.Location = new System.Drawing.Point(4, 89);
             this.mplNameCapt.Name = "mplNameCapt";
-            this.mplNameCapt.Size = new System.Drawing.Size(79, 20);
+            this.mplNameCapt.Size = new System.Drawing.Size(79, 16);
             this.mplNameCapt.Text = "Назва:";
             this.mplNameCapt.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
@@ -238,7 +238,7 @@
             // 
             this.mplNameCaptB.Location = new System.Drawing.Point(4, 89);
             this.mplNameCaptB.Name = "mplNameCaptB";
-            this.mplNameCaptB.Size = new System.Drawing.Size(85, 20);
+            this.mplNameCaptB.Size = new System.Drawing.Size(85, 16);
             // 
             // mplTemplCapt
             // 

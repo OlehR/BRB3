@@ -41,6 +41,8 @@
             this.labelTop = new System.Windows.Forms.Label();
             this.labelDown = new System.Windows.Forms.Label();
             this.mainPanel = new System.Windows.Forms.Panel();
+            this.mpbCancel = new System.Windows.Forms.Button();
+            this.mptbArticle = new System.Windows.Forms.TextBox();
             this.mpbFindAdd = new System.Windows.Forms.Button();
             this.statusBar = new System.Windows.Forms.StatusBar();
             this.mpbAdd = new System.Windows.Forms.Button();
@@ -141,6 +143,8 @@
             // 
             // mainPanel
             // 
+            this.mainPanel.Controls.Add(this.mpbCancel);
+            this.mainPanel.Controls.Add(this.mptbArticle);
             this.mainPanel.Controls.Add(this.mpbFindAdd);
             this.mainPanel.Controls.Add(this.statusBar);
             this.mainPanel.Controls.Add(this.mpbAdd);
@@ -165,13 +169,33 @@
             this.mainPanel.Name = "mainPanel";
             this.mainPanel.Size = new System.Drawing.Size(236, 293);
             // 
+            // mpbCancel
+            // 
+            this.mpbCancel.Enabled = false;
+            this.mpbCancel.Location = new System.Drawing.Point(5, 190);
+            this.mpbCancel.Name = "mpbCancel";
+            this.mpbCancel.Size = new System.Drawing.Size(110, 26);
+            this.mpbCancel.TabIndex = 69;
+            this.mpbCancel.Text = "Відмінити";
+            this.mpbCancel.Visible = false;
+            this.mpbCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // mptbArticle
+            // 
+            this.mptbArticle.Enabled = false;
+            this.mptbArticle.Location = new System.Drawing.Point(72, 44);
+            this.mptbArticle.Name = "mptbArticle";
+            this.mptbArticle.Size = new System.Drawing.Size(162, 23);
+            this.mptbArticle.TabIndex = 51;
+            this.mptbArticle.Visible = false;
+            // 
             // mpbFindAdd
             // 
             this.mpbFindAdd.Location = new System.Drawing.Point(120, 190);
             this.mpbFindAdd.Name = "mpbFindAdd";
             this.mpbFindAdd.Size = new System.Drawing.Size(110, 26);
             this.mpbFindAdd.TabIndex = 33;
-            this.mpbFindAdd.Text = "Знайти";
+            this.mpbFindAdd.Text = "Пошук";
             this.mpbFindAdd.Click += new System.EventHandler(this.btnFindAdd_Click);
             // 
             // statusBar
@@ -183,6 +207,7 @@
             // 
             // mpbAdd
             // 
+            this.mpbAdd.Enabled = false;
             this.mpbAdd.Location = new System.Drawing.Point(5, 190);
             this.mpbAdd.Name = "mpbAdd";
             this.mpbAdd.Size = new System.Drawing.Size(110, 26);
@@ -214,12 +239,10 @@
             // mplInfo
             // 
             this.mplInfo.BackColor = System.Drawing.Color.Gainsboro;
-            this.mplInfo.Font = new System.Drawing.Font("Tahoma", 16F, System.Drawing.FontStyle.Bold);
-            this.mplInfo.ForeColor = System.Drawing.Color.Blue;
+            this.mplInfo.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
             this.mplInfo.Location = new System.Drawing.Point(3, 162);
             this.mplInfo.Name = "mplInfo";
             this.mplInfo.Size = new System.Drawing.Size(231, 26);
-            this.mplInfo.Text = "Ціна не вірна";
             this.mplInfo.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // mplPriceOpt
@@ -256,7 +279,7 @@
             // 
             this.mplNameCapt.Location = new System.Drawing.Point(3, 67);
             this.mplNameCapt.Name = "mplNameCapt";
-            this.mplNameCapt.Size = new System.Drawing.Size(69, 20);
+            this.mplNameCapt.Size = new System.Drawing.Size(69, 16);
             this.mplNameCapt.Text = "Назва: ";
             this.mplNameCapt.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
@@ -290,7 +313,6 @@
             this.mplBarCode.Location = new System.Drawing.Point(73, 2);
             this.mplBarCode.Name = "mplBarCode";
             this.mplBarCode.Size = new System.Drawing.Size(162, 20);
-            this.mplBarCode.Text = "8032625972082_123456789";
             // 
             // mplBarCodeCapt
             // 
@@ -332,7 +354,8 @@
             this.MinimizeBox = false;
             this.Name = "frmPriceChecker";
             this.Text = "BRB3";
-            this.Load += new System.EventHandler(this.DocSearch_Load);
+            this.Load += new System.EventHandler(this.PriceChecker_Load);
+            this.Closed += new System.EventHandler(this.PriceChecker_Closed);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.DocSerch_KeyUp);
             this.mainPanel.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -372,6 +395,8 @@
         private System.Windows.Forms.MenuItem miFindAdd;
         private System.Windows.Forms.MenuItem miSync;
         private System.Windows.Forms.MenuItem miSettings;
+        private System.Windows.Forms.TextBox mptbArticle;
+        private System.Windows.Forms.Button mpbCancel;
 
 
     }

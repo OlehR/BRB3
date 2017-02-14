@@ -20,12 +20,17 @@ namespace BRB
             //Application.Run(new BRB.Forms.frmWaresScan());
             //SingleInstanceApplication.Run(new Forms.frmDocGrid(TypeDoc.SupplyLogistic));
             //SingleInstanceApplication.Run(new Forms.frmWaresGrid(TypeDoc.SupplyLogistic, 3699652));
-            //SingleInstanceApplication.Run(new Forms.frmMain());
+            SingleInstanceApplication.Run(new Forms.frmMain());
             //SingleInstanceApplication.Run(new Forms.frmDocSearch());
             //SingleInstanceApplication.Run(new Forms.frmAdvSettingsDoc());
+<<<<<<< HEAD
             SingleInstanceApplication.Run(new Forms.frmMain());
+=======
+            //SingleInstanceApplication.Run(new Forms.frmPriceChecker());
+>>>>>>> ccd82ee88b51a4b34f8d0e93d45752e94a43bb93
             //SingleInstanceApplication.Run(new Forms.frmTest());
             //SingleInstanceApplication.Run(new Forms.frmWaresScan());
+            //SingleInstanceApplication.Run(new Forms.frmInfo());
         }
     }
 }

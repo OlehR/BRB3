@@ -7,9 +7,10 @@ using System.IO;
 using System.Diagnostics;
 namespace BRB
 {
-
     public class Data
     {
+        public delegate void CallProgressBar(int parPercent);
+
         #region Запити
         private string varSQLDocs = @"SELECT  d.number_doc,
                                       d.type_doc, 
@@ -113,7 +114,7 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
 						   where  code_wares = @parCodeWares
                            and    number_doc = @parNumberDoc";
 
-        private string varSQLSaveDocEx= @"update docs
+        private string varSQLSaveDocEx = @"update docs
 						   set    number_out_invoice =@parNumberOutInvoice,
                                   date_out_invoice = @parDateOutInvoice,
                                   flag_price_with_vat = @parFlagPriceWithVat,
@@ -121,49 +122,50 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
                                   flag_sum_qty_doc = @parFlagSumQtyDoc,
                                   flag_insert_weigth_from_barcode=@parFlagInsertWeigthFromBarcode
                             where  number_doc = @parNumberDoc";
- 
+
         private string varSQLFindCodeWaresFromBarCode = @"SELECT        au.code_wares, au.code_unit,au.coefficient, ud.abr_unit
                 FROM   ADDITION_UNIT AS au INNER JOIN
                    UNIT_DIMENSION AS ud ON au.code_unit = ud.code_unit
                 WHERE        (au.bar_code = @parBarCode)";
-/*        private string varSQLFindBarCode(bool parIsComplect,bool parIsBarCode)
-        {
-            return
-                @"SELECT  dw.code_wares, 
-                                      dw.number_doc, 
-                                      dw.quantity,
-                                      case  
-                                         WHEN d .flag_price_with_vat = 1 THEN dw.price * (1 + w.vat/100) 
-                                         ELSE dw.price 
-                                      END AS price, 
-                                      w.name_wares, 
-                                      dw.num_pop, 
-                                      dw.quantity_temp, 
-                                      CASE 
-                                          WHEN d .flag_price_with_vat = 1 THEN dw.price_temp * (1 + w.vat/100) 
-                                          ELSE dw.price_temp 
-                                      END AS price_temp, 
-                                      au.bar_code, 
-                                      au.coefficient, 
-                                      au.code_unit, 
-                                      aus.code_unit as code_unit_scan,
-                                      w.term,
-                                      d.type_doc
-                              FROM    DOCS_WARES AS dw 
-                              INNER JOIN WARES AS w ON dw.code_wares = w.code_wares 
-                              INNER JOIN ADDITION_UNIT AS au ON dw.code_unit = au.code_unit AND dw.code_wares = au.code_wares 
-                              INNER JOIN ADDITION_UNIT AS aus ON dw.code_wares = aus.code_wares 
-                              INNER JOIN DOCS AS d ON dw.number_doc = d.number_doc 
-" +
-                                (parIsComplect ? @"INNER JOIN DOCS AS dd ON d.okpo_supplier = dd.okpo_supplier AND d.type_doc = dd.type_doc AND d.date_doc = dd.date_doc AND d.code_shop = dd.code_shop " : "") +
-                                @"
-                               WHERE   (dw.number_doc = @parNumberDoc) AND 
-" +
- (parIsBarCode?@"                (aus.bar_code = @parBarCode)": @"(dw.code_wares = @parCodeWares)")+
-@"                              ORDER BY dw.quantity";
-        }*/
+        //tree
+        /*        private string varSQLFindBarCode(bool parIsComplect,bool parIsBarCode)
+                {
+                    return
+                        @"SELECT  dw.code_wares, 
+                                              dw.number_doc, 
+                                              dw.quantity,
+                                              case  
+                                                 WHEN d .flag_price_with_vat = 1 THEN dw.price * (1 + w.vat/100) 
+                                                 ELSE dw.price 
+                                              END AS price, 
+                                              w.name_wares, 
+                                              dw.num_pop, 
+                                              dw.quantity_temp, 
+                                              CASE 
+                                                  WHEN d .flag_price_with_vat = 1 THEN dw.price_temp * (1 + w.vat/100) 
+                                                  ELSE dw.price_temp 
+                                              END AS price_temp, 
+                                              au.bar_code, 
+                                              au.coefficient, 
+                                              au.code_unit, 
+                                              aus.code_unit as code_unit_scan,
+                                              w.term,
+                                              d.type_doc
+                                      FROM    DOCS_WARES AS dw 
+                                      INNER JOIN WARES AS w ON dw.code_wares = w.code_wares 
+                                      INNER JOIN ADDITION_UNIT AS au ON dw.code_unit = au.code_unit AND dw.code_wares = au.code_wares 
+                                      INNER JOIN ADDITION_UNIT AS aus ON dw.code_wares = aus.code_wares 
+                                      INNER JOIN DOCS AS d ON dw.number_doc = d.number_doc 
+        " +
+                                        (parIsComplect ? @"INNER JOIN DOCS AS dd ON d.okpo_supplier = dd.okpo_supplier AND d.type_doc = dd.type_doc AND d.date_doc = dd.date_doc AND d.code_shop = dd.code_shop " : "") +
+                                        @"
+                                       WHERE   (dw.number_doc = @parNumberDoc) AND 
+        " +
+         (parIsBarCode?@"                (aus.bar_code = @parBarCode)": @"(dw.code_wares = @parCodeWares)")+
+        @"                              ORDER BY dw.quantity";
+                }*/
         #endregion
-        private string varError=null;
+        private string varError = null;
         private DataTable tDocs;
         private DataTable tDocsWares;
         private MSCeSQL SQL = null;
@@ -178,7 +180,8 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
 
         public DataTable FillDocs(TypeDoc parTypeDoc)
         {
-            string varSQL = string.Format(varSQLDocs,(parTypeDoc == TypeDoc.Supply ? " in (1,3) " : string.Concat(" = ", (int)parTypeDoc)));
+            string varSQL = string.Format(varSQLDocs,
+                (parTypeDoc == TypeDoc.Supply || parTypeDoc == TypeDoc.SupplyLogistic ? " in (1,3,4,5,6,7) " : string.Concat(" = ", (int)parTypeDoc)));
             //SQL.AddWithValueF("@parTypeDoc", parTypeDoc);
             SQL.ClearParam();
             tDocs = SQL.ExecuteQuery(varSQL);
@@ -191,9 +194,9 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
             tDocsWares = SQL.ExecuteQuery(varSQLDocsWares);
             return tDocsWares;
         }
-        public DateTime GetDateSync(int parNumberDoc)
+        public DateTime GetDateSync()
         {
-            SQL.AddWithValueF("@parNumberDoc", parNumberDoc);
+            SQL.ClearParam(); //AddWithValueF("@parNumberDoc", parNumberDoc);
             return Convert.ToDateTime(SQL.ExecuteScalar(varSQLTimeSync));
         }
         //Old GetSummaZak
@@ -255,18 +258,18 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
             return Convert.ToDateTime(SQL.ExecuteScalar(varSQLGetDateOutInvoice));
         }
 
-        
+
         public int GetWaresOrder(int parNumberDoc)
         {
             SQL.AddWithValueF("@parNumberDoc", parNumberDoc);
             object o = SQL.ExecuteScalar(varSQLGetWaresOrder);
-            return (o == null?1:Convert.ToInt32(o));
+            return (o == null ? 1 : Convert.ToInt32(o));
         }
         public DataRow GetCodeWaresFromBarCode(string parBarCode)
         {
             SQL.AddWithValueF("@parBarCode", parBarCode);
             DataTable dt = SQL.ExecuteQuery(varSQLFindCodeWaresFromBarCode);
-            if (dt!=null &&dt.Rows.Count>0)
+            if (dt != null && dt.Rows.Count > 0)
                 return dt.Rows[0];
             return null;
         }
@@ -298,7 +301,7 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
                     return dt;
                 }
                 */
-        public void SaveDocWares(int parNumberDoc, int parCodeWares,int parNupPop ,decimal parQty, decimal @parPrice)
+        public void SaveDocWares(int parNumberDoc, int parCodeWares, int parNupPop, decimal parQty, decimal @parPrice)
         {
             SQL.AddWithValueF("@parNumberDoc", parNumberDoc);
             SQL.AddWithValue("@parCodeWares", parCodeWares);
@@ -309,7 +312,7 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
             SQL.ExecuteNonQuery(varSQLSaveDocWares);
         }
 
-        public void SaveDocEx(int parNumberDoc, int parNumberOutInvoice, DateTime parDateOutInvoice, int parFlagPriceWithVat, int parFlagChangeDocSup, int parFlagSumQtyDoc,int parFlagInsertWeigthFromBarcode)
+        public void SaveDocEx(int parNumberDoc, int parNumberOutInvoice, DateTime parDateOutInvoice, int parFlagPriceWithVat, int parFlagChangeDocSup, int parFlagSumQtyDoc, int parFlagInsertWeigthFromBarcode)
         {
             SQL.AddWithValueF("@parNumberDoc", parNumberDoc);
             SQL.AddWithValue("@parNumberOutInvoice", parNumberOutInvoice);
@@ -319,11 +322,9 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
             SQL.AddWithValue("@parFlagSumQtyDoc", parFlagSumQtyDoc);
             SQL.AddWithValue("@parFlagInsertWeigthFromBarcode", parFlagInsertWeigthFromBarcode);
 
-
-
             SQL.ExecuteNonQuery(varSQLSaveDocEx);
         }
-        
+
         /// <summary>
         /// Зберігає інформацію про ціну(Прайсчекер)
         /// </summary>
@@ -335,43 +336,44 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
         {
             try
             {
-            SQL.ClearParam();
-            var o=SQL.ExecuteScalar(@"SELECT count(clID)+1 from CheckLogs");
-            int clID = 1;
-            if (o != null && o != DBNull.Value)
-                clID = Convert.ToInt32(o);
-            
-            string sqlStr = @"insert into CheckLogs(clID, clGoodsArticle, clBarcode, clStatus) values(@clID, @clGoodsArticle, @clBarcode, @clStatus)";
-            SQL.AddWithValueF("@clID", clID);
-            SQL.AddWithValue("@clGoodsArticle",parCodeWares );
-            SQL.AddWithValue("@clBarcode",parBarCode );
-            SQL.AddWithValue("@clStatus", parStatus);
-            SQL.ExecuteNonQuery(sqlStr);
+                SQL.ClearParam();
+                var o = SQL.ExecuteScalar(@"SELECT count(clID)+1 from CheckLogs");
+                int clID = 1;
+                if (o != null && o != DBNull.Value)
+                    clID = Convert.ToInt32(o);
+
+                string sqlStr = @"insert into CheckLogs(clID, clGoodsArticle, clBarcode, clStatus) values(@clID, @clGoodsArticle, @clBarcode, @clStatus)";
+                SQL.AddWithValueF("@clID", clID);
+                SQL.AddWithValue("@clGoodsArticle", parCodeWares);
+                SQL.AddWithValue("@clBarcode", parBarCode);
+                SQL.AddWithValue("@clStatus", parStatus);
+                SQL.ExecuteNonQuery(sqlStr);
                 return new Status();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return new Status(EStatus.DBError, ex.Message);
             }
-         }
+        }
 
-        public DataTable  FindPCh(string parStrFind,int TypeFind )
+        public DataTable FindPCh(string parStrFind, int TypeFind)
         {
-            string sqlFindPCh= "select cpID, cpGoodsName, cpGoodsArticle, cpBarcode, cpPrice1, cpPrice2 from CheckPrices where " + 
-                (TypeFind==0?"cpGoodsArticle":"cpBarcode") + "=@parStrFind";
+            string sqlFindPCh = "select cpID, cpGoodsName, cpGoodsArticle, cpBarcode, cpPrice1, cpPrice2 from CheckPrices where " +
+                (TypeFind == 0 ? "cpGoodsArticle" : "cpBarcode") + "=@parStrFind";
             SQL.AddWithValueF("@parStrFind", parStrFind);
             return SQL.ExecuteQuery(sqlFindPCh);
-         
+
         }
 
         /// <summary>
         /// Синхронізація з сервером.
         /// </summary>
-        public Status Sync()
+        public Status Sync(TypeSynchronization parTSync, CallProgressBar parCallProgressBar)
         {
-            
             try
             {
+                if (parCallProgressBar != null)
+                    parCallProgressBar(0);
                 int start_web = Environment.TickCount;
                 string varLocalVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
 
@@ -379,60 +381,103 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
                 DataSet dsInvoice = new DataSet("dsInvoice");
                 DataTable dtDocs;
                 DataTable dtDocsWares;
-                DataTable dtDocsIn;                
+                DataTable dtDocsIn;
                 DataTable dtWares;
 
-
-                #region Завантаження  даних на сервер
-                
-                //налаштування для WEB-сервісу
+                //налаштування для WEB-сервісу 
                 BRB.WebReference.BRB_Sync webService = new BRB.WebReference.BRB_Sync();
                 webService.Url = Global.ServiceUrl; //@wsUrl;
                 webService.Timeout = Global.ServiceTimeOut;
 
-                string sqlStr = @"SELECT number_doc, type_doc, date_doc, serial_tzd, name_supplier, code_shop, sum_with_vat, sum_without_vat, flag_price_with_vat, number_out_invoice, 
+
+                #region Завантаження  даних на сервер
+                string varWrongUpLoadDocs = string.Empty, sqlStr;
+
+                if (parTSync == TypeSynchronization.Price)
+                {
+                    DataSet dsCheckLogs = new DataSet("dsCheckLogs");
+                    sqlStr = @"select clID, clGoodsArticle, clBarcode, clStatus   from CheckLogs";
+                    var dt = SQL.ExecuteQuery(sqlStr);
+                    dt.TableName = "dtCheckLogs";
+                    dsCheckLogs.Tables.Add(dt);
+
+                    if (Proto.IsData(dt))
+                    {
+                        if (parCallProgressBar != null)
+                            parCallProgressBar(15);
+                        DataSet ds = webService.UpLoadPriceLogs(dsCheckLogs, Global.DeviceID, Global.ShopName);
+                        if(parCallProgressBar!=null)
+                            parCallProgressBar(35);
+                        foreach (DataRow dr in ds.Tables["dtReturn"].Rows)
+                        {
+                            //sum++;
+                            //errText = (string.IsNullOrEmpty(errText) ? "" : errText + ",") + dr["clGoodsArticle"].ToString();
+                            varWrongUpLoadDocs = (string.IsNullOrEmpty(varWrongUpLoadDocs) ? "" : varWrongUpLoadDocs + ",") + "'" + dr["clID"].ToString() + "'";
+                        }
+                    }
+                    // Видаляємо всі документи крім тих що не синхронізувались
+                    sqlStr = @"delete from CheckLogs where clID not in (" + varWrongUpLoadDocs + ") ";
+                    SQL.ExecuteNonQuery(sqlStr);
+                    if (parCallProgressBar != null)
+                        parCallProgressBar(50);
+                  
+                }
+                else
+                {
+                    sqlStr = @"SELECT number_doc, type_doc, date_doc, serial_tzd, name_supplier, code_shop, sum_with_vat, sum_without_vat, flag_price_with_vat, number_out_invoice, 
                          date_out_invoice, number_tax_invoice, date_tax_invoice, flag_sum_qty_doc, change_date, input_code, flag_change_doc_sup, okpo_supplier, 
                          flag_insert_weigth_from_barcode AS flag_insert_weigth_from_barcod
                             FROM DOCS  WHERE  (status = 1) AND EXISTS  (SELECT 1 AS Expr1 FROM DOCS_WARES  WHERE (number_doc = DOCS.number_doc))";
-                
-                SQL.ClearParam();
-                dtDocs=SQL.ExecuteQuery(sqlStr);
-                dtDocs.TableName = "dtDocs";
-                dsInvoice.Tables.Add(dtDocs);
-                
-                sqlStr = @"SELECT   DW.number_doc, DW.code_wares, DW.code_unit, DW.price,  DW.price_temp, 
+
+                    SQL.ClearParam();
+                    dtDocs = SQL.ExecuteQuery(sqlStr);
+                    dtDocs.TableName = "dtDocs";
+                    dsInvoice.Tables.Add(dtDocs);
+
+                    sqlStr = @"SELECT   DW.number_doc, DW.code_wares, DW.code_unit, DW.price,  DW.price_temp, 
                                         DW.quantity,  DW.quantity_temp,  DW.num_pop, DW.change_date
                                FROM     DOCS_WARES AS DW 
                                 INNER JOIN DOCS AS D ON DW.number_doc = D.number_doc
                                WHERE    (D.status = 1)";
-                dtDocsWares = SQL.ExecuteQuery(sqlStr);
-                dtDocsWares.TableName = "dtDocsWares";
-                dsInvoice.Tables.Add(dtDocsWares);
+                    dtDocsWares = SQL.ExecuteQuery(sqlStr);
+                    dtDocsWares.TableName = "dtDocsWares";
+                    dsInvoice.Tables.Add(dtDocsWares);
 
+
+                    // Вигружаємо дані на сервер,якщо є що
                 
-                // Вигружаємо дані на сервер,якщо є що
-                string varWrongUpLoadDocs = string.Empty;
-                if (dtDocs.Rows.Count > 0)
-                {
-                    DataSet ds = webService.UpLoadDocsNew(dsInvoice, varLocalVersion);
-                    foreach (DataRow dr in ds.Tables["dtReturnHead"].Rows)
-                    {  //Формуємо список успішно вигружених документів.
-                        varWrongUpLoadDocs += (varWrongUpLoadDocs == "" ? "" : ",") + dr["number_doc"].ToString();
+                    if (dtDocs.Rows.Count > 0)
+                    {
+                        try
+                        {
+                            if (parCallProgressBar != null)
+                                parCallProgressBar(15);
+                            var ds = webService.UpLoadDocsNew(dsInvoice, varLocalVersion);
+                            parCallProgressBar(35);
+                            foreach (DataRow dr in ds.Tables["dtReturnHead"].Rows)
+                            {  //Формуємо список успішно вигружених документів.
+                                varWrongUpLoadDocs += (varWrongUpLoadDocs == "" ? "" : ",") + dr["number_doc"].ToString();
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            return new Status(EStatus.Error, ex.Message);
+                        }
+                        
                     }
-                }
-                //Видаляємо завантажені документи з бази
-                if (varWrongUpLoadDocs != string.Empty)
-                {
-                    sqlStr = @"delete from docs_wares where number_doc in 
+                    //Видаляємо завантажені документи з бази
+                    if (varWrongUpLoadDocs != string.Empty)
+                    {
+                        sqlStr = @"delete from docs_wares where number_doc in 
 					( select number_doc from docs where status = 1 and number_doc not in (" + varWrongUpLoadDocs + "))";
-                    SQL.ExecuteNonQuery(sqlStr);
-                    sqlStr = @"delete from docs where  status = 1 and number_doc not in (" + varWrongUpLoadDocs + ")";
-                    SQL.ExecuteNonQuery(sqlStr);
-                }
-              
-                //Видаляємо старі дані + де відсутня шапка або товари
-                SQL.AddWithValueF("@Date_doc", DateTime.Now.Date.AddDays(-2));
-                sqlStr = @"delete from docs_wares where number_doc in 
+                        SQL.ExecuteNonQuery(sqlStr);
+                        sqlStr = @"delete from docs where  status = 1 and number_doc not in (" + varWrongUpLoadDocs + ")";
+                        SQL.ExecuteNonQuery(sqlStr);
+                    }
+
+                    //Видаляємо старі дані + де відсутня шапка або товари
+                    SQL.AddWithValueF("@Date_doc", DateTime.Now.Date.AddDays(-2));
+                    sqlStr = @"delete from docs_wares where number_doc in 
 					( SELECT number_doc
                       FROM   DOCS
                       WHERE (date_doc < @Date_doc) AND (status = 0) AND (type_doc <> 2) OR
@@ -443,10 +488,9 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
                                       DOCS AS d ON dw.number_doc = d.number_doc
                                WHERE  (d.number_doc IS NULL)
                      )";
-                 SQL.ExecuteNonQuery(sqlStr);
+                    SQL.ExecuteNonQuery(sqlStr);
 
-
-                 sqlStr = @"delete from   docs where number_doc in 
+                    sqlStr = @"delete from   docs where number_doc in 
                     ( SELECT number_doc
                       FROM   DOCS
                       WHERE (date_doc < @Date_doc) AND (status = 0) AND (type_doc <> 2) OR
@@ -457,7 +501,11 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
                                       DOCS_WARES AS dw ON dw.number_doc = d.number_doc
                                WHERE  (dw.number_doc IS NULL)
                                AND    (d.type_doc <> 9)";
-                SQL.ExecuteNonQuery(sqlStr);
+                    SQL.ExecuteNonQuery(sqlStr);
+                    if (parCallProgressBar != null)
+                        parCallProgressBar(50);
+
+                }
                 #endregion
 
                 #region Завантаження даних з сервера
@@ -466,137 +514,164 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
                                 FROM   DOCS_WARES AS dw LEFT OUTER JOIN
                                         WARES AS w ON w.code_wares = dw.code_wares
                                 WHERE  (w.code_wares IS NULL)";
-               
+
                 SQL.ClearParam();
                 dtWares = SQL.ExecuteQuery(sqlStr);
 
                 sqlStr = @"select number_doc from Docs";
                 dtDocsIn = SQL.ExecuteQuery(sqlStr);
-                string varNumberDoc=String.Empty;
+                string varNumberDoc = String.Empty;
                 foreach (DataRow r in dtDocsIn.Rows)
                     varNumberDoc += (varNumberDoc == String.Empty ? "" : ",") + r[0];
 
                 if (varNumberDoc == string.Empty)
                     varNumberDoc = "0";
 
-                DataSet temp = null, dsInvoiceTemplate = null;
-               
-                DateTime t = Convert.ToDateTime(Global.TimeSync).Date;
-                
+                DataSet temp = null, dsAnswer = null;
+
                 int w = 0, a = 0, u = 0;
+                //Якщо синхронізація відбувалась не сьогодня то повне оновлення.
+                if (Global.TimeSync.Date != DateTime.Now.Date)
+                    w = a = u = 1;
 
-
-              
                 try
                 {
-                    dsInvoiceTemplate = webService.LoadDocs(temp, Global.DeviceID, Global.ShopName, w, a, u, t, varNumberDoc);
-                
-
-                // Зберігаємо отримані довідники  в базі
-                SQL.BulkInsert(dsInvoiceTemplate.Tables["dtDocs"], "Docs");
-                SQL.BulkInsert(dsInvoiceTemplate.Tables["dtDocsWares"], "Docs_Wares");
-                if(SQL.IsData(dsInvoiceTemplate.Tables["dtWares"]))
-                 {
-                    SQL.ExecuteNonQuery(@"DELETE FROM wares");
-                    SQL.BulkInsert(dsInvoiceTemplate.Tables["dtWares"], "Wares");
-                  }
-
-                 if(SQL.IsData(dsInvoiceTemplate.Tables["dtUnitDimension"]))
-                 {
-                    SQL.ExecuteNonQuery(@"DELETE FROM addition_unit");
-                    SQL.BulkInsert(dsInvoiceTemplate.Tables["dtAdditionUnit"], "Addition_Unit");
-                 }
-
-                if(SQL.IsData(dsInvoiceTemplate.Tables["dtAdditionUnit"]))
-                 {
-                    SQL.ExecuteNonQuery(@"DELETE FROM unit_dimension");
-                     SQL.BulkInsert(dsInvoiceTemplate.Tables["dtUnitDimension"], "Unit_Dimension");
-                 }  
-                
-               
-
-                    if (SQL.IsData( dsInvoiceTemplate.Tables["dtSettings"]))
+                    if (parCallProgressBar != null)
+                        parCallProgressBar(65);
+                    switch (parTSync)
                     {
-                        DataRow dr =dsInvoiceTemplate.Tables["dtSettings"].Rows[0];
-                        Global.TimeSync = Convert.ToDateTime( dr["time_sync"]);
-                        
-                        if(dr["code_shop"].ToString()!=Global.ShopName)
+                        case TypeSynchronization.Document:
+                            dsAnswer = webService.LoadDocs(temp, Global.DeviceID, Global.ShopName, w, a, u, Global.TimeSync.Date, varNumberDoc);
+                            // Зберігаємо отримані довідники  в базі
+
+                            break;
+                        case TypeSynchronization.Inventories:
+                            dsAnswer = webService.LoadInventory ( Global.DeviceID, Global.ShopName, varNumberDoc);
+                            break;
+                        case TypeSynchronization.Price:
+                            //Удалим все цены на товары!!! 08.04.2011
+                            sqlStr = @"delete from CheckPrices";
+                            SQL.ExecuteNonQuery(sqlStr);
+
+                            // Загрузим новые документы -------------------------------------------
+                            DataSet dsCheckPrices = new DataSet("dsCheckPrices");
+                            sqlStr = @"select cpID  from CheckPrices ";
+                            var dt = SQL.ExecuteQuery(sqlStr);
+                            dt.TableName = "dtCheckPrices";
+                            dsCheckPrices.Tables.Add(dt);
+                            dsAnswer = webService.LoadCheckPrices(dsCheckPrices, Global.DeviceID, Global.ShopName);
+                            if (dsAnswer != null && Proto.IsData(dsAnswer.Tables["CheckPrices"]))
+                                SQL.BulkInsert(dsAnswer.Tables["CheckPrices"], "CheckPrices");
+                            break;
+                    }
+                    if (parCallProgressBar != null)
+                        parCallProgressBar(75);
+
+                    if (SQL.IsData(dsAnswer.Tables["dtDocs"]))
+                        SQL.BulkInsert(dsAnswer.Tables["dtDocs"], "Docs");
+
+                    if (SQL.IsData(dsAnswer.Tables["dtDocsWares"]))
+                        SQL.BulkInsert(dsAnswer.Tables["dtDocsWares"], "Docs_Wares");
+
+
+                    if (SQL.IsData(dsAnswer.Tables["dtWares"]))
+                    {
+                        SQL.ExecuteNonQuery(@"DELETE FROM wares");
+                        SQL.BulkInsert(dsAnswer.Tables["dtWares"], "Wares");
+                    }
+
+                    if (SQL.IsData(dsAnswer.Tables["dtUnitDimension"]))
+                    {
+                        SQL.ExecuteNonQuery(@"DELETE FROM addition_unit");
+                        SQL.BulkInsert(dsAnswer.Tables["dtAdditionUnit"], "Addition_Unit");
+                    }
+
+                    if (SQL.IsData(dsAnswer.Tables["dtAdditionUnit"]))
+                    {
+                        SQL.ExecuteNonQuery(@"DELETE FROM unit_dimension");
+                        SQL.BulkInsert(dsAnswer.Tables["dtUnitDimension"], "Unit_Dimension");
+                    }
+
+                    if (SQL.IsData(dsAnswer.Tables["dtSettings"]))
+                    {
+                        DataRow dr = dsAnswer.Tables["dtSettings"].Rows[0];
+                        Global.TimeSync = Convert.ToDateTime(dr["time_sync"]);
+
+                        if (dr["code_shop"].ToString() != Global.ShopName)
                         {
                             try
                             {
-                              
-                                    Global.ShopName = dr["code_shop"].ToString();
-                                    ConfigFile cFile = new ConfigFile();
-                                    cFile.SetAppSetting("ShopName", Global.ShopName, true);
-                               
+                                Global.ShopName = dr["code_shop"].ToString();
+                                ConfigFile cFile = new ConfigFile();
+                                cFile.SetAppSetting("ShopName", Global.ShopName, true);
+
                             }
                             catch (System.Exception)
                             {
-                                
-                                varError= "Оновлення конфіг файла невдале!!";
+                                varError = "Оновлення конфіг файла невдале!!";
                             }
-                            
 
                         }
-                           
-                        SQL.AddWithValueF("@timesync",Global.TimeSync);
-                        SQL.ExecuteNonQuery( @"update Settings set  TimeSync = @timesync"); 
-                          
-                       
-                    }
 
-                    if (dsInvoiceTemplate.Tables["dtDelDocs"].Rows.Count > 0)
+                        SQL.AddWithValueF("@timesync", Global.TimeSync);
+                        SQL.ExecuteNonQuery(@"update Settings set  TimeSync = @timesync");
+                    }
+                    if (parCallProgressBar != null)
+                        parCallProgressBar(85);
+
+                    if (dsAnswer.Tables["dtDelDocs"].Rows.Count > 0)
                     {
-                        if(SQL.IsData(dsInvoiceTemplate.Tables["dtDelDocs"]))
-                         foreach (DataRow drHead in dsInvoiceTemplate.Tables["dtDelDocs"].Rows)
+                        if (SQL.IsData(dsAnswer.Tables["dtDelDocs"]))
+                            foreach (DataRow drHead in dsAnswer.Tables["dtDelDocs"].Rows)
                             {
                                 try
                                 {
-                                  SQL.AddWithValueF("@number_doc",Convert.ToInt32(drHead["number_doc"]));
-                                  SQL.ExecuteNonQuery(@"delete from docs_wares where number_doc in (@number_doc)");
-                                  SQL.ExecuteNonQuery(@"delete from docs where  number_doc in (@number_doc)");
+                                    SQL.AddWithValueF("@number_doc", Convert.ToInt32(drHead["number_doc"]));
+                                    SQL.ExecuteNonQuery(@"delete from docs_wares where number_doc in (@number_doc)");
+                                    SQL.ExecuteNonQuery(@"delete from docs where  number_doc in (@number_doc)");
                                 }
-                                catch{}
+                                catch { }
                             }
-                        }
+                    }
+                    if (parCallProgressBar != null)
+                        parCallProgressBar(90);
 
-                    
+
                 }
-                catch(Exception Ex)
+                catch (Exception Ex)
                 {
-                    return new Status(EStatus.Error,"Звязок відсутній! Провірте підключення ТЗД!!!" + Ex.Message);
+                    return new Status(EStatus.Error, "Звязок відсутній! Провірте підключення ТЗД!!!" + Ex.Message);
                 }
                 #endregion
-
 
                 string Directory = Global.Directory;
                 string file = Global.RemouteFile;
 
                 DownLoadFile(@"\Program Files\Update_brb", "Update_brb.exe", webService, null);
-                if(DownLoadFile(Global.Directory, Global.RemouteFile, webService, varLocalVersion))
+                if (DownLoadFile(Global.Directory, Global.RemouteFile, webService, varLocalVersion))
                     try
                     {
-                        Process.Start("\\Program Files\\Update_brb\\Update_brb.exe", null);
+                        Process.Start(@"\Program Files\Update_brb\Update_brb.exe", null);
                     }
                     catch
                     { }
-                
-                
+
                 int end_web = Environment.TickCount;
                 int result_web = (end_web - start_web) / 1000;
-               
-                
+
                 if (varWrongUpLoadDocs == String.Empty)
                     varError = "Синхронізація завершена! Час синхронізації:" + result_web.ToString() + " сек.";
                 else
                     varError = "Завершено з помилками! Документи №" + varWrongUpLoadDocs + " не загрузились на сервер! Час синхронізації:" + result_web.ToString();
 
+                if (parCallProgressBar != null)
+                    parCallProgressBar(100);
             }
             catch
             { }
             return new Status(EStatus.Ok, varError);
         }
-
+/*
 
         public Status SyncPr()
         {
@@ -611,94 +686,82 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
                 string errDocs = "'-0'";
                 //int i=0;
 
-                    start_proc = Environment.TickCount;
+                start_proc = Environment.TickCount;
 
-                    
-                
                 //налаштування для WEB-сервісу
-                    var webService = new BRB.WebReference.BRB_Sync();
-                    webService.Url = Global.ServiceUrl; //@wsUrl;
-                    webService.Timeout = Global.ServiceTimeOut;
+                var webService = new BRB.WebReference.BRB_Sync();
+                webService.Url = Global.ServiceUrl; //@wsUrl;
+                webService.Timeout = Global.ServiceTimeOut;
 
 
-                    // Вычитаем готовые к отправке
-                    DataSet dsCheckLogs = new DataSet("dsCheckLogs");
-                                      
+                // Вычитаем готовые к отправке
+                DataSet dsCheckLogs = new DataSet("dsCheckLogs");
+                string sqlStr = @"select clID, clGoodsArticle, clBarcode, clStatus   from CheckLogs";
+                var dt = SQL.ExecuteQuery(sqlStr);
+                dt.TableName = "dtCheckLogs";
+                dsCheckLogs.Tables.Add(dt);
 
-                    string sqlStr = @"select clID, clGoodsArticle, clBarcode, clStatus   from CheckLogs";
-                    var dt= SQL.ExecuteQuery(sqlStr);
-                    dt.TableName = "dtCheckLogs";
-                    dsCheckLogs.Tables.Add(dt);
+                if (Proto.IsData(dt))
+                {
 
-                    
-
-                    if (Proto.IsData(dt) )
+                    DataSet ds = webService.UpLoadPriceLogs(dsCheckLogs, Global.DeviceID, Global.ShopName);
+                    foreach (DataRow dr in ds.Tables["dtReturn"].Rows)
                     {
-
-                        DataSet ds = webService.UpLoadPriceLogs(dsCheckLogs, Global.DeviceID, Global.ShopName);
-                        foreach (DataRow dr in ds.Tables["dtReturn"].Rows)
-                        {
-                            sum++;
-                                errText = (string.IsNullOrEmpty(errText) ? "" : errText + ",") + dr["clGoodsArticle"].ToString();
-                                errDocs = (string.IsNullOrEmpty(errDocs) ? "" :errText + ",") + "'" + dr["clID"].ToString() + "'";
-                        }
+                        sum++;
+                        errText = (string.IsNullOrEmpty(errText) ? "" : errText + ",") + dr["clGoodsArticle"].ToString();
+                        errDocs = (string.IsNullOrEmpty(errDocs) ? "" : errText + ",") + "'" + dr["clID"].ToString() + "'";
                     }
+                }
 
 
-                    // Удалим все локальные загруженные документы
+                // Удалим все локальные загруженные документы
+                sqlStr = @"delete from CheckLogs where clID not in (" + errDocs + ") ";
+                SQL.ExecuteNonQuery(sqlStr);
 
-                   
-                    sqlStr = @"delete from CheckLogs where clID not in (" + errDocs + ") ";
-                    SQL.ExecuteNonQuery(sqlStr);
-                    
-                    //Удалим все цены на товары!!! 08.04.2011
-                    sqlStr = @"delete from CheckPrices";
-                    SQL.ExecuteNonQuery(sqlStr);
-                    
-                    // Загрузим новые документы -------------------------------------------
+                //Удалим все цены на товары!!! 08.04.2011
+                sqlStr = @"delete from CheckPrices";
+                SQL.ExecuteNonQuery(sqlStr);
 
-                    DataSet dsCheckPrices = new DataSet("dsCheckPrices");
-                    sqlStr = @"select cpID  from CheckPrices ";
-                    dt = SQL.ExecuteQuery(sqlStr);
-                    dt.TableName = "dtCheckPrices";
-                    dsCheckLogs.Tables.Add(dt);
+                // Загрузим новые документы -------------------------------------------
+                DataSet dsCheckPrices = new DataSet("dsCheckPrices");
+                sqlStr = @"select cpID  from CheckPrices ";
+                dt = SQL.ExecuteQuery(sqlStr);
+                dt.TableName = "dtCheckPrices";
+                dsCheckLogs.Tables.Add(dt);
 
-                    start_web = Environment.TickCount;
+                start_web = Environment.TickCount;
 
-                    DataSet ds1 = webService.LoadCheckPrices(dsCheckPrices, Global.DeviceID, Global.ShopName);
+                DataSet ds1 = webService.LoadCheckPrices(dsCheckPrices, Global.DeviceID, Global.ShopName);
 
-                    end_web = Environment.TickCount;
-                    result_web = (end_web - start_web) / 1000;
+                end_web = Environment.TickCount;
+                result_web = (end_web - start_web) / 1000;
 
 
-                    start_base = Environment.TickCount;
-                    if (ds1 != null && Proto.IsData(ds1.Tables["CheckPrices"]))
-                    {
-                        SQL.BulkInsert(ds1.Tables["CheckPrices"], "CheckPrices");
-                    }
-                    end_base = Environment.TickCount;
-                    result_base = (end_base - start_base) / 1000;
+                start_base = Environment.TickCount;
+                if (ds1 != null && Proto.IsData(ds1.Tables["CheckPrices"]))
+                    SQL.BulkInsert(ds1.Tables["CheckPrices"], "CheckPrices");
 
+                end_base = Environment.TickCount;
+                result_base = (end_base - start_base) / 1000;
 
-                    
-                    end_proc = Environment.TickCount;
-                    result_proc = (end_proc - start_proc) / 1000;
-                    
-                    // Вычитаем 
-                    if (errText == "")
-                        varError="Синхронізація завершена успішно!";
-                    else
-                        varError="Завершено з помилками! Не загрузилось " + sum + " товарів";                
+                end_proc = Environment.TickCount;
+                result_proc = (end_proc - start_proc) / 1000;
+
+                // Вычитаем 
+                if (errText == "")
+                    varError = "Синхронізація завершена успішно!";
+                else
+                    varError = "Завершено з помилками! Не загрузилось " + sum + " товарів";
 
             }
             catch (Exception)
             {
-                varError="Звязок відсутній! Провірте підключення ТЗД!!!";
+                varError = "Звязок відсутній! Провірте підключення ТЗД!!!";
             }
             return new Status(EStatus.Ok, varError);
-            
-        }
 
+        }
+*/
         /// <summary>
         /// Оновлюємо файл з сервера. 
         /// </summary>
@@ -707,38 +770,38 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
         /// <param name="parWebService"></param>
         /// <param name="parVersion">null Якщо треба визначити версію</param>
         /// <returns>Якщо файл оновлено true</returns>
-        bool DownLoadFile(string parDir,string parFile,BRB.WebReference.BRB_Sync parWebService,string parVersion)
+        bool DownLoadFile(string parDir, string parFile, BRB.WebReference.BRB_Sync parWebService, string parVersion)
         {
             string varSourceFile = System.IO.Path.Combine(parDir, parFile);
-            if(parVersion==null)
+            if (parVersion == null)
                 try
                 {
                     FileVersionInfo fileInfo = FileVersionInfo.GetVersionInfo(varSourceFile);
-                    
-                        parVersion = fileInfo.ProductVersion;
-                    
+
+                    parVersion = fileInfo.ProductVersion;
+
                 }
                 catch
                 {
                     parVersion = "-1";
                 }
             string varVersionServer = parWebService.GetFileVersionNew(parFile);
-                if (varVersionServer != string.Empty && varVersionServer!=parVersion)
+            if (varVersionServer != string.Empty && varVersionServer != parVersion)
+            {
+
+                using (FileStream stream2 = new FileStream(varSourceFile, FileMode.Create))
+                {
+                    try
                     {
+                        byte[] buffer = parWebService.GetFile(parFile);
+                        stream2.Write(buffer, 0, buffer.Length);
+                        return true;
+                    }
+                    catch { }
+                }
+            }
 
-                        using (FileStream stream2 = new FileStream(varSourceFile, FileMode.Create))
-                        {
-                            try
-                            {
-                                byte[] buffer = parWebService.GetFile(parFile);
-                                stream2.Write(buffer, 0, buffer.Length);
-                                return true;
-                            }
-                            catch  { }
-                        }                            
-                     }
-
-                return false;
+            return false;
         }
     }
 }
