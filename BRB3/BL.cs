@@ -573,7 +573,7 @@ namespace BRB
                     }
                     else
                     {
-                        dt=cData.FindPCh(bcID,1);
+                        dt = cData.FindPCh(parBarCode, 1);
                         cData.SavePCh(string.Empty,parBarCode,"2");
                     }
 

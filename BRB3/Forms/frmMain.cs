@@ -95,7 +95,7 @@ namespace BRB.Forms
                     btnNewDocGrid(TypeDoc.SupplyLogistic);
                     break;
                 case 1:
-                    btnNewDocGrid(TypeDoc.Inventories); // Переписати на мініревізію
+                    btnNewDocGrid(TypeDoc.MiniInventories); // Переписати на мініревізію
                     break;
                 case 2:
                     btnNewPriceChecker();
