@@ -386,7 +386,7 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
 
                 //налаштування для WEB-сервісу 
                 BRB.WebReference.BRB_Sync webService = new BRB.WebReference.BRB_Sync();
-                webService.Url = Global.ServiceUrl; //@wsUrl;
+                webService.Url = Global.ServiceUrl;  //@"http://localhost:20416/BRB3_Sync/BRB3_Sync.asmx";// Global.ServiceUrl; //@wsUrl;
                 webService.Timeout = Global.ServiceTimeOut;
 
 
@@ -451,9 +451,10 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
                         try
                         {
                             if (parCallProgressBar != null)
-                                parCallProgressBar(15);
+                                parCallProgressBar(10);
                             var ds = webService.UpLoadDocsNew(dsInvoice, varLocalVersion);
-                            parCallProgressBar(35);
+                            if (parCallProgressBar != null)
+                                parCallProgressBar(15);
                             foreach (DataRow dr in ds.Tables["dtReturnHead"].Rows)
                             {  //Формуємо список успішно вигружених документів.
                                 varWrongUpLoadDocs += (varWrongUpLoadDocs == "" ? "" : ",") + dr["number_doc"].ToString();
@@ -503,7 +504,7 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
                                AND    (d.type_doc <> 9)";
                     SQL.ExecuteNonQuery(sqlStr);
                     if (parCallProgressBar != null)
-                        parCallProgressBar(50);
+                        parCallProgressBar(25);
 
                 }
                 #endregion
