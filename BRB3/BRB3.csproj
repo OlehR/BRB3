@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{30FF68EB-C947-4FF8-969E-7453444781CE}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -99,6 +99,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>dll\Symbol.Barcode2.DesignCF35.dll</HintPath>
     </Reference>
+    <Reference Include="Symbol.ResourceCoordination, Version=2.9.0.0, Culture=neutral, PublicKeyToken=68ec8db391f150ca, processorArchitecture=MSIL" />
     <Reference Include="System">
       <Name>System</Name>
       <Private>False</Private>

@@ -549,6 +549,9 @@ namespace BRB
 
         public static string GetDeviceID()
         {
+            if (Global.eTypeTerminal == TypeTerminal.MotorolaMC75Ax)
+                return new Symbol.ResourceCoordination.TerminalInfo().ESN;
+
             // Initialize the output buffer to the size of a 
             // Win32 DEVICE_ID structure.
             byte[] outbuff = new byte[20];
@@ -619,9 +622,9 @@ namespace BRB
 
             for (int i = 1; i < id.Length - 1; i = i + 2)
             {
-                //cod = cod + id[i];
-                if (id[i] >= '0' && id[i] <= '9') { cod = cod + id[i]; }
-                else { cod = cod + (int)id[i]; }
+                cod = cod + id[i];
+                //if (id[i] >= '0' && id[i] <= '9') { cod = cod + id[i]; }
+                //else { cod = cod + (int)id[i]; }
             }
             return cod;
         }
