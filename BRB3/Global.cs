@@ -123,7 +123,7 @@ namespace BRB
     static public string ShopName ="6399";
     static public string SettingsPwl ="5744";
     static public DateTime TimeSync;
-    static public string RemouteFile="BRB.exe";
+    static public string RemouteFile="BRB3.exe";
     static public string Directory=@"\Download\";
         
     static public  ReadINI2 varIniKeyMap;
@@ -133,11 +133,46 @@ namespace BRB
             cData = new Data(new MSCeSQL(SqlCeConectionBRB));
             cBL = new BL(cData);
             TimeSync = cData.GetDateSync();
-            
+            ConfigFile cFile = new ConfigFile();
+
             eTypeTerminal = parTypeTerminal;
             InitKeyMap(eTypeTerminal);
+
             if(string.IsNullOrEmpty(DeviceID))
-               DeviceID = PocketID.GetDeviceID(); 
+               DeviceID = PocketID.GetDeviceID();
+
+            string tmp = cFile.GetAppSetting("ShopName");
+            if (!string.IsNullOrEmpty(tmp))
+                ShopName = tmp;
+
+            tmp = cFile.GetAppSetting("DbPwl");
+            if (!string.IsNullOrEmpty(tmp))
+                DbPwl = tmp;
+
+            tmp = cFile.GetAppSetting("SettingsPwl");
+            if (!string.IsNullOrEmpty(tmp))
+                SettingsPwl = tmp;
+
+            tmp = cFile.GetAppSetting("ServiceUrl");
+            if (!string.IsNullOrEmpty(tmp))
+                ServiceUrl = tmp;
+
+            tmp = cFile.GetAppSetting("ServiceTimeOut");
+            if (!string.IsNullOrEmpty(tmp))
+                ServiceTimeOut = Convert.ToInt32(tmp);
+
+            tmp = cFile.GetAppSetting("SettingsPwl");
+            if (!string.IsNullOrEmpty(tmp))
+                ShopName = SettingsPwl;
+
+            tmp = cFile.GetAppSetting("RemouteFile");
+            if (!string.IsNullOrEmpty(tmp))
+                RemouteFile = tmp;
+
+            tmp = cFile.GetAppSetting("Directory");
+            if (!string.IsNullOrEmpty(tmp))
+                Directory = tmp;
+            
             switch(parTypeTerminal)
             {
                 case TypeTerminal.BitatekIT8000:
