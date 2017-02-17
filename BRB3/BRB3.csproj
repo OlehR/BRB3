@@ -99,7 +99,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>dll\Symbol.Barcode2.DesignCF35.dll</HintPath>
     </Reference>
-    <Reference Include="Symbol.ResourceCoordination, Version=2.9.0.0, Culture=neutral, PublicKeyToken=68ec8db391f150ca, processorArchitecture=MSIL" />
+    <Reference Include="Symbol.ResourceCoordination, Version=2.9.0.0, Culture=neutral, PublicKeyToken=68ec8db391f150ca, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dll\Symbol.ResourceCoordination.dll</HintPath>
+    </Reference>
     <Reference Include="System">
       <Name>System</Name>
       <Private>False</Private>
