@@ -19,31 +19,38 @@ namespace BRB.Forms
 
         public void InitializeComponentManual()
         {
-            //this.labelDown.Size = new System.Drawing.Size(236 * Global.tCoefficient, (1 + Global.hToolbarTerminal) * Global.tCoefficient);
             this.Text = "BRB3 " + Global.eTypeTerminal.ToString();
 
-            //this.miExit.Text += " " + HotKey.Settings_Exit;
-            
+            this.miExit.Text += " " + HotKey.strSearch_Exit;
 
-            if (Global.eTypeTerminal ==TypeTerminal.BitatekIT8000)
+            if (Global.eTypeTerminal == TypeTerminal.BitatekIT8000)
                 this.WindowState = FormWindowState.Maximized;
         }
 
-        private void Settings_Load(object sender, EventArgs e)
+        private void DocSearch_Load(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.None;
-            
+            string [] inventory = Global.ShopInventory.Split('-');
+            if (inventory.Length == 2)
+            {
+                this.tctbTMInvDoc.Text = inventory[0];
+                this.tctbTMInvTM.Text = inventory[1];
+            }
+            this.tclDeviceName.Text = " " + Global.eTypeTerminal.ToString();
+            this.tclSerial.Text = " " + PocketID.GetDeviceID();
+            this.tclTM.Text  = " " + Global.ShopName;
+            this.tclFile.Text = " " + Global.RemouteFile;
+            this.tclDownload.Text = " " + Global.Directory;
         }
 
         #region Кнопки/функції ---------------------
 
-        private void Settings_KeyUp(object sender, KeyEventArgs e)
+        private void DocSerch_KeyUp(object sender, KeyEventArgs e)
         {
-            //if (e.KeyValue == HotKey.Settings_Exit)
-            //{
-            //    btnExit();
-            //}
-            
+            if (e.KeyValue == HotKey.Search_Exit)
+            {
+                btnExit();
+            }
+
         }
 
         // Клік по пункту меню
@@ -51,28 +58,14 @@ namespace BRB.Forms
         {
             btnExit();
         }
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            //btnSave();
-        }
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            //btnCancel();
-        }
-        
+
 
         // Функції
         private void btnExit()
         {
             this.Close();
         }
-        
 
         #endregion
-
-        private void tabPage1_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

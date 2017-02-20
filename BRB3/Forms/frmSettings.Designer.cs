@@ -37,11 +37,26 @@
             this.labelTop = new System.Windows.Forms.Label();
             this.labelDown = new System.Windows.Forms.Label();
             this.mainPanel = new System.Windows.Forms.Panel();
-            this.tabControl = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.mpTabControl = new System.Windows.Forms.TabControl();
+            this.tcMain = new System.Windows.Forms.TabPage();
+            this.tclDownload = new System.Windows.Forms.Label();
+            this.tclFile = new System.Windows.Forms.Label();
+            this.tclFileCapt = new System.Windows.Forms.Label();
+            this.tclDownloadCapt = new System.Windows.Forms.Label();
+            this.tctbTMInvTM = new System.Windows.Forms.TextBox();
+            this.tclTMInvDef = new System.Windows.Forms.Label();
+            this.tctbTMInvDoc = new System.Windows.Forms.TextBox();
+            this.tclTMInvCapt = new System.Windows.Forms.Label();
+            this.tclTM = new System.Windows.Forms.Label();
+            this.tclTMCapt = new System.Windows.Forms.Label();
+            this.tclSerialCapt = new System.Windows.Forms.Label();
+            this.tcDevNameCapt = new System.Windows.Forms.Label();
+            this.tclSerial = new System.Windows.Forms.Label();
+            this.tclDeviceName = new System.Windows.Forms.Label();
+            this.tcDataBase = new System.Windows.Forms.TabPage();
             this.mainPanel.SuspendLayout();
-            this.tabControl.SuspendLayout();
+            this.mpTabControl.SuspendLayout();
+            this.tcMain.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainMenu
@@ -97,37 +112,164 @@
             // 
             // mainPanel
             // 
-            this.mainPanel.Controls.Add(this.tabControl);
+            this.mainPanel.Controls.Add(this.mpTabControl);
             this.mainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainPanel.Location = new System.Drawing.Point(1, 1);
             this.mainPanel.Name = "mainPanel";
             this.mainPanel.Size = new System.Drawing.Size(236, 293);
             // 
-            // tabControl
+            // mpTabControl
             // 
-            this.tabControl.Controls.Add(this.tabPage1);
-            this.tabControl.Controls.Add(this.tabPage2);
-            this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl.Location = new System.Drawing.Point(0, 0);
-            this.tabControl.Name = "tabControl";
-            this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(236, 293);
-            this.tabControl.TabIndex = 0;
+            this.mpTabControl.Controls.Add(this.tcMain);
+            this.mpTabControl.Controls.Add(this.tcDataBase);
+            this.mpTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mpTabControl.Location = new System.Drawing.Point(0, 0);
+            this.mpTabControl.Name = "mpTabControl";
+            this.mpTabControl.SelectedIndex = 0;
+            this.mpTabControl.Size = new System.Drawing.Size(236, 293);
+            this.mpTabControl.TabIndex = 3;
             // 
-            // tabPage1
+            // tcMain
             // 
-            this.tabPage1.Location = new System.Drawing.Point(4, 25);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Size = new System.Drawing.Size(228, 264);
-            this.tabPage1.Text = "tabPage1";
-            this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
+            this.tcMain.Controls.Add(this.tclDownload);
+            this.tcMain.Controls.Add(this.tclFile);
+            this.tcMain.Controls.Add(this.tclFileCapt);
+            this.tcMain.Controls.Add(this.tclDownloadCapt);
+            this.tcMain.Controls.Add(this.tctbTMInvTM);
+            this.tcMain.Controls.Add(this.tclTMInvDef);
+            this.tcMain.Controls.Add(this.tctbTMInvDoc);
+            this.tcMain.Controls.Add(this.tclTMInvCapt);
+            this.tcMain.Controls.Add(this.tclTM);
+            this.tcMain.Controls.Add(this.tclTMCapt);
+            this.tcMain.Controls.Add(this.tclSerialCapt);
+            this.tcMain.Controls.Add(this.tcDevNameCapt);
+            this.tcMain.Controls.Add(this.tclSerial);
+            this.tcMain.Controls.Add(this.tclDeviceName);
+            this.tcMain.Location = new System.Drawing.Point(4, 25);
+            this.tcMain.Name = "tcMain";
+            this.tcMain.Size = new System.Drawing.Size(228, 264);
+            this.tcMain.Text = "Основні";
             // 
-            // tabPage2
+            // tclDownload
             // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 25);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(192, 71);
-            this.tabPage2.Text = "tabPage2";
+            this.tclDownload.BackColor = System.Drawing.Color.Gainsboro;
+            this.tclDownload.Location = new System.Drawing.Point(107, 120);
+            this.tclDownload.Name = "tclDownload";
+            this.tclDownload.Size = new System.Drawing.Size(116, 20);
+            this.tclDownload.Text = "Folder";
+            // 
+            // tclFile
+            // 
+            this.tclFile.BackColor = System.Drawing.Color.Gainsboro;
+            this.tclFile.Location = new System.Drawing.Point(80, 97);
+            this.tclFile.Name = "tclFile";
+            this.tclFile.Size = new System.Drawing.Size(143, 20);
+            this.tclFile.Text = "File";
+            // 
+            // tclFileCapt
+            // 
+            this.tclFileCapt.Location = new System.Drawing.Point(3, 97);
+            this.tclFileCapt.Name = "tclFileCapt";
+            this.tclFileCapt.Size = new System.Drawing.Size(75, 20);
+            this.tclFileCapt.Text = "Файл: ";
+            this.tclFileCapt.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // tclDownloadCapt
+            // 
+            this.tclDownloadCapt.Location = new System.Drawing.Point(3, 120);
+            this.tclDownloadCapt.Name = "tclDownloadCapt";
+            this.tclDownloadCapt.Size = new System.Drawing.Size(100, 20);
+            this.tclDownloadCapt.Text = "Завантажувати: ";
+            this.tclDownloadCapt.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // tctbTMInvTM
+            // 
+            this.tctbTMInvTM.Location = new System.Drawing.Point(151, 73);
+            this.tctbTMInvTM.MaxLength = 4;
+            this.tctbTMInvTM.Name = "tctbTMInvTM";
+            this.tctbTMInvTM.Size = new System.Drawing.Size(45, 23);
+            this.tctbTMInvTM.TabIndex = 9;
+            this.tctbTMInvTM.Text = "????";
+            // 
+            // tclTMInvDef
+            // 
+            this.tclTMInvDef.Location = new System.Drawing.Point(139, 74);
+            this.tclTMInvDef.Name = "tclTMInvDef";
+            this.tclTMInvDef.Size = new System.Drawing.Size(10, 20);
+            this.tclTMInvDef.Text = "-";
+            this.tclTMInvDef.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // tctbTMInvDoc
+            // 
+            this.tctbTMInvDoc.Location = new System.Drawing.Point(107, 73);
+            this.tctbTMInvDoc.MaxLength = 2;
+            this.tctbTMInvDoc.Name = "tctbTMInvDoc";
+            this.tctbTMInvDoc.Size = new System.Drawing.Size(30, 23);
+            this.tctbTMInvDoc.TabIndex = 1;
+            this.tctbTMInvDoc.Text = "??";
+            // 
+            // tclTMInvCapt
+            // 
+            this.tclTMInvCapt.Location = new System.Drawing.Point(3, 74);
+            this.tclTMInvCapt.Name = "tclTMInvCapt";
+            this.tclTMInvCapt.Size = new System.Drawing.Size(100, 20);
+            this.tclTMInvCapt.Text = "Інвентаризація: ";
+            this.tclTMInvCapt.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // tclTM
+            // 
+            this.tclTM.BackColor = System.Drawing.Color.Gainsboro;
+            this.tclTM.Location = new System.Drawing.Point(80, 51);
+            this.tclTM.Name = "tclTM";
+            this.tclTM.Size = new System.Drawing.Size(143, 20);
+            this.tclTM.Text = "TM";
+            // 
+            // tclTMCapt
+            // 
+            this.tclTMCapt.Location = new System.Drawing.Point(3, 51);
+            this.tclTMCapt.Name = "tclTMCapt";
+            this.tclTMCapt.Size = new System.Drawing.Size(75, 20);
+            this.tclTMCapt.Text = "Майданчик: ";
+            this.tclTMCapt.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // tclSerialCapt
+            // 
+            this.tclSerialCapt.Location = new System.Drawing.Point(3, 28);
+            this.tclSerialCapt.Name = "tclSerialCapt";
+            this.tclSerialCapt.Size = new System.Drawing.Size(75, 20);
+            this.tclSerialCapt.Text = "Серійний№: ";
+            this.tclSerialCapt.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // tcDevNameCapt
+            // 
+            this.tcDevNameCapt.Location = new System.Drawing.Point(3, 5);
+            this.tcDevNameCapt.Name = "tcDevNameCapt";
+            this.tcDevNameCapt.Size = new System.Drawing.Size(75, 20);
+            this.tcDevNameCapt.Text = "ТЗД: ";
+            this.tcDevNameCapt.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // tclSerial
+            // 
+            this.tclSerial.BackColor = System.Drawing.Color.Gainsboro;
+            this.tclSerial.Location = new System.Drawing.Point(80, 28);
+            this.tclSerial.Name = "tclSerial";
+            this.tclSerial.Size = new System.Drawing.Size(143, 20);
+            this.tclSerial.Text = "Serial";
+            // 
+            // tclDeviceName
+            // 
+            this.tclDeviceName.BackColor = System.Drawing.Color.Gainsboro;
+            this.tclDeviceName.Location = new System.Drawing.Point(80, 5);
+            this.tclDeviceName.Name = "tclDeviceName";
+            this.tclDeviceName.Size = new System.Drawing.Size(143, 20);
+            this.tclDeviceName.Text = "DeviceName";
+            // 
+            // tcDataBase
+            // 
+            this.tcDataBase.Location = new System.Drawing.Point(4, 25);
+            this.tcDataBase.Name = "tcDataBase";
+            this.tcDataBase.Size = new System.Drawing.Size(228, 264);
+            this.tcDataBase.Text = "База";
             // 
             // frmSettings
             // 
@@ -147,10 +289,11 @@
             this.MinimizeBox = false;
             this.Name = "frmSettings";
             this.Text = "BRB3";
-            this.Load += new System.EventHandler(this.Settings_Load);
-            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Settings_KeyUp);
+            this.Load += new System.EventHandler(this.DocSearch_Load);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.DocSerch_KeyUp);
             this.mainPanel.ResumeLayout(false);
-            this.tabControl.ResumeLayout(false);
+            this.mpTabControl.ResumeLayout(false);
+            this.tcMain.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -163,11 +306,25 @@
         private System.Windows.Forms.MainMenu mainMenu;
         private System.Windows.Forms.MenuItem miMovements;
         private System.Windows.Forms.Panel mainPanel;
+        private System.Windows.Forms.Label tclDeviceName;
         private System.Windows.Forms.MenuItem mAbout;
         private System.Windows.Forms.MenuItem miExit;
-        private System.Windows.Forms.TabControl tabControl;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.Label tclSerial;
+        private System.Windows.Forms.TabControl mpTabControl;
+        private System.Windows.Forms.TabPage tcMain;
+        private System.Windows.Forms.TabPage tcDataBase;
+        private System.Windows.Forms.Label tcDevNameCapt;
+        private System.Windows.Forms.Label tclSerialCapt;
+        private System.Windows.Forms.Label tclTMCapt;
+        private System.Windows.Forms.Label tclTM;
+        private System.Windows.Forms.Label tclTMInvCapt;
+        private System.Windows.Forms.TextBox tctbTMInvDoc;
+        private System.Windows.Forms.Label tclTMInvDef;
+        private System.Windows.Forms.TextBox tctbTMInvTM;
+        private System.Windows.Forms.Label tclDownloadCapt;
+        private System.Windows.Forms.Label tclFileCapt;
+        private System.Windows.Forms.Label tclFile;
+        private System.Windows.Forms.Label tclDownload;
 
 
     }

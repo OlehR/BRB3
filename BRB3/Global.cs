@@ -112,7 +112,6 @@ namespace BRB
         static public int hToolbarTerminal = 0;
         static public int icoSize = 32;
         static public int tCoefficient = 1;
-        //static public Single mainFont = 10F;
         public static string DeviceID=string.Empty;
         static public string dbPathBRB = @"\Program Files\BRB3\Database\BRB.sdf";
         static public string DbPwl = "";
@@ -121,7 +120,7 @@ namespace BRB
         static public string ServiceUrl = @"http://10.10.4.215/BRB_Sync/BRB_Sync.asmx";//@"http://vm/VsSyncMobile/VsSyncMobile.asmx";
      static public int ServiceTimeOut = 100000 ;   
     static public string ShopName ="6399";
-    static public string ShopInventory = "6399";
+    static public string ShopInventory = "99-6399";
     static public string SettingsPwl ="5744";
     static public DateTime TimeSync;
     static public string RemouteFile="BRB3.exe";
@@ -162,9 +161,9 @@ namespace BRB
             if (!string.IsNullOrEmpty(tmp))
                 ServiceTimeOut = Convert.ToInt32(tmp);
 
-            tmp = cFile.GetAppSetting("SettingsPwl");
-            if (!string.IsNullOrEmpty(tmp))
-                ShopName = SettingsPwl;
+            //tmp = cFile.GetAppSetting("SettingsPwl");
+            //if (!string.IsNullOrEmpty(tmp))
+            //    ShopName = SettingsPwl;
 
             tmp = cFile.GetAppSetting("RemouteFile");
             if (!string.IsNullOrEmpty(tmp))
