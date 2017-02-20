@@ -248,36 +248,11 @@ public sealed class ConfigFile
                                         <add key=""DbPwl"" value="""" />
                                         <add key=""ServiceUrl"" value=""http://10.10.4.215/BRB_Sync/BRB_Sync.asmx"" />
                                         <add key=""ServiceTimeOut"" value=""100000"" />
-                                        <add key=""UseAutoSync"" value=""false"" />
-                                        <add key=""AutoSyncInterval"" value=""60"" />
-                                        <add key=""PocketName"" value=""KPK1"" />
-                                        <add key=""PNaklDocNum"" value=""1"" />
-                                        <add key=""UseAutoScan"" value=""true"" />
                                         <add key=""ShopName"" value=""6399"" />
+                                        <add key=""ShopInventory"" value=""6399"" />
                                         <add key=""SettingsPwl"" value=""5744"" />
-                                        <add key=""InGoodsBegin"" value=""25"" />
-                                        <add key=""InGoodsMassa"" value=""4"" />
-                                        <add key=""InGoodsPersent"" value=""50"" />
-                                        <add key=""InGoodsWidth"" value=""6"" />
-                                        <add key=""QtyBigZNP"" value=""false"" />
-                                        <add key=""ControlDocSup"" value=""true"" />
-                                        <add key=""TimeSync"" value=""01.03.2012 00:00:00"" />
-                                        <add key=""Docs"" value=""0"" />
-                                        <add key=""DocsWares"" value=""0"" />
-                                        <add key=""Wares"" value=""1"" />
-                                        <add key=""AdditionUnit"" value=""1"" />
-                                        <add key=""UnitDimension"" value=""1"" />
-                                        <add key=""LCOkpoSupplier"" value="""" />
-                                        <add key=""InGoodsMask"" value=""29"" />
-                                        <add key=""InPrice2Pos"" value=""14"" />
-                                        <add key=""EnableSaveLogBadPrice"" value=""true"" />
-                                        <add key=""EnableSaveLogNotFoundPrice"" value=""true"" />
                                         <add key=""RemouteFile"" value=""BRB.exe"" />
-                                        <add key=""Directory"" value=""\Download\"" />
-                                        <add key=""SumDatabase"" value=""0"" />
-                                        <add key=""SumScan"" value=""0"" />
-                                        <add key=""TimeSyncInvent"" value=""01.03.2012 00:00:00"" />
-                                        <add key=""ShopInvent"" value=""11-4739"" />
+                                        <add key=""Directory"" value=""\Download\"" />                                        
 									</appSettings>
 								</configuration>";
 
