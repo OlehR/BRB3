@@ -40,6 +40,8 @@ namespace BRB.Forms
             this.tclTM.Text  = " " + Global.ShopName;
             this.tclFile.Text = " " + Global.RemouteFile;
             this.tclDownload.Text = " " + Global.Directory;
+            this.tcdbBase.Text = Global.dbPathBRB;
+            this.tcdbSync.Text = Global.ServiceUrl;
         }
 
         #region Кнопки/функції ---------------------
@@ -67,5 +69,7 @@ namespace BRB.Forms
         }
 
         #endregion
+
+   
     }
 }

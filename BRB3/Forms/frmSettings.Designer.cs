@@ -54,9 +54,14 @@
             this.tclSerial = new System.Windows.Forms.Label();
             this.tclDeviceName = new System.Windows.Forms.Label();
             this.tcDataBase = new System.Windows.Forms.TabPage();
+            this.tcdbSync = new System.Windows.Forms.TextBox();
+            this.tcdbSyncCapt = new System.Windows.Forms.Label();
+            this.tcdbBase = new System.Windows.Forms.TextBox();
+            this.tcdbBaseCapt = new System.Windows.Forms.Label();
             this.mainPanel.SuspendLayout();
             this.mpTabControl.SuspendLayout();
             this.tcMain.SuspendLayout();
+            this.tcDataBase.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainMenu
@@ -266,10 +271,48 @@
             // 
             // tcDataBase
             // 
+            this.tcDataBase.Controls.Add(this.tcdbSync);
+            this.tcDataBase.Controls.Add(this.tcdbSyncCapt);
+            this.tcDataBase.Controls.Add(this.tcdbBase);
+            this.tcDataBase.Controls.Add(this.tcdbBaseCapt);
             this.tcDataBase.Location = new System.Drawing.Point(4, 25);
             this.tcDataBase.Name = "tcDataBase";
             this.tcDataBase.Size = new System.Drawing.Size(228, 264);
             this.tcDataBase.Text = "База";
+            // 
+            // tcdbSync
+            // 
+            this.tcdbSync.BackColor = System.Drawing.Color.Gainsboro;
+            this.tcdbSync.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tcdbSync.Location = new System.Drawing.Point(3, 64);
+            this.tcdbSync.Name = "tcdbSync";
+            this.tcdbSync.Size = new System.Drawing.Size(222, 23);
+            this.tcdbSync.TabIndex = 0;
+            this.tcdbSync.Text = "tcdbSync";
+            // 
+            // tcdbSyncCapt
+            // 
+            this.tcdbSyncCapt.Location = new System.Drawing.Point(3, 46);
+            this.tcdbSyncCapt.Name = "tcdbSyncCapt";
+            this.tcdbSyncCapt.Size = new System.Drawing.Size(100, 20);
+            this.tcdbSyncCapt.Text = "Сервер: ";
+            // 
+            // tcdbBase
+            // 
+            this.tcdbBase.BackColor = System.Drawing.Color.Gainsboro;
+            this.tcdbBase.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tcdbBase.Location = new System.Drawing.Point(3, 23);
+            this.tcdbBase.Name = "tcdbBase";
+            this.tcdbBase.Size = new System.Drawing.Size(222, 23);
+            this.tcdbBase.TabIndex = 2;
+            this.tcdbBase.Text = "tcdbBase";
+            // 
+            // tcdbBaseCapt
+            // 
+            this.tcdbBaseCapt.Location = new System.Drawing.Point(3, 5);
+            this.tcdbBaseCapt.Name = "tcdbBaseCapt";
+            this.tcdbBaseCapt.Size = new System.Drawing.Size(100, 20);
+            this.tcdbBaseCapt.Text = "База: ";
             // 
             // frmSettings
             // 
@@ -294,6 +337,7 @@
             this.mainPanel.ResumeLayout(false);
             this.mpTabControl.ResumeLayout(false);
             this.tcMain.ResumeLayout(false);
+            this.tcDataBase.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -325,6 +369,10 @@
         private System.Windows.Forms.Label tclFileCapt;
         private System.Windows.Forms.Label tclFile;
         private System.Windows.Forms.Label tclDownload;
+        private System.Windows.Forms.Label tcdbBaseCapt;
+        private System.Windows.Forms.TextBox tcdbBase;
+        private System.Windows.Forms.Label tcdbSyncCapt;
+        private System.Windows.Forms.TextBox tcdbSync;
 
 
     }

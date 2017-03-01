@@ -1,6 +1,6 @@
 ﻿namespace BRB.Forms
 {
-    partial class frmInfo
+    partial class frmAbout
     {
         /// <summary>
         /// Required designer variable.
@@ -130,7 +130,7 @@
             this.mplDeviceName.Text = "DeviceName";
             this.mplDeviceName.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
-            // frmInfo
+            // frmAbout
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
@@ -146,7 +146,7 @@
             this.MaximizeBox = false;
             this.Menu = this.mainMenu;
             this.MinimizeBox = false;
-            this.Name = "frmInfo";
+            this.Name = "frmAbout";
             this.Text = "BRB3";
             this.Load += new System.EventHandler(this.DocSearch_Load);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.DocSerch_KeyUp);

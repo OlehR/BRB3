@@ -238,7 +238,7 @@ namespace BRB.Forms
         {
             try
             {
-                frmInfo formInfo = new frmInfo();
+                frmAbout formInfo = new frmAbout();
                 formInfo.Show();
             }
             catch (Exception ex)

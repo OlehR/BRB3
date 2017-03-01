@@ -9,9 +9,9 @@ using System.Windows.Forms;
 
 namespace BRB.Forms
 {
-    public partial class frmInfo : Form
+    public partial class frmAbout : Form
     {
-        public frmInfo()
+        public frmAbout()
         {
             InitializeComponent();
             InitializeComponentManual();

@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{30FF68EB-C947-4FF8-969E-7453444781CE}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -129,6 +129,12 @@
   <ItemGroup>
     <Compile Include="BL.cs" />
     <Compile Include="Data.cs" />
+    <Compile Include="Forms\frmAbout.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmAbout.designer.cs">
+      <DependentUpon>frmAbout.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\frmAdvSettingsDoc.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -146,12 +152,6 @@
     </Compile>
     <Compile Include="Forms\frmDocSearch.Designer.cs">
       <DependentUpon>frmDocSearch.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\frmInfo.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\frmInfo.Designer.cs">
-      <DependentUpon>frmInfo.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\frmMain.cs">
       <SubType>Form</SubType>
@@ -212,6 +212,10 @@
     <Compile Include="SqlBulkCopy\SqlCeRowsCopiedEventArgs.cs" />
     <Compile Include="Status.cs" />
     <Compile Include="Terminal.cs" />
+    <EmbeddedResource Include="Forms\frmAbout.resx">
+      <DependentUpon>frmAbout.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmAdvSettingsDoc.resx">
       <DependentUpon>frmAdvSettingsDoc.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -224,16 +228,13 @@
       <DependentUpon>frmDocSearch.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frmInfo.resx">
-      <DependentUpon>frmInfo.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmPriceChecker.resx">
       <DependentUpon>frmPriceChecker.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmSettings.resx">
       <DependentUpon>frmSettings.cs</DependentUpon>

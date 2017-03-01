@@ -185,7 +185,15 @@ namespace BRB.Forms
         }
         private void btnSettings()
         {
-            MessageBox.Show("Немає форми Settings");
+            try
+            {
+                frmSettings formSettings = new frmSettings();
+                formSettings.Show();
+            }
+            catch (Exception ex)
+            {
+                string er = ex.Message;
+            }
         }
         private void btnExit()
         {
@@ -195,7 +203,7 @@ namespace BRB.Forms
         {
             try
             {
-                frmInfo formInfo = new frmInfo();
+                frmAbout formInfo = new frmAbout();
                 formInfo.Show();
             }
             catch (Exception ex)
