@@ -147,7 +147,10 @@ namespace BRB
                             break;
 
                        default:
-                            res = status.ToString();
+                            if (message != null)
+                                res = message.ToString();
+                            else res = status.ToString();
+
                             break;
                     }
 

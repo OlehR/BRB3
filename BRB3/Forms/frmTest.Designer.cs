@@ -32,6 +32,7 @@
             this.menuItem1 = new System.Windows.Forms.MenuItem();
             this.menuItem2 = new System.Windows.Forms.MenuItem();
             this.mplBarCodeCapt = new System.Windows.Forms.Label();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.SuspendLayout();
             // 
             // mainMenu1
@@ -49,10 +50,17 @@
             // 
             // mplBarCodeCapt
             // 
-            this.mplBarCodeCapt.Location = new System.Drawing.Point(66, 184);
+            this.mplBarCodeCapt.Location = new System.Drawing.Point(185, 264);
             this.mplBarCodeCapt.Name = "mplBarCodeCapt";
             this.mplBarCodeCapt.Size = new System.Drawing.Size(50, 20);
             this.mplBarCodeCapt.Text = "label3";
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(12, 121);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(206, 31);
+            this.progressBar1.ParentChanged += new System.EventHandler(this.progressBar1_ParentChanged);
             // 
             // frmTest
             // 
@@ -60,6 +68,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(238, 295);
+            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.mplBarCodeCapt);
             this.Menu = this.mainMenu1;
             this.Name = "frmTest";
@@ -75,5 +84,6 @@
         private System.Windows.Forms.MenuItem menuItem1;
         private System.Windows.Forms.MenuItem menuItem2;
         private System.Windows.Forms.Label mplBarCodeCapt;
+        private System.Windows.Forms.ProgressBar progressBar1;
     }
 }

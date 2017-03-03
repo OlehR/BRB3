@@ -75,12 +75,13 @@
             this.miGroupingDoc = new System.Windows.Forms.MenuItem();
             this.miSeparator1 = new System.Windows.Forms.MenuItem();
             this.miSync = new System.Windows.Forms.MenuItem();
-            this.miSettings = new System.Windows.Forms.MenuItem();
             this.mAbout = new System.Windows.Forms.MenuItem();
             this.labelLeft = new System.Windows.Forms.Label();
             this.labelRigth = new System.Windows.Forms.Label();
             this.labelTop = new System.Windows.Forms.Label();
             this.labelDown = new System.Windows.Forms.Label();
+            this.progressBar = new System.Windows.Forms.ProgressBar();
+            this.SyncCapt = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // advancedList
@@ -282,7 +283,6 @@
             this.miMovements.MenuItems.Add(this.miGroupingDoc);
             this.miMovements.MenuItems.Add(this.miSeparator1);
             this.miMovements.MenuItems.Add(this.miSync);
-            this.miMovements.MenuItems.Add(this.miSettings);
             this.miMovements.Text = "Додатково";
             // 
             // miExit
@@ -333,11 +333,6 @@
             this.miSync.Text = "Синхронізація";
             this.miSync.Click += new System.EventHandler(this.btnSync_Click);
             // 
-            // miSettings
-            // 
-            this.miSettings.Text = "Налаштування";
-            this.miSettings.Click += new System.EventHandler(this.btnSettings_Click);
-            // 
             // mAbout
             // 
             this.mAbout.Text = "Про ...";
@@ -375,17 +370,38 @@
             this.labelDown.Name = "labelDown";
             this.labelDown.Size = new System.Drawing.Size(236, 1);
             // 
+            // progressBar
+            // 
+            this.progressBar.Enabled = false;
+            this.progressBar.Location = new System.Drawing.Point(10, 140);
+            this.progressBar.Name = "progressBar";
+            this.progressBar.Size = new System.Drawing.Size(220, 20);
+            this.progressBar.Visible = false;
+            // 
+            // SyncCapt
+            // 
+            this.SyncCapt.Enabled = false;
+            this.SyncCapt.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Bold);
+            this.SyncCapt.Location = new System.Drawing.Point(10, 115);
+            this.SyncCapt.Name = "SyncCapt";
+            this.SyncCapt.Size = new System.Drawing.Size(220, 23);
+            this.SyncCapt.Text = "Синхронізація...";
+            this.SyncCapt.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.SyncCapt.Visible = false;
+            // 
             // frmDocGrid
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.BackColor = System.Drawing.SystemColors.WindowText;
+            this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(238, 295);
             this.Controls.Add(this.advancedList);
             this.Controls.Add(this.labelTop);
             this.Controls.Add(this.labelDown);
             this.Controls.Add(this.labelLeft);
             this.Controls.Add(this.labelRigth);
+            this.Controls.Add(this.progressBar);
+            this.Controls.Add(this.SyncCapt);
             this.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular);
             this.MaximizeBox = false;
             this.Menu = this.mainMenu;
@@ -393,8 +409,8 @@
             this.Name = "frmDocGrid";
             this.Text = "BRB3";
             this.Load += new System.EventHandler(this.frmDocGrid_Load);
-            this.Activated += new System.EventHandler(this.frmDocGrid_Activated);
             this.Closed += new System.EventHandler(this.frmDocGrid_Closed);
+            this.Activated += new System.EventHandler(this.frmDocGrid_Activated);
             this.ResumeLayout(false);
 
         }
@@ -419,6 +435,7 @@
         private System.Windows.Forms.MenuItem miExtraProperties;
         private System.Windows.Forms.MenuItem miGroupingDoc;
         private System.Windows.Forms.MenuItem miSync;
-        private System.Windows.Forms.MenuItem miSettings;
+        private System.Windows.Forms.ProgressBar progressBar;
+        private System.Windows.Forms.Label SyncCapt;
     }
 }

@@ -14,6 +14,7 @@ namespace BRB.Forms
         public frmTest()
         {
             InitializeComponent();
+            progressBar1.Value = 30;
            
         }
 
@@ -32,6 +33,11 @@ namespace BRB.Forms
         }
 
         private void frmTest_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void progressBar1_ParentChanged(object sender, EventArgs e)
         {
 
         }

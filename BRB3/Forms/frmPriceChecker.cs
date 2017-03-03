@@ -27,7 +27,6 @@ namespace BRB.Forms
             this.miExit.Text += " " + HotKey.strPriceChecker_Exit;
             this.miAdd.Text += " " + HotKey.strPriceChecker_Add;
             this.miFindAdd.Text += " " + HotKey.strPriceChecker_FindAdd;
-            this.miSettings.Text += " " + HotKey.strPriceChecker_Settings;
             this.miSync.Text += " " + HotKey.strPriceChecker_Sync;
             this.mAbout.Text += " " + HotKey.strPriceChecker_About;
             this.mpbAdd.Text += " " + HotKey.strPriceChecker_Add;
@@ -87,10 +86,6 @@ namespace BRB.Forms
                 if (this.mpbCancel.Enabled)
                     btnCancel();
             }
-            if (e.KeyValue == HotKey.PriceChecker_Settings)
-            {
-                btnSettings();
-            }
             if (e.KeyValue == HotKey.PriceChecker_Sync)
             {
                 btnSync();
@@ -124,11 +119,7 @@ namespace BRB.Forms
         {
             btnCancel();
         }
-        private void btnSettings_Click(object sender, EventArgs e)
-        {
-            btnSettings();
-        }
-        
+                
 
         // Функції
         private void btnExit()
@@ -147,13 +138,38 @@ namespace BRB.Forms
                 string er = ex.Message;
             }
         }
+
+        void showProgres(int parPercent)
+        {
+           // this.mainPanel.Visible = false;
+            this.progressBar.Value = parPercent;
+        }
+
         private void btnSync()
         {
             if (clsDialogBox.ConfirmationBoxShow("Почати синхронізацію?") == DialogResult.Yes)
             {
-                Status st = Global.cData.Sync(TypeSynchronization.Price,null);
+                this.mainPanel.Visible = false;
+                this.mainPanel.Enabled = false;
+                this.progressBar.Enabled = true;
+                this.progressBar.Visible = true;
+                this.SyncCapt.Enabled = true;
+                this.SyncCapt.Visible = true;
+                this.Refresh();
+
+                Status st = Global.cData.Sync(TypeSynchronization.Price, showProgres);
                 //if (st.status == EStatus.Ok)
-                clsDialogBox.InformationBoxShow(st.StrStatus);
+
+                if (clsDialogBox.InformationBoxShow(st.StrStatus) == DialogResult.OK)
+                {
+                    this.mainPanel.Visible = true;
+                    this.mainPanel.Enabled = true;
+                    this.progressBar.Enabled = false;
+                    this.progressBar.Visible = false;
+                    this.SyncCapt.Enabled = false;
+                    this.SyncCapt.Visible = false;
+                    this.Refresh();
+                }
             }
 
             else
@@ -161,10 +177,7 @@ namespace BRB.Forms
                 clsDialogBox.InformationBoxShow("Синхронізація відмінена!");
             }
         }
-        private void btnSettings()
-        {
-            clsDialogBox.InformationBoxShow("Немає форми Налаштувань");
-        }
+       
 
         private void btnAdd()
         {

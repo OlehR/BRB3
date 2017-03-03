@@ -42,8 +42,7 @@ namespace BRB.Forms
             this.miExtraProperties.Text += " " + HotKey.strDocGrid_ExtraProperties;
             this.miGroupingDoc.Text += " " + HotKey.strDocGrid_GroupingDoc;
             this.miSync.Text += " " + HotKey.strDocGrid_Sync;
-            this.miSettings.Text += " " + HotKey.strDocGrid_Settings;
-
+            
             if (Global.cBL.CurTypeDoc != TypeDoc.SupplyLogistic)
             {
                 this.miGroupingDoc.Enabled = false;
@@ -181,10 +180,7 @@ namespace BRB.Forms
             {
                 btnSync();
             }
-            else if (e.KeyValue == HotKey.DocGrid_Settings)
-            {
-                btnSettings();
-            }
+            
         }
 
         // Клік по пункту меню
@@ -224,10 +220,7 @@ namespace BRB.Forms
         {
             btnSync();
         }
-        private void btnSettings_Click(object sender, EventArgs e)
-        {
-            btnSettings();
-        }
+        
 
         // Функції
         private void btnExit()
@@ -378,13 +371,40 @@ namespace BRB.Forms
         {
             MessageBox.Show("GroupingDoc Ще не реалізовано");
         }
+
+        void showProgres(int parPercent)
+        {
+            this.progressBar.Value = parPercent;
+        }
+
         private void btnSync()
         {
+            TypeSynchronization typeSynch = TypeSynchronization.Document;
+            if (Global.cBL.CurTypeDoc == TypeDoc.Inventories)
+                typeSynch = TypeSynchronization.Inventories;
+
             if (clsDialogBox.ConfirmationBoxShow("Почати синхронізацію?") == DialogResult.Yes)
             {
-                Status st = Global.cData.Sync(TypeSynchronization.Document,null);
+                this.advancedList.Visible = false;
+                this.advancedList.Enabled = false;
+                this.progressBar.Enabled = true;
+                this.progressBar.Visible = true;
+                this.SyncCapt.Enabled = true;
+                this.SyncCapt.Visible = true;
+                this.Refresh();
+
+                Status st = Global.cData.Sync(typeSynch, showProgres);
                 //if (st.status == EStatus.Ok)
-                clsDialogBox.InformationBoxShow(st.StrStatus);
+                if (clsDialogBox.InformationBoxShow(st.StrStatus) == DialogResult.OK)
+                {
+                    this.advancedList.Visible = true;
+                    this.advancedList.Enabled = true;
+                    this.progressBar.Enabled = false;
+                    this.progressBar.Visible = false;
+                    this.SyncCapt.Enabled = false;
+                    this.SyncCapt.Visible = false;
+                    this.Refresh();
+                }
             }
 
             else
@@ -392,10 +412,7 @@ namespace BRB.Forms
                 clsDialogBox.InformationBoxShow("Синхронізація відмінена!");
             }
         }
-        private void btnSettings()
-        {
-            MessageBox.Show("Немає форми Settings");
-        }
+        
 
         // Додаткові функції
         private void advancedList_ValidateData(object sender, Resco.Controls.AdvancedList.ValidateDataArgs e)

@@ -26,7 +26,7 @@ namespace BRB
             //SingleInstanceApplication.Run(new Forms.frmTest());
             //SingleInstanceApplication.Run(new Forms.frmWaresScan());
             //SingleInstanceApplication.Run(new Forms.frmAbout());
-            SingleInstanceApplication.Run(new Forms.frmSettings());
+            //SingleInstanceApplication.Run(new Forms.frmSettings());
         }
     }
 }
