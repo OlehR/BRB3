@@ -446,7 +446,7 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
 
                     // Вигружаємо дані на сервер,якщо є що
                 
-                    if (dtDocs.Rows.Count > 0)
+                     if (dtDocs.Rows.Count > 0)
                     {
                         try
                         {
@@ -603,7 +603,7 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
                             try
                             {
                                 Global.ShopName = dr["code_shop"].ToString();
-                                ConfigFile cFile = new ConfigFile();
+                                ConfigFile cFile = new ConfigFile(Global.varConfigFile);
                                 cFile.SetAppSetting("ShopName", Global.ShopName, true);
 
                             }
@@ -620,10 +620,9 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
                     if (parCallProgressBar != null)
                         parCallProgressBar(85);
 
-                    if (dsAnswer.Tables["dtDelDocs"].Rows.Count > 0)
-                    {
-                        if (SQL.IsData(dsAnswer.Tables["dtDelDocs"]))
-                            foreach (DataRow drHead in dsAnswer.Tables["dtDelDocs"].Rows)
+                    
+                    if (SQL.IsData(dsAnswer.Tables["dtDelDocs"]))
+                      foreach (DataRow drHead in dsAnswer.Tables["dtDelDocs"].Rows)
                             {
                                 try
                                 {
@@ -633,7 +632,7 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
                                 }
                                 catch { }
                             }
-                    }
+                    
                     if (parCallProgressBar != null)
                         parCallProgressBar(90);
 

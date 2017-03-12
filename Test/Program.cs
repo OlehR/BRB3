@@ -45,11 +45,12 @@ namespace Test
         {
             Global.DeviceID = "6922660";
             Global.dbPathBRB = @"D:\WORK\CS4\BRB3\BRB3\Database\BRB.sdf";//@"c:" + Global.dbPathBRB;
+            Global.varConfigFile= @"D:\WORK\CS4\BRB3\BRB3\BRB3.config";
             Global.Init(TypeTerminal.MotorolaMC75Ax);
             //webService.Url = Global.ServiceUrl; //@wsUrl;
             //Global.ServiceUrl = "http://localhost:20416/BRB3_Sync/BRB3_Sync.asmx"; //TMP LocalHost
 
-          //  Global.cData.Sync(TypeSynchronization.);
+            Global.cData.Sync(TypeSynchronization.Price,null);
             return;
         }
     }

@@ -74,6 +74,8 @@ namespace BRB
     static class Global
     {
         static public string varPathIni = @"\Program Files\brb3\";//\Program Files\brb3\
+
+        static public string varConfigFile = null;//@"\Program Files\brb3\BRB3.config";//\Program Files\brb3\
         /// <summary>
         /// Початок штрихкоду вагового товару
         /// </summary>
@@ -133,7 +135,7 @@ namespace BRB
             cData = new Data(new MSCeSQL(SqlCeConectionBRB));
             cBL = new BL(cData);
             TimeSync = cData.GetDateSync();
-            ConfigFile cFile = new ConfigFile();
+            ConfigFile cFile = new ConfigFile(Global.varConfigFile);
 
             eTypeTerminal = parTypeTerminal;
             InitKeyMap(eTypeTerminal);

@@ -229,20 +229,20 @@ public sealed class ConfigFile
 		private string configFileName = null;
 		private XmlDocument xmlDoc = new XmlDocument();
 
-		public ConfigFile()
-		{			      
-		  string fileName = System.IO.Path.GetDirectoryName(
-			System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase ) +
-			System.IO.Path.DirectorySeparatorChar + 
-			System.IO.Path.GetFileNameWithoutExtension(
-			System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase ) + ".config";
+        public ConfigFile(string parConfigFileName)
+        {
+            if(string.IsNullOrEmpty(parConfigFileName))
+               parConfigFileName = System.IO.Path.GetDirectoryName(
+			        System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase ) +
+			        System.IO.Path.DirectorySeparatorChar + 
+			        System.IO.Path.GetFileNameWithoutExtension(
+			        System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase ) + ".config";
 
-		  this.configFileName = fileName;
-
-		  // Проверим, есть ли такой файл - если нет, создадим
-		  if (!File.Exists(fileName))
-		  {
-			  string strFile = @"<configuration>
+            this.configFileName = parConfigFileName;
+            // Проверим, есть ли такой файл - если нет, создадим
+            if (!File.Exists(configFileName))
+            {
+                string strFile = @"<configuration>
 									<appSettings>
 										<add key=""DbPathBRB"" value=""\Program Files\BRB\Database\BRB.sdf"" />
                                         <add key=""DbPwl"" value="""" />
@@ -256,21 +256,29 @@ public sealed class ConfigFile
 									</appSettings>
 								</configuration>";
 
-			  StreamWriter sw = null;
-			  try
-			  {
-				  sw = File.CreateText(fileName);
-				  sw.Write(strFile);
-			  }
-			  finally
-			  {
-				if (sw != null)
-					sw.Close();
-			  }
-		  }
+                StreamWriter sw = null;
+                try
+                {
+                    sw = File.CreateText(configFileName);
+                    sw.Write(strFile);
+                }
+                finally
+                {
+                    if (sw != null)
+                        sw.Close();
+                }
+            }
 
-		  this.xmlDoc.Load(this.configFileName);
-		}
+            this.xmlDoc.Load(this.configFileName);
+
+        }
+		/*public ConfigFile()
+		{			      
+		  
+
+          this.ConfigFile(null);
+		  
+		}*/
 
 	    #endregion ---------------------------------------------------------------------
 
@@ -458,7 +466,7 @@ public sealed class ConfigFile
 		}
       		
         // Returns an appSettings value, given its key
-		public string GetAppSetting(string settingName)
+		public string  GetAppSetting(string settingName)
 		{			
             XmlNode appSettingNode = GetAppSettingNode(settingName, false);
 
