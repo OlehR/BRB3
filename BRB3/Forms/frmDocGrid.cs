@@ -379,12 +379,15 @@ namespace BRB.Forms
 
         private void btnSync()
         {
+            
             TypeSynchronization typeSynch = TypeSynchronization.Document;
             if (Global.cBL.CurTypeDoc == TypeDoc.Inventories)
                 typeSynch = TypeSynchronization.Inventories;
 
             if (clsDialogBox.ConfirmationBoxShow("Почати синхронізацію?") == DialogResult.Yes)
             {
+                this.isFilter = false;
+
                 this.advancedList.Visible = false;
                 this.advancedList.Enabled = false;
                 this.progressBar.Enabled = true;
@@ -405,6 +408,9 @@ namespace BRB.Forms
                     this.SyncCapt.Visible = false;
                     this.Refresh();
                 }
+
+                dt = Global.cBL.dtDocs;
+                advancedList.DataSource = dt;
             }
 
             else

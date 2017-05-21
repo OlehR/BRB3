@@ -27,7 +27,7 @@ namespace BRB.Forms
                 this.WindowState = FormWindowState.Maximized;
         }
 
-        private void DocSearch_Load(object sender, EventArgs e)
+        private void Settings_Load(object sender, EventArgs e)
         {
             string [] inventory = Global.ShopInventory.Split('-');
             if (inventory.Length == 2)
@@ -46,13 +46,24 @@ namespace BRB.Forms
 
         #region Кнопки/функції ---------------------
 
-        private void DocSerch_KeyUp(object sender, KeyEventArgs e)
+        private void Settings_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyValue == HotKey.Search_Exit)
             {
                 btnExit();
             }
 
+        }
+
+        private void btnCleanDB_Click(object sender, EventArgs e)
+        {
+            if (clsDialogBox.ConfirmationBoxShow("Очистити Базу даних? Всі дані будуть знищені!!! Ви впевнені?") == DialogResult.Yes)
+            {
+            }
+            else
+            {
+                clsDialogBox.InformationBoxShow("Очистка бази відмінена.");
+            }
         }
 
         // Клік по пункту меню

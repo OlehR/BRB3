@@ -54,6 +54,7 @@
             this.tclSerial = new System.Windows.Forms.Label();
             this.tclDeviceName = new System.Windows.Forms.Label();
             this.tcDataBase = new System.Windows.Forms.TabPage();
+            this.tcdbBottonCleanDB = new System.Windows.Forms.Button();
             this.tcdbSync = new System.Windows.Forms.TextBox();
             this.tcdbSyncCapt = new System.Windows.Forms.Label();
             this.tcdbBase = new System.Windows.Forms.TextBox();
@@ -271,6 +272,7 @@
             // 
             // tcDataBase
             // 
+            this.tcDataBase.Controls.Add(this.tcdbBottonCleanDB);
             this.tcDataBase.Controls.Add(this.tcdbSync);
             this.tcDataBase.Controls.Add(this.tcdbSyncCapt);
             this.tcDataBase.Controls.Add(this.tcdbBase);
@@ -279,6 +281,15 @@
             this.tcDataBase.Name = "tcDataBase";
             this.tcDataBase.Size = new System.Drawing.Size(228, 264);
             this.tcDataBase.Text = "База";
+            // 
+            // tcdbBottonCleanDB
+            // 
+            this.tcdbBottonCleanDB.Location = new System.Drawing.Point(3, 94);
+            this.tcdbBottonCleanDB.Name = "tcdbBottonCleanDB";
+            this.tcdbBottonCleanDB.Size = new System.Drawing.Size(222, 30);
+            this.tcdbBottonCleanDB.TabIndex = 4;
+            this.tcdbBottonCleanDB.Text = "Очистити Базу Даних";
+            this.tcdbBottonCleanDB.Click += new System.EventHandler(this.btnCleanDB_Click);
             // 
             // tcdbSync
             // 
@@ -332,8 +343,8 @@
             this.MinimizeBox = false;
             this.Name = "frmSettings";
             this.Text = "BRB3";
-            this.Load += new System.EventHandler(this.DocSearch_Load);
-            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.DocSerch_KeyUp);
+            this.Load += new System.EventHandler(this.Settings_Load);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Settings_KeyUp);
             this.mainPanel.ResumeLayout(false);
             this.mpTabControl.ResumeLayout(false);
             this.tcMain.ResumeLayout(false);
@@ -373,6 +384,7 @@
         private System.Windows.Forms.TextBox tcdbBase;
         private System.Windows.Forms.Label tcdbSyncCapt;
         private System.Windows.Forms.TextBox tcdbSync;
+        private System.Windows.Forms.Button tcdbBottonCleanDB;
 
 
     }
