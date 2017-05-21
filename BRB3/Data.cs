@@ -424,12 +424,13 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
                 }
                 else
                 {
-                    sqlStr = @"SELECT number_doc, type_doc, date_doc, serial_tzd, name_supplier, code_shop, sum_with_vat, sum_without_vat, flag_price_with_vat, number_out_invoice, 
+                    sqlStr = @"SELECT number_doc, type_doc, date_doc,@parSerialTZD as serial_tzd, name_supplier, code_shop, sum_with_vat, sum_without_vat, flag_price_with_vat, number_out_invoice, 
                          date_out_invoice, number_tax_invoice, date_tax_invoice, flag_sum_qty_doc, change_date, input_code, flag_change_doc_sup, okpo_supplier, 
                          flag_insert_weigth_from_barcode AS flag_insert_weigth_from_barcod
                             FROM DOCS  WHERE  (status = 1) AND EXISTS  (SELECT 1 AS Expr1 FROM DOCS_WARES  WHERE (number_doc = DOCS.number_doc))";
 
-                    SQL.ClearParam();
+                    //SQL.ClearParam();
+                    SQL.AddWithValueF(@parSerialTZD, Global.DeviceID);
                     dtDocs = SQL.ExecuteQuery(sqlStr);
                     dtDocs.TableName = "dtDocs";
                     dsInvoice.Tables.Add(dtDocs);
@@ -439,6 +440,7 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
                                FROM     DOCS_WARES AS DW 
                                 INNER JOIN DOCS AS D ON DW.number_doc = D.number_doc
                                WHERE    (D.status = 1)";
+                    SQL.ClearParam();
                     dtDocsWares = SQL.ExecuteQuery(sqlStr);
                     dtDocsWares.TableName = "dtDocsWares";
                     dsInvoice.Tables.Add(dtDocsWares);
