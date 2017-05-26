@@ -9,10 +9,13 @@ namespace BRB
     {
         public static string DeleteZeroEnds(string s)
         {
-            while (s.EndsWith("0"))
+            while (s.EndsWith("0") || s.EndsWith("."))
             {
                 s = s.Remove(s.Length - 1, 1);
             }
+
+            if (String.IsNullOrEmpty(s)) s = "0";
+
             return s;
         }
 
