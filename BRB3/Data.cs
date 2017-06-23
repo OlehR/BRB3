@@ -803,5 +803,287 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
 
             return false;
         }
+
+        #region База Даних
+
+        private string dbCreateTableAU = @"CREATE TABLE [ADDITION_UNIT]
+                                        (
+                                           [code_wares] INT NOT NULL,
+                                           [code_unit] INT NOT NULL,
+                                           [coefficient] INT NOT NULL,
+                                           [bar_code] NVARCHAR(15),
+                                           [default_unit] NVARCHAR(2)
+                                        )";
+
+        private string dbCreateTableCL = @"CREATE TABLE [CheckLogs]
+                                    (
+                                       [clID] NVARCHAR(50) NOT NULL,
+                                       [clGoodsArticle] NVARCHAR(50),
+                                       [clBarcode] NVARCHAR(50),
+                                       [clStatus] NVARCHAR(100)
+                                    )";
+
+        private string dbCreateTableCP = @"CREATE TABLE [CheckPrices]
+                                        (
+                                           [cpID] NVARCHAR(50) NOT NULL,
+                                           [cpGoodsName] NVARCHAR(100),
+                                           [cpGoodsArticle] NVARCHAR(50),
+                                           [cpBarcode] NVARCHAR(50),
+                                           [cpPrice1] DECIMAL(18,4),
+                                           [cpPrice2] DECIMAL(18,4)
+                                        )";
+
+        private string dbCreateTableDocs = @"CREATE TABLE [DOCS]
+                                            (
+                                               [number_doc] INT NOT NULL,
+                                               [type_doc] INT,
+                                               [date_doc] DATETIME,
+                                               [serial_tzd] NVARCHAR(20),
+                                               [name_supplier] NVARCHAR(500),
+                                               [code_shop] INT,
+                                               [status] INT DEFAULT 0,
+                                               [sum_with_vat] DECIMAL(18,4) DEFAULT 0,
+                                               [sum_without_vat] DECIMAL(18,4) DEFAULT 0,
+                                               [flag_price_with_vat] INT DEFAULT 0,
+                                               [number_out_invoice] NVARCHAR(20),
+                                               [date_out_invoice] DATETIME,
+                                               [number_tax_invoice] NVARCHAR(20),
+                                               [date_tax_invoice] DATETIME,
+                                               [flag_sum_qty_doc] INT DEFAULT 0,
+                                               [change_date] DATETIME,
+                                               [input_code] INT DEFAULT 1,
+                                               [flag_change_doc_sup] INT DEFAULT 0,
+                                               [okpo_supplier] BIGINT,
+                                               [flag_insert_weigth_from_barcode] INT DEFAULT 0
+                                            )";
+
+        private string dbCreateTableDW = @"CREATE TABLE [DOCS_WARES]
+                                        (
+                                           [number_doc] INT NOT NULL,
+                                           [code_wares] INT NOT NULL,
+                                           [code_unit] INT NOT NULL,
+                                           [price] DECIMAL(18,8),
+                                           [price_temp] DECIMAL(18,8),
+                                           [quantity] DECIMAL(18,3),
+                                           [quantity_temp] DECIMAL(18,3),
+                                           [num_pop] INT,
+                                           [change_date] DATETIME
+                                        )";
+
+        private string dbCreateTableR = @"CREATE TABLE [RevisionOS]
+                                        (
+                                           [revID] INT NOT NULL IDENTITY (1,1),
+                                           [revCode] NVARCHAR(20) NOT NULL,
+                                           [revDate] DATETIME NOT NULL,
+                                           [osBarcode] NVARCHAR(20) NOT NULL,
+                                           [osName] NVARCHAR(100),
+                                           [osState] INT NOT NULL DEFAULT 0,
+                                           [osPrice] REAL,
+                                           [osCode] NVARCHAR(10)
+                                        )";
+
+        private string dbCreateTableRL = @"CREATE TABLE [RevisionOSLogs]
+                                        (
+                                           [revID] INT NOT NULL,
+                                           [revCode] NVARCHAR(20) NOT NULL,
+                                           [revDate] DATETIME NOT NULL,
+                                           [osBarcode] NVARCHAR(13) NOT NULL,
+                                           [osStatus] INT NOT NULL
+                                        )";
+
+        private string dbCreateTableSet = @"CREATE TABLE [SETTINGS]
+                                        (
+                                            [TimeSync] DATETIME,
+                                            [TimeSyncInvent] DATETIME
+                                         )";
+
+        private string dbCreateTableUD = @"CREATE TABLE [UNIT_DIMENSION]
+                                        (
+                                           [code_unit] INT NOT NULL,
+                                           [abr_unit] NVARCHAR(10),
+                                           [div] INT DEFAULT 0
+                                        )";
+
+        private string dbCreateTableWares = @"CREATE TABLE [WARES]
+                                            (
+                                               [code_wares] INT NOT NULL,
+                                               [name_wares] NVARCHAR(100) NOT NULL,
+                                               [vat] DECIMAL(10,0) NOT NULL DEFAULT 20,
+                                               [term] DECIMAL(18,0)
+                                            )";
+
+        private string dbCreateAlterTable1 = @"ALTER TABLE [CheckLogs] ADD CONSTRAINT [PK_CheckLogs] PRIMARY KEY ([clID])";
+        private string dbCreateAlterTable2 = @"ALTER TABLE [CheckPrices] ADD CONSTRAINT [PK_CheckPrices] PRIMARY KEY ([cpID])";
+        private string dbCreateAlterTable3 = @"ALTER TABLE [DOCS] ADD CONSTRAINT [PK_DOCS] PRIMARY KEY ([number_doc])";
+        private string dbCreateAlterTable4 = @"ALTER TABLE [RevisionOS] ADD CONSTRAINT [PK_RevisionOS] PRIMARY KEY ([revID])";
+        private string dbCreateAlterTable5 = @"ALTER TABLE [RevisionOSLogs] ADD CONSTRAINT [PK_RevisionOSLogs] PRIMARY KEY ([revID])";
+        private string dbCreateAlterTable6 = @"ALTER TABLE [WARES] ADD CONSTRAINT [PK__WARES__0000000000000036] PRIMARY KEY ([code_wares])";
+
+        private string dbCreateIndex01 = @"CREATE INDEX [ad_u_ind] ON [ADDITION_UNIT] ([bar_code] ASC)";
+        private string dbCreateIndex02 = @"CREATE INDEX [id_code_wares] ON [ADDITION_UNIT] ([code_wares] ASC, [code_unit] ASC)";
+        private string dbCreateIndex03 = @"CREATE UNIQUE INDEX [UQ__CheckLogs__0000000000000207] ON [CheckLogs] ([clID] ASC)";
+        private string dbCreateIndex04 = @"CREATE INDEX [Bar_code_ind] ON [CheckPrices] ([cpBarcode] ASC)";
+        private string dbCreateIndex05 = @"CREATE UNIQUE INDEX [UQ__CheckPrices__00000000000001F5] ON [CheckPrices] ([cpID] ASC)";
+        private string dbCreateIndex06 = @"CREATE UNIQUE INDEX [UQ__DOCS__0000000000000073] ON [DOCS] ([number_doc] ASC)";
+        private string dbCreateIndex07 = @"CREATE INDEX [id_code_wares] ON [DOCS_WARES] ([code_wares] ASC)";
+
+        private string dbCreateIndex08 = @"CREATE INDEX [id_number_doc] ON [DOCS_WARES] ([number_doc] ASC)";
+        private string dbCreateIndex09 = @"CREATE INDEX [osBarcode_ind] ON [RevisionOS] ([osBarcode] ASC)";
+        private string dbCreateIndex10 = @"CREATE UNIQUE INDEX [UQ__RevisionOS__0000000000000266] ON [RevisionOS] ([revID] ASC)";
+        private string dbCreateIndex11 = @"CREATE UNIQUE INDEX [UQ__RevisionOSLogs__000000000000027D] ON [RevisionOSLogs] ([revID] ASC)";
+        private string dbCreateIndex12 = @"CREATE UNIQUE INDEX [UQ__UNIT_DIMENSION__0000000000000031] ON [UNIT_DIMENSION] ([code_unit] ASC)";
+        private string dbCreateIndex13 = @"CREATE UNIQUE INDEX [UQ__WARES__000000000000000B] ON [WARES] ([code_wares] ASC)";
+
+
+
+        #endregion
+
+        public Status CreadeDB(CallProgressBar parCallProgressBar)
+        {
+            if (parCallProgressBar != null)
+                parCallProgressBar(0);
+
+            string pathDb = @"\Program Files\BRB3\Database\BRB.sdf";
+            string pathDbBack = @"\Program Files\BRB3\Database\BRB.sdf.back";
+            string password = "";
+            int lcid = 1033;
+            string connStr = string.Format("DataSource=\"{0}\"; LCID='{1}'; Password='{2}'", pathDb, lcid, password);
+
+            try
+            {
+                if (File.Exists(pathDbBack))
+                    File.Delete(pathDbBack);
+
+                if (File.Exists(pathDb))
+                    File.Move(pathDb, pathDbBack);
+
+                if (parCallProgressBar != null)
+                    parCallProgressBar(10);
+
+                SqlCeEngine engine = new SqlCeEngine(connStr);
+                engine.CreateDatabase();
+                engine.Dispose();
+
+                if (parCallProgressBar != null)
+                    parCallProgressBar(20);
+
+                SqlCeConnection conn = null;
+
+                try
+                {
+                    conn = new SqlCeConnection(connStr);
+                    conn.Open();
+
+                    SqlCeCommand cmd = conn.CreateCommand();
+
+                    cmd.CommandText = dbCreateTableAU;
+                    cmd.ExecuteNonQuery();
+                    cmd.CommandText = dbCreateTableCL;
+                    cmd.ExecuteNonQuery();
+
+                    if (parCallProgressBar != null)
+                        parCallProgressBar(30);
+
+                    cmd.CommandText = dbCreateTableCP;
+                    cmd.ExecuteNonQuery();
+                    cmd.CommandText = dbCreateTableDocs;
+                    cmd.ExecuteNonQuery();
+
+                    if (parCallProgressBar != null)
+                        parCallProgressBar(40);
+
+                    cmd.CommandText = dbCreateTableDW;
+                    cmd.ExecuteNonQuery();
+                    cmd.CommandText = dbCreateTableR;
+                    cmd.ExecuteNonQuery();
+
+                    if (parCallProgressBar != null)
+                        parCallProgressBar(50);
+
+                    cmd.CommandText = dbCreateTableRL;
+                    cmd.ExecuteNonQuery();
+                    cmd.CommandText = dbCreateTableSet;
+                    cmd.ExecuteNonQuery();
+
+                    if (parCallProgressBar != null)
+                        parCallProgressBar(60);
+
+                    cmd.CommandText = dbCreateTableUD;
+                    cmd.ExecuteNonQuery();
+                    cmd.CommandText = dbCreateTableWares;
+                    cmd.ExecuteNonQuery();
+
+                    if (parCallProgressBar != null)
+                        parCallProgressBar(70);
+
+                    cmd.CommandText = dbCreateAlterTable1;
+                    cmd.ExecuteNonQuery();
+                    cmd.CommandText = dbCreateAlterTable2;
+                    cmd.ExecuteNonQuery();
+                    cmd.CommandText = dbCreateAlterTable3;
+                    cmd.ExecuteNonQuery();
+                    cmd.CommandText = dbCreateAlterTable4;
+                    cmd.ExecuteNonQuery();
+                    cmd.CommandText = dbCreateAlterTable5;
+                    cmd.ExecuteNonQuery();
+                    cmd.CommandText = dbCreateAlterTable6;
+                    cmd.ExecuteNonQuery();
+
+                    if (parCallProgressBar != null)
+                        parCallProgressBar(80);
+
+                    cmd.CommandText = dbCreateIndex01;
+                    cmd.ExecuteNonQuery();
+                    cmd.CommandText = dbCreateIndex02;
+                    cmd.ExecuteNonQuery();
+                    cmd.CommandText = dbCreateIndex03;
+                    cmd.ExecuteNonQuery();
+                    cmd.CommandText = dbCreateIndex04;
+                    cmd.ExecuteNonQuery();
+                    cmd.CommandText = dbCreateIndex05;
+                    cmd.ExecuteNonQuery();
+                    cmd.CommandText = dbCreateIndex06;
+                    cmd.ExecuteNonQuery();
+                    cmd.CommandText = dbCreateIndex07;
+                    cmd.ExecuteNonQuery();
+
+                    if (parCallProgressBar != null)
+                        parCallProgressBar(90);
+
+                    cmd.CommandText = dbCreateIndex08;
+                    cmd.ExecuteNonQuery();
+                    cmd.CommandText = dbCreateIndex09;
+                    cmd.ExecuteNonQuery();
+                    cmd.CommandText = dbCreateIndex10;
+                    cmd.ExecuteNonQuery();
+                    cmd.CommandText = dbCreateIndex11;
+                    cmd.ExecuteNonQuery();
+                    cmd.CommandText = dbCreateIndex12;
+                    cmd.ExecuteNonQuery();
+                    cmd.CommandText = dbCreateIndex13;
+                    cmd.ExecuteNonQuery();
+
+                    if (parCallProgressBar != null)
+                        parCallProgressBar(100);
+
+                }
+                catch (Exception e)
+                {
+                    clsDialogBox.InformationBoxShow("Неможливо створити структуру БД " +e.ToString());
+                }
+                finally
+                {
+                    conn.Close();
+                }
+
+            }
+            catch (Exception e)
+            {
+                clsDialogBox.InformationBoxShow("Неможливо створити БД " + e.ToString());
+            }
+            
+            return new Status(EStatus.Ok, varError);
+        }
     }
+    
 }

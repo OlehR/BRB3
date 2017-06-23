@@ -6,6 +6,8 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using System.IO;
+using System.Data.SqlServerCe;
 
 namespace BRB.Forms
 {
@@ -54,13 +56,22 @@ namespace BRB.Forms
             }
 
         }
-
+            
         private void btnCleanDB_Click(object sender, EventArgs e)
         {
+         
             if (clsDialogBox.ConfirmationBoxShow("Очистити Базу даних? Всі дані будуть знищені!!! Ви впевнені?") == DialogResult.Yes)
+            
             {
+                Status st = Global.cData.CreadeDB(showProgres);
+
+                if (clsDialogBox.InformationBoxShow(st.StrStatus) == DialogResult.OK)
+                {
+                    clsDialogBox.InformationBoxShow("База очищена!");
+                }
             }
-            else
+            else 
+
             {
                 clsDialogBox.InformationBoxShow("Очистка бази відмінена.");
             }
@@ -74,6 +85,11 @@ namespace BRB.Forms
 
 
         // Функції
+        void showProgres(int parPercent)
+        {
+            this.progressBar.Value = parPercent;
+        }
+
         private void btnExit()
         {
             this.Close();

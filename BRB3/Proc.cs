@@ -32,7 +32,7 @@ public class MSCeSQL
     public MSCeSQL(string parConnectionString)
     {
         varSqlConnect = new SqlCeConnection(parConnectionString);
-        varSqlConnect.Open();
+        //varSqlConnect.Open();
         
     }
     /// <summary>

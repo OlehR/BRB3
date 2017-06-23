@@ -59,6 +59,7 @@
             this.tcdbSyncCapt = new System.Windows.Forms.Label();
             this.tcdbBase = new System.Windows.Forms.TextBox();
             this.tcdbBaseCapt = new System.Windows.Forms.Label();
+            this.progressBar = new System.Windows.Forms.ProgressBar();
             this.mainPanel.SuspendLayout();
             this.mpTabControl.SuspendLayout();
             this.tcMain.SuspendLayout();
@@ -272,6 +273,7 @@
             // 
             // tcDataBase
             // 
+            this.tcDataBase.Controls.Add(this.progressBar);
             this.tcDataBase.Controls.Add(this.tcdbBottonCleanDB);
             this.tcDataBase.Controls.Add(this.tcdbSync);
             this.tcDataBase.Controls.Add(this.tcdbSyncCapt);
@@ -324,6 +326,12 @@
             this.tcdbBaseCapt.Name = "tcdbBaseCapt";
             this.tcdbBaseCapt.Size = new System.Drawing.Size(100, 20);
             this.tcdbBaseCapt.Text = "База: ";
+            // 
+            // progressBar
+            // 
+            this.progressBar.Location = new System.Drawing.Point(3, 135);
+            this.progressBar.Name = "progressBar";
+            this.progressBar.Size = new System.Drawing.Size(222, 20);
             // 
             // frmSettings
             // 
@@ -385,6 +393,7 @@
         private System.Windows.Forms.Label tcdbSyncCapt;
         private System.Windows.Forms.TextBox tcdbSync;
         private System.Windows.Forms.Button tcdbBottonCleanDB;
+        private System.Windows.Forms.ProgressBar progressBar;
 
 
     }
