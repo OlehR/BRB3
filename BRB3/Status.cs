@@ -48,7 +48,11 @@ namespace BRB
             DontGetKey,
             HttpPOSTError,
             Error,
-            BadInputData
+            BadInputData,
+
+            DbCleaned,
+            DbCreatedError,
+            DbStructCreatedError
         }
 
     public class Status
@@ -144,6 +148,15 @@ namespace BRB
                             break;
                         case EStatus.NoCodeOrNameWares:
                             res = "Введіть код товару чи назву";
+                            break;
+                        case EStatus.DbCleaned:
+                            res = "База очищена!";
+                            break;
+                        case EStatus.DbCreatedError:
+                            res = "Не вдалося створити базу даних!!!";
+                            break;
+                        case EStatus.DbStructCreatedError:
+                            res = "Не вдалося створити структуру бази даних!!!";
                             break;
 
                        default:

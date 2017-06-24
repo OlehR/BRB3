@@ -63,11 +63,28 @@ namespace BRB.Forms
             if (clsDialogBox.ConfirmationBoxShow("Очистити Базу даних? Всі дані будуть знищені!!! Ви впевнені?") == DialogResult.Yes)
             
             {
+                this.tcdbBottonCleanDB.Enabled = false;
+                this.tcdbProgressBar.Visible = true;
+                this.tcdbProgressBar.Enabled = true;
+
+
                 Status st = Global.cData.CreadeDB(showProgres);
 
-                if (clsDialogBox.InformationBoxShow(st.StrStatus) == DialogResult.OK)
+                if (st.status == EStatus.DbCleaned)
                 {
-                    clsDialogBox.InformationBoxShow("База очищена!");
+                    clsDialogBox.InformationBoxShow(st.StrStatus);
+
+                    this.tcdbBottonCleanDB.Enabled = true;
+                    this.tcdbProgressBar.Visible = false;
+                    this.tcdbProgressBar.Enabled = false;
+                }
+                else
+                {
+                    clsDialogBox.ErrorBoxShow(st.StrStatus);
+
+                    this.tcdbBottonCleanDB.Enabled = true;
+                    this.tcdbProgressBar.Visible = false;
+                    this.tcdbProgressBar.Enabled = false;
                 }
             }
             else 
@@ -87,7 +104,7 @@ namespace BRB.Forms
         // Функції
         void showProgres(int parPercent)
         {
-            this.progressBar.Value = parPercent;
+            this.tcdbProgressBar.Value = parPercent;
         }
 
         private void btnExit()

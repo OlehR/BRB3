@@ -59,7 +59,7 @@
             this.tcdbSyncCapt = new System.Windows.Forms.Label();
             this.tcdbBase = new System.Windows.Forms.TextBox();
             this.tcdbBaseCapt = new System.Windows.Forms.Label();
-            this.progressBar = new System.Windows.Forms.ProgressBar();
+            this.tcdbProgressBar = new System.Windows.Forms.ProgressBar();
             this.mainPanel.SuspendLayout();
             this.mpTabControl.SuspendLayout();
             this.tcMain.SuspendLayout();
@@ -273,7 +273,7 @@
             // 
             // tcDataBase
             // 
-            this.tcDataBase.Controls.Add(this.progressBar);
+            this.tcDataBase.Controls.Add(this.tcdbProgressBar);
             this.tcDataBase.Controls.Add(this.tcdbBottonCleanDB);
             this.tcDataBase.Controls.Add(this.tcdbSync);
             this.tcDataBase.Controls.Add(this.tcdbSyncCapt);
@@ -327,11 +327,13 @@
             this.tcdbBaseCapt.Size = new System.Drawing.Size(100, 20);
             this.tcdbBaseCapt.Text = "База: ";
             // 
-            // progressBar
+            // tcdbProgressBar
             // 
-            this.progressBar.Location = new System.Drawing.Point(3, 135);
-            this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(222, 20);
+            this.tcdbProgressBar.Location = new System.Drawing.Point(3, 135);
+            this.tcdbProgressBar.Name = "tcdbProgressBar";
+            this.tcdbProgressBar.Size = new System.Drawing.Size(222, 20);
+            this.tcdbProgressBar.Enabled = false;
+            this.tcdbProgressBar.Visible = false;
             // 
             // frmSettings
             // 
@@ -393,7 +395,7 @@
         private System.Windows.Forms.Label tcdbSyncCapt;
         private System.Windows.Forms.TextBox tcdbSync;
         private System.Windows.Forms.Button tcdbBottonCleanDB;
-        private System.Windows.Forms.ProgressBar progressBar;
+        private System.Windows.Forms.ProgressBar tcdbProgressBar;
 
 
     }

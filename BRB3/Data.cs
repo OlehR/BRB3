@@ -943,19 +943,20 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
             if (parCallProgressBar != null)
                 parCallProgressBar(0);
 
-            string pathDb = @"\Program Files\BRB3\Database\BRB.sdf";
-            string pathDbBack = @"\Program Files\BRB3\Database\BRB.sdf.back";
-            string password = "";
+            //Global.cData.SQL.varSqlConnect.Close; //TMP
+
+            string pathDbBack = Global.dbPathBRB + ".bak";
             int lcid = 1033;
-            string connStr = string.Format("DataSource=\"{0}\"; LCID='{1}'; Password='{2}'", pathDb, lcid, password);
+
+            string connStr = string.Format("DataSource=\"{0}\"; LCID='{1}'; Password='{2}'", Global.dbPathBRB, lcid, Global.DbPwl);
 
             try
             {
                 if (File.Exists(pathDbBack))
                     File.Delete(pathDbBack);
 
-                if (File.Exists(pathDb))
-                    File.Move(pathDb, pathDbBack);
+                if (File.Exists(Global.dbPathBRB))
+                    File.Move(Global.dbPathBRB, pathDbBack);
 
                 if (parCallProgressBar != null)
                     parCallProgressBar(10);
@@ -1069,7 +1070,7 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
                 }
                 catch (Exception e)
                 {
-                    clsDialogBox.InformationBoxShow("Неможливо створити структуру БД " +e.ToString());
+                    return new Status(EStatus.DbStructCreatedError, e.ToString());
                 }
                 finally
                 {
@@ -1079,10 +1080,10 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
             }
             catch (Exception e)
             {
-                clsDialogBox.InformationBoxShow("Неможливо створити БД " + e.ToString());
+                return new Status(EStatus.DbCreatedError, e.ToString());
             }
             
-            return new Status(EStatus.Ok, varError);
+            return new Status(EStatus.DbCleaned);
         }
     }
     
