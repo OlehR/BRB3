@@ -173,6 +173,10 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
         public Data() { }
         public Data(MSCeSQL parSQL) { Init(parSQL); }
 
+        public void Close()
+        {
+            SQL.Close();
+        }
         public void Init(MSCeSQL parSQL)
         {
             SQL = parSQL;

@@ -31,9 +31,15 @@ public class MSCeSQL
 
     public MSCeSQL(string parConnectionString)
     {
+        
         varSqlConnect = new SqlCeConnection(parConnectionString);
         //varSqlConnect.Open();
         
+    }
+    
+    public void Close()
+    {
+        varSqlConnect.Close();
     }
     /// <summary>
     /// Створює новий список параметрів і добавляє перший набір
