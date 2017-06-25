@@ -79,7 +79,7 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
                                            UNIT_DIMENSION AS ud ON dw.code_unit = ud.code_unit 
                                  WHERE     dw.number_doc = @parNumberDoc";
 
-        private string varSQLTimeSync = @"SELECT MAX(TimeSync) FROM SETTINGS";
+        private string varSQLTimeSync = @"SELECT COALESCE(max(TimeSync), CONVERT(DATETIME, '01.01.2000', 000)),  FROM SETTINGS"; 
         private string varSQLSumDocs = @"SELECT CASE WHEN d .flag_price_with_vat = 0 THEN d .sum_without_vat WHEN d .flag_price_with_vat = 1 THEN d .sum_with_vat ELSE 0 END AS SummaZak FROM DOCS AS d WHERE (d.number_doc = @parNumberDoc)";
         private string varSQLSumDocsWares = @"SELECT  CASE 
                                         WHEN d .flag_price_with_vat = 0 THEN COALESCE (SUM(price * quantity), 0) 
@@ -201,7 +201,8 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
         public DateTime GetDateSync()
         {
             SQL.ClearParam(); //AddWithValueF("@parNumberDoc", parNumberDoc);
-            return Convert.ToDateTime(SQL.ExecuteScalar(varSQLTimeSync));
+            return Convert.ToDateTime(SQL.ExecuteScalar(varSQLTimeSync)); // TMP !!!!!
+
         }
         //Old GetSummaZak
         public decimal GetSumDocs(int parNumberDoc)
@@ -949,11 +950,10 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
             if (parCallProgressBar != null)
                 parCallProgressBar(0);
 
-            //Global.cData.SQL.varSqlConnect.Close; //TMP
+            Global.cData.Close();
 
             string pathDbBack = Global.dbPathBRB + ".bak";
             int lcid = 1033;
-
             string connStr = string.Format("DataSource=\"{0}\"; LCID='{1}'; Password='{2}'", Global.dbPathBRB, lcid, Global.DbPwl);
 
             try
@@ -974,102 +974,57 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
                 if (parCallProgressBar != null)
                     parCallProgressBar(20);
 
-                SqlCeConnection conn = null;
-
                 try
                 {
-                    conn = new SqlCeConnection(connStr);
-                    conn.Open();
+                    Global.cData.Init(new MSCeSQL(Global.SqlCeConectionBRB));
+                    SQL.ClearParam();
 
-                    SqlCeCommand cmd = conn.CreateCommand();
-
-                    cmd.CommandText = dbCreateTableAU;
-                    cmd.ExecuteNonQuery();
-                    cmd.CommandText = dbCreateTableCL;
-                    cmd.ExecuteNonQuery();
-
-                    if (parCallProgressBar != null)
-                        parCallProgressBar(30);
-
-                    cmd.CommandText = dbCreateTableCP;
-                    cmd.ExecuteNonQuery();
-                    cmd.CommandText = dbCreateTableDocs;
-                    cmd.ExecuteNonQuery();
+                    SQL.ExecuteNonQuery(dbCreateTableAU);
+                    SQL.ExecuteNonQuery(dbCreateTableCL);
+                    SQL.ExecuteNonQuery(dbCreateTableCP);
+                    SQL.ExecuteNonQuery(dbCreateTableDocs);
+                    SQL.ExecuteNonQuery(dbCreateTableDW);
 
                     if (parCallProgressBar != null)
                         parCallProgressBar(40);
 
-                    cmd.CommandText = dbCreateTableDW;
-                    cmd.ExecuteNonQuery();
-                    cmd.CommandText = dbCreateTableR;
-                    cmd.ExecuteNonQuery();
-
-                    if (parCallProgressBar != null)
-                        parCallProgressBar(50);
-
-                    cmd.CommandText = dbCreateTableRL;
-                    cmd.ExecuteNonQuery();
-                    cmd.CommandText = dbCreateTableSet;
-                    cmd.ExecuteNonQuery();
-
-                    if (parCallProgressBar != null)
-                        parCallProgressBar(60);
-
-                    cmd.CommandText = dbCreateTableUD;
-                    cmd.ExecuteNonQuery();
-                    cmd.CommandText = dbCreateTableWares;
-                    cmd.ExecuteNonQuery();
+                    SQL.ExecuteNonQuery(dbCreateTableR);
+                    SQL.ExecuteNonQuery(dbCreateTableRL);
+                    SQL.ExecuteNonQuery(dbCreateTableSet);
+                    SQL.ExecuteNonQuery(dbCreateTableUD);
+                    SQL.ExecuteNonQuery(dbCreateTableWares);
 
                     if (parCallProgressBar != null)
                         parCallProgressBar(70);
 
-                    cmd.CommandText = dbCreateAlterTable1;
-                    cmd.ExecuteNonQuery();
-                    cmd.CommandText = dbCreateAlterTable2;
-                    cmd.ExecuteNonQuery();
-                    cmd.CommandText = dbCreateAlterTable3;
-                    cmd.ExecuteNonQuery();
-                    cmd.CommandText = dbCreateAlterTable4;
-                    cmd.ExecuteNonQuery();
-                    cmd.CommandText = dbCreateAlterTable5;
-                    cmd.ExecuteNonQuery();
-                    cmd.CommandText = dbCreateAlterTable6;
-                    cmd.ExecuteNonQuery();
+                    SQL.ExecuteNonQuery(dbCreateAlterTable1);
+                    SQL.ExecuteNonQuery(dbCreateAlterTable2);
+                    SQL.ExecuteNonQuery(dbCreateAlterTable3);
+                    SQL.ExecuteNonQuery(dbCreateAlterTable4);
+                    SQL.ExecuteNonQuery(dbCreateAlterTable5);
+                    SQL.ExecuteNonQuery(dbCreateAlterTable6);
 
                     if (parCallProgressBar != null)
                         parCallProgressBar(80);
 
-                    cmd.CommandText = dbCreateIndex01;
-                    cmd.ExecuteNonQuery();
-                    cmd.CommandText = dbCreateIndex02;
-                    cmd.ExecuteNonQuery();
-                    cmd.CommandText = dbCreateIndex03;
-                    cmd.ExecuteNonQuery();
-                    cmd.CommandText = dbCreateIndex04;
-                    cmd.ExecuteNonQuery();
-                    cmd.CommandText = dbCreateIndex05;
-                    cmd.ExecuteNonQuery();
-                    cmd.CommandText = dbCreateIndex06;
-                    cmd.ExecuteNonQuery();
-                    cmd.CommandText = dbCreateIndex07;
-                    cmd.ExecuteNonQuery();
+                    SQL.ExecuteNonQuery(dbCreateIndex01);
+                    SQL.ExecuteNonQuery(dbCreateIndex02);
+                    SQL.ExecuteNonQuery(dbCreateIndex03);
+                    SQL.ExecuteNonQuery(dbCreateIndex04);
+                    SQL.ExecuteNonQuery(dbCreateIndex05);
+                    SQL.ExecuteNonQuery(dbCreateIndex06);
+                    SQL.ExecuteNonQuery(dbCreateIndex07);
 
                     if (parCallProgressBar != null)
                         parCallProgressBar(90);
 
-                    cmd.CommandText = dbCreateIndex08;
-                    cmd.ExecuteNonQuery();
-                    cmd.CommandText = dbCreateIndex09;
-                    cmd.ExecuteNonQuery();
-                    cmd.CommandText = dbCreateIndex10;
-                    cmd.ExecuteNonQuery();
-                    cmd.CommandText = dbCreateIndex11;
-                    cmd.ExecuteNonQuery();
-                    cmd.CommandText = dbCreateIndex12;
-                    cmd.ExecuteNonQuery();
-                    cmd.CommandText = dbCreateIndex13;
-                    cmd.ExecuteNonQuery();
-
+                    SQL.ExecuteNonQuery(dbCreateIndex08);
+                    SQL.ExecuteNonQuery(dbCreateIndex09);
+                    SQL.ExecuteNonQuery(dbCreateIndex10);
+                    SQL.ExecuteNonQuery(dbCreateIndex11);
+                    SQL.ExecuteNonQuery(dbCreateIndex12);
+                    SQL.ExecuteNonQuery(dbCreateIndex13);
+                 
                     if (parCallProgressBar != null)
                         parCallProgressBar(100);
 
@@ -1080,7 +1035,7 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
                 }
                 finally
                 {
-                    conn.Close();
+                    //Global.cData.Close(); //TMP
                 }
 
             }

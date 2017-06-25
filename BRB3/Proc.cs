@@ -22,7 +22,7 @@ public class MSCeSQL
     /// Текст Помилки при роботі з MSSQL
     /// </summary>
     public string varStrLstErrror;
-    public SqlCeConnection varSqlConnect; // TMP
+    SqlCeConnection varSqlConnect;
     
     SqlCeCommand varCommand;
     SqlCeTransaction varTransaction;
@@ -31,16 +31,15 @@ public class MSCeSQL
 
     public MSCeSQL(string parConnectionString)
     {
-        
         varSqlConnect = new SqlCeConnection(parConnectionString);
-        //varSqlConnect.Open();
-        
+        varSqlConnect.Open(); //
     }
     
     public void Close()
     {
         varSqlConnect.Close();
     }
+
     /// <summary>
     /// Створює новий список параметрів і добавляє перший набір
     /// </summary>

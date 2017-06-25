@@ -132,6 +132,16 @@ namespace BRB
 
     static public void Init(TypeTerminal parTypeTerminal)
         {
+            //if (!File.Exists(Global.dbPathBRB))
+            //{
+            //    if (clsDialogBox.ConfirmationBoxShow("Файл Бази Даних відсутній! Створити новий? Увага всі дані будуть ВИДАЛЕНІ!") == DialogResult.Yes)
+            //    {
+            //        cData = new Data();
+            //        cData.CreadeDB(null);
+            //        System.Threading.Thread.Sleep(5000);
+            //    }
+            //}
+
             cData = new Data(new MSCeSQL(SqlCeConectionBRB));
             cBL = new BL(cData);
             TimeSync = cData.GetDateSync();
