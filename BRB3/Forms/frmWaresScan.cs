@@ -89,11 +89,14 @@ namespace BRB.Forms
 
                 if (dr["quantity_temp"] != DBNull.Value)
                 {
-                    if (Global.cBL.CurTypeDoc == TypeDoc.SupplyLogistic || Global.cBL.CurTypeDoc == TypeDoc.Inventories)
-                    {
-                        mplQtyTempl.Text = string.Empty;
-                    }
-                    else this.mplQtyTempl.Text = decimal.Round(Proto.ToDecimal(dr["quantity_temp"].ToString()), 3).ToString("0.000");
+                    if (Global.getViewQtyTemplDoc())
+                        this.mplQtyTempl.Text = decimal.Round(Proto.ToDecimal(dr["quantity_temp"].ToString()), 3).ToString("0.000");
+                    else mplQtyTempl.Text = string.Empty;
+                    //if (Global.cBL.CurTypeDoc == TypeDoc.SupplyLogistic || Global.cBL.CurTypeDoc == TypeDoc.Inventories)
+                    //{
+                    //    mplQtyTempl.Text = string.Empty;
+                    //}
+                    //else this.mplQtyTempl.Text = decimal.Round(Proto.ToDecimal(dr["quantity_temp"].ToString()), 3).ToString("0.000");
                 }
                 else mplQtyTempl.Text = string.Empty;
 
@@ -156,7 +159,7 @@ namespace BRB.Forms
         public void InitializeComponentManual()
         {
             //this.labelDown.Size = new System.Drawing.Size(100, (1 + Global.hToolbarTerminal));
-            this.Text = "BRB3 " + Global.eTypeTerminal.ToString();
+            this.Text = Global.curVersionBRB + " " + Global.cBL.CurTypeDoc.ToString() + " WaresScan";
             this.mpbtnAdd.Text = mpbtnAdd.Text + " " + HotKey.strWaresScan_Add;
             this.mpbtnCancel.Text = mpbtnCancel.Text + " " + HotKey.strWaresScan_Cancel;
             this.miExit.Text = miExit.Text + " " + HotKey.strWaresScan_Exit;

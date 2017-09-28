@@ -55,9 +55,9 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
                                               ELSE dw.price 
                                            END AS price,
                                            CASE
-                                              WHEN d .flag_price_with_vat = 1 THEN dw.price_temp * (1 + w.vat/100) 
-                                              ELSE dw.price_temp 
-                                           END AS price_temp, 
+                                              WHEN d .flag_price_with_vat = 1 THEN round(dw.price_temp * (1 + w.vat/100) ,2)
+                                              ELSE round(dw.price_temp, 2)
+                                           END AS price_temp,  
                                            dw.quantity, 
                                            dw.quantity_temp, 
                                            dw.num_pop, 

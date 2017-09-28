@@ -34,8 +34,8 @@ namespace BRB.Forms
             this.imageList.Images.Add((System.Drawing.Icon)(res.GetObject("Ico_04_" + Global.icoSize.ToString())));
             this.imageList.Images.Add((System.Drawing.Icon)(res.GetObject("Ico_05_" + Global.icoSize.ToString())));
             this.imageList.Images.Add((System.Drawing.Icon)(res.GetObject("Ico_06_" + Global.icoSize.ToString())));
-            
-            this.Text = "BRB3 " + Global.eTypeTerminal.ToString();
+
+            this.Text = Global.curVersionBRB + " Головне меню"; //+ Global.eTypeTerminal.ToString();
             //this.labelDown.Size = new System.Drawing.Size(236, (1 + Global.hToolbarTerminal));
 
             this.lviInvoice.Text = HotKey.strMain_Invoice + " " + lviInvoice.Text;
@@ -70,7 +70,7 @@ namespace BRB.Forms
             }
             else if (e.KeyValue == HotKey.Main_MAudit)
             {
-                btnNewDocGrid(TypeDoc.Inventories); //Міні ревізія
+                btnNewDocGrid(TypeDoc.MiniInventories); //Міні ревізія
             }
             else if (e.KeyValue == HotKey.Main_PriceChecker)
             {

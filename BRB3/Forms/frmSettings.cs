@@ -21,12 +21,17 @@ namespace BRB.Forms
 
         public void InitializeComponentManual()
         {
-            this.Text = "BRB3 " + Global.eTypeTerminal.ToString();
+            this.Text = Global.curVersionBRB + " Налаштування";
+
+            this.tccbInventories.Checked = Global.viewQtyTemplInvent;
+            this.tccbMiniInventories.Checked = Global.viewQtyTemplMiniInvent;
+            this.tccbSupplyLogistic.Checked = Global.viewQtyTemplSuppLogist;
 
             this.miExit.Text += " " + HotKey.strSearch_Exit;
 
             if (Global.eTypeTerminal == TypeTerminal.BitatekIT8000)
                 this.WindowState = FormWindowState.Maximized;
+
         }
 
         private void Settings_Load(object sender, EventArgs e)

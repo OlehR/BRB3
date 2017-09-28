@@ -127,6 +127,11 @@ namespace BRB
     static public DateTime TimeSync;
     static public string RemouteFile="BRB3.exe";
     static public string Directory=@"\Download\";
+
+    static public bool viewQtyTemplSuppLogist = false;
+    static public bool viewQtyTemplMiniInvent = true;
+    static public bool viewQtyTemplInvent = false;
+    public static string curVersionBRB = "BRB3v25";
         
     static public  ReadINI2 varIniKeyMap;
 
@@ -188,7 +193,32 @@ namespace BRB
             tmp = cFile.GetAppSetting("ShopInventory");
             if (!string.IsNullOrEmpty(tmp))
                 ShopInventory = tmp;
-            
+
+            tmp = cFile.GetAppSetting("viewQtyTemplInvent");
+            if (!string.IsNullOrEmpty(tmp))
+                {
+                    if (tmp.ToLower() == "true")
+                        viewQtyTemplInvent = true;
+                    else viewQtyTemplInvent = false;
+                }
+
+            tmp = cFile.GetAppSetting("viewQtyTemplMiniInvent");
+            if (!string.IsNullOrEmpty(tmp))
+            {
+                if (tmp.ToLower() == "true")
+                    viewQtyTemplMiniInvent = true;
+                else viewQtyTemplMiniInvent = false;
+            }
+
+            tmp = cFile.GetAppSetting("viewQtyTemplSuppLogist");
+            if (!string.IsNullOrEmpty(tmp))
+            {
+                if (tmp.ToLower() == "true")
+                    viewQtyTemplSuppLogist = true;
+                else viewQtyTemplSuppLogist = false;
+            }
+
+
             switch(parTypeTerminal)
             {
                 case TypeTerminal.BitatekIT8000:
@@ -248,6 +278,24 @@ namespace BRB
             {
                 varIniKeyMap = new ReadINI2(Global.varPathIni + @"Key.map");
                 HotKey.Init(parType);
+            }
+            
+        }
+
+        public static bool getViewQtyTemplDoc()
+        {
+            switch(cBL.CurTypeDoc)
+            {
+                case TypeDoc.Inventories:
+                    return viewQtyTemplInvent;
+                   // break;
+                case TypeDoc.MiniInventories:
+                    return viewQtyTemplMiniInvent;
+                   // break;
+                case TypeDoc.SupplyLogistic:
+                    return viewQtyTemplSuppLogist;
+                   // break;
+                default: return false;
             }
             
         }

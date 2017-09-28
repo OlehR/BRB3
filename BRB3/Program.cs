@@ -16,7 +16,8 @@ namespace BRB
         {
 
             Global.Init(DefineTerminal.getOEMName());
-
+                    
+    
             //Application.Run(new BRB.Forms.frmWaresScan());
             //SingleInstanceApplication.Run(new Forms.frmDocGrid(TypeDoc.SupplyLogistic));
             //SingleInstanceApplication.Run(new Forms.frmWaresGrid(TypeDoc.SupplyLogistic, 3699652));

@@ -20,7 +20,7 @@ namespace BRB.Forms
         public void InitializeComponentManual()
         {
             //this.labelDown.Size = new System.Drawing.Size(236 * Global.tCoefficient, (1 + Global.hToolbarTerminal) * Global.tCoefficient);
-            this.Text = "BRB3 " + Global.eTypeTerminal.ToString();
+            this.Text = Global.curVersionBRB + " " + Global.cBL.CurTypeDoc.ToString() + " AdvSetDoc";
 
             this.miExit.Text += " " + HotKey.strAdvSettingsDoc_Exit;
             this.mpbExit.Text += " " + HotKey.strAdvSettingsDoc_Exit;

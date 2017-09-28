@@ -38,7 +38,7 @@
             this.labelDown = new System.Windows.Forms.Label();
             this.mainPanel = new System.Windows.Forms.Panel();
             this.mpTabControl = new System.Windows.Forms.TabControl();
-            this.tcMain = new System.Windows.Forms.TabPage();
+            this.tpMain = new System.Windows.Forms.TabPage();
             this.tclDownload = new System.Windows.Forms.Label();
             this.tclFile = new System.Windows.Forms.Label();
             this.tclFileCapt = new System.Windows.Forms.Label();
@@ -53,17 +53,23 @@
             this.tcDevNameCapt = new System.Windows.Forms.Label();
             this.tclSerial = new System.Windows.Forms.Label();
             this.tclDeviceName = new System.Windows.Forms.Label();
-            this.tcDataBase = new System.Windows.Forms.TabPage();
+            this.tpDataBase = new System.Windows.Forms.TabPage();
+            this.tcdbProgressBar = new System.Windows.Forms.ProgressBar();
             this.tcdbBottonCleanDB = new System.Windows.Forms.Button();
             this.tcdbSync = new System.Windows.Forms.TextBox();
             this.tcdbSyncCapt = new System.Windows.Forms.Label();
             this.tcdbBase = new System.Windows.Forms.TextBox();
             this.tcdbBaseCapt = new System.Windows.Forms.Label();
-            this.tcdbProgressBar = new System.Windows.Forms.ProgressBar();
+            this.tpQtyTempl = new System.Windows.Forms.TabPage();
+            this.tclQtyTempl = new System.Windows.Forms.Label();
+            this.tccbSupplyLogistic = new System.Windows.Forms.CheckBox();
+            this.tccbMiniInventories = new System.Windows.Forms.CheckBox();
+            this.tccbInventories = new System.Windows.Forms.CheckBox();
             this.mainPanel.SuspendLayout();
             this.mpTabControl.SuspendLayout();
-            this.tcMain.SuspendLayout();
-            this.tcDataBase.SuspendLayout();
+            this.tpMain.SuspendLayout();
+            this.tpDataBase.SuspendLayout();
+            this.tpQtyTempl.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainMenu
@@ -127,8 +133,9 @@
             // 
             // mpTabControl
             // 
-            this.mpTabControl.Controls.Add(this.tcMain);
-            this.mpTabControl.Controls.Add(this.tcDataBase);
+            this.mpTabControl.Controls.Add(this.tpMain);
+            this.mpTabControl.Controls.Add(this.tpDataBase);
+            this.mpTabControl.Controls.Add(this.tpQtyTempl);
             this.mpTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mpTabControl.Location = new System.Drawing.Point(0, 0);
             this.mpTabControl.Name = "mpTabControl";
@@ -136,26 +143,26 @@
             this.mpTabControl.Size = new System.Drawing.Size(236, 293);
             this.mpTabControl.TabIndex = 3;
             // 
-            // tcMain
+            // tpMain
             // 
-            this.tcMain.Controls.Add(this.tclDownload);
-            this.tcMain.Controls.Add(this.tclFile);
-            this.tcMain.Controls.Add(this.tclFileCapt);
-            this.tcMain.Controls.Add(this.tclDownloadCapt);
-            this.tcMain.Controls.Add(this.tctbTMInvTM);
-            this.tcMain.Controls.Add(this.tclTMInvDef);
-            this.tcMain.Controls.Add(this.tctbTMInvDoc);
-            this.tcMain.Controls.Add(this.tclTMInvCapt);
-            this.tcMain.Controls.Add(this.tclTM);
-            this.tcMain.Controls.Add(this.tclTMCapt);
-            this.tcMain.Controls.Add(this.tclSerialCapt);
-            this.tcMain.Controls.Add(this.tcDevNameCapt);
-            this.tcMain.Controls.Add(this.tclSerial);
-            this.tcMain.Controls.Add(this.tclDeviceName);
-            this.tcMain.Location = new System.Drawing.Point(4, 25);
-            this.tcMain.Name = "tcMain";
-            this.tcMain.Size = new System.Drawing.Size(228, 264);
-            this.tcMain.Text = "Основні";
+            this.tpMain.Controls.Add(this.tclDownload);
+            this.tpMain.Controls.Add(this.tclFile);
+            this.tpMain.Controls.Add(this.tclFileCapt);
+            this.tpMain.Controls.Add(this.tclDownloadCapt);
+            this.tpMain.Controls.Add(this.tctbTMInvTM);
+            this.tpMain.Controls.Add(this.tclTMInvDef);
+            this.tpMain.Controls.Add(this.tctbTMInvDoc);
+            this.tpMain.Controls.Add(this.tclTMInvCapt);
+            this.tpMain.Controls.Add(this.tclTM);
+            this.tpMain.Controls.Add(this.tclTMCapt);
+            this.tpMain.Controls.Add(this.tclSerialCapt);
+            this.tpMain.Controls.Add(this.tcDevNameCapt);
+            this.tpMain.Controls.Add(this.tclSerial);
+            this.tpMain.Controls.Add(this.tclDeviceName);
+            this.tpMain.Location = new System.Drawing.Point(4, 25);
+            this.tpMain.Name = "tpMain";
+            this.tpMain.Size = new System.Drawing.Size(228, 264);
+            this.tpMain.Text = "Основні";
             // 
             // tclDownload
             // 
@@ -271,18 +278,26 @@
             this.tclDeviceName.Size = new System.Drawing.Size(143, 20);
             this.tclDeviceName.Text = "DeviceName";
             // 
-            // tcDataBase
+            // tpDataBase
             // 
-            this.tcDataBase.Controls.Add(this.tcdbProgressBar);
-            this.tcDataBase.Controls.Add(this.tcdbBottonCleanDB);
-            this.tcDataBase.Controls.Add(this.tcdbSync);
-            this.tcDataBase.Controls.Add(this.tcdbSyncCapt);
-            this.tcDataBase.Controls.Add(this.tcdbBase);
-            this.tcDataBase.Controls.Add(this.tcdbBaseCapt);
-            this.tcDataBase.Location = new System.Drawing.Point(4, 25);
-            this.tcDataBase.Name = "tcDataBase";
-            this.tcDataBase.Size = new System.Drawing.Size(228, 264);
-            this.tcDataBase.Text = "База";
+            this.tpDataBase.Controls.Add(this.tcdbProgressBar);
+            this.tpDataBase.Controls.Add(this.tcdbBottonCleanDB);
+            this.tpDataBase.Controls.Add(this.tcdbSync);
+            this.tpDataBase.Controls.Add(this.tcdbSyncCapt);
+            this.tpDataBase.Controls.Add(this.tcdbBase);
+            this.tpDataBase.Controls.Add(this.tcdbBaseCapt);
+            this.tpDataBase.Location = new System.Drawing.Point(4, 25);
+            this.tpDataBase.Name = "tpDataBase";
+            this.tpDataBase.Size = new System.Drawing.Size(228, 264);
+            this.tpDataBase.Text = "База";
+            // 
+            // tcdbProgressBar
+            // 
+            this.tcdbProgressBar.Enabled = false;
+            this.tcdbProgressBar.Location = new System.Drawing.Point(3, 135);
+            this.tcdbProgressBar.Name = "tcdbProgressBar";
+            this.tcdbProgressBar.Size = new System.Drawing.Size(222, 20);
+            this.tcdbProgressBar.Visible = false;
             // 
             // tcdbBottonCleanDB
             // 
@@ -327,13 +342,48 @@
             this.tcdbBaseCapt.Size = new System.Drawing.Size(100, 20);
             this.tcdbBaseCapt.Text = "База: ";
             // 
-            // tcdbProgressBar
+            // tpQtyTempl
             // 
-            this.tcdbProgressBar.Location = new System.Drawing.Point(3, 135);
-            this.tcdbProgressBar.Name = "tcdbProgressBar";
-            this.tcdbProgressBar.Size = new System.Drawing.Size(222, 20);
-            this.tcdbProgressBar.Enabled = false;
-            this.tcdbProgressBar.Visible = false;
+            this.tpQtyTempl.Controls.Add(this.tccbInventories);
+            this.tpQtyTempl.Controls.Add(this.tccbMiniInventories);
+            this.tpQtyTempl.Controls.Add(this.tccbSupplyLogistic);
+            this.tpQtyTempl.Controls.Add(this.tclQtyTempl);
+            this.tpQtyTempl.Location = new System.Drawing.Point(4, 25);
+            this.tpQtyTempl.Name = "tpQtyTempl";
+            this.tpQtyTempl.Size = new System.Drawing.Size(228, 264);
+            this.tpQtyTempl.Text = " Оч. К-ть.";
+            // 
+            // tclQtyTempl
+            // 
+            this.tclQtyTempl.Font = new System.Drawing.Font("Tahoma", 11F, System.Drawing.FontStyle.Bold);
+            this.tclQtyTempl.Location = new System.Drawing.Point(3, 5);
+            this.tclQtyTempl.Name = "tclQtyTempl";
+            this.tclQtyTempl.Size = new System.Drawing.Size(222, 20);
+            this.tclQtyTempl.Text = "Показувати к-ть що очікуємо:";
+            // 
+            // tccbSupplyLogistic
+            // 
+            this.tccbSupplyLogistic.Location = new System.Drawing.Point(3, 27);
+            this.tccbSupplyLogistic.Name = "tccbSupplyLogistic";
+            this.tccbSupplyLogistic.Size = new System.Drawing.Size(222, 20);
+            this.tccbSupplyLogistic.TabIndex = 1;
+            this.tccbSupplyLogistic.Text = "SupplyLogistic";
+            // 
+            // tccbMiniInventories
+            // 
+            this.tccbMiniInventories.Location = new System.Drawing.Point(3, 50);
+            this.tccbMiniInventories.Name = "tccbMiniInventories";
+            this.tccbMiniInventories.Size = new System.Drawing.Size(222, 20);
+            this.tccbMiniInventories.TabIndex = 2;
+            this.tccbMiniInventories.Text = "MiniInventories";
+            // 
+            // tccbInventories
+            // 
+            this.tccbInventories.Location = new System.Drawing.Point(3, 73);
+            this.tccbInventories.Name = "tccbInventories";
+            this.tccbInventories.Size = new System.Drawing.Size(222, 20);
+            this.tccbInventories.TabIndex = 3;
+            this.tccbInventories.Text = "Inventories";
             // 
             // frmSettings
             // 
@@ -357,8 +407,9 @@
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Settings_KeyUp);
             this.mainPanel.ResumeLayout(false);
             this.mpTabControl.ResumeLayout(false);
-            this.tcMain.ResumeLayout(false);
-            this.tcDataBase.ResumeLayout(false);
+            this.tpMain.ResumeLayout(false);
+            this.tpDataBase.ResumeLayout(false);
+            this.tpQtyTempl.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -376,8 +427,8 @@
         private System.Windows.Forms.MenuItem miExit;
         private System.Windows.Forms.Label tclSerial;
         private System.Windows.Forms.TabControl mpTabControl;
-        private System.Windows.Forms.TabPage tcMain;
-        private System.Windows.Forms.TabPage tcDataBase;
+        private System.Windows.Forms.TabPage tpMain;
+        private System.Windows.Forms.TabPage tpDataBase;
         private System.Windows.Forms.Label tcDevNameCapt;
         private System.Windows.Forms.Label tclSerialCapt;
         private System.Windows.Forms.Label tclTMCapt;
@@ -396,6 +447,11 @@
         private System.Windows.Forms.TextBox tcdbSync;
         private System.Windows.Forms.Button tcdbBottonCleanDB;
         private System.Windows.Forms.ProgressBar tcdbProgressBar;
+        private System.Windows.Forms.TabPage tpQtyTempl;
+        private System.Windows.Forms.Label tclQtyTempl;
+        private System.Windows.Forms.CheckBox tccbSupplyLogistic;
+        private System.Windows.Forms.CheckBox tccbMiniInventories;
+        private System.Windows.Forms.CheckBox tccbInventories;
 
 
     }

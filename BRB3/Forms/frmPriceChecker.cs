@@ -22,7 +22,7 @@ namespace BRB.Forms
 
         public void InitializeComponentManual()
         {
-            this.Text = "BRB3 " + Global.eTypeTerminal.ToString();
+            this.Text = Global.curVersionBRB + " Контроль цінників";
 
             this.miExit.Text += " " + HotKey.strPriceChecker_Exit;
             this.miAdd.Text += " " + HotKey.strPriceChecker_Add;

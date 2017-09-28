@@ -18,7 +18,7 @@
     <NativePlatformName>Windows CE</NativePlatformName>
     <FormFactorID>
     </FormFactorID>
-    <ApplicationIcon>Ico_App_b.ico</ApplicationIcon>
+    <ApplicationIcon>Ico_App.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -267,8 +267,6 @@
     <Content Include="dll\BCS.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Ico_App_b.ico">
-    </Content>
     <None Include="Ico\Ico_reg_32.ico" />
     <None Include="Ico\Ico_06_32.ico" />
     <None Include="Ico\Ico_05_32.ico" />
@@ -311,6 +309,7 @@
     </Content>
     <None Include="Database\BRB.sdf">
     </None>
+    <Content Include="Ico_App.ico" />
     <Content Include="Key.map">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

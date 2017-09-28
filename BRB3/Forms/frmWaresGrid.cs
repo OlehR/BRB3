@@ -31,7 +31,7 @@ namespace BRB.Forms
         public void InitializeComponentManual()
         {
             //this.labelDown.Size = new System.Drawing.Size(236 * Global.tCoefficient, (1 + Global.hToolbarTerminal) * Global.tCoefficient);
-            this.Text = "BRB3 " + Global.eTypeTerminal.ToString();
+            this.Text = Global.curVersionBRB + " " + Global.cBL.CurTypeDoc.ToString() + " WaresGrid";
 
             this.miExit.Text += " " + HotKey.strWaresGrid_Exit;
             this.miEdit.Text += " " + HotKey.strWaresGrid_Edit;
