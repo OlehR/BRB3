@@ -29,38 +29,19 @@
         private void InitializeComponent()
         {
             this.mainMenu1 = new System.Windows.Forms.MainMenu();
-            this.menuItem1 = new System.Windows.Forms.MenuItem();
-            this.menuItem2 = new System.Windows.Forms.MenuItem();
-            this.mplBarCodeCapt = new System.Windows.Forms.Label();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.btClose = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // mainMenu1
+            // btClose
             // 
-            this.mainMenu1.MenuItems.Add(this.menuItem1);
-            // 
-            // menuItem1
-            // 
-            this.menuItem1.MenuItems.Add(this.menuItem2);
-            this.menuItem1.Text = "11111";
-            // 
-            // menuItem2
-            // 
-            this.menuItem2.Text = "22222";
-            // 
-            // mplBarCodeCapt
-            // 
-            this.mplBarCodeCapt.Location = new System.Drawing.Point(185, 264);
-            this.mplBarCodeCapt.Name = "mplBarCodeCapt";
-            this.mplBarCodeCapt.Size = new System.Drawing.Size(50, 20);
-            this.mplBarCodeCapt.Text = "label3";
-            // 
-            // progressBar1
-            // 
-            this.progressBar1.Location = new System.Drawing.Point(12, 121);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(206, 31);
-            this.progressBar1.ParentChanged += new System.EventHandler(this.progressBar1_ParentChanged);
+            this.btClose.BackColor = System.Drawing.SystemColors.Info;
+            this.btClose.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btClose.Location = new System.Drawing.Point(0, 0);
+            this.btClose.Name = "btClose";
+            this.btClose.Size = new System.Drawing.Size(238, 295);
+            this.btClose.TabIndex = 0;
+            this.btClose.Text = "Close";
+            this.btClose.Click += new System.EventHandler(this.btClose_Click);
             // 
             // frmTest
             // 
@@ -68,12 +49,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(238, 295);
-            this.Controls.Add(this.progressBar1);
-            this.Controls.Add(this.mplBarCodeCapt);
+            this.Controls.Add(this.btClose);
             this.Menu = this.mainMenu1;
             this.Name = "frmTest";
             this.Text = "frmTest";
-            this.Load += new System.EventHandler(this.frmTest_Load);
             this.ResumeLayout(false);
 
         }
@@ -81,9 +60,6 @@
         #endregion
 
         public System.Windows.Forms.MainMenu mainMenu1;
-        private System.Windows.Forms.MenuItem menuItem1;
-        private System.Windows.Forms.MenuItem menuItem2;
-        private System.Windows.Forms.Label mplBarCodeCapt;
-        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.Button btClose;
     }
 }

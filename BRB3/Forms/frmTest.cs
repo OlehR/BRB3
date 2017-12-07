@@ -1,45 +1,55 @@
 ﻿using System;
-
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+
+using System.Runtime.InteropServices;
 
 namespace BRB.Forms
 {
     public partial class frmTest : Form
     {
+        int hid = FindWindow("HHTaskBar", ""); // назва TaskBar
+
         public frmTest()
         {
+         
             InitializeComponent();
-            progressBar1.Value = 30;
+
+            //забераємо TaskBar
+            ShowWindow(hid, 0);  // SW_HIDE = 0, SW_SHOW = 5, SW_MAXIMIZE = 3, SW_NORMAL = 1
+            EnableWindow(hid, false);
+
+            this.Menu = null;
+            this.ControlBox = false;
+            this.Text = string.Empty;
+            this.FormBorderStyle = FormBorderStyle.None; //заголовок
+            this.Width = Screen.PrimaryScreen.Bounds.Width;
+            this.Height = Screen.PrimaryScreen.Bounds.Height;
+            this.TopMost = true;
            
         }
 
-        protected override void OnPaint(PaintEventArgs e)
-        {
-            Pen blackPen = new Pen(Color.Black);
-            System.Windows.Forms.Label labelDraw = null;
-            labelDraw = mplBarCodeCapt;
-            
-            e.Graphics.DrawLine(blackPen, labelDraw.Location.X - 1, labelDraw.Location.Y - 1, labelDraw.Location.X + labelDraw.Size.Width, labelDraw.Location.Y - 1); // верхняя
-            e.Graphics.DrawLine(blackPen, labelDraw.Location.X - 1, labelDraw.Location.Y - 1, labelDraw.Location.X - 1, labelDraw.Location.Y + labelDraw.Size.Height); // левая
-            e.Graphics.DrawLine(blackPen, labelDraw.Location.X + labelDraw.Size.Width, labelDraw.Location.Y - 1, labelDraw.Location.X + labelDraw.Size.Width, labelDraw.Location.Y + labelDraw.Size.Height); // правая
-            e.Graphics.DrawLine(blackPen, labelDraw.Location.X - 1, labelDraw.Location.Y + labelDraw.Size.Height, labelDraw.Location.X + labelDraw.Size.Width, labelDraw.Location.Y + labelDraw.Size.Height); // нижняя
+            private void btClose_Click(object sender, EventArgs e)
+            {
+                ShowWindow(hid, 5);
+                EnableWindow(hid, true);
 
-            e.Graphics.DrawLine(blackPen, 5, 20, 200, 20);
-        }
+                this.Close();
+            }
 
-        private void frmTest_Load(object sender, EventArgs e)
-        {
 
-        }
+        //Отображает тем или иным способом окно (в том числе и скрывает его).
+        [DllImport("coredll.dll", CharSet = CharSet.Auto)]
+        public static extern bool ShowWindow(int hwnd, int nCmdShow);
 
-        private void progressBar1_ParentChanged(object sender, EventArgs e)
-        {
+        //Делает окно доступным либо недоступным (убрать с экрана либо показать).
+        [DllImport("coredll.dll", CharSet = CharSet.Auto)]
+        public static extern bool EnableWindow(int hwnd, bool enabled);
 
-        }
+        //Находит нужное окно по наименованию.
+        [DllImport("coredll.dll")]
+        public static extern int FindWindow(string className, string windowName);
+
     }
 }
