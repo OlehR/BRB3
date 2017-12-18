@@ -131,7 +131,7 @@ namespace BRB
     static public bool viewQtyTemplSuppLogist = false;
     static public bool viewQtyTemplMiniInvent = true;
     static public bool viewQtyTemplInvent = false;
-    public static string curVersionBRB = "BRB3v25";
+    public static string curVersionBRB = "BRB3v26";
         
     static public  ReadINI2 varIniKeyMap;
 

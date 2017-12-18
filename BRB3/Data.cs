@@ -77,7 +77,8 @@ GROUP BY d.number_doc, d.type_doc, d.name_supplier, d.date_doc, d.flag_price_wit
                                            WARES AS w ON dw.code_wares = w.code_wares INNER JOIN
                                            ADDITION_UNIT AS au ON dw.code_wares = au.code_wares AND dw.code_unit = au.code_unit AND au.default_unit = 'Y' INNER JOIN
                                            UNIT_DIMENSION AS ud ON dw.code_unit = ud.code_unit 
-                                 WHERE     dw.number_doc = @parNumberDoc";
+                                 WHERE     dw.number_doc = @parNumberDoc
+                                 order by num_pop, name_wares";
 
         private string varSQLTimeSync = @"SELECT COALESCE(max(TimeSync), CONVERT(DATETIME, '01.01.2000', 000)),  FROM SETTINGS"; 
         private string varSQLSumDocs = @"SELECT CASE WHEN d .flag_price_with_vat = 0 THEN d .sum_without_vat WHEN d .flag_price_with_vat = 1 THEN d .sum_with_vat ELSE 0 END AS SummaZak FROM DOCS AS d WHERE (d.number_doc = @parNumberDoc)";
